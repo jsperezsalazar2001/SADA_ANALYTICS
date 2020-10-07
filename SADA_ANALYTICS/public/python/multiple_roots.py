@@ -61,5 +61,5 @@ def multiple_roots(f, df, d2f, x_0, tol, n_max):
         print(str(values[2]))
         
   
-multiple_roots("(e^x) - x - 1", "(e^x) - 1", "(e^x)", 1, 0.0000001, 100)
+multiple_roots("exp(x) - x - 1", "exp(x) - 1", "exp(x)", 1, 0.0000001, 100)
     
