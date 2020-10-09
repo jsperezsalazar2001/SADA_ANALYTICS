@@ -1,6 +1,8 @@
 import sympy as sm
 import math
 import sys
+import json
+import base64
 
 def busquedaIncremental(x_inicial, delta, limite_Iteraciones, funcion):
     if delta <= 0:
@@ -22,8 +24,8 @@ def busquedaIncremental(x_inicial, delta, limite_Iteraciones, funcion):
             f_anterior = f_actual
             f_actual = sm.sympify(funcion).subs(x,x_actual)
             contador = contador + 1
-        for valor in resultados.values():
-            print("Hay una raiz de f en [" + str(valor[0]) + "," + str(valor[1]) + "]")
+        aux = json.dumps(resultados)
+        print(aux)
     else:
         print("Las iteraciones deben ser un numero positivo")
         sys.exit(1)
