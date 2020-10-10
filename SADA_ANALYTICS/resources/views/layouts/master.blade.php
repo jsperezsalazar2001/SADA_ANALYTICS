@@ -27,10 +27,31 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <a class="navbar-brand" href="{{ route('raices') }}">Metodos de calculo de raices</a>
+                        <div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ __('master.root_methods') }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('fixed_point') }}">{{ __('fixed_point.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('secant') }}">{{ __('secant.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('steffensen') }}">{{ __('steffensen.title') }}</a>
+                            </div>
+
+                        </div>
                     </ul>
                     <ul class="navbar-nav mr-auto">
-                        <a class="navbar-brand" href="#">Metodos de Matrices</a>
+                        <div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ __('master.matrix_methods') }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+
+                        </div>
                     </ul>
                 </div>
             </div>
