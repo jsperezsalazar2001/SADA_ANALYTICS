@@ -36,6 +36,8 @@
                                 <a class="dropdown-item" href="{{ route('fixed_point') }}">{{ __('fixed_point.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('secant') }}">{{ __('secant.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('steffensen') }}">{{ __('steffensen.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('incremental_search') }}">{{ __('incremental.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('muller') }}">{{ __('muller.title') }}</a>
                             </div>
 
                         </div>
