@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section("title", $data["title"])
+@section("title", $data["title"])  
 
 @section('content')
 <div class="container">
@@ -10,30 +10,36 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>X inicial</label>
-                            <input type="number" class="form-control" placeholder="Ingrese la X inicial" name="x_inicial" step="any" required />
+                            <label>{{ __('fixed_point.label.f_function') }}</label>
+                            <input type="text" class="form-control" placeholder="{{ __('fixed_point.input.f_function') }}" name="f_function" required />
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Delta</label>
-                            <input type="number" class="form-control" placeholder="Ingrese el delta" name="delta" step="any" min="0" required />
+                            <label>{{ __('fixed_point.label.g_function') }}</label>
+                            <input type="text" class="form-control" placeholder="{{ __('fixed_point.input.g_function') }}" name="g_function" required />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Limite de Iteraciones</label>
-                            <input type="number" class="form-control" placeholder="Ingrese la cantidad maxima de iteraciones" name="iteraciones" min="1" required />
+                            <label>{{ __('fixed_point.label.initial_x') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('fixed_point.input.initial_x') }}" name="initial_x" step="any" required />
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Funcion</label>
-                            <input type="text" class="form-control" placeholder="Ingrese la funcion" name="funcion" required />
+                            <label>{{ __('fixed_point.label.tolerance') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('fixed_point.input.tolerance') }}" name="tolerance" step="any" required />
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-outline-success btn-block">Calcular</button>
+                        <div class="form-group col-md-6">
+                            <label>{{ __('fixed_point.label.iterations') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('fixed_point.input.iterations') }}" name="iterations" step="1" min="1" required />
                         </div>
                     </div>
-                </form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-outline-success btn-block">{{ __('fixed_point.calculate') }}</button>
+                        </div>
+                    </div>
+            </form>
         </div>
     </div>
 </div>

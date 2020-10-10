@@ -9,31 +9,33 @@
             <form method="POST" action="{{ route('steffensen_method') }}" class="form">
                     @csrf
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>steffensen</label>
-                            <input type="number" class="form-control" placeholder="Ingrese la X inicial" name="x_inicial" step="any" required />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Delta</label>
-                            <input type="number" class="form-control" placeholder="Ingrese el delta" name="delta" step="any" min="0" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Limite de Iteraciones</label>
-                            <input type="number" class="form-control" placeholder="Ingrese la cantidad maxima de iteraciones" name="iteraciones" min="1" required />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Funcion</label>
-                            <input type="text" class="form-control" placeholder="Ingrese la funcion" name="funcion" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-outline-success btn-block">Calcular</button>
+                            <label>{{ __('steffensen.label.f_function') }}</label>
+                            <input type="text" class="form-control" placeholder="{{ __('steffensen.input.f_function') }}" name="f_function" required />
                         </div>
                     </div>
-                </form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>{{ __('steffensen.label.initial_x') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('steffensen.input.initial_x') }}" name="initial_x" step="any" required />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>{{ __('steffensen.label.tolerance') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('steffensen.input.tolerance') }}" name="tolerance" step="any" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>{{ __('steffensen.label.iterations') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('steffensen.input.iterations') }}" name="iterations" step="1" min="1" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-outline-success btn-block">{{ __('steffensen.calculate') }}</button>
+                        </div>
+                    </div>
+            </form>
         </div>
     </div>
 </div>
