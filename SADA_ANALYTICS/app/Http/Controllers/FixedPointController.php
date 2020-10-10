@@ -14,18 +14,15 @@ class FixedPointController extends Controller
     }
 
     public function fixedPointMethod(Request $request){
-        $command = 'python "'.public_path().'\python\fixed_point.py" ';
+        $f_function = $request->input('f_function');
+        $f_function = '"'.$f_function.'"';
+        $g_function = $request->input('g_function');
+        $g_function = '"'.$g_function.'"';
+        $initial_x = $request->input('initial_x');
+        $tolerance = $request->input('tolerance');
+        $iterations = $request->input('iterations');
+        $command = 'python "'.public_path().'\python\fixed_point.py" '."{$f_function} {$g_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
         dd($output);
-        // $x_inicial = $request->input('x_inicial');
-        // $delta = $request->input('delta');
-        // $iteraciones = $request->input('iteraciones');
-        // $funcion = $request->input('funcion');
-        // $funcion = '"'.$funcion.'"';
-        // $comando = 'python "'.public_path().'\python\busquedaIncremental.py" '."{$x_inicial} {$delta} {$iteraciones} {$funcion}";
-        // exec($comando, $output);
-        // dd($output);
-        #echo "x: ".$x_inicial." delta: ".$delta." iteraciones: ".$iteraciones." funcion: ".$funcion;
-        // Llamado de la funcion de python
     }
 }

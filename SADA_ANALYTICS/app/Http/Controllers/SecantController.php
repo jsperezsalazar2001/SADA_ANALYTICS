@@ -14,18 +14,14 @@ class SecantController extends Controller
     }
 
     public function secantMethod(Request $request){
-        $command = 'python "'.public_path().'\python\secant.py" ';
+        $f_function = $request->input('f_function');
+        $f_function = '"'.$f_function.'"';
+        $x1 = $request->input('x1');
+        $x2 = $request->input('x2');
+        $tolerance = $request->input('tolerance');
+        $iterations = $request->input('iterations');
+        $command = 'python "'.public_path().'\python\secant.py" '."{$f_function} {$x1} {$x2} {$tolerance} {$iterations}";
         exec($command, $output);
         dd($output);
-        // $x_inicial = $request->input('x_inicial');
-        // $delta = $request->input('delta');
-        // $iteraciones = $request->input('iteraciones');
-        // $funcion = $request->input('funcion');
-        // $funcion = '"'.$funcion.'"';
-        // $comando = 'python "'.public_path().'\python\busquedaIncremental.py" '."{$x_inicial} {$delta} {$iteraciones} {$funcion}";
-        // exec($comando, $output);
-        // dd($output);
-        #echo "x: ".$x_inicial." delta: ".$delta." iteraciones: ".$iteraciones." funcion: ".$funcion;
-        // Llamado de la funcion de python
     }
 }
