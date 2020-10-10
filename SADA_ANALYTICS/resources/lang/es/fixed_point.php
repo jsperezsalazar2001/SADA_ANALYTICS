@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'title' => "Steffensen's method",
+    'title' => 'Fixed point method',
+    'navbar_title' => 'Accesorio',
     'input' => [
         'name' => 'Ingresar nombre',
         'filters' => 'Filtros',
