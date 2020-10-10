@@ -4,7 +4,7 @@ import sys
 import json
 import base64
 
-def busquedaIncremental(x_inicial, delta, limite_Iteraciones, funcion):
+def incremental_search(x_inicial, delta, limite_Iteraciones, funcion):
     if delta <= 0:
         print("El delta debe ser positivo")
         sys.exit(1)
@@ -31,7 +31,7 @@ def busquedaIncremental(x_inicial, delta, limite_Iteraciones, funcion):
         sys.exit(1)
 
 
-def muller(x_0, x_1, tolerancia, funcion, limite_Iteraciones):
+"""def muller(x_0, x_1, tolerancia, funcion, limite_Iteraciones):
     if x_0 == x_1:
         print("Error x0 debe ser diferente de x1")
         sys.exit(1)
@@ -77,8 +77,8 @@ def muller(x_0, x_1, tolerancia, funcion, limite_Iteraciones):
             resultados[contador] = [x_0,x_1,x_2,error]
             contador = contador + 1
         for valor in resultados.values():
-            print("X0: " + str(valor[0]) + ", x1: " + str(valor[1]) + ", x2: " +str(valor[2]) + " error: " + str(valor[3]))
+            print("X0: " + str(valor[0]) + ", x1: " + str(valor[1]) + ", x2: " +str(valor[2]) + " error: " + str(valor[3]))"""
 
 #muller(0,1,0.0070,"(exp(-x))-x",5)
 #busquedaIncremental(-3.0,0.5,100,"ln((sin(x)^2)+1)-(1/2)")
-busquedaIncremental(float(sys.argv[1]),float(sys.argv[2]),int(sys.argv[3]),str(sys.argv[4]))
+incremental_search(float(sys.argv[1]),float(sys.argv[2]),int(sys.argv[3]),str(sys.argv[4]))
