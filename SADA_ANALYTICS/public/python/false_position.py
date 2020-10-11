@@ -13,9 +13,12 @@ n_max : Maximum number of iterations
 
 Returns
 -------
-x : Solution
 iter: Iterations number
-err : error
+a : Left limit of interval
+mp: Solution
+b: Right limit of interval
+f_mp: Function evaluated in middle point
+E : error
 
 @author: Juan Sebastián Pérez Salazar
 """
@@ -40,7 +43,7 @@ def false_position(f, a, b, tolerance, n_max):
         
         if tolerance <= 0:
             raise Exception("Tolerance must be positive")
-        if n_max > 0:
+        elif n_max > 0:
             f_a = sm.sympify(f).subs(x_in, a)
             f_b = sm.sympify(f).subs(x_in, b) 
             mp = (f_b*a - f_a*b)/(f_b - f_a)

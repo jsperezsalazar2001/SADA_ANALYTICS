@@ -12,9 +12,12 @@ n_max : Maximum number of iterations
 
 Returns
 -------
-x : Solution
 iter: Iterations number
-err : error
+a : Left limit of interval
+mp: Solution
+b: Right limit of interval
+f_mp: Function evaluated in middle point
+E : error
 
 @author: Juan Sebastián Pérez Salazar
 """
