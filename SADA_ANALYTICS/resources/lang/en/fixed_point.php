@@ -29,4 +29,13 @@ return [
         'iterations' => 'Iterations',
     ],
     'calculate' => 'Calculate',
+    'table' => [
+        'iteration' => 'Iteration',
+        'g_xi' => 'g(xi)',
+        'f_xi' => 'f(xi)',
+        'xi' => 'xi',
+        'error' => 'Error',
+    ],
+    'initial_data' => 'Initial Data',
+    'success' => 'Success: the method converged',
 ];
