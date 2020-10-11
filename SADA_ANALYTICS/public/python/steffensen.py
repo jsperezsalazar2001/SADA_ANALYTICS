@@ -1,4 +1,3 @@
-
 """
 Created on Sat Oct  10 
 This program finds the solution to the ecuation f(x) = 0 using Steffensen's method.

@@ -1,3 +1,27 @@
+
+"""
+Created on Sat Oct  10 
+This program finds the solution to the ecuation f(x) = 0 using the Secant method.
+
+Parameters
+----------
+f_function : Continuous  function
+x0 : First initial aproximation
+x1 : Second initial aproximation
+tolerance : Error tolerance
+iterations : Maximum number of iterations
+
+Returns
+-------
+Table of results:
+    columns:
+    - Iteration
+    - xi
+    - f(xi)
+    - Error
+
+@author: Yhoan Alejandro Guzman Garcia
+"""
 import sympy as sm
 import math
 import sys

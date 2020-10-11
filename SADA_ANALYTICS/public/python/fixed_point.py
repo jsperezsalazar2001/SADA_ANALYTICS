@@ -1,4 +1,28 @@
 
+"""
+Created on Sat Oct  10 
+This program finds the solution to the ecuation f(x) = 0 using the Fixed Point method.
+
+Parameters
+----------
+f_function : Continuous  function
+g_function : G function corresponding to f
+initial_x : Initial aproximation
+tolerance : Error tolerance
+iterations : Maximum number of iterations
+
+Returns
+-------
+Table of results:
+    columns:
+    - Iteration
+    - xi
+    - g(xi)
+    - f(xi)
+    - Error
+
+@author: Yhoan Alejandro Guzman Garcia
+"""
 import sympy as sm
 import math
 import sys
