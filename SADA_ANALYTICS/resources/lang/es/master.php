@@ -1,5 +1,5 @@
 <?php
 return [
-'root_methods' => 'Root-finding Methods',
-'matrix_methods' => 'Matrix Methods',
+'root_methods' => 'Métodos para encontrar raíces',
+'matrix_methods' => 'Métodos de matrices',
 ];

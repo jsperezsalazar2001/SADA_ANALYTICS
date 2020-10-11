@@ -37,5 +37,7 @@ return [
         'error' => 'Error',
     ],
     'initial_data' => 'Initial Data',
-    'success' => 'Success: the method converged',
+    'success' => 'Success',
+    'root' => 'An aproximation to the root was found at: ',
+    'no_root' => 'Could not find an aproximation to the root with the given data',
 ];
