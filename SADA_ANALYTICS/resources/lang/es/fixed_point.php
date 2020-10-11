@@ -38,4 +38,6 @@ return [
     ],
     'initial_data' => 'Datos inciales',
     'success' => 'Exito: el método convergió',
+    'root' => 'Se encontró una aproximación de la raiz en: ',
+    'no_root' => 'No se pudo encontrar una aproximación a una raíz con los datos dados',
 ];

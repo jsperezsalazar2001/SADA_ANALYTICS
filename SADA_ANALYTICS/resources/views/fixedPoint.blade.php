@@ -73,6 +73,11 @@
                                         <th>{{ $iteration[3] }}</th>
                                         <th>{{ $iteration[4] }}</th>
                                     </tr>
+                                    <!-- @if ($loop->last)
+                                    <tr>
+                                        <th colspan="4">{{ __('fixedPoint.root') }}{{ $iteration[1] }}</th>
+                                    </tr>
+                                    @endif -->
                                 @endforeach
                             </tbody>
                         </table>
