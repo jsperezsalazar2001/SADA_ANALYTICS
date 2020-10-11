@@ -1,0 +1,27 @@
+Input: function f(x), float initial_x, float tolerance, int iterations
+Output: result table results
+if(f(x) is not a valid function)
+    break;
+if(initial_x or tolerance or iterations are not valid numbers)
+    break;
+if(tolerance is lees than 0)
+    break;
+if(iterations is less than 1)
+    break;
+array results
+int iter_count <- 0
+float xi_plus_f_xi <- initial_x + f(initial_x)
+float f_xi_plus_f_xi <- f(xi_plus_f_xi)
+float error <- MAXIMUM FLOAT VALUE
+results[iter_count] <- [iter_count, initial_x, f(initial_x), xi_plus_f_xi, f(xi_plus_f_xi), "N/A"]
+float previous_x <- initial_x
+    while iter_count < iterations and error > tolerance do:
+        iter_count <- iter_count + 1
+        current_x <- previous_x - ((f(previous_x)^2)/ (f(previous_x + f(previous_x)) - f(previous_x)))
+        xi_plus_f_xi <- current_x + f(current_x)
+        f_xi_plus_f_xi <- f(xi_plus_f_xi)
+        error <- |previous_x - current_x|
+        results[iter_count] <- [iter_count, current_x, f(current_x), xi_plus_f_xi, f_xi_plus_f_xi, error]
+        previous_x <- current_x
+    end while
+return results
