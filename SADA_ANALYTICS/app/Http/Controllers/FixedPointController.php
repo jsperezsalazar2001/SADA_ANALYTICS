@@ -30,8 +30,12 @@ class FixedPointController extends Controller
         $command = 'python "'.public_path().'\python\fixed_point.py" '."{$f_function} {$g_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
         $data["title"] = __('fixed_point.title');
-        if (substr($output[0],7,5) == "Error"){
-            $data["message"] = substr($output[0],7,strlen($output[0])-9);
+        if (!(strpos($output[0], "Error") === false)){
+            if ((strpos($output[0], "Error processing results:") === false)){
+                $data['message'] = substr($output[0],7,strlen($output[0])-9);
+            }else{
+                $data["message"] = $output[0];
+            }
         }else{
             $json = json_decode($output[0],true);
             $data["table"] = $json;

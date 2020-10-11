@@ -42,7 +42,7 @@
                     </div>
             </form>
         </div>
-            @if (!empty($data["table"]))
+        @if (!empty($data["table"]))
             <div class="card">
                 <div class="card-header">
                     <h1>{{ __('fixed_point.initial_data') }}</h1>

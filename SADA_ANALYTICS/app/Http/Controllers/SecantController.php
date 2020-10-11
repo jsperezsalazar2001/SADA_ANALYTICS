@@ -28,8 +28,12 @@ class SecantController extends Controller
         $command = 'python "'.public_path().'\python\secant.py" '."{$f_function} {$x1} {$x2} {$tolerance} {$iterations}";
         exec($command, $output);
         $data["title"] = __('secant.title');
-        if (substr($output[0],7,5) == "Error"){
-            $data["message"] = substr($output[0],7,strlen($output[0])-9);
+        if (!(strpos($output[0], "Error") === false)){
+            if ((strpos($output[0], "Error processing results:") === false)){
+                $data['message'] = substr($output[0],7,strlen($output[0])-9);
+            }else{
+                $data["message"] = $output[0];
+            }
         }else{
             $json = json_decode($output[0],true);
             $data["table"] = $json;

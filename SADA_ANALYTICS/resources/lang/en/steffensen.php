@@ -27,4 +27,14 @@ return [
         'iterations' => 'Iterations',
     ],
     'calculate' => 'Calculate',
+    'table' => [
+        'iteration' => 'Iteration',
+        'f_xi' => 'f(xi)',
+        'xi' => 'xi',
+        'xi_plus_f_xi' => 'xi + f(xi)',
+        'f_xi_plus_f_xi' => 'f(xi + f(xi))',
+        'error' => 'Error',
+    ],
+    'initial_data' => 'Initial Data',
+    'success' => 'Success: the method converged',
 ];

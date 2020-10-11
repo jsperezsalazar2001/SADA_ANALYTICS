@@ -41,6 +41,9 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
                 #results[iter_count] = ["No se encontró una aproximación de la raiz. Último valor de x: {}".format(current_x)]
     except BaseException as e:
         results[0] = "Error in the given data: " + str(e)
-    aux = json.dumps(results)
-    print(aux)
+    try:
+        aux = json.dumps(results)
+        print(aux)
+    except BaseException as e:
+        print("Error processing results: " + str(e))
 fixedPoint(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])
