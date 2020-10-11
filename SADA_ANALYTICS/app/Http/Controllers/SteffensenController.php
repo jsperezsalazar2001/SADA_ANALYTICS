@@ -21,6 +21,9 @@ class SteffensenController extends Controller
         $iterations = $request->input('iterations');
         $command = 'python "'.public_path().'\python\steffensen.py" '."{$f_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
-        dd($output);
+        $data["title"] = __('steffensen.title');
+        $json = json_decode($output[0],true);
+        $data["table"] = $json;
+        return view('steffensen')->with("data",$data);
     }
 }

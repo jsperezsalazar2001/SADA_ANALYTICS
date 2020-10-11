@@ -15,13 +15,26 @@ class SecantController extends Controller
 
     public function secantMethod(Request $request){
         $f_function = $request->input('f_function');
+        $data['f_function'] = $f_function;
         $f_function = '"'.$f_function.'"';
         $x1 = $request->input('x1');
         $x2 = $request->input('x2');
         $tolerance = $request->input('tolerance');
         $iterations = $request->input('iterations');
+        $data['x1'] = $x1;
+        $data['x2'] = $x2;
+        $data['tolerance'] = $tolerance;
+        $data['iterations'] = $iterations;
         $command = 'python "'.public_path().'\python\secant.py" '."{$f_function} {$x1} {$x2} {$tolerance} {$iterations}";
         exec($command, $output);
-        dd($output);
+        $data["title"] = __('secant.title');
+        if (substr($output[0],7,5) == "Error"){
+            $data["message"] = substr($output[0],7,strlen($output[0])-9);
+        }else{
+            $json = json_decode($output[0],true);
+            $data["table"] = $json;
+            $data['message'] = __('secant.success');
+        }
+        return view('secant')->with("data",$data);
     }
 }
