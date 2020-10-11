@@ -1,0 +1,45 @@
+Input: function f(x), float a, float b, float tolerance, int max_n_iterations 
+Output: result table results
+
+if(f(x) is not valid function)
+	break;
+if(a or b or tolerance or max_n_iterations are not valid numbers)
+	break;
+if(tolerance < 0)
+	break;
+if(iterations < 1)
+	break;
+
+float f_a <- f(a)
+float f_b <- f(b)
+
+if(f_a * f_b is greater than or equal 0)
+	break;
+
+array results
+
+float middle_point <- (a + b)/2
+float f_middle_point <- f(middle_point)
+float error <- MAXIMUM FLOAT VALUE
+int iterations_counter <- 1
+
+results[iterations_counter] <- [iterations_counter, a, middle_point, b, f_middle_point, "N/A"]
+
+float p_0
+
+while ((error > tolerance) and (iterations_counter < max_n_iterations))
+	iterations_counter <- iterations_counter + 1
+	if(f_a * f_b < 0):
+		b <- middle_point
+	else
+		a <- middle_point
+	
+	p_0 <- middle_point
+	middle_point <- (a + b)/2
+	f_middle_point <- f(middle_point)
+	error <- |middle_point - p_0|
+	results[iterations_counter] <- [iterations_counter, a, middle_point, b, f_middle_point, error]
+end while
+
+return results
+	

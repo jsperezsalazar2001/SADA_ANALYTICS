@@ -1,0 +1,37 @@
+Input: function f(x), function df(x), function d2f(), float initial_x, float tolerance, int max_n_iterations 
+Output: result table results
+
+if(f(x) or df(x) or d2f(x) are not valid function)
+	break;
+if(initial_x or tolerance or max_n_iterations are not valid number)
+	break;
+if(tolerance < 0)
+	break;
+if(iterations < 1)
+	break;
+
+array results
+
+float previous_x <- initial_x
+float previous_f <- f(previous_x)
+float error <- MAXIMUM FLOAT VALUE
+int iterations_counter <- 0
+
+results[iterations_counter] <- [iterations_counter, previous_x, previous_f, "N/A"]
+
+float current_x, current_f, previous_df, previous_d2f
+
+while ((error > tolerance) and (iterations_counter < max_n_iterations))
+	iterations_counter <- iterations_counter + 1
+	previous_df <- df(previous_x)
+	previous_d2f <- d2f(previous_x)
+	
+	current_x <- previous_x - ((previous_f*previous_df)/(previous_df^2 - previous_f*previous_d2f))
+	current_f <- f(current_x)
+	error <- |current_x - previous_x|
+	previous_x <- current_x
+	previous_f <- current_f
+	results[iterations_counter] <- [iterations_counter, previous_x, previous_f, error]
+end while
+
+return results
