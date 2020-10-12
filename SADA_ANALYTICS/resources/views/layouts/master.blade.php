@@ -35,6 +35,8 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('bisection') }}">{{ __('bisection.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('false_position') }}">{{ __('false_position.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('newton') }}">{{ __('newton.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('multiple_roots') }}">{{ __('multiple_roots.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('fixed_point') }}">{{ __('fixed_point.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('secant') }}">{{ __('secant.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('steffensen') }}">{{ __('steffensen.title') }}</a>

@@ -31,3 +31,9 @@ Route::POST('/bisectionMethod','BisectionController@bisectionMethod')->name("bis
 
 Route::GET('/falsePosition','FalsePositionController@falsePosition')->name("false_position");
 Route::POST('/falsePositionMethod','FalsePositionController@falsePositionMethod')->name("false_position_method");
+
+Route::GET('/newton','NewtonController@newton')->name("newton");
+Route::POST('/newtonMethod','NewtonController@newtonMethod')->name("newton_method");
+
+Route::GET('/multipleRoots','MultipleRootsController@multipleRoots')->name("multiple_roots");
+Route::POST('/multipleRootsMethod','MultipleRootsController@multipleRootsMethod')->name("multiple_roots_method");

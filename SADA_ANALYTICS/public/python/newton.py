@@ -73,4 +73,4 @@ def newton(f, df, x_0, tolerance, n_max):
     except BaseException as e:
         print("Error processing results: " + str(e))
   
-newton("ln((sin(x)^2)+1)-(1/2)", "2*((sin(x)^2)+1)^(-1)*sin(x)*cos(x)", 0.5, 0.0000001, 100)
+newton(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])
