@@ -77,4 +77,4 @@ def false_position(f, a, b, tolerance, n_max):
     except BaseException as e:
         print("Error processing results: " + str(e))
 
-false_position("ln((sin(x)^2)+1)-(1/2)", 0, 1, 0.0000001, 100)
+false_position(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])

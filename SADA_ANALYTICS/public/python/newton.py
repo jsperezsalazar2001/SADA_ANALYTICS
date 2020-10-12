@@ -24,6 +24,9 @@ E : error
 import sympy as sm
 import math
 import sys
+import traceback
+import json
+import base64
 
 def newton(f, df, x_0, tolerance, n_max):
     results = {}

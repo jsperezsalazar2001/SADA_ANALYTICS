@@ -77,4 +77,4 @@ def bisection(f, a, b, tolerance, n_max):
     except BaseException as e:
         print("Error processing results: " + str(e))
 
-bisection("ln((sin(x)^2)+1)-(1/2)", 0, 1, 0.0000001, 100)
+bisection(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])

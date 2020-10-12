@@ -26,6 +26,9 @@ E : error
 import sympy as sm
 import math
 import sys
+import traceback
+import json
+import base64
 
 def multiple_roots(f, df, d2f, x_0, tolerance, n_max):
     results = {}
