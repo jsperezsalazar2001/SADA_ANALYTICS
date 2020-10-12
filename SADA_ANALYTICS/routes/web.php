@@ -17,3 +17,6 @@ Route::POST('/incrementalMethod','IncrementalSearchController@incrementalSearchM
 Route::GET('/muller','MullerController@muller')->name("muller");
 Route::POST('/mullerMethod','MullerController@mullerMethod')->name("muller_method");
 
+Route::GET('/aitken','AitkenController@aitken')->name("aitken");
+Route::POST('/aitkenMethod','AitkenController@aitkenMethod')->name("aitken_method");
+

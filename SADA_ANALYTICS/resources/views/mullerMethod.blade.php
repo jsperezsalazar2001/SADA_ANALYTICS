@@ -11,35 +11,35 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>X_0</label>
-                            <input type="number" class="form-control" placeholder="Enter X_0" name="x_0" step="any" required />
+                            <label>{{ __('muller.label.x_0') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('muller.input.x_0') }}" name="x_0" step="any" required />
                         </div>
                         <div class="form-group col-md-4">
-                            <label>X_1</label>
-                            <input type="number" class="form-control" placeholder="Enter X_1" name="x_1" step="any" min="0" required />
+                            <label>{{ __('muller.label.x_1') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('muller.input.x_1') }}" name="x_1" step="any" min="0" required />
                         </div>
                         <div class="form-group col-md-4">
-                            <label>X_2</label>
-                            <input type="number" class="form-control" placeholder="Enter X_2" name="x_2" step="any" min="0"/>
+                            <label>{{ __('muller.label.x_2') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('muller.input.x_2') }}" name="x_2" step="any" min="0"/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>Iteration Limit</label>
-                            <input type="number" class="form-control" placeholder="Enter the maximum value of iterations" name="iterations" min="1" required />
+                            <label>{{ __('muller.label.iterations') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('muller.input.iterations') }}" name="iterations" min="1" required />
                         </div>
                         <div class="form-group col-md-4">
-                            <label>Funtion</label>
-                            <input type="text" class="form-control" placeholder="Enter the function" name="function" required />
+                            <label>{{ __('muller.label.function') }}</label>
+                            <input type="text" class="form-control" placeholder="{{ __('muller.input.function') }}" name="function" required />
                         </div>
                         <div class="form-group col-md-4">
-                            <label>Tolerance</label>
-                            <input type="number" class="form-control" placeholder="Enter the tolerance" name="tolerance" required step="any"/>
+                            <label>{{ __('muller.label.tolerance') }}</label>
+                            <input type="number" class="form-control" placeholder="{{ __('muller.input.tolerance') }}" name="tolerance" required step="any"/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-outline-success btn-block">Calculate</button>
+                            <button type="submit" class="btn btn-outline-success btn-block">{{ __('muller.label.calculate') }}</button>
                         </div>
                     </div>
                 </form>
@@ -48,23 +48,23 @@
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">
-                <h1>Initial Data</h1>
-                <b>x_0:</b> {{ $data["x_0"] }}<br>
-                <b>x_1:</b> {{ $data["x_1"] }}<br>
-                <b>x_2:</b> {{ $data["x_2"] }}<br>
-                <b>Maximum value of iterations:</b> {{ $data["iterations"] }}<br>
-                <b>Function:</b> {{ $data["function"] }}<br>
-                <b>Tolerance:</b> {{ $data["tolerance"] }}
+                <h1>{{ __('muller.label.initialData') }}</h1>
+                <b>{{ __('muller.label.x_0') }}:</b> {{ $data["x_0"] }}<br>
+                <b>{{ __('muller.label.x_1') }}:</b> {{ $data["x_1"] }}<br>
+                <b>{{ __('muller.label.x_2') }}:</b> {{ $data["x_2"] }}<br>
+                <b>{{ __('muller.label.iterations') }}:</b> {{ $data["iterations"] }}<br>
+                <b>{{ __('muller.label.function') }}:</b> {{ $data["function"] }}<br>
+                <b>{{ __('muller.label.tolerance') }}:</b> {{ $data["tolerance"] }}
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
                     <table class="table table-striped text-center table-BusquedasIncrementales">
                         <thead>
                             <tr>
-                                <th>Iteration</th>
-                                <th>Xm</th>
-                                <th>f(xm)</th>
-                                <th>Error</th>
+                                <th>{{ __('muller.label.iteration') }}</th>
+                                <th>{{ __('muller.label.x_m') }}</th>
+                                <th>{{ __('muller.label.fm') }}</th>
+                                <th>{{ __('muller.label.error') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,6 +75,11 @@
                                     <th>{{ $iteration[2] }}</th>
                                     <th>{{ $iteration[3] }}</th>
                                 </tr>
+                                @if ($loop->last)
+                                    <tr>
+                                        <th colspan="4">{{ __('muller.root') }}{{ $iteration[1] }}</th>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
