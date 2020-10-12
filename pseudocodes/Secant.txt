@@ -1,5 +1,6 @@
 Input: function f(x), float x0, float x1, float tolerance, int iterations
 Output: result table results
+
 if(f(x) is not a valid function)
     break;
 if(x0 or x1 or tolerance or iterations are not valid numbers)
@@ -8,7 +9,9 @@ if(tolerance is lees than 0)
     break;
 if(iterations is less than 1)
     break;
+
 array results
+
 int iter_count <- 0
 float g_x <- g(initial_x)
 float f_x <- f(initial_x)
@@ -19,6 +22,7 @@ results[iter_count] <- [iter_count, x1, f(x1), "N/A"]
 float previous_x <- x1
 float second_previous_x <- x0
 float current_x 
+
     while iter_count < iterations and error > tolerance do:
         iter_count <- iter_count + 1
         current_x <- previous_x - ((f(previous_x)*(previous_x - second_previous_x))/(f(previous_x) - f(second_previous_x)))
@@ -27,4 +31,5 @@ float current_x
         second_previous_x <- previous_x
         previous_x <- current_x
     end while
+    
 return results
