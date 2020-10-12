@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => "Steffensen's method",
+    'title' => "Método de Steffensen",
     'input' => [
         'f_function' => 'Ingrese f(x)',
         'initial_x' => 'Ingrese la x inicial',

@@ -13,26 +13,28 @@ return [
     |
     */
 
-    'title' => 'Método de la Secante',
+    'title' => 'Método de Bisección',
     'input' => [
         'f_function' => 'Ingrese f(x)',
-        'x1' => 'Ingrese x1',
-        'x2' => 'Ingrese x2',
+        'a_value' => 'Ingrese el valor de A',
+        'b_value' => 'Ingrese el valor de B',
         'tolerance' => 'Ingrese la tolerancia',
         'iterations' => 'Ingrese el máximo de iteraciones',
     ],
     'label' => [
         'f_function' => 'f(x)',
-        'x1' => 'X1',
-        'x2' => 'X2',
+        'a_value' => 'A',
+        'b_value' => 'B',
         'tolerance' => 'Tolerancia',
         'iterations' => 'Iteraciones',
     ],
     'calculate' => 'Calcular',
     'table' => [
         'iteration' => 'Iteración',
-        'xi' => 'xi',
-        'f_xi' => 'f(xi)',
+        'f_xm' => 'f(xm)',
+        'a' => 'a',
+        'xm' => 'xm',
+        'b' => 'b',
         'error' => 'Error',
     ],
     'initial_data' => 'Datos inciales',

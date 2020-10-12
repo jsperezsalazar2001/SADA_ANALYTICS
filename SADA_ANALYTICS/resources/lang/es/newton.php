@@ -13,26 +13,27 @@ return [
     |
     */
 
-    'title' => 'Método de la Secante',
+    'title' => 'Método de Newton',
     'input' => [
         'f_function' => 'Ingrese f(x)',
-        'x1' => 'Ingrese x1',
-        'x2' => 'Ingrese x2',
+        'df_function' => 'Ingrese df(x)',
+        'initial_x' => 'Ingrese la x inicial',
         'tolerance' => 'Ingrese la tolerancia',
         'iterations' => 'Ingrese el máximo de iteraciones',
     ],
     'label' => [
         'f_function' => 'f(x)',
-        'x1' => 'X1',
-        'x2' => 'X2',
+        'df_function' => 'df(x)',
+        'initial_x' => 'X inicial',
         'tolerance' => 'Tolerancia',
         'iterations' => 'Iteraciones',
     ],
     'calculate' => 'Calcular',
     'table' => [
         'iteration' => 'Iteración',
-        'xi' => 'xi',
+        'df_xi' => 'df(xi)',
         'f_xi' => 'f(xi)',
+        'xi' => 'xi',
         'error' => 'Error',
     ],
     'initial_data' => 'Datos inciales',

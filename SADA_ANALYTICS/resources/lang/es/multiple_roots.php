@@ -13,26 +13,30 @@ return [
     |
     */
 
-    'title' => 'Método de la Secante',
+    'title' => 'Método de Raices Multiples',
     'input' => [
         'f_function' => 'Ingrese f(x)',
-        'x1' => 'Ingrese x1',
-        'x2' => 'Ingrese x2',
+        'df_function' => 'Ingrese df(x)',
+        'd2f_function' => 'Ingrese d2f(x)',
+        'initial_x' => 'Ingrese la x inicial',
         'tolerance' => 'Ingrese la tolerancia',
         'iterations' => 'Ingrese el máximo de iteraciones',
     ],
     'label' => [
         'f_function' => 'f(x)',
-        'x1' => 'X1',
-        'x2' => 'X2',
+        'df_function' => 'df(x)',
+        'd2f_function' => 'd2f(x)',
+        'initial_x' => 'X inicial',
         'tolerance' => 'Tolerancia',
         'iterations' => 'Iteraciones',
     ],
     'calculate' => 'Calcular',
     'table' => [
         'iteration' => 'Iteración',
-        'xi' => 'xi',
+        'df_xi' => 'df(xi)',
+        'd2f_xi' => 'd2f(xi)',
         'f_xi' => 'f(xi)',
+        'xi' => 'xi',
         'error' => 'Error',
     ],
     'initial_data' => 'Datos inciales',
