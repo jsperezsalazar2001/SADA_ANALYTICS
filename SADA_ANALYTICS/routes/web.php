@@ -17,3 +17,5 @@ Route::POST('/incrementalMethod','IncrementalSearchController@incrementalSearchM
 Route::GET('/muller','MullerController@muller')->name("muller");
 Route::POST('/mullerMethod','MullerController@mullerMethod')->name("muller_method");
 
+Route::GET('/gaussianMatrix','GaussianController@gaussian')->name("gaussian");
+Route::POST('/gaussianMatrixCheck','GaussianController@values')->name("check_matrix");
