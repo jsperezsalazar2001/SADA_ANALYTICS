@@ -19,3 +19,7 @@ Route::POST('/mullerMethod','MullerController@mullerMethod')->name("muller_metho
 
 Route::GET('/gaussianMatrix','GaussianController@gaussian')->name("gaussian");
 Route::POST('/gaussianMatrixCheck','GaussianController@values')->name("check_matrix");
+
+Route::GET('/aitken','AitkenController@aitken')->name("aitken");
+Route::POST('/aitkenMethod','AitkenController@aitkenMethod')->name("aitken_method");
+
