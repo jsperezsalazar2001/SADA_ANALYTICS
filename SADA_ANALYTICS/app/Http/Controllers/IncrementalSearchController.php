@@ -9,28 +9,35 @@ class IncrementalSearchController extends Controller
 {
     public function incrementalSearch(){
         $data = [];
-        $data["validar"] = "false";
+        $data["check"] = "false";
         $data["title"] = __('incremental.title');
+        $data["message"] = __('incremental.title');
         return view('incrementalMethod')->with("data",$data);
     }
 
     public function incrementalSearchMethod(Request $request){
-        $x_inicial = $request->input('x_inicial');
+        $x_0 = $request->input('x_0');
         $delta = $request->input('delta');
-        $iteraciones = $request->input('iteraciones');
-        $funcionOriginal = $request->input('funcion');
-        $funcion = '"'.$funcionOriginal.'"';
-        $comando = 'python "'.public_path().'\python\incremental_search.py" '."{$x_inicial} {$delta} {$iteraciones} {$funcion}";
-        exec($comando, $output);
+        $iterations = $request->input('iterations');
+        $originalFunction = $request->input('function');
+        $function = '"'.$originalFunction.'"';
+        $command = 'python "'.public_path().'\python\incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
+        exec($command, $output);
         $data = [];
         $data["title"] = __('incremental.title');
-        $json = json_decode($output[0],true);
-        $data["json"] = $json;
-        $data["validar"] = "true";
-        $data["x_inicial"] = $x_inicial;
-        $data["delta"] = $delta;
-        $data["iteraciones"] = $iteraciones;
-        $data["funcion"] = $funcionOriginal;
+        if (substr($output[0],7,5) == "Error"){
+            $data["check"] = "false";
+            $data["message"] = substr($output[0],7,strlen($output[0])-9);
+        }else{
+            $json = json_decode($output[0],true);
+            $data["json"] = $json;
+            $data["check"] = "true";
+            $data["x_0"] = $x_0;
+            $data["delta"] = $delta;
+            $data["iterations"] = $iterations;
+            $data["function"] = $originalFunction;
+            $data["message"] = __('incremental.succesful');;
+        }
         return view('incrementalMethod')->with("data",$data);
     }
 }
