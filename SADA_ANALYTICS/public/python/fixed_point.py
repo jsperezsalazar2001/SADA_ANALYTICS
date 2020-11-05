@@ -48,7 +48,7 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
             f_x = sm.sympify(f_function).subs(x_in, initial_x)
             previous_x = initial_x
             error = float("inf")
-            results[iter_count] = [int(iter_count), float(initial_x), float(g_x), float(f_x), "N/A"]
+            results[iter_count] = [int(iter_count), str(initial_x), str(g_x), str(f_x), "N/A"]
             while iter_count < iterations and error > tolerance:
                 iter_count += 1
                 current_x = g_x
@@ -56,7 +56,9 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
                 f_x = sm.sympify(f_function).subs(x_in, current_x)
                 error = abs(previous_x-current_x)
                 previous_x = current_x
-                results[iter_count] = [int(iter_count), float(current_x), float(g_x), float(f_x), float(error)]
+                results[iter_count] = [str(iter_count), str(current_x), str(g_x), str(f_x), str(error)]
+                if not isinstance(error, float):
+                    error = float("inf")
             if error <= tolerance:
                 iter_count += 1
                 #results[iter_count] = ["Se encontró una aproximación de la raiz en {}".format(current_x)]
@@ -64,10 +66,11 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
                 iter_count += 1
                 #results[iter_count] = ["No se encontró una aproximación de la raiz. Último valor de x: {}".format(current_x)]
     except BaseException as e:
-        results[0] = "Error in the given data: " + str(e)
+        results[0] = "Error in the given data: " + str(e) + str(repr(traceback.format_exc()))
     try:
         aux = json.dumps(results)
         print(aux)
     except BaseException as e:
         print("Error processing results: " + str(e))
+
 fixedPoint(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])
