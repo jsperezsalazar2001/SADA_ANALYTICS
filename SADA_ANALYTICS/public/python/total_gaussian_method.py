@@ -60,6 +60,7 @@ def totalGaussianMethod(matrix):
             movement = np.concatenate((movement, [i,pos_max_pivot+i]))
         if (pivot_number==0 and i == matrix.shape[0]-2):
             print ("the last pivot number is cero so the matrix doesn't have a solution")
+        pivot_number = auxiliary_matrix[0][0]
         fj = auxiliary_matrix[0] # Fj
         # colum_vector is the column from the pivot number
         column_vector = np.reshape(auxiliary_matrix.T[0][1:], (auxiliary_matrix.T[0][1:].shape[0], 1))
