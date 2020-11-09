@@ -43,6 +43,7 @@
                                 <a class="dropdown-item" href="{{ route('incremental_search') }}">{{ __('incremental.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('muller') }}">{{ __('muller.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('aitken') }}">{{ __('aitken.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('lagrange') }}">Lagrange</a>
                             </div>
 
                         </div>

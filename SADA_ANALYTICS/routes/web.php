@@ -37,3 +37,6 @@ Route::POST('/newtonMethod','NewtonController@newtonMethod')->name("newton_metho
 
 Route::GET('/multipleRoots','MultipleRootsController@multipleRoots')->name("multiple_roots");
 Route::POST('/multipleRootsMethod','MultipleRootsController@multipleRootsMethod')->name("multiple_roots_method");
+
+Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
+Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
