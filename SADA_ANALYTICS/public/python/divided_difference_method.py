@@ -45,7 +45,9 @@ def dividedDifferenceMethod(a,b):
     print('Coef: ',res)
     print('Newton Polinom : ', polynomial)
 
-x = [-1, 0, 3, 4]
-y = [15.5, 3, 8, 1]
+#x = [-1, 0, 3, 4]
+#y = [15.5, 3, 8, 1]
 
+x = [-2,-1,0,2,3,6]
+y = [-18,-5,-2,-2,7,142]
 dividedDifferenceMethod(x,y)
