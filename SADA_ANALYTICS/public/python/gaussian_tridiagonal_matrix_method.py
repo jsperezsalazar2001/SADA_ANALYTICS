@@ -1,13 +1,16 @@
 """
-Created on Sun Nov 8
-...
+Created on Wednesday Nov 11
 Parameters
 ----------
-...
-
+a: diagonal above main diagonal
+b: principal diagonal
+a: diagonal down the main diagonal
+b: constant vector
 Returns
 -------
-...
+dic: step dictionary (float with decimals)
+x: solution vector
+
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
@@ -26,7 +29,7 @@ def gaussianTridiagonalMatrixMethod(a, b, c, d):
 
     d = np.array(d)
     dic[0] = matrix
-    matrix_function.rebuild_matrix(dic)
+    dic = matrix_function.rebuild_matrix(dic)
     x = matrix_function.soltion(matrix, d)
     # for lop only for print result
     print("final matrix: ")
