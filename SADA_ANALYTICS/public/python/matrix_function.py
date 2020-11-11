@@ -145,9 +145,9 @@ Parameters
 a: matrix (float)
 Returns
 -------
-D: vector with values for principal diagonal from matrix a
-L: vector with values for lower triangular from matrix a
-U: vector with values for upper triangular from matrix a
+D: vector with principal diagonal values from matrix a
+L: vector with lower triangular values from matrix a
+U: vector with upper triangular values from matrix a
 """
 def extract_D_L_U(A):
     # get the upper triangular part of this matrix
