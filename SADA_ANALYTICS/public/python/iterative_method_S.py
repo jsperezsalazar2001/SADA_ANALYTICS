@@ -1,6 +1,6 @@
 """
 Created on Tue Oct  6
-This program found the solution of matrix Ax = B by simple gaussian method.
+Main method of Sor method
 Parameters
 ----------
 matrix: AB

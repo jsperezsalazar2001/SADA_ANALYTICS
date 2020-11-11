@@ -1,14 +1,39 @@
+"""
+Created on Wednesday Nov 11
+
+@author: Daniel Felipe Gomez Martinez
+"""
 import numpy as np
 
 np.set_printoptions(precision=7)
 
-
+"""
+Created on Wednesday Nov 11
+Parameters
+----------
+matrix: AB
+Returns
+-------
+return: boolean
+"""
 def determinant(matrix):
     if(np.linalg.det(matrix)!=0):
         return True
     else:
         return False
 
+"""
+Created on Wednesday Nov 11
+Parameters
+----------
+a: matrix (String)
+b: constant vector (String) 
+Returns
+-------
+a:matrix (float)
+b:constant vector (float)
+matriz: mix a with b (float)
+"""
 def mix_matrix(a,b):
     try:
         split_a = a.split('],[')
@@ -35,6 +60,16 @@ def mix_matrix(a,b):
         print("Doesn't possible transform matrix to numeric matrix take a look in the matrix's values")
         exit(1)
 
+"""
+Created on Wednesday Nov 11
+Parameters
+----------
+a: matrix (String)
+b: constant vector (String) 
+Returns
+-------
+x: vector solution (String)
+"""
 def soltion(a,b):
     correction = []
     b = b.tolist()
@@ -61,6 +96,16 @@ def soltion(a,b):
         final_value = np.append(final_value, '{:.7f}'.format(result))
     return final_value
 
+"""
+Created on Wednesday Nov 11
+Parameters
+----------
+x: vector solution (String)
+movement: constant vector (String) 
+Returns
+-------
+x: vector solution (String)
+"""
 def sort(x,movement):
     movement = movement.astype(int)
     for i in range(len(movement)-1,0,-2):
@@ -70,6 +115,15 @@ def sort(x,movement):
     return x
 
 
+"""
+Created on Wednesday Nov 11
+Parameters
+----------
+dic: step dictionary (float with decimals)  
+Returns
+-------
+dic: step dictionary (String only with 7 decimals)
+"""
 def rebuild_matrix(dic):
     final_row = np.array([],dtype=str)
     final_value = np.array([],dtype=str)
@@ -84,6 +138,17 @@ def rebuild_matrix(dic):
         final_row = np.array([])
     return dic
 
+"""
+Created on Wednesday Nov 11
+Parameters
+----------
+a: matrix (float)
+Returns
+-------
+D: vector with values for principal diagonal from matrix a
+L: vector with values for lower triangular from matrix a
+U: vector with values for upper triangular from matrix a
+"""
 def extract_D_L_U(A):
     # get the upper triangular part of this matrix
     u_values = -1*A[np.triu_indices(A.shape[0], k=1)]  #values for upper triangular matrix

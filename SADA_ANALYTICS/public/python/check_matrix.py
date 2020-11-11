@@ -1,13 +1,11 @@
 """
 Created on Tue Oct  6
-This program found the solution of matrix Ax = B by simple gaussian method.
 Parameters
+Main method of Simple,Partial,Total gaussian methods and LU simple method
 ----------
 matrix: AB
 Returns
 -------
-a: matrix from equations
-b: constant vector
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np

@@ -1,13 +1,19 @@
 """
-Created on Sun Nov 8
-This program found the solution of matrix Ax = B by simple gaussian method.
+Created on Wednesday Nov 11
 Parameters
 ----------
-matrix: AB
+d: vector with values for principal diagonal from matrix a
+l: vector with values for lower triangular from matrix a
+u: vector with values for upper triangular from matrix a
+b: constant vector
+x0: Initial vector aproximation
+tol: Tolerance
+Nmax: Maximum number of iterations
+w: weighting factor
 Returns
 -------
-a: matrix from equations
-b: constant vector
+dic: step dictionary (float with decimals)
+dic_resoult: step dictionary from table solution (float with decimals)
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
@@ -40,8 +46,6 @@ def sorMethod(l,d,u,b,x0,tol,Nmax,w):
         E =  np.linalg.norm(xant - xact)
         xant = xact
         cont = cont + 1
-        dfg = np.append(cont,E)
-        dfg = np.append(dfg,xant.T[0])
         dic_resoult[cont] = [cont, E, xant.T[0]]
 
     return dic, dic_resoult
