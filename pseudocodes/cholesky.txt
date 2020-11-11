@@ -1,0 +1,34 @@
+
+Input: Matrix A, vector B
+Output: Steps of making the cholesky factorization and the answer to the system
+
+if(determinant(A) is 0)
+	return error detrminant equals 0
+
+  n = lenght A
+  L,U = matrix of nxn filled of ceros
+  for k=0:n
+    sum1=0;
+    for p=1:k
+        sum1=sum1+L(k,p)*U(p,k);
+    end for
+    L(k,k)*U(k,k)=A(k,k) - sum1;
+
+    for i=k+1:n
+        sum2= 0;
+        for p=1:k
+            suma2= suma2+ L(i,p)*U(p,k);
+        end for
+        L(i,k) = (A(i,k)-suma2)/U(k,k);
+    end for
+
+    for j=k+1:n
+        sum3= 0;
+        for p = 1:k-1
+            sum3=sum3+ L(k,p)*U(p,j);
+        end for
+        U(k,j) = (A(k,j)- sum3)/L(k,k);
+    end for
+  end for
+  return L,U
+end
