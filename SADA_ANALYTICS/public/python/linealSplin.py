@@ -21,7 +21,7 @@ import matrix_function
 import total_gaussian_method
 
 
-def splineLineal(x,y):
+def linealSplin(x,y):
     xValor = sm.symbols('x')
     sizeX = len(x)
     sizeY = len(y)
@@ -84,4 +84,4 @@ def splineLineal(x,y):
             plotter.append((float(coefficient[i][0])*xValor)+float(coefficient[i][1]))
         print(plotter)
           
-splineLineal([-1,0,3,4],[15.5,3,8,1])
+linealSplin([-1,0,3,4],[15.5,3,8,1])

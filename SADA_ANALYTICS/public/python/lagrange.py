@@ -1,3 +1,22 @@
+"""
+Created on Tue Nov  10 
+This program finds the polynomial to interpolation of x array and y array with Lagrange method
+
+Parameters
+----------
+A : Invertible matrix
+b : Constant vector
+
+Returns
+-------
+x : Solution
+L : Factorization matrix L
+U : Factorization matriz U
+
+
+@author: Cesar Andres Garcia Posada
+"""
+
 import sympy as sm
 import math
 import sys
@@ -8,12 +27,12 @@ def lagrange(data, n):
     data = data.replace('[', '').replace(']', '').split(',')
     Arrx = []
     Arry = []
-    results = {}
     for i in range(0,len(data)):
         if i < int(n):
             Arrx.append(float(data[i]))
         else:
             Arry.append(float(data[i]))
+    results = {}
     if len(Arrx) != len(Arry):
         results[0] = "Error the size of the x vector is different to y vector"
     else:
@@ -24,7 +43,6 @@ def lagrange(data, n):
         for i in range(0,size):
             pos = i
             value = Arrx[i]
-            count = 1 
             numerator = 1 
             denominator = 1
             for j in range(0,size):
@@ -34,8 +52,8 @@ def lagrange(data, n):
             aux = numerator/denominator
             aux = aux.expand()
             #print(type(aux))
-            aux2 = [aux]
-            results['"'+str(i)+'"'] = aux2
+            #aux2 = [aux]
+            results['"'+str(i)+'"'] = aux
             #arrayL.append(aux)
             coefficient = numerator*Arry[i]/denominator
             coefficient = coefficient.expand()
@@ -58,4 +76,6 @@ def lagrange(data, n):
 #x = [-2,-1,2,3]
 #y = [12.13533528,6.367879441,-4.610943901,2.085536923]
 lagrange("[[-1,0,3,4],[15.5,3,8,1]]",4)
+#lagrange([-1,0,3,4],[15.5,3,8,1],4)
+
 #lagrange(sys.argv[1],sys.argv[2])
