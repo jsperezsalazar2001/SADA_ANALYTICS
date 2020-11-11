@@ -8,6 +8,8 @@ Returns
 -------
 a: matrix from equations
 b: constant vector
+dic: dictionary to pass the data to the view
+
 @author: Cesar Andres Garcia Posada
 """
 import numpy as np
@@ -54,6 +56,7 @@ def escalonadoMethod(matrix):
             matrix[i+1:] = np.insert(axiliary_fi, 0, np.zeros(1), axis=1)
         auxiliary_matrix = fi.T[1:].T
         dic[i+1] = np.array(matrix)
+        print("Step "+ str(i))
         print(matrix)
     a = np.delete(matrix, matrix.shape[1]-1, axis=1)
     b = matrix.T[matrix.shape[1]-1]
