@@ -1,7 +1,7 @@
 Input: matrix A, array b 
 Output: array x, matrix L, matrix U, matrix P
 
-begin lu_partial(matrix A, array b)
+begin partial_lu(matrix A, array b)
 	int n <- A.size()
 	matrix u <- zeros_matrix(n,n)
 	matrix l <- identity_matrix(n)
@@ -29,7 +29,7 @@ begin lu_partial(matrix A, array b)
 	array x <- solution(u, z)
 	
 	return x
-end lu_partian
+end partial_lu
 
 begin search_bigger_and_swap(matrix Ab, int n, int i, matrix p)
 	int row = i
