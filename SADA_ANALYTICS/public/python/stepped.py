@@ -17,7 +17,7 @@ import matrix_function
 
 np.set_printoptions(precision=7)
 
-def escalonadoMethod(matrix):
+def steppedMethod(matrix):
     dic = {}
     auxiliary_matrix = np.array(matrix)
     dic[0] = np.array(matrix)
