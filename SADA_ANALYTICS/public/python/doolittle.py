@@ -1,35 +1,30 @@
+"""
+Created on Tue Nov  10 
+This program finds the solution to the system Ax = b and the LU factorization of A 
+using the Doolittle method.
+
+Parameters
+----------
+A : Invertible matrix
+b : Constant vector
+
+Returns
+-------
+x : Solution
+L : Factorization matrix L
+U : Factorization matriz U
+
+
+@author: Cesar Andres Garcia Posada
+"""
+
 import sympy as sm
 import math
 import sys
 import json
 import base64
 import numpy as np
-
-def soltion(a,b):
-    correction = []
-    b = b.tolist()
-    b = np.array(b)
-    if (str(b.tolist())[0:2] == '[['):
-        b = str(b.tolist())[2:-2]
-        array = b.split(",")
-        for value in array:
-            correction.append(float(value))
-        b = correction
-        correction = []
-    x = np.linalg.inv(a).dot(b)
-    x = x.tolist()
-    x = np.array(x)
-    if (str(x.tolist())[0:2] == '[['):
-        x = str(x.tolist())[2:-2]
-        array = x.split(",")
-        for value in array:
-            correction.append(float(value))
-        x= correction
-        correction = []
-    final_value = np.array([],dtype=str)
-    for result in x:
-        final_value = np.append(final_value, '{:.7f}'.format(result))
-    return final_value
+import matrix_function
 
 def doolittle(A,b,size):
     A = np.array(A)
@@ -61,8 +56,8 @@ def doolittle(A,b,size):
         print("Matriz U: ")
         print(U)
     
-    z = np.array(soltion(L,b),float)
-    x = soltion(U,z)
+    z = np.array(matrix_function.soltion(L,b),float)
+    x = matrix_function.soltion(U,z)
 
     sol = []
 
@@ -71,7 +66,5 @@ def doolittle(A,b,size):
         sol.append(float(x[i]))
     print(sol)
 
-
-
-            
+          
 doolittle([[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]],[1,1,1,1],4)
