@@ -1,10 +1,27 @@
+"""
+Created on Nov 10
+This program finds the solution of matrix Ax = B using first the cholesky factorization method
+Parameters
+----------
+matrix: A
+vector: b
+Prints:
+ - stages of the factorization process
+ - answer to the system
+This code does not support operations with imaginary numbers 
+
+@author: Yhoan Alejandro Guzman Garcia
+"""
+
 import math 
 import matrix_function
 import numpy as np
 import sys
 
 def cholesky(A,b):
+    print("Step 0")
     npA = np.array(A) 
+    print_matrix(A)
     if np.linalg.det(npA) == 0:
         print("Determinant equal to 0, the method can not run")
         sys.exit(1)
@@ -56,10 +73,10 @@ def print_matrix(matrix):
             print(matrix[i][j], end = "\t")
         print("")
 
-matrix = [[4, 12, -16],
-          [12, 37, -43],
-          [-16, -43, 98]]
-b = [1,1,1]
+matrix = [[4, -1, 0, 3],
+          [1, 15.5, 3, 8],
+          [0, -1.3,-4,1.1],
+          [14, 5,-2,30]]
+b = [1,1,1,1]
 
 cholesky(matrix, b)
-#DETERMINANTE DIFERENTE DE CERO

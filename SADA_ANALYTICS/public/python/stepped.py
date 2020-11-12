@@ -17,7 +17,7 @@ import matrix_function
 
 np.set_printoptions(precision=7)
 
-def steppedMethod(matrix):
+def SteppedPartialPivot(matrix):
     dic = {}
     auxiliary_matrix = np.array(matrix)
     dic[0] = np.array(matrix)
@@ -64,6 +64,6 @@ def steppedMethod(matrix):
 
 matrix2 = [[2.11,-4.21,0.921,2.01],[4.01,10.2,-1.12,-3.09],[1.09,0.987,0.831,4.21]]
 matrix2 = np.array(matrix2)
-A,B,dic = escalonadoMethod(matrix2)
+A,B,dic = SteppedPartialPivot(matrix2)
 x = matrix_function.soltion(A,B)
 print(x)
