@@ -1,0 +1,18 @@
+Input: Matrix A, vector B
+Output: Steps of making the crout factorization for tridiagonal matrices and the answer to the system
+
+Set L11 = a11; u12 = a12/L11; z1 = a1,n+1/L11
+Set n = lenght of matrix A
+For i = 2,..., n − 1 
+    Set Li,i−1 = ai,i−1
+    Set Lii = aii − Li,i−1*ui−1,i
+    Set ui,i+1 = ai,i+1/Lii
+    Set zi = (ai,n+1 − Li,i−1*zi−1)/Lii
+end for
+    Set Ln,n−1 = an,n−1
+    Set Ln,n = an,n − Ln,n−1*un−1,n
+    Set zn = (an,n+1 − Ln,n−1*zn−1)/Ln,n
+Set z = SolveSystem(L,b)
+Set x = SolveSystem(U,z)
+return x
+end
