@@ -1,12 +1,6 @@
+Input: vector x, vector y
+Output: coefitiens, Matrix A
 
-
-
-Input: Matrix A, vector B
-Output: Steps of making the cholesky factorization and the answer to the system
-
-
-
-	return error detrminant equals 0
     if x or y has duplicates:
         return error
     end if
@@ -39,30 +33,19 @@ Output: Steps of making the cholesky factorization and the answer to the system
         set  A[n-1+i][3*i+1] = -x[i]
         set  A[n-1+i][3*i+2] = -1
         set  B[n-1+i] = 0
+    end for
     #softness condition
-    for i in range(1, n-1):
+    for i = 1,..., n − 1 
         set A[2*n-3+i][3*i-3] = 2 * x[i]
-        A[2*n-3+i][3*i-2] = 1
-        A[2*n-3+i][3*i-1] = 0
-        A[2*n-3+i][3*i] = -2 * x[i]
-        A[2*n-3+i][3*i+1] = -1
-        A[2*n-3+i][3*i+2] = 0
-        B[2*n-3+i] = 0
-    
-    A[m-1][0] = 2
-    B[m-1] = 0
-    print("A")
-    A = np.array(A)
-    print(A)
-    print("B")
-    print(B)
-    x = np.linalg.solve(A, B)
-    print(x)
+        set   A[2*n-3+i][3*i-2] = 1
+        set  A[2*n-3+i][3*i-1] = 0
+        set  A[2*n-3+i][3*i] = -2 * x[i]
+        set  A[2*n-3+i][3*i+1] = -1
+        set  A[2*n-3+i][3*i+2] = 0
+        set  B[2*n-3+i] = 0
+    end for
+    set  A[m-1][0] = 2
+    set  B[m-1] = 0
+    x = solveSystem(A, B)
+    return x, A
 
-    # for i in range(len(x)/3):
-    #     print(str(x[i*3])
-def list_has_duplicates(input_list):
-    list_set = set(input_list)
-    contains_duplicates = len(list_set) != len(input_list)
-    return contains_duplicates
-cuadratic_spline([-1,0,3,4],[15.5,3,8,1])
