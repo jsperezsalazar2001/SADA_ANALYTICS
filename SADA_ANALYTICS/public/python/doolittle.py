@@ -31,13 +31,13 @@ def doolittle(A,b,size):
     b = np.array(b)
     L = np.eye(size)
     U = np.eye(size)
-    print("Etapa 0:")
-    print("Matriz L: ")
+    print("Step 0:")
+    print("Matrix L: ")
     print(L)
-    print("Matriz U: ")
+    print("Matrix U: ")
     print(U)
     for i in range(size):
-        print("Etapa " + str(i+1))
+        print("Step " + str(i+1))
         for k in range(i, size): 
             suma = 0;
             for j in range(i):
@@ -51,9 +51,9 @@ def doolittle(A,b,size):
                 for j in range(i):
                     suma += (L[k][j] * U[j][i]);
                 L[k][i] = ((A[k][i] - suma)/U[i][i]);
-        print("Matriz L: ")
+        print("Matrix L: ")
         print(L)
-        print("Matriz U: ")
+        print("Matrix U: ")
         print(U)
     
     z = np.array(matrix_function.soltion(L,b),float)
@@ -61,7 +61,7 @@ def doolittle(A,b,size):
 
     sol = []
 
-    print("Arreglo X")
+    print("Array X")
     for i in range(0,len(x)):
         sol.append(float(x[i]))
     print(sol)

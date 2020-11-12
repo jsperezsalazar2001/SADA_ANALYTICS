@@ -1,0 +1,35 @@
+Input: matrix A, matrix b
+Output: array x, matrix L, matrix U
+
+int n <- A.size()
+matrix L <- identity_matrix(n)
+matrix U <- identity_matrix(n)
+
+for (int i from 0 until n)
+	for (int k from i until n)
+		float sum <- 0
+		for (int j from 0 until i)
+			sum <- sum + (L[k][j] * U[j][i])
+		end for
+		
+		L[k][i] <- A[k][i] - sum
+	end for
+	
+	for (int k from i until n)
+		if (i = k)
+			U[i][i] <- 1
+		else
+			float sum <- 0
+			for (int j from 0 until i)
+				sum <- sum + (L[i][j] * U[j][k])
+			end for
+			
+			U[i][k] <- ((A[i][k] - sum)/L[i][i])
+		end if
+	end for
+end for
+
+array z <- solution(L, b) // solution is a function that solve systems of equations	
+array x <- solution(U, z)
+
+return x, L, U

@@ -1,13 +1,16 @@
 """
-Created on Tue Oct  6
-This program found the solution of matrix Ax = B by simple gaussian method.
+Created on Wednesday Nov 11
 Parameters
 ----------
 matrix: AB
 Returns
 -------
-a: matrix from equations
-b: constant vector
+l: vector with values for lower triangular from final matrix AB
+u: vector with values for upper triangular from final matrix AB
+dic_step: step dictionary (float with decimals) 
+dic_l: matrix step dictionary L (float with decimals) 
+dic_u: matrix step dictionary U (float with decimals)
+
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
@@ -71,23 +74,3 @@ def luSimpleMethod(matrix):
     u = top_triangular_matrix
     #b = np.array(matrix.T[matrix.shape[1]-1].tolist()[0],dtype=float)
     return l,u,dic_step,dic_l,dic_u
-
-#matrix2 = [[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]]
-#matrix2 = np.array(matrix2)
-
-"""matrix2 = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]
-matrix2 = np.array(matrix2)
-l,u,dic_step,dic_l,dic_u = luSimpleMethod(matrix2)"""
-"""for key in dic_l.keys():
-    print(key)
-    print("Etapa")
-    print(dic_step[key])
-    print("L: ")
-    print(dic_l[key])
-    print("U: ")
-    print(dic_u[key])
-    print("----------------------------------")"""
-
-#print("Dic"+str(dic_l[]))
-#X = np.linalg.inv(A).dot(B)
-#print(X)

@@ -8,6 +8,8 @@ Returns
 -------
 a: matrix from equations
 b: constant vector
+dic: dictionary to pass the data to the view
+
 @author: Cesar Andres Garcia Posada
 """
 import numpy as np
@@ -15,7 +17,7 @@ import matrix_function
 
 np.set_printoptions(precision=7)
 
-def escalonadoMethod(matrix):
+def SteppedPartialPivot(matrix):
     dic = {}
     auxiliary_matrix = np.array(matrix)
     dic[0] = np.array(matrix)
@@ -54,6 +56,7 @@ def escalonadoMethod(matrix):
             matrix[i+1:] = np.insert(axiliary_fi, 0, np.zeros(1), axis=1)
         auxiliary_matrix = fi.T[1:].T
         dic[i+1] = np.array(matrix)
+        print("Step "+ str(i))
         print(matrix)
     a = np.delete(matrix, matrix.shape[1]-1, axis=1)
     b = matrix.T[matrix.shape[1]-1]
@@ -61,6 +64,6 @@ def escalonadoMethod(matrix):
 
 matrix2 = [[2.11,-4.21,0.921,2.01],[4.01,10.2,-1.12,-3.09],[1.09,0.987,0.831,4.21]]
 matrix2 = np.array(matrix2)
-A,B,dic = escalonadoMethod(matrix2)
+A,B,dic = SteppedPartialPivot(matrix2)
 x = matrix_function.soltion(A,B)
 print(x)

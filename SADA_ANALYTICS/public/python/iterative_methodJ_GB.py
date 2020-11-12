@@ -1,6 +1,6 @@
 """
 Created on Tue Oct  6
-This program found the solution of matrix Ax = B by simple gaussian method.
+Main method of Jacobi and Gauss Saidel method
 Parameters
 ----------
 matrix: AB
@@ -8,6 +8,7 @@ Returns
 -------
 a: matrix from equations
 b: constant vector
+
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np

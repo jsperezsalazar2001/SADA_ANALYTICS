@@ -1,51 +1,26 @@
 from simpleGaussianMethod import simpleGaussianMethod
 from partialGaussianMethod import partialGaussianMethod
 from totalGaussianMethod import totalGaussianMethod
+from LuSimpleMethod import LuSimpleMethod
+from matrixFunction import matrixFunction
 
 Input: square nxn matrix A,colum vector b, string method_type
-Output: solution array x with steps
-
-begin determinant
-	Input: square nxn matrix A
-	if det(A) = 0 then
-		break;
-end determinant
-
-begin mixMatrix
-	Input: square nxn matrix A,colum vector b
-	Output: Augmented_matrix 
-	if (A is not square) or (size of A and size of b are not compatible) then
-		break;
-	else
-		Augmented_matrix <- [A,b]
-end mix_matrix
-
-begin solution
-	Input: square nxn matrix A,colum vector b
-	Output: solution vector x
-	Augmented_matrix <- mixMatrix(matrix A, vector b)
-	x <- findSolution(Augmented_matrix)
-end solution
-
-begin sort
-	Input: solution vector x, array column movement
-	Output: sort vector x
-	for i from 0 to len(movement)-2 do 
-		switch x[i] and x[i+1]
-	x
-end sort
+Output: solution array x with steps in a dictionary
 
 begin solveMatrix
 	Input: square nxn matrix A,colum vector b, string method_type
 	Output: solution array x with steps
+
 	determinat(A)
-	Augmented_matrix <- mixMatrix(matrix A, vector b)
+	Augmented_matrix <- matrixFunction.mixMatrix(matrix A, vector b)
 	if  method_type = 'S' then
-		matrix_a, vector_b, array_steps simpleGaussianMethod(Augmented_matrix)
+		matrix_a, vector_b, array_steps <- simpleGaussianMethod(Augmented_matrix)
 	if  method_type = 'P' then
-		matrix_a, vector_b, array_steps partialGaussianMethod(Augmented_matrix)
+		matrix_a, vector_b, array_steps <- partialGaussianMethod(Augmented_matrix)
 	if  method_type = 'T' then
-		matrix_a, vector_b, array_steps totalGaussianMethod(Augmented_matrix)
+		matrix_a, vector_b, array_steps <- totalGaussianMethod(Augmented_matrix)
+	if  method_type = 'LUS' then
+		matrix_l,matrix_u,dic,dic_l,dic_u <- LuSimpleMethod(Augmented_matrix)
 	else
 		break;
 	x <- array_steps

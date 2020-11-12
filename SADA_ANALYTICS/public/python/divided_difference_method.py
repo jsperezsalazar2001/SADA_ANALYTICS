@@ -1,19 +1,20 @@
 """
-Created on Sun Nov 8
-This program found the solution of matrix Ax = B by simple gaussian method.
+Created on Wednesday Nov 11
 Parameters
 ----------
-matrix: AB
+a: constant vector
+b: constant vector 
 Returns
 -------
-a: matrix from equations
-b: constant vector
+
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
+import matrix_function
 np.set_printoptions(precision=7)
 
 def dividedDifferenceMethod(a,b):
+    dic ={}
     a = np.array(a)
     b = np.array(b)
     n = len(a)
@@ -35,11 +36,18 @@ def dividedDifferenceMethod(a,b):
         polynomial += '{0:+}'.format(res[i]) + m
         m += '(x' + '{0:+}'.format(-a[i]) + ')'
     polynomial = polynomial.replace('x+0','x')
-    print('Matrix D: \n',D)
+    dic[0] = D
+    dic = matrix_function.rebuild_matrix(dic)
+    print("final matrix: ")
+    for i in dic.keys():
+        for j in range(len(dic[i])):
+            print(dic[i][j])
     print('Coef: ',res)
     print('Newton Polinom : ', polynomial)
 
-x = [-1, 0, 3, 4]
-y = [15.5, 3, 8, 1]
+#x = [-1, 0, 3, 4]
+#y = [15.5, 3, 8, 1]
 
+x = [-2,-1,0,2,3,6]
+y = [-18,-5,-2,-2,7,142]
 dividedDifferenceMethod(x,y)

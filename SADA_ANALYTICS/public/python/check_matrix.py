@@ -1,13 +1,11 @@
 """
 Created on Tue Oct  6
-This program found the solution of matrix Ax = B by simple gaussian method.
 Parameters
+Main method of Simple,Partial,Total gaussian methods and LU simple method
 ----------
 matrix: AB
 Returns
 -------
-a: matrix from equations
-b: constant vector
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
@@ -40,11 +38,32 @@ def solve_matrix(a,b,matrix_type):
             z = np.array(matrix_function.soltion(l,b),float)
             x = matrix_function.soltion(u,z)
         dic = matrix_function.rebuild_matrix(dic)
+
+        #if (matrix_type == 'LUS'):
+            # for lop only for print result
+            #print("final matrix: ")
+            #for i in dic.keys():
+            #    print("step" + str(i))
+            #for j in range(len(dic[i])):
+            #    print(dic[i][j])
+            #print("L:")
+            #for j in range(len(dic[i])):
+            #    print(dic_l[i][j])
+            #print("U:")
+            #for j in range(len(dic[i])):
+            #    print(dic_u[i][j])
+
+
         if(matrix_type == 'T'):
             x = matrix_function.sort(x,movement)
         dic["x"] = x.tolist()
         solution_dic["dic"] = dic
         solution_dic["x"] = x
+
+        #if (matrix_type == 'LUS'):
+        #    print('solutions')
+        #    print(x)
+
         print (json.dumps(dic))
     else:
         print("function determinant is equals to 0")
@@ -52,9 +71,10 @@ def solve_matrix(a,b,matrix_type):
 
 
 #x = solve_matrix("[[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]]","[1,1,1,1]",'S')
-solve_matrix(sys.argv[1],sys.argv[2],str(sys.argv[3]))
+solve_matrix(sys.argv[1],sys.argv[2],str(sys.argv[3])) # this line has to moment if you want run lu simple method 
 #x = solve_matrix("[[-1,7,7,4],[1.1,-7.6999,-1,1],[5,-3,0,6],[-12,1,9,0]]","[2.5,3.7,2.2,-32]",'P')
 
 #x = solve_matrix("[[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]]","[1,1,1,1]",'S')
 #x = solve_matrix("[[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]]","[1,1,1,1]",'P')
 #x = solve_matrix("[[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]]","[1,1,1,1]",'T')
+#x = solve_matrix("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'LUS')
