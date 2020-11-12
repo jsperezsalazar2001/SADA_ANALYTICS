@@ -16,5 +16,7 @@ Output: (float) y interpolated, Q: Coefficients matrix
     For i = 1,..., n
         For j = 1,..., i + 1
             set Q[i,j] = ((x_inter-x[i-j])*Q[i,j-1]-(x_inter-x[i])*Q[i-1,j-1])/(x[i]-x[i-j])
+        end For
+    end For
     y_int = Q[n-1,n-1]
     return y_int,Q
