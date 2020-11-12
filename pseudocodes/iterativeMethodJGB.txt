@@ -1,0 +1,19 @@
+from jacobiMethod import jacobiMethod
+from GaussSeidelMethod import GaussSeidelMethod
+from matrixFunction import matrixFunction
+
+Input: square nxn matrix A,colum vector b, string method_type,Initial vector aproximation X0, Tolerance Tol, Maximum number of iterations Nmax
+Output: solution array x with steps in a dictionary
+
+begin iterativeMethodJGB
+	
+	determinat(A)
+	Augmented_matrix <- matrixFunction.mixMatrix(matrix A, vector b)
+	if  method_type = 'J' then
+		matrix_a, array_steps <- jacobiMethod(Augmented_matrix)
+	if  method_type = 'GS' then
+		matrix_a, array_steps <- GaussSeidelMethod(Augmented_matrix)
+	else
+		break;
+	x <- array_steps
+end 
