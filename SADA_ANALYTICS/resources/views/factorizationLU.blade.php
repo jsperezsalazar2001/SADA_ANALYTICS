@@ -88,16 +88,6 @@
                 <div id="vector" class="text-align"> </div>
             </form>
         </div>
-        $$ \int f(x) dx holi $$
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="form-group col-md-6">
-        $$
-y = \dfrac{\displaystyle \int_{x=0}^{x=2 \pi + 10} f(x) \cdot dx}{g(x)}
-$$
-    </div>
     </div>
     @if ($data["solution"] == "true" and !empty($data["table"]))
         <div class="card">
@@ -107,12 +97,61 @@ $$
             </div>
             <div class="card-body">
                 <div>
-                    \(
-                    \begin{​​bmatrix}​​ 4.000000 & -1.000000 & 0.000000 & 3.000000 \cr
-1.000000 & 15.500000 & 3.000000 & 8.000000 \cr
-0.000000 & -1.300000 & -4.000000 & 1.100000 \cr
-14.000000 & 5.000000 & -2.000000 & 30.000000 \end{​​bmatrix}​​
-                    \)
+                    @for ($i = 0; $i < count($data["table_l"]); $i++)
+                        <b><em>Step {{$i}}</em></b>
+                        $$A = \begin{pmatrix}
+                        @for ($j = 0; $j < count($data["table"][$i]); $j++)
+                            
+                            @for ($v = 0; $v < count($data["table"][$i][$j]); $v++)
+                                @if($v == count($data["table"][$i][$j])-1)
+                                    {{ $data["table"][$i][$j][$v]}} \\
+                                @else
+                                    {{ $data["table"][$i][$j][$v]}} &
+                                @endif
+                            @endfor
+                            
+                        @endfor
+                        \end{pmatrix}$$
+
+                        $$L = \begin{pmatrix}
+                        @for ($j = 0; $j < count($data["table_l"][$i]); $j++)
+                            
+                            @for ($v = 0; $v < count($data["table_l"][$i][$j]); $v++)
+                                @if($v == count($data["table_l"][$i][$j])-1)
+                                    {{ $data["table_l"][$i][$j][$v]}} \\
+                                @else
+                                    {{ $data["table_l"][$i][$j][$v]}} &
+                                @endif
+                            @endfor
+                            
+                        @endfor
+                        \end{pmatrix}$$
+
+                        $$U = \begin{pmatrix}
+                        @for ($j = 0; $j < count($data["table_u"][$i]); $j++)
+                            
+                            @for ($v = 0; $v < count($data["table_u"][$i][$j]); $v++)
+                                @if($v == count($data["table_u"][$i][$j])-1)
+                                    {{ $data["table_u"][$i][$j][$v]}} \\
+                                @else
+                                    {{ $data["table_u"][$i][$j][$v]}} &
+                                @endif
+                            @endfor
+                            
+                        @endfor
+                        \end{pmatrix}$$  
+                    @endfor
+
+                    $$X = \begin{bmatrix}
+                    @foreach ($data["table"]["x"] as $solution)
+                        @if($loop->last)
+                            {{$solution}}
+                        @else
+                            {{$solution}} \\
+                        @endif
+                    @endforeach
+                    \end{bmatrix}$$
+        
                 </div>
             </div>
         </div>
