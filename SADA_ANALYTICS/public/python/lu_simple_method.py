@@ -21,7 +21,7 @@ def luSimpleMethod(matrix):
     dic_l = {}
     dic_u = {}
     auxiliary_matrix = np.array(matrix)
-    dic_step[0] = np.array(matrix[:-1])
+    dic_step[0] = np.array(matrix)
     top_triangular_matrix = np.zeros((auxiliary_matrix.shape[0],auxiliary_matrix.shape[0]))
     boton_triangular_matrix = np.identity(auxiliary_matrix.shape[0])
     dic_l[0] = np.array(boton_triangular_matrix)

@@ -40,3 +40,6 @@ Route::POST('/multipleRootsMethod','MultipleRootsController@multipleRootsMethod'
 
 Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
 Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
+
+Route::GET('/factorizationLUCreate','FactorizationLUController@factorizationLU')->name("factorization_l_u");
+Route::POST('/factorizationLUShow','FactorizationLUController@values')->name("factorization_l_u_values");
