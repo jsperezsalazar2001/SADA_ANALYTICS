@@ -56,16 +56,16 @@
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Dimesnión</label>
+                        <label>Dimension</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Crear arreglos</a> 
+                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create arrays</a> 
                     </div>
                     <div class="form-group col-md-3">
-                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Resolver</button> 
+                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                     </div>
                 </div>
                 <div id="matrix_a" class="text-align metodo"> X </div>
@@ -80,41 +80,56 @@
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">
-                <h1>{{ __('muller.label.initialData') }}</h1>
-                <b>{{ __('muller.label.x_0') }}:</b> {{ $data["x_0"] }}<br>
-                <b>{{ __('muller.label.x_1') }}:</b> {{ $data["x_1"] }}<br>
-                <b>{{ __('muller.label.x_2') }}:</b> {{ $data["x_2"] }}<br>
-                <b>{{ __('muller.label.iterations') }}:</b> {{ $data["iterations"] }}<br>
-                <b>{{ __('muller.label.function') }}:</b> {{ $data["function"] }}<br>
-                <b>{{ __('muller.label.tolerance') }}:</b> {{ $data["tolerance"] }}
+                <h1>Initial Data</h1>
+                <b>X = [
+                @foreach ($data["arrx"] as $x)
+                    @if($loop->last)
+                        {{$x}}
+                    @else
+                        {{$x}},
+                    @endif
+                @endforeach
+                ]<br>
+                Y = [
+                @foreach ($data["arry"] as $y)
+                    @if($loop->last)
+                        {{$y}}
+                    @else
+                        {{$y}},
+                    @endif
+                @endforeach
+                ]</b><br>
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <table class="table table-striped text-center table-BusquedasIncrementales">
-                        <thead>
-                            <tr>
-                                <th>{{ __('muller.label.iteration') }}</th>
-                                <th>{{ __('muller.label.x_m') }}</th>
-                                <th>{{ __('muller.label.fm') }}</th>
-                                <th>{{ __('muller.label.error') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data["json"] as $iteration)
+                    <div class="form-group col-md-6" style="margin-right: 1%">
+                        <h1>Lagrange Coefficient</h1>
+                        <table class="table table-striped text-center table-BusquedasIncrementales">
+                            <thead>
                                 <tr>
-                                    <th>{{ $iteration[0] }}</th>
-                                    <th>{{ $iteration[1] }}</th>
-                                    <th>{{ $iteration[2] }}</th>
-                                    <th>{{ $iteration[3] }}</th>
+                                    <th><em>Li</em></th>
+                                    <th>Coefficient</th>
                                 </tr>
-                                @if ($loop->last)
+                            </thead>
+                            <tbody>
+                                @foreach ($data["coefficient"] as $aux)
                                     <tr>
-                                        <th colspan="4">{{ __('muller.root') }}{{ $iteration[1] }}</th>
+                                        <th><em>L{{$loop->index}}</em></th>
+                                        <th>{{ $aux }}</th>
                                     </tr>
-                                @endif
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div></br>
+                    <div class="form-group col-md-6">
+                        <h1>Lagrange Polynomial</h1>
+                        <div>
+                            <b><em>p(x) = </em>{{$data["polynomial"]}}</b>
+                        </div>
+                        
+                    </div>
+
                 </div>
             </div>
         </div>

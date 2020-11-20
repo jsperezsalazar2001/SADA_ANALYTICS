@@ -51,31 +51,28 @@ def lagrange(data, n):
                     denominator = denominator*(value-Arrx[j])
             aux = numerator/denominator
             aux = aux.expand()
-            #print(type(aux))
-            #aux2 = [aux]
-            results['"'+str(i)+'"'] = aux
-            #arrayL.append(aux)
+            aux = str(aux)
+            arrayAux = []
+            arrayAux.append(aux)
+            results[i] = aux
             coefficient = numerator*Arry[i]/denominator
             coefficient = coefficient.expand()
             polynomial.append(coefficient)
-        #for i in range(0,len(arrayL)):
-            #arrayL[i] = float(arrayL[i])
         sumPol = 0
         for i in range(0,len(polynomial)):
             sumPol = sumPol + polynomial[i]
-        #sumPol = float(sumPol)
+        arrayAux = []
+        sumPol = str(sumPol)
+        arrayAux.append(sumPol)
         results["polynomial"] = sumPol
 
-        #results['ArrayL'] = arrayL
-        #results['Polynomial'] = sumPol
-    #data = json.loads(results)
-    #response = json.dumps(results)
-    print(results)
+    data = json.dumps(results)
+    print(data)
 
 
 #x = [-2,-1,2,3]
 #y = [12.13533528,6.367879441,-4.610943901,2.085536923]
-lagrange("[[-1,0,3,4],[15.5,3,8,1]]",4)
+#lagrange("[[-1,0,3,4],[15.5,3,8,1]]",4)
 #lagrange([-1,0,3,4],[15.5,3,8,1],4)
 
-#lagrange(sys.argv[1],sys.argv[2])
+lagrange(sys.argv[1],sys.argv[2])
