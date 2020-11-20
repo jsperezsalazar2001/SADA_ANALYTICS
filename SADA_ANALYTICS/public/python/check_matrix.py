@@ -32,27 +32,17 @@ def solve_matrix(a,b,matrix_type):
             l,u,dic,dic_l,dic_u = lu_simple_method.luSimpleMethod(a)
         else:
             print("function type doesn't exist")
+
         if(matrix_type != 'LUS'):
             x = matrix_function.soltion(a,b)
         else:
             z = np.array(matrix_function.soltion(l,b),float)
             x = matrix_function.soltion(u,z)
+            dic_l = matrix_function.rebuild_matrix(dic_l)
+            dic_u = matrix_function.rebuild_matrix(dic_u)
+            #dic["dic_l"] = dic_l
+            #dic["dic_u"] = dic_u
         dic = matrix_function.rebuild_matrix(dic)
-
-        #if (matrix_type == 'LUS'):
-            # for lop only for print result
-            #print("final matrix: ")
-            #for i in dic.keys():
-            #    print("step" + str(i))
-            #for j in range(len(dic[i])):
-            #    print(dic[i][j])
-            #print("L:")
-            #for j in range(len(dic[i])):
-            #    print(dic_l[i][j])
-            #print("U:")
-            #for j in range(len(dic[i])):
-            #    print(dic_u[i][j])
-
 
         if(matrix_type == 'T'):
             x = matrix_function.sort(x,movement)
@@ -60,11 +50,10 @@ def solve_matrix(a,b,matrix_type):
         solution_dic["dic"] = dic
         solution_dic["x"] = x
 
-        #if (matrix_type == 'LUS'):
-        #    print('solutions')
-        #    print(x)
-
         print (json.dumps(dic))
+        if(matrix_type == 'LUS'):
+            print(json.dumps(dic_l))
+            print(json.dumps(dic_u))
     else:
         print("function determinant is equals to 0")
         exit(1)

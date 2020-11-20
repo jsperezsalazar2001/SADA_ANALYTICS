@@ -40,7 +40,7 @@ class GaussianController extends Controller
         $data["dimension"] = $dimension;
         $json = json_decode($output[0],true);
         $data["table"] = $json;
-        #dd($output);
+        
         return view('gaussian')->with("data",$data);
     }
 }
