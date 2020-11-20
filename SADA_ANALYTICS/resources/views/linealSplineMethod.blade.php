@@ -52,7 +52,7 @@
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="{{route('lagrange_method')}}" class="form">
+            <form method="POST" action="{{route('linealSpline_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -103,7 +103,7 @@
             <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="form-group col-md-6" style="margin-right: 1%">
-                        <h1>Lagrange Coefficient</h1>
+                        <h1>Coefficient</h1>
                         <table class="table table-striped text-center table-BusquedasIncrementales">
                             <thead>
                                 <tr>
@@ -113,20 +113,26 @@
                             <tbody>
                                 @foreach ($data["coefficient"] as $aux)
                                     <tr>
-                                        <th><em>L{{$loop->index}} = </em> {{ $aux }}</th>
+                                        <th><em>L{{$loop->index}} = </em>{{ $aux }}</th>
                                     </tr>
                                 @endforeach
 
                             </tbody>
                         </table>
                     </div></br>
-                    <div class="form-group col-md-6">
-                        <h1>Lagrange Polynomial</h1>
-                        <div>
-                            <b><em>p(x) = </em>{{$data["polynomial"]}}</b>
-                        </div>
-                    </div>
+                    <div class="form-group col-md-6" style="margin-right: 1%">
+                        <h1>Plotters</h1>
+                        <table class="table table-striped text-center table-BusquedasIncrementales">
+                            <tbody>
+                                @foreach ($data["plotter"] as $aux)
+                                    <tr>
+                                        <th><em>p(x) = </em>{{ $aux }}</th>
+                                    </tr>
+                                @endforeach
 
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

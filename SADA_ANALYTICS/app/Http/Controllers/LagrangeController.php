@@ -11,7 +11,7 @@ class LagrangeController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = "Lagrange";
-        $data["message"] = "Metodo de Lagrange";
+        $data["message"] = "Lagrange Method";
         return view('lagrangeMethod')->with("data",$data);
     }
 
@@ -34,32 +34,25 @@ class LagrangeController extends Controller
             $data["check"] = "false";
             $data["message"] = substr($output[0],7,strlen($output[0])-9);
         }else{
-            dd($output[0]);
             $json = json_decode($output[0], true);
-            dd(gettype($json));
-            for ($i=0; $i < count($output)-1; $i++){
-                $data[$i] = $output[$i];
-                $data[$i] = str($data[$i]);
-                $data[$i] = str_replace("**", "^", $data[$i]);
+            $arrayAux = [];
+            for($i=0; $i<count($json)-1; $i++){
+                $aux = $json[$i];
+                $aux = str_replace("**","^",$aux);
+                $aux = str_replace("*","",$aux);
+                $arrayAux[$i] = $aux;
             }
-            $data["polynomial"] = $output[count($output)-1];
-            //$data["polynomial"] = str($data["polynomial"]);
-            //$data["polynomial"] = str_replace("**", "^", $data["polynomial"]);
-            $data["check"] = "true";
-            dd($data);
 
-
-            /*$json = json_decode($output[0],true);
-            $data["json"] = $json;
+            $data["coefficient"] = $arrayAux;
+            $polynomial = $json["polynomial"];
+            $polynomial = str_replace("**", "^", $polynomial);
+            $polynomial = str_replace("*", "", $polynomial);
+            $data["polynomial"] = $polynomial;
             $data["check"] = "true";
-            $data["x_0"] = $x_0;
-            $data["x_1"] = $x_1;
-            $data["x_2"] = $x_2;
-            $data["iterations"] = $iterations;
-            $data["function"] = $originalfunction;
-            $data["tolerance"] = $tolerance;
-            $data["message"] = __('muller.succesful');*/
+            $data["arrx"] = $Arrx;
+            $data["arry"] = $Arry;
+            $data["message"] = "Success with method";
         }
-        return view('mullerMethod')->with("data",$data);
+        return view('lagrangeMethod')->with("data",$data);
     }
 }

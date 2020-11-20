@@ -21,12 +21,21 @@ import matrix_function
 import total_gaussian_method
 
 
-def linealSplin(x,y):
+def linealSpline(data, n):
+    data = data.replace('[', '').replace(']', '').split(',')
+    x = []
+    y = []
+    for i in range(0,len(data)):
+        if i < int(n):
+            x.append(float(data[i]))
+        else:
+            y.append(float(data[i]))
     xValor = sm.symbols('x')
     sizeX = len(x)
     sizeY = len(y)
+    results = {}
     if sizeX != sizeY:
-        print("Error")
+        results[0] = "Error the size of the x vector is different to y vector"
     else:
         m = 2*(sizeX-1)
         A = np.eye(m)
@@ -40,6 +49,7 @@ def linealSplin(x,y):
             A[i][counter] = vec_x
             A[i][counter+1] = 1
             counter = counter + 2
+
             if i == 0:
                 counter = 0
             b.append(y[i])
@@ -70,18 +80,21 @@ def linealSplin(x,y):
             aux.append(x[i])
         coefficient = []
         counter = 0
+        counterAux = 0
         while counter < len(aux)-1:
             i = []
             i.append(aux[counter])
             i.append(aux[counter+1])
             counter = counter + 2
+            results[counterAux] = i
+            counterAux = counterAux + 1
             coefficient.append(i)
-        print("Plotter coefficients: ")
-        print(coefficient)
-        print("Plotter: ")
         plotter = []
         for i in range(len(coefficient)):
-            plotter.append((float(coefficient[i][0])*xValor)+float(coefficient[i][1]))
-        print(plotter)
+            plotter.append(str((float(coefficient[i][0])*xValor)+float(coefficient[i][1])))
+        results["plotter"] = plotter
+        data = json.dumps(results)
+        print(data)
           
-linealSplin([-1,0,3,4],[15.5,3,8,1])
+#linealSplin([-1,0,3,4],[15.5,3,8,1])
+linealSpline(sys.argv[1],sys.argv[2])
