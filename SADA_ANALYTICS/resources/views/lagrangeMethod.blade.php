@@ -107,15 +107,13 @@
                         <table class="table table-striped text-center table-BusquedasIncrementales">
                             <thead>
                                 <tr>
-                                    <th><em>Li</em></th>
                                     <th>Coefficient</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data["coefficient"] as $aux)
                                     <tr>
-                                        <th><em>L{{$loop->index}}</em></th>
-                                        <th>{{ $aux }}</th>
+                                        <th><em>L{{$loop->index}} = </em> {{ $aux }}</th>
                                     </tr>
                                 @endforeach
 
@@ -127,7 +125,6 @@
                         <div>
                             <b><em>p(x) = </em>{{$data["polynomial"]}}</b>
                         </div>
-                        
                     </div>
 
                 </div>

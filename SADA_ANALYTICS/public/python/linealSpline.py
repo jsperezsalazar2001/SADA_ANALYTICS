@@ -21,7 +21,7 @@ import matrix_function
 import total_gaussian_method
 
 
-def linealSplin(data, n):
+def linealSpline(data, n):
     data = data.replace('[', '').replace(']', '').split(',')
     x = []
     y = []
@@ -97,4 +97,4 @@ def linealSplin(data, n):
         print(data)
           
 #linealSplin([-1,0,3,4],[15.5,3,8,1])
-linealSplin(sys.argv[1],sys.argv[2])
+linealSpline(sys.argv[1],sys.argv[2])

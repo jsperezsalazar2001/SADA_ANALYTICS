@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LinealSplinController extends Controller
+class LinealSplineController extends Controller
 {
-    public function linealSplin(){
+    public function linealSpline(){
         $data = [];
         $data["check"] = "false";
-        $data["title"] = "Lineal Splin";
-        $data["message"] = "Lineal Splin Method";
-        return view('linealSplinMethod')->with("data",$data);
+        $data["title"] = "Lineal Spline";
+        $data["message"] = "Lineal Spline Method";
+        return view('linealSplineMethod')->with("data",$data);
     }
 
-    public function linealSplinMethod(Request $request){
+    public function linealSplineMethod(Request $request){
         $dimension = $request->input("n");
         $Arrx = []; 
         $Arry = [];
@@ -26,11 +26,11 @@ class LinealSplinController extends Controller
         }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
-        $command = 'python "'.public_path().'\python\linealSplin.py" '." ".$data. " ".$dimension;
+        $command = 'python "'.public_path().'\python\linealSpline.py" '." ".$data. " ".$dimension;
         exec($command, $output);
         #dd($output[0]);
         $data = [];
-        $data["title"] = "Lineal Splin";
+        $data["title"] = "Lineal Spline";
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
             $data["message"] = substr($output[0],7,strlen($output[0])-9);
@@ -58,6 +58,6 @@ class LinealSplinController extends Controller
             $data["arry"] = $Arry;
             $data["message"] = "Success with method";
         }
-        return view('linealSplinMethod')->with("data",$data);
+        return view('linealSplineMethod')->with("data",$data);
     }
 }

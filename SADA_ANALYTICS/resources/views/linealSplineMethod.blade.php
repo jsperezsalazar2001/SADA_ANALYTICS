@@ -52,7 +52,7 @@
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="{{route('linealSplin_method')}}" class="form">
+            <form method="POST" action="{{route('linealSpline_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -107,15 +107,13 @@
                         <table class="table table-striped text-center table-BusquedasIncrementales">
                             <thead>
                                 <tr>
-                                    <th><em>Li</em></th>
                                     <th>Coefficient</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data["coefficient"] as $aux)
                                     <tr>
-                                        <th><em>L{{$loop->index}}</em></th>
-                                        <th>{{ $aux }}</th>
+                                        <th><em>L{{$loop->index}} = </em>{{ $aux }}</th>
                                     </tr>
                                 @endforeach
 
@@ -128,8 +126,7 @@
                             <tbody>
                                 @foreach ($data["plotter"] as $aux)
                                     <tr>
-                                        <th><em>p(x)</em></th>
-                                        <th>{{ $aux }}</th>
+                                        <th><em>p(x) = </em>{{ $aux }}</th>
                                     </tr>
                                 @endforeach
 
