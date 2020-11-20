@@ -40,3 +40,6 @@ Route::POST('/multipleRootsMethod','MultipleRootsController@multipleRootsMethod'
 
 Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
 Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
+
+Route::GET('/linealSpline','LinealSplinController@linealSplin')->name("linealSplin");
+Route::POST('/linealSplinMethod','LinealSplinController@linealSplinMethod')->name("linealSplin_method");

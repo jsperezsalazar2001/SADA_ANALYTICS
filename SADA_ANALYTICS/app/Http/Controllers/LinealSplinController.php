@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LagrangeController extends Controller
+class LinealSplinController extends Controller
 {
-    public function lagrange(){
+    public function linealSplin(){
         $data = [];
         $data["check"] = "false";
-        $data["title"] = "Lagrange";
-        $data["message"] = "Lagrange Method";
-        return view('lagrangeMethod')->with("data",$data);
+        $data["title"] = "Lineal Splin";
+        $data["message"] = "Lineal Splin Method";
+        return view('linealSplinMethod')->with("data",$data);
     }
 
-    public function lagrangeMethod(Request $request){
-        $Arrx = []; 
+    public function linealSplinMethod(Request $request){
         $dimension = $request->input("n");
+        $Arrx = []; 
         $Arry = [];
 
         for ($i=0; $i < $dimension; $i++) { 
@@ -26,10 +26,11 @@ class LagrangeController extends Controller
         }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
-        $command = 'python "'.public_path().'\python\lagrange.py" '." ".$data. " ".$dimension;
+        $command = 'python "'.public_path().'\python\linealSplin.py" '." ".$data. " ".$dimension;
         exec($command, $output);
+        #dd($output[0]);
         $data = [];
-        $data["title"] = "Lagrange";
+        $data["title"] = "Lineal Splin";
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
             $data["message"] = substr($output[0],7,strlen($output[0])-9);
@@ -37,22 +38,26 @@ class LagrangeController extends Controller
             $json = json_decode($output[0], true);
             $arrayAux = [];
             for($i=0; $i<count($json)-1; $i++){
-                $aux = $json[$i];
-                $aux = str_replace("**","^",$aux);
-                $aux = str_replace("*","",$aux);
-                $arrayAux[$i] = $aux;
+                $aux = "";
+                for($j=0;$j<count($json[$i]);$j++){
+                    if ($j != count($json[$i])-1){
+                        $aux = $aux.$json[$i][$j]." - ";
+                    }else{
+                        $aux = $aux.$json[$i][$j];
+                    }
+                }
+                array_push($arrayAux,$aux);
             }
-
+            #dd($arrayAux);
             $data["coefficient"] = $arrayAux;
-            $polynomial = $json["polynomial"];
-            $polynomial = str_replace("**", "^", $polynomial);
-            $polynomial = str_replace("*", "", $polynomial);
-            $data["polynomial"] = $polynomial;
+            $plotter = $json["plotter"];
+            $plotter = str_replace("*", "", $plotter);
+            $data["plotter"] = $plotter;
             $data["check"] = "true";
             $data["arrx"] = $Arrx;
             $data["arry"] = $Arry;
             $data["message"] = "Success with method";
         }
-        return view('lagrangeMethod')->with("data",$data);
+        return view('linealSplinMethod')->with("data",$data);
     }
 }
