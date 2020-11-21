@@ -11,12 +11,16 @@
             // Container <div> where dynamic content will be placed
             var container_matrix = document.getElementById("matrix");
             var container_vector = document.getElementById("vector");
+            var container_vector_x = document.getElementById("vectorx");
             // Clear previous contents of the container
             while (container_matrix.hasChildNodes()) {
                 container_matrix.removeChild(container_matrix.lastChild);
             }
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
+            }
+            while (container_vectorx.hasChildNodes()) {
+                container_vectorx.removeChild(container_vectorx.lastChild);
             }
             if (number>1) {
                 for (i=0;i<number;i++) {
@@ -32,6 +36,7 @@
                         input.required = true;
                         container_matrix.appendChild(input);
                     }
+                    //vector b
                     container_matrix.appendChild(document.createElement("br"));
                     container_matrix.appendChild(document.createElement("br"));
                     // Append a node with a random text
@@ -44,10 +49,25 @@
                     vector.step = "any";
                     vector.required = true;
                     container_vector.appendChild(vector);
+
+                    // vector X0
+                    container_vector.appendChild(document.createElement("br"));
+                    container_vector.appendChild(document.createElement("br"));
+                    // Append a node with a random text
+                    container_vector_x.appendChild(document.createTextNode(""));
+                    // Create an <input> element for vector B, set its type and name attributes
+                    var vector = document.createElement("input");
+                    vector.type = "number";
+                    vector.name = "vector_x" + i ;
+                    vector.style = "width : 110px;";
+                    vector.step = "any";
+                    vector.required = true;
+                    container_vector_x.appendChild(vector);
                 }
                 document.getElementById("separador").style.display = 'block';
                 document.getElementById("matrix_a").style.display = 'block';
-                document.getElementById("vector_b").style.display = 'block'; 
+                document.getElementById("vector_b").style.display = 'block';
+                document.getElementById("vector_x0").style.display = 'block'; 
                 document.getElementById("solve").style.display = 'block';
             }
         }
@@ -67,11 +87,9 @@
                     <div class="form-group col-md-6">
                         <label> {{ __('gaussian_method.label.method_type') }} </label>
                         <select name="method_type" class="form-control">
-                            <option value="S">{{ __('gaussian_method.input.simple_gaussian_method') }}</option> 
-                            <option value="P">{{ __('gaussian_method.input.partial_gaussian_method') }}</option>
-                            <option value="T">{{ __('gaussian_method.input.total_gaussian_method') }}</option>
-                            <option value="TM">{{ __('gaussian_method.input.tridiagonal_matrices_method') }}</option>
-                            <option value="SP">{{ __('gaussian_method.input.stepped_partial_method') }}</option>
+                            <option value="J">{{ __('gaussian_method.input.simple_gaussian_method') }} J</option> 
+                            <option value="GS">{{ __('gaussian_method.input.partial_gaussian_method') }} GS</option>
+                            <option value="S">{{ __('gaussian_method.input.total_gaussian_method') }}</option>
                         </select>
                     </div>
                 </div>
@@ -89,6 +107,16 @@
                 <div id="separador" class="text-align metodo"> {{ __('gaussian_method.separator') }}</div>
                 <div id="vector_b" class="text-align metodo"> {{ __('gaussian_method.label.vector_b') }} </div>
                 <div id="vector" class="text-align"> </div>
+
+                <div id="separador" class="text-align metodo"> {{ __('gaussian_method.separator') }}</div>
+                <div id="vector_x0" class="text-align metodo"> {{ __('gaussian_method.label.vector_b') }} X </div>
+                <div id="vectorx" class="text-align"> </div>
+
+                <div class="form-group col-md-6">
+                    <label>{{ __('gaussian_method.dimension') }} X0</label>
+                    <input type="number" id="tolerance" min="0" class="form-control" placeholder="Matrix dimension" name="tolerance" step="any" required />
+                    <input type="number" id="iteration" min="1" class="form-control" placeholder="Matrix dimension" name="iteration" step="any" required />
+                </div>
             </form>
         </div>
     </div>

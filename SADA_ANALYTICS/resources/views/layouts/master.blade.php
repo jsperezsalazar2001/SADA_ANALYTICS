@@ -20,17 +20,11 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+            <div class="container col-12">
+                <a class="navbar-brand col-3" href="{{ url('/') }}">
                     SADA ANALYTICS
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -53,12 +47,10 @@
                                 <a class="dropdown-item" href="{{ route('incremental_search') }}">{{ __('incremental.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('muller') }}">{{ __('muller.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('aitken') }}">{{ __('aitken.title') }}</a>
-                                <a class="dropdown-item" href="{{ route('lagrange') }}">Lagrange</a>
                             </div>
-
                         </div>
                     </ul>
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto"> 
                         <div class="dropdown show">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ __('master.matrix_methods') }}
@@ -67,6 +59,27 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('gaussian_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('factorization_l_u_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('iterative_methods.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('crout_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('cholesky_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('doolittle_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('tridiagonal_crout_method.title') }}</a>
+                            </div>
+
+                        </div>
+                    </ul>
+                    <ul class="navbar-nav mr-auto"> 
+                        <div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ __('master.interpolation_methods') }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('vandermonde_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('divided_difference_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('lagrange_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('hermite_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('spline_method.title') }}</a>
                             </div>
 
                         </div>

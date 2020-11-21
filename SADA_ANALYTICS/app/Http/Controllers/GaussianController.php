@@ -39,8 +39,30 @@ class GaussianController extends Controller
         $data["solution"] = "true";
         $data["dimension"] = $dimension;
         $json = json_decode($output[0],true);
+        $solution_array = $json["x"];
+        array_pop($json); 
+        $json = $this->rebuildArray($json);
+        $json["x"] = $solution_array;
         $data["table"] = $json;
         
         return view('gaussian')->with("data",$data);
+    }
+
+    public function rebuildArray($array){
+        $aux_array = [];
+        $aux2_array = [];
+            
+        for ($i=0; $i < count($array) ; $i++) { 
+            for ($j=0; $j < count($array[$i]) ; $j++) { 
+                $temporal = substr($array[$i][$j],1,strlen($array[$i][$j])-2);
+                $temporal = str_replace("'","",$temporal);
+                $temporal = explode(" ",$temporal);
+                array_push($aux_array, $temporal);
+            }
+            array_push($aux2_array, $aux_array);
+            $aux_array=[];
+        }
+
+        return $aux2_array;
     }
 }

@@ -27,7 +27,7 @@ def luSimpleMethod(matrix):
     dic_l[0] = np.array(boton_triangular_matrix)
     dic_u[0] = np.array(top_triangular_matrix)
 
-    for i in range(matrix.shape[0]):
+    for i in range(matrix.shape[0]-1):
         # pivot_number is the number in position [i][i] from the matrix
         pivot_number = auxiliary_matrix[0][0]
         if(pivot_number==0):
@@ -63,6 +63,10 @@ def luSimpleMethod(matrix):
             boton_triangular_matrix.T[i] = temporal_l
         #U matrix
         top_triangular_matrix[i] = matrix[i]
+
+        #rebuild U_matrix
+        if(i+1!=matrix.shape[0]):
+            top_triangular_matrix[i+1] = matrix[i+1]
 
         dic_u[i+1] = np.array(top_triangular_matrix)
         dic_l[i+1] = np.array(boton_triangular_matrix)
