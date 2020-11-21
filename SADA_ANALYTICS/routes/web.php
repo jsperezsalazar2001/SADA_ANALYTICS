@@ -46,3 +46,6 @@ Route::POST('/factorizationLUShow','FactorizationLUController@values')->name("fa
 
 Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
 Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
+
+Route::GET('/iterative','IterativeMethodJGBController@iterativeMethodJGB')->name("iterativeMethodJGB");
+Route::POST('/iterativeMethod','IterativeMethodJGBController@values')->name("lagrange_method");
