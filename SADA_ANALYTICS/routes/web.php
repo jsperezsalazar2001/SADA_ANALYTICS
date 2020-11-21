@@ -50,6 +50,9 @@ Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagran
 Route::GET('/doolittle','DoolittleController@doolittle')->name("doolittle");
 Route::POST('/doolittleMethod','DoolittleController@doolittleMethod')->name("doolitle_method");
 
+Route::GET('/crout','CroutController@crout')->name("crout");
+Route::POST('/croutMethod','CroutController@croutMethod')->name("crout_method");
+
 Route::GET('/stepped','SteppedController@stepped')->name("stepped");
 Route::POST('/steppedMethod','SteppedController@steppedMethod')->name("stepped_method");
 
