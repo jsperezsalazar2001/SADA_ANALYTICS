@@ -32,20 +32,21 @@ def solve_matrix2(a,b,matrix_type,x0,tol,Nmax):
         exit(1)
     if(matrix_function.determinant(a)):
         if (matrix_type == 'J'):
-            dic,dic_result = jacobi_method.jacobiMethod(l,d,u,b,x0,tol,Nmax)
+            dic,dic_result,C_aux,spectral_radius = jacobi_method.jacobiMethod(l,d,u,b,x0,tol,Nmax)
+            dic = matrix_function.rebuild_matrix(dic)
+            dic["C"] = C_aux
+            dic["spectral_radius"] = spectral_radius
         elif(matrix_type == 'GS'):
             dic,dic_result = gauss_seidel.gauss_seidel(l,d,u,b,x0,tol,Nmax)
         else:
             print("function type doesn't exist")
         
-        # for lop only for print result
-        print(dic["T"])
-        print(dic["C"])
-        print(dic["spectral_radius"])
-        for i in dic_result.keys():
-            print(dic_result[i])
+        print(json.dumps(dic))
+        print(json.dumps(dic_result))
+        
     else:
         print("function determinant is equals to 0")
         exit(1)
 
-x = solve_matrix2("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'J',"[0,0,0,0]","0.0000001","100")
+solve_matrix2(sys.argv[1],sys.argv[2],str(sys.argv[3]),sys.argv[4],sys.argv[5],sys.argv[6])
+#x = solve_matrix2("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'J',"[0,0,0,0]","0.0000001","100")
