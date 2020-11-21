@@ -47,6 +47,18 @@ class FactorizationLUController extends Controller
 
             $data["table_l"] = $json_l;
             $data["table_u"] = $json_u;
+        }else if($method_type == 'LUP'){
+            $json_l = json_decode($output[1],true);
+            $json_u = json_decode($output[2],true);
+            $json_p = json_decode($output[3],true);
+
+            $json_l = $this->rebuildArray($json_l);
+            $json_u = $this->rebuildArray($json_u);
+            $json_p = $this->rebuildArray($json_p);
+
+            $data["table_l"] = $json_l;
+            $data["table_u"] = $json_u;
+            $data["table_p"] = $json_p;
         }
         $json = json_decode($output[0],true);
         $solution_array = $json["x"];
@@ -54,6 +66,7 @@ class FactorizationLUController extends Controller
         $json = $this->rebuildArray($json);
         $json["x"] = $solution_array;
         $data["table"] = $json;
+        $data["method_type"] = $method_type;
         #dd($data);
         return view('factorizationLU')->with("data",$data);
     }

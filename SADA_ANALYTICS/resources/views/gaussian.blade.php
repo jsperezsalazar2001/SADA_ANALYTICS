@@ -53,12 +53,12 @@
         }
     </script>
 </head>
-<div class="container matrix">
-    <div class="row justify-content-center sizeMatrix">
-        <div class="col-md-12">
+<div class="container col-10">
+    <div class="row justify-content-center">
+        <div class="col-12">
             <form method="POST" action="{{route('check_matrix')}}" class="form">
                 @csrf
-                <div class="form-row">
+                <div class="form-row col-12">
                     <div class="form-group col-md-6">
                         <label>{{ __('gaussian_method.dimension') }}</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
@@ -73,11 +73,11 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                <div class="form-row col-12">
+                    <div class="form-group col-6">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('gaussian_method.create_matrix') }}</a> 
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-6">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('gaussian_method.solve') }}</button> 
                     </div>
                 </div>

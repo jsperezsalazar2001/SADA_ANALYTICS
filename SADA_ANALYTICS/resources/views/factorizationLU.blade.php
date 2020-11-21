@@ -53,12 +53,12 @@
         }
     </script>
 </head>
-<div class="container matrix">
-    <div class="row justify-content-center sizeMatrix">
-        <div class="col-md-12">
+<div class="container col-10" align="center">
+    <div class="row justify-content-center">
+        <div class="col-12">
             <form method="POST" action="{{route('factorization_l_u_values')}}" class="form">
                 @csrf
-                <div class="form-row">
+                <div class="form-row col-12" align="center">
                     <div class="form-group col-md-6">
                         <label>{{ __('factorization_l_u_method.dimension') }}</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
@@ -71,12 +71,12 @@
                             <option value="LUP">{{ __('factorization_l_u_method.input.factorization_l_u_partial_method') }}</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                </div><br/>
+                <div class="form-row col-12">
+                    <div class="form-group col-6">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('factorization_l_u_method.create_matrix') }}</a> 
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-6">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('factorization_l_u_method.solve') }}</button> 
                     </div>
                 </div>
@@ -88,70 +88,88 @@
                 <div id="vector" class="text-align"> </div>
             </form>
         </div>
-    </div>
+    </div><br/>
     @if ($data["solution"] == "true" and !empty($data["table"]))
-        <div class="card">
-            <div class="card-header">
-                <h1>Solution</h1>
-            <br>
-            </div>
-            <div class="card-body">
-                <div>
-                    @for ($i = 0; $i < count($data["table_l"]); $i++)
-                        <b><em>Step {{$i}}</em></b>
-                        $$A = \begin{pmatrix}
-                        @for ($j = 0; $j < count($data["table"][$i]); $j++)
-                            
-                            @for ($v = 0; $v < count($data["table"][$i][$j]); $v++)
-                                @if($v == count($data["table"][$i][$j])-1)
-                                    {{ $data["table"][$i][$j][$v]}} \\
-                                @else
-                                    {{ $data["table"][$i][$j][$v]}} &
-                                @endif
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Solution</h1>
+                <br>
+                </div>
+                <div class="card-body">
+                    <div>
+                        @for ($i = 0; $i < count($data["table_l"]); $i++)
+                            <b><em>Step {{$i}}</em></b>
+                            $$A = \begin{pmatrix}
+                            @for ($j = 0; $j < count($data["table"][$i]); $j++)
+                                
+                                @for ($v = 0; $v < count($data["table"][$i][$j]); $v++)
+                                    @if($v == count($data["table"][$i][$j])-1)
+                                        {{ $data["table"][$i][$j][$v]}} \\
+                                    @else
+                                        {{ $data["table"][$i][$j][$v]}} &
+                                    @endif
+                                @endfor
+                                
                             @endfor
-                            
-                        @endfor
-                        \end{pmatrix}$$
+                            \end{pmatrix}$$
 
-                        $$L = \begin{pmatrix}
-                        @for ($j = 0; $j < count($data["table_l"][$i]); $j++)
-                            
-                            @for ($v = 0; $v < count($data["table_l"][$i][$j]); $v++)
-                                @if($v == count($data["table_l"][$i][$j])-1)
-                                    {{ $data["table_l"][$i][$j][$v]}} \\
-                                @else
-                                    {{ $data["table_l"][$i][$j][$v]}} &
-                                @endif
+                            $$L = \begin{pmatrix}
+                            @for ($j = 0; $j < count($data["table_l"][$i]); $j++)
+                                
+                                @for ($v = 0; $v < count($data["table_l"][$i][$j]); $v++)
+                                    @if($v == count($data["table_l"][$i][$j])-1)
+                                        {{ $data["table_l"][$i][$j][$v]}} \\
+                                    @else
+                                        {{ $data["table_l"][$i][$j][$v]}} &
+                                    @endif
+                                @endfor
+                                
                             @endfor
-                            
-                        @endfor
-                        \end{pmatrix}$$
+                            \end{pmatrix}$$
 
-                        $$U = \begin{pmatrix}
-                        @for ($j = 0; $j < count($data["table_u"][$i]); $j++)
-                            
-                            @for ($v = 0; $v < count($data["table_u"][$i][$j]); $v++)
-                                @if($v == count($data["table_u"][$i][$j])-1)
-                                    {{ $data["table_u"][$i][$j][$v]}} \\
-                                @else
-                                    {{ $data["table_u"][$i][$j][$v]}} &
-                                @endif
+                            $$U = \begin{pmatrix}
+                            @for ($j = 0; $j < count($data["table_u"][$i]); $j++)
+                                
+                                @for ($v = 0; $v < count($data["table_u"][$i][$j]); $v++)
+                                    @if($v == count($data["table_u"][$i][$j])-1)
+                                        {{ $data["table_u"][$i][$j][$v]}} \\
+                                    @else
+                                        {{ $data["table_u"][$i][$j][$v]}} &
+                                    @endif
+                                @endfor
+                                
                             @endfor
-                            
-                        @endfor
-                        \end{pmatrix}$$  
-                    @endfor
+                            \end{pmatrix}$$ 
 
-                    $$X = \begin{bmatrix}
-                    @foreach ($data["table"]["x"] as $solution)
-                        @if($loop->last)
-                            {{$solution}}
-                        @else
-                            {{$solution}} \\
-                        @endif
-                    @endforeach
-                    \end{bmatrix}$$
-        
+                            @if($data["method_type"] == "LUP") 
+                                $$P = \begin{pmatrix}
+                                @for ($j = 0; $j < count($data["table_p"][$i]); $j++)
+                                    
+                                    @for ($v = 0; $v < count($data["table_p"][$i][$j]); $v++)
+                                        @if($v == count($data["table_p"][$i][$j])-1)
+                                            {{ $data["table_p"][$i][$j][$v]}} \\
+                                        @else
+                                            {{ $data["table_p"][$i][$j][$v]}} &
+                                        @endif
+                                    @endfor
+                                    
+                                @endfor
+                                \end{pmatrix}$$
+                            @endif
+                        @endfor
+
+                        $$X = \begin{bmatrix}
+                        @foreach ($data["table"]["x"] as $solution)
+                            @if($loop->last)
+                                {{$solution}}
+                            @else
+                                {{$solution}} \\
+                            @endif
+                        @endforeach
+                        \end{bmatrix}$$
+            
+                    </div>
                 </div>
             </div>
         </div>

@@ -41,4 +41,4 @@ def solve_matrix2(a,b,matrix_type,x0,tol,Nmax):
         print("function determinant is equals to 0")
         exit(1)
 
-x = solve_matrix2("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'GS',[0,0,0,0],0.0000001,100)
+x = solve_matrix2("[[200,-1,-14],[1,8,-3],[1,0,5]]","[0,1,1]",'J',[0,0,0],0.0000001,100)
