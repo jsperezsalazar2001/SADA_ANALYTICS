@@ -68,7 +68,17 @@
                 document.getElementById("vector_b").style.display = 'block'; 
                 document.getElementById("vector_x").style.display = 'block'; 
                 document.getElementById("solve").style.display = 'block';
+                //document.getElementById("additional_values_i").style.display = 'block';
                 document.getElementById("additional_values").style.display = 'block';
+                //document.getElementById("w").style.display = 'block';
+            }
+        }
+        function selectChange(){
+            var method_type = document.getElementById("method_type").value;
+            if (method_type == "SOR") {
+                document.getElementById("additional_values_w").style.display = 'block';
+            }else{
+                document.getElementById("additional_values_w").style.display = 'none';
             }
         }
     </script>
@@ -86,22 +96,29 @@
                         <!-- este div es el que pone feo la vista --> 
                     <div class="form-group col-md-6">
                         <label> {{ __('iterative_j_g_b_method.label.method_type') }} </label>
-                        <select name="method_type" class="form-control">
+                        <select id="method_type" onchange="selectChange()"  name="method_type" class="form-control">
                             <option value="J"> {{ __('iterative_j_g_b_method.input.jacobi_method') }} </option> 
                             <option value="GS">{{ __('iterative_j_g_b_method.input.gauss_seidel_method') }}</option>
+                            <option value="SOR">{{ __('iterative_j_g_b_method.input.sor') }}</option>
                         </select>
                     </div>
                 </div><br/>
                 <div class="form-row col-12 metodo" id="additional_values">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6 " >
                         <label> {{ __('iterative_j_g_b_method.input.tolerance') }} </label>
                         <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.tolerance') }}" name="tolerance" step="any" required />
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6" >
                         <label> {{ __('iterative_j_g_b_method.input.iteration') }} </label>
                         <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.iteration') }}" name="iteration" required />
                     </div>
                 </div><br/>
+                <div class="form-row col-12 metodo" id="additional_values_w">
+                    <div class="form-group col-md-6" >
+                        <label> {{ __('iterative_j_g_b_method.input.w') }} </label>
+                        <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.iteration') }}" name="w" required />
+                    </div>
+                </div>
                 <div class="form-row col-12">
                     <div class="form-group col-6">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('iterative_j_g_b_method.create_matrix') }}</a> 
