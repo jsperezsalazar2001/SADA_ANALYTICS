@@ -183,4 +183,11 @@ def fromStringToFloatVector(stringVector):
         print("Be careful of values from x0 vector")
         exit(1)
 
-    
+def rebuild_vector(vector):
+    final_value = np.array([],dtype=str)
+    for result in vector:
+        final_value = np.append(final_value, '{:.7f}'.format(result))
+    return final_value
+
+def rebuild_constant(constant):
+    return '{:.7f}'.format(constant)

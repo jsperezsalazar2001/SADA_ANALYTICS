@@ -59,6 +59,6 @@ Route::POST('/steppedMethod','SteppedController@steppedMethod')->name("stepped_m
 Route::GET('/hermite','HermiteController@hermite')->name("hermite");
 Route::POST('/hermiteMethod','HermiteController@hermiteMethod')->name("hermite_method");
 
-Route::GET('/iterative','IterativeMethodJGBController@iterativeMethodJGB')->name("iterativeMethodJGB");
-Route::POST('/iterativeMethod','IterativeMethodJGBController@values')->name("lagrange_method");
+Route::GET('/iterative','IterativeMethodJGBController@iterativeMethodJGB')->name("iterative_method");
+Route::POST('/iterativeMethod','IterativeMethodJGBController@values')->name("iterative_j_g_b_values");
 
