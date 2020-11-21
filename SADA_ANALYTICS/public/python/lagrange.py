@@ -22,6 +22,7 @@ import math
 import sys
 import json
 import base64
+import matrix_function
 
 def lagrange(data, n):
     data = data.replace('[', '').replace(']', '').split(',')
@@ -66,13 +67,19 @@ def lagrange(data, n):
         arrayAux.append(sumPol)
         results["polynomial"] = sumPol
 
-    data = json.dumps(results)
+    return results
+
+
+def initialData(data,n):
+    dic = lagrange(data,n)
+    data = json.dumps(dic)
     print(data)
+    return data
 
-
+#print(sys.argv[1])
 #x = [-2,-1,2,3]
 #y = [12.13533528,6.367879441,-4.610943901,2.085536923]
 #lagrange("[[-1,0,3,4],[15.5,3,8,1]]",4)
 #lagrange([-1,0,3,4],[15.5,3,8,1],4)
 
-lagrange(sys.argv[1],sys.argv[2])
+#initialData(sys.argv[1],sys.argv[2])

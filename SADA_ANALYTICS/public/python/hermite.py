@@ -3,9 +3,9 @@ Created on Tue Nov 11
 This program finds the interpolation polynomial using the Hermite interpolation method
 Parameters
 ----------
-Array X: array of the x points
-Array Y: array of the f(x)
+Array XX: array of the x points and the f(x) points
 Array Z: array of the f'(x)
+size: size of the arrays
 Returns
 -------
 coefficient: Plotter coefficients
@@ -20,69 +20,57 @@ import base64
 import numpy as np
 import matrix_function
 import total_gaussian_method
+import lagrange
+from sympy.parsing.sympy_parser import *
 
 
-def hermite(x,y,z):
-    xValor = sm.symbols('x')
-    sizeX = len(x)
-    sizeY = len(y)
-    sizeZ = len(z)
-    if sizeX != sizeY:
-        print("Error")
-    elif sizeX != sizeZ:
-        print("Error")
-    else:
-        counterColumn = 0
-        x = np.array(x)
-        y = np.array(y)
-        n = sizeX*3
-        D = np.zeros((sizeX*2,n))
-        k = []
-        for i in range(sizeX*2):
-            k.append(i)
-        k = np.array(k)
-        D[:,counterColumn] = k.T
-        counterColumn = counterColumn + 1
-        zk = []
-        fzk = []
-        for i in range(sizeX):
-            zk.append(x[i])
-            zk.append(x[i])
-            fzk.append(y[i])
-            fzk.append(y[i])
-        zk = np.array(zk)
-        D[:,counterColumn] = zk.T  
-        counterColumn = counterColumn + 1
-        fzk = np.array(fzk)
-        D[:,counterColumn] = fzk.T
-        counterColumn = counterColumn + 1
-        fdzk = []
-        counter = 0
-        counterAux = 0
-        index = 0
-        while counter < len(k):
-            if counter == 0:
-                fdzk.append(0)
-            elif counter == 1:
-                fdzk.append(z[0])
-                counterAux = counterAux+1
-            elif counter%3==0 and counter != 0:
-                fdzk.append(z[counterAux])
-                counterAux = counterAux+1
-            else:
-                if index == 0:
-                    index = counter
-                num = D[counter][2]-D[counter-1][2]
-                den = D[counter][1]-D[counter-1][1]
-                fdzk.append(num/den)
-            counter = counter + 1
-        fdzk = np.array(fdzk)
-        D[:,counterColumn] = fdzk.T
-        counterColumn = counterColumn + 1
+def hermite(xy,z, size):
+    results = {}
+    size = int(size)
+    x = sm.symbols('x')
+    xy = xy[1:len(xy)-1]
+    index = xy.index("]")
+    arrayX = xy[1:index].split(",")
+    arrayY = xy[index+3:len(xy)-1].split(",")
+    arrayZ = []
+    for i in range(len(arrayX)):
+        arrayX[i] = float(arrayX[i])
+        arrayY[i] = float(arrayY[i])
+    z = z[1:len(z)-1]
+    z = z.split(",")
+    for i in range(len(z)):
+        arrayZ.append(float(z[i]))
+    dic = lagrange.lagrange(xy,size)
+    arrayAux = []
+    arrayDerivate = []
+    arraySquare = []
+    H = []
+    H2 = []
+    for i in range(len(dic)-1):
+        arrayAux.append(parse_expr(dic[i]))
+        arraySquare.append(parse_expr(dic[i])*parse_expr(dic[i]))
+    for i in range(len(arrayAux)):
+        arrayDerivate.append(arrayAux[i].diff(x))
+    for i in range(size):
+        value = arrayDerivate[i].subs({x:arrayX[i]})
+        aux = (((x-arrayX[i])*value*(-2))+1)
+        aux = aux * arraySquare[i]
+        H.append(aux)
+        value = (x-arrayX[i])*arraySquare[i]
+        H2.append(value)
+    polynomial = 0
+    count = 0
+    for i in range(len(H)):
+        results[count] = str(arrayY[i]*H[i])
+        polynomial = polynomial + (arrayY[i]*H[i])
+        count = count + 1
+    for i in range(len(H2)):
+        results[count] = str(arrayZ[i]*H2[i])
+        polynomial = polynomial + (arrayZ[i]*H2[i])
+        count = count + 1
+    results["polynomial"] = str(polynomial)
+    data = json.dumps(results)
+    print(data)
 
-        for i in range(index,len(k)):
-            
-
-        print(D)
-
-hermite([-2,1],[-12,9],[22,10])
+#hermite("[[1.3,1.6,1.9],[0.6200860,0.4554022,0.2818186]]","[-0.5220232,-0.5698959,-0.5811571]",3)
+hermite(sys.argv[1],sys.argv[2],sys.argv[3])

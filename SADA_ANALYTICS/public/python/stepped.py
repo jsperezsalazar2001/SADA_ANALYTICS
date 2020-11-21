@@ -1,26 +1,40 @@
 """
-Created on Tue Nov 11
-This program found the solution of matrix Ax = B by Stepped Partial Pivot.
+Created on Tue Nov  10 
+This program finds the solution to the system Ax = b and the LU factorization of A 
+using the Doolittle method.
+
 Parameters
 ----------
-matrix: AB
+A : Invertible matrix
+b : Constant vector
+
 Returns
 -------
-a: matrix from equations
-b: constant vector
-dic: dictionary to pass the data to the view
+x : Solution
+L : Factorization matrix L
+U : Factorization matriz U
+
 
 @author: Cesar Andres Garcia Posada
 """
+
+import sympy as sm
+import math
+import sys
+import json
+import base64
 import numpy as np
 import matrix_function
+import copy
 
 np.set_printoptions(precision=7)
 
 def SteppedPartialPivot(matrix):
+    matrix = np.array(matrix)
     dic = {}
     auxiliary_matrix = np.array(matrix)
-    dic[0] = np.array(matrix)
+    matrixDic = matrix.tolist()
+    dic[0] = copy.deepcopy(matrixDic)
     temporal_array = []
     for i in range(matrix.shape[0]-1):
         pivot_number = auxiliary_matrix[0][0]
@@ -55,15 +69,26 @@ def SteppedPartialPivot(matrix):
                 axiliary_fi =  np.insert(axiliary_fi, 0, np.zeros(1), axis=1)
             matrix[i+1:] = np.insert(axiliary_fi, 0, np.zeros(1), axis=1)
         auxiliary_matrix = fi.T[1:].T
-        dic[i+1] = np.array(matrix)
-        print("Step "+ str(i))
-        print(matrix)
+        matrix = np.array(matrix)
+        matrixDic = matrix.tolist()
+        dic[i+1] = copy.deepcopy(matrixDic)
     a = np.delete(matrix, matrix.shape[1]-1, axis=1)
     b = matrix.T[matrix.shape[1]-1]
-    return a,b,dic
+    return a,b,dic 
 
-matrix2 = [[2.11,-4.21,0.921,2.01],[4.01,10.2,-1.12,-3.09],[1.09,0.987,0.831,4.21]]
-matrix2 = np.array(matrix2)
-A,B,dic = SteppedPartialPivot(matrix2)
-x = matrix_function.soltion(A,B)
-print(x)
+def initialData(A,b):
+    A,b,matrix2 = matrix_function.mix_matrix(A,b)
+    matrix2 = np.array(matrix2)
+    A,B,dic = SteppedPartialPivot(matrix2)
+    print(json.dumps(dic)) 
+    x = matrix_function.soltion(A,B)
+    x = x.tolist()
+    xSolution = {}
+    xSolution[0] = x
+    print(json.dumps(xSolution)) 
+
+#A = "[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]"
+#b = "[1,1,1,1]"
+A = sys.argv[1]
+b = sys.argv[2]
+initialData(A,b)
