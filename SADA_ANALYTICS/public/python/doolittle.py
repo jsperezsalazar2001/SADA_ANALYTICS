@@ -28,6 +28,8 @@ import matrix_function
 import copy
 
 def doolittle(A,b,size):
+    size = int(size)
+    A,b,matrix = matrix_function.mix_matrix(A,b)
     A = np.array(A)
     b = np.array(b)
     L = np.eye(size)
@@ -35,11 +37,11 @@ def doolittle(A,b,size):
     dictL = {}
     dictU = {}
     count = 0
+    print(type(L))
     dictL[count] = copy.deepcopy(L)
     dictU[count] = copy.deepcopy(U)
 
     for i in range(size):
-        print(i)
         for k in range(i, size): 
             suma = 0;
             for j in range(i):
@@ -72,4 +74,5 @@ def doolittle(A,b,size):
     print(json.dumps(dictL))   
     print(json.dumps(dictU))   
 
-doolittle([[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]],[1,1,1,1],4)
+doolittle("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",4)
+#doolittle(sys.argv[1],sys.argv[2],sys.argv[3])

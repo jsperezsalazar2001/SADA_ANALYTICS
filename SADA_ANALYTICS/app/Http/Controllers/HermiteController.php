@@ -5,31 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LagrangeController extends Controller
+class HermiteController extends Controller
 {
-    public function lagrange(){
+    public function hermite(){
         $data = [];
         $data["check"] = "false";
-        $data["title"] = "Lagrange";
-        $data["message"] = "Lagrange Method";
-        return view('lagrangeMethod')->with("data",$data);
+        $data["title"] = "Hermite";
+        $data["message"] = "Hermite Method";
+        return view('hermiteMethod')->with("data",$data);
     }
 
-    public function lagrangeMethod(Request $request){
+    public function hermiteMethod(Request $request){
         $Arrx = []; 
-        $dimension = $request->input("n");
         $Arry = [];
+        $Arrz = [];
+        $dimension = $request->input("n");
 
         for ($i=0; $i < $dimension; $i++) { 
             array_push($Arrx, $request->input("x".$i));
             array_push($Arry, $request->input("y".$i));
+            array_push($Arrz, $request->input("z".$i));
         }
+        $auxArrz = $Arrz;
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
-        $command = 'python "'.public_path().'\python\lagrangeMethod.py" '." ".$data. " ".$dimension;
+        $Arrz = json_encode($Arrz);
+        #dd($data);
+        $command = 'python "'.public_path().'\python\hermite.py" '." ".$data. " ".$Arrz. " ".$dimension;
         exec($command, $output);
         $data = [];
-        $data["title"] = "Lagrange";
+        $data["title"] = "Hermite";
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
             $data["message"] = substr($output[0],7,strlen($output[0])-9);
@@ -42,7 +47,6 @@ class LagrangeController extends Controller
                 $aux = str_replace("*","",$aux);
                 $arrayAux[$i] = $aux;
             }
-
             $data["coefficient"] = $arrayAux;
             $polynomial = $json["polynomial"];
             $polynomial = str_replace("**", "^", $polynomial);
@@ -51,8 +55,10 @@ class LagrangeController extends Controller
             $data["check"] = "true";
             $data["arrx"] = $Arrx;
             $data["arry"] = $Arry;
+            $data["arrz"] = $auxArrz;
             $data["message"] = "Success with method";
+            $data["dimension"] = $dimension;
         }
-        return view('lagrangeMethod')->with("data",$data);
+        return view('hermiteMethod')->with("data",$data);
     }
 }

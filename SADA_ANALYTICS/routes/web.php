@@ -46,3 +46,12 @@ Route::POST('/factorizationLUShow','FactorizationLUController@values')->name("fa
 
 Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
 Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
+
+Route::GET('/doolittle','DoolittleController@doolittle')->name("doolittle");
+Route::POST('/doolittleMethod','DoolittleController@doolittleMethod')->name("doolitle_method");
+
+Route::GET('/stepped','SteppedController@stepped')->name("stepped");
+Route::POST('/steppedMethod','SteppedController@steppedMethod')->name("stepped_method");
+
+Route::GET('/hermite','HermiteController@hermite')->name("hermite");
+Route::POST('/hermiteMethod','HermiteController@hermiteMethod')->name("hermite_method");
