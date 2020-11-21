@@ -56,11 +56,12 @@
 </head>
 <div class="container col-10" align="center">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-12">
             <form method="POST" action="{{route('crout_method')}}" class="form">
                 @csrf
                 <div class="form-row">
-                    <div class="form-group col-md-12">
+                    <div class="col-3"></div>
+                    <div class="form-group col-6">
                         <label>{{ __('crout_method.dimension') }}</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                     </div>
@@ -68,23 +69,30 @@
 
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-12">
+                    <div class="col-3"></div>
+                    <div class="form-group col-6">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('crout_method.create_matrix') }}</a> 
                     </div>
-                    <div class="form-group col-md-12">
+                </div>
+                <div class="form-row">
+                    <div class="col-3"></div>
+                    <div class="form-group col-6">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('crout_method.solve') }}</button> 
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col">
                         <div id="matrix_a" class="text-align metodo"> {{ __('crout_method.label.matrix_a') }} </div>
                         <div id="matrix" class="text-align"> </div>
                     </div>
-                    <div class="col-3">
+                </div>
+                <div class="row">
+                    <div class="col">
                         <div id="vector_b" class="text-align metodo"> {{ __('crout_method.label.vector_b') }} </div>
                         <div id="vector" class="text-align"> </div>
                     </div>
                 </div>
+                
             </form>
         </div>
     </div><br/>
