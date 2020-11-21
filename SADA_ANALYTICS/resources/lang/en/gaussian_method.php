@@ -13,14 +13,16 @@ return [
     |
     */
 
-    'title' => 'Gaussian method',
+    'title' => 'Gaussian Elimination',
     'dimension' => 'Dimension',
     'create_matrix' => 'Create a matrix',
     'separator' => '------------------------------------------------------',
     'input' => [
-        'simple_gaussian_method' => 'Simple gaussian method',
-        'partial_gaussian_method' => 'Partial gaussian method',
-        'total_gaussian_method' => 'Total gaussian method',
+        'simple_gaussian_method' => 'Simple Gaussian Method',
+        'partial_gaussian_method' => 'Partial Gaussian Method',
+        'total_gaussian_method' => 'Total Gaussian Method',
+        'tridiagonal_matrices_method' => 'Tridiagonal Matrices',
+        'stepped_partial_method' => 'Stepped Partial Gaussian Method'
     ],
     'label' => [
         'matrix_a' => 'Matrix A',
