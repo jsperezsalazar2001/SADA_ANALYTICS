@@ -163,3 +163,24 @@ def extract_D_L_U(A):
     L[np.tril_indices(L.shape[0], k=-1)] = l_values
     D = np.diag(np.diag(A))
     return D,L,U
+
+"""
+Created on Wednesday Nov 11
+Parameters
+----------
+stringVector: vector (string)
+Returns
+-------
+floatVector: vector (float)
+"""
+def fromStringToFloatVector(stringVector):
+    try:
+        stringVector = stringVector[1:-1]
+        stringVector = stringVector.split(',')
+        floatVector = np.array(stringVector, float)
+        return floatVector
+    except:
+        print("Be careful of values from x0 vector")
+        exit(1)
+
+    
