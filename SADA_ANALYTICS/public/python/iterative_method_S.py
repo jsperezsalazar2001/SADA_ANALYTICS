@@ -26,20 +26,29 @@ np.set_printoptions(precision=7)
 def solve_matrix3(a,b,matrix_type,x0,tol,Nmax,w):
     solution_dic ={}
     a,b,matrix = matrix_function.mix_matrix(a,b)
+    x0 = matrix_function.fromStringToFloatVector(x0)
+    try:
+        tol = float(tol)
+        Nmax = float(Nmax)
+        w = float(w)
+    except:
+        print("Be careful with values of tolerance, iterations number or W values")
+        exit(1)
     if(matrix_function.determinant(a)):
         if (matrix_type == 'SOR'):
             d,l,u = matrix_function.extract_D_L_U(a)
-            dic,dic_resoult = sor_method.sorMethod(l,d,u,b,x0,tol,Nmax,w)
+            dic,dic_result,C_aux,spectral_radius = sor_method.sorMethod(l,d,u,b,x0,tol,Nmax,w)
+            dic = matrix_function.rebuild_matrix(dic)
+            dic["C"] = C_aux
+            dic["spectral_radius"] = spectral_radius
         else:
             print("function type doesn't exist")
-        #print(dic_resoult)
-        # for lop only for print result
-        for i in dic_resoult.keys():
-            print(dic_resoult[i])
-        #solution_dic["dic"] = dic_resoult
-        #print (json.dumps(dic_resoult))
+        
+        print(json.dumps(dic))
+        print(json.dumps(dic_result))
     else:
         print("function determinant is equals to 0")
         exit(1)
 
-x = solve_matrix3("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'SOR',[0,0,0,0],0.0000001,100,1.5)
+solve_matrix3(sys.argv[1],sys.argv[2],str(sys.argv[3]),sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7])
+#x = solve_matrix3("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'SOR',[0,0,0,0],0.0000001,100,1.5)

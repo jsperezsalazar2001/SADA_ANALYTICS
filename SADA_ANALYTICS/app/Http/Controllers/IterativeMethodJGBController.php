@@ -38,11 +38,14 @@ class IterativeMethodJGBController extends Controller
         $data_b = json_encode($data_b);
         $data_x = json_encode($data_x);
 
-        $command = 'python "'.public_path().'\python\iterative_methodJ_GB.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}";
+        if ($method_type != "SOR") {
+            $command = 'python "'.public_path().'\python\iterative_methodJ_GB.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}";
+        }else{
+            $w = $request->input("w");
+            $command = 'python "'.public_path().'\python\iterative_method_S.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}"." "."{$w}";
+        }
         
         exec($command, $output);
-
-        //dd($output);
 
         $data["title"] = __('factorization_l_u_method.title');
         $data["solution"] = "true";
