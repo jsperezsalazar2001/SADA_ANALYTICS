@@ -76,7 +76,7 @@
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                     </div>
                 </div>
-                <div id="matrix_a" class="text-align metodo"> \[X = \] </div><br>
+                <div id="matrix_a" class="text-align metodo"> \[x = \] </div><br>
                 <div id="matrix" class="text-align"> </div><br>
                 
 
@@ -87,7 +87,7 @@
                 <div id="vector_2" class="text-align"> </div><br>
             </form>
         </div>
-    </div>
+    </div><br>
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">
@@ -121,13 +121,14 @@
                 ]\]<br>
             </div>
             <div class="card-body">
-                <h1>Lagrange Coefficient</h1>
+                <h1>Hermite Coefficient</h1>
                 @for ($i = 0; $i < $data["dimension"]; $i++)
                     \[ h{{$i}} = {{ $data["coefficient"][$i] }}\]
                 @endfor
                 @for ($i = $data["dimension"]; $i < count($data["coefficient"]); $i++)
                     \[ ĥ{{$i-$data["dimension"]}} = {{ $data["coefficient"][$i] }}\]
                 @endfor
+                <h1>Hermite Polynomial</h1>
                 <em>p(x) = {{$data["polynomial"]}}</em>
             </div>
         </div>

@@ -54,6 +54,7 @@
     </script>
 </head>
 <div class="container" align="center">
+    @include('layouts.message')
     <div class="row justify-content-center sizeMatrix">
         <div class="col-md-6">
             <form method="POST" action="{{route('stepped_method')}}" class="form">
@@ -80,7 +81,7 @@
                 <div id="vector" class="text-align"> </div></br>
             </form>
         </div>
-    </div>
+    </div><br>
     @if ($data["solution"] == "true")
         <div class="card">
             <div class="card-header">

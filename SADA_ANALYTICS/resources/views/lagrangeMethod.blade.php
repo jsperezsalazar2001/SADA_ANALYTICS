@@ -68,15 +68,15 @@
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                     </div>
                 </div>
-                <div id="matrix_a" class="text-align metodo"> X </div>
+                <div id="matrix_a" class="text-align metodo"> \[x = \] </div>
                 <div id="matrix" class="text-align"> </div>
                 
 
-                <div id="vector_b" class="text-align metodo"> Y </div>
+                <div id="vector_b" class="text-align metodo"> \[F(x) = \] </div>
                 <div id="vector" class="text-align"> </div>
             </form>
         </div>
-    </div>
+    </div><br>
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">

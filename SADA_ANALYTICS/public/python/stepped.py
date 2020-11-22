@@ -80,15 +80,20 @@ def SteppedPartialPivot(matrix):
 
 def initialData(A,b):
     A,b,matrix2 = matrix_function.mix_matrix(A,b)
-    matrix2 = np.array(matrix2)
-    A,B,dic = SteppedPartialPivot(matrix2)
-    dic = matrix_function.rebuild_matrix(dic)
-    print(json.dumps(dic)) 
-    x = matrix_function.soltion(A,B)
-    x = x.tolist()
-    xSolution = {}
-    xSolution[0] = x
-    print(json.dumps(xSolution)) 
+    if (matrix_function.determinant(A) == True):
+        matrix2 = np.array(matrix2)
+        A,B,dic = SteppedPartialPivot(matrix2)
+        dic = matrix_function.rebuild_matrix(dic)
+        print(json.dumps(dic)) 
+        x = matrix_function.soltion(A,B)
+        x = x.tolist()
+        xSolution = {}
+        xSolution[0] = x
+        print(json.dumps(xSolution)) 
+    else:
+        results = {}
+        results[0] = "Error the matrix determinant is 0"
+        print(json.dumps(results)) 
 
 #A = "[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]"
 #b = "[1,1,1,1]"

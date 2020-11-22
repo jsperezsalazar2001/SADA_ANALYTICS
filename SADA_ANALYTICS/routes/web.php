@@ -64,3 +64,5 @@ Route::POST('/hermiteMethod','HermiteController@hermiteMethod')->name("hermite_m
 
 Route::GET('/iterative','IterativeMethodJGBController@iterativeMethodJGB')->name("iterative_method");
 Route::POST('/iterativeMethod','IterativeMethodJGBController@values')->name("iterative_j_g_b_values");
+
+Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");
