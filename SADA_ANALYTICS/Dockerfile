@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN pipe install --upgrade pip
 RUN pip3 install numpy
 
 FROM php:7.2-apache-stretch
