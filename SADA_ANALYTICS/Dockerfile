@@ -1,10 +1,13 @@
+FROM codercom/code-server:v2
+USER root
+RUN apt-get update && apt-get install -y python
+USER coder
+EXPOSE 8080
+ENTRYPOINT ["dumb-init", "code-server", "--host", "0.0.0.0"]
+
 FROM php:7.2-apache-stretch
 RUN apt-get update -y && \
     apt-get install -y openssl zip unzip git
-RUN apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get update -y && \
-    apt-get install -y python3.6 && \
-    apt-get install -y python3-pip
 RUN docker-php-ext-install pdo_mysql
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 COPY . /var/www/html
