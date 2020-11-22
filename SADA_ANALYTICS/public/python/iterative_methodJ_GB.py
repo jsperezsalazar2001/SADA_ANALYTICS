@@ -37,7 +37,10 @@ def solve_matrix2(a,b,matrix_type,x0,tol,Nmax):
             dic["C"] = C_aux
             dic["spectral_radius"] = spectral_radius
         elif(matrix_type == 'GS'):
-            dic,dic_result = gauss_seidel.gauss_seidel(l,d,u,b,x0,tol,Nmax)
+            dic,dic_result,C_aux,spectral_radius = gauss_seidel.gauss_seidel(l,d,u,b,x0,tol,Nmax)
+            dic = matrix_function.rebuild_matrix(dic)
+            dic["C"] = C_aux
+            dic["spectral_radius"] = spectral_radius
         else:
             print("function type doesn't exist")
         
@@ -49,4 +52,4 @@ def solve_matrix2(a,b,matrix_type,x0,tol,Nmax):
         exit(1)
 
 solve_matrix2(sys.argv[1],sys.argv[2],str(sys.argv[3]),sys.argv[4],sys.argv[5],sys.argv[6])
-#x = solve_matrix2("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'J',"[0,0,0,0]","0.0000001","100")
+#x = solve_matrix2("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",'GS',"[0,0,0,0]","0.0000001","100")

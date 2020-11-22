@@ -49,8 +49,8 @@
                     vector.required = true;
                     container_vector.appendChild(vector);
 
-                    //container_vector.appendChild(document.createElement("br"));
-                    //container_vector.appendChild(document.createElement("br"));
+                    container_vector.appendChild(document.createElement("br"));
+                    container_vector.appendChild(document.createElement("br"));
                     // Append a node with a random text
                     container_vector_x.appendChild(document.createTextNode(""));
                     // Create an <input> element for vector B, set its type and name attributes
@@ -61,6 +61,8 @@
                     vector_aux.step = "any";
                     vector_aux.required = true;
                     container_vector_x.appendChild(vector_aux);
+                    container_vector_x.appendChild(document.createElement("br"));
+                    container_vector_x.appendChild(document.createElement("br"));
                 }
                 document.getElementById("separador").style.display = 'block';
                 //document.getElementById("separador_x").style.display = 'block';
@@ -102,22 +104,22 @@
                             <option value="SOR">{{ __('iterative_j_g_b_method.input.sor') }}</option>
                         </select>
                     </div>
-                </div><br/>
+                </div>
                 <div class="form-row col-12 metodo" id="additional_values">
-                    <div class="form-group col-md-6 " >
+                    <div class="form-group col-6">
                         <label> {{ __('iterative_j_g_b_method.input.tolerance') }} </label>
                         <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.tolerance') }}" name="tolerance" step="any" required />
-                    </div>
-                    <div class="form-group col-md-6" >
+                    </div><br/>
+                    <div class="form-group col-6">
                         <label> {{ __('iterative_j_g_b_method.input.iteration') }} </label>
                         <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.iteration') }}" name="iteration" required />
-                    </div>
-                </div><br/>
+                    </div><br/>
+                </div>
                 <div class="form-row col-12 metodo" id="additional_values_w">
                     <div class="form-group col-md-6" >
                         <label> {{ __('iterative_j_g_b_method.input.w') }} </label>
-                        <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.iteration') }}" name="w" required />
-                    </div>
+                        <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.iteration') }}" name="w" />
+                    </div><br/>
                 </div>
                 <div class="form-row col-12">
                     <div class="form-group col-6">
@@ -127,15 +129,25 @@
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('iterative_j_g_b_method.solve') }}</button> 
                     </div>
                 </div>
-                <div id="matrix_a" class="text-align metodo"> {{ __('iterative_j_g_b_method.label.matrix_a') }} </div>
-                <div id="matrix" class="text-align"> </div>
-                
+                <div class="row">
+                    <div class="col">
+                        <div id="matrix_a" class="text-align metodo"> {{ __('iterative_j_g_b_method.label.matrix_a') }} </div>
+                        <div id="matrix" class="text-align"></div>
+                    </div>
+                </div>
                 <div id="separador" class="text-align metodo"> {{ __('iterative_j_g_b_method.separator') }}</div>
-                <div id="vector_b" class="text-align metodo"> {{ __('iterative_j_g_b_method.label.vector_b') }} </div>
-                <div id="vector" class="text-align"> </div>
-
-                <div id="vector_x" class="text-align metodo"> {{ __('iterative_j_g_b_method.label.vector_b') }} X </div>
-                <div id="vectorx" class="text-align"> </div>
+                <div class="row col-12">
+                    <div class="col-4"></div>
+                    <div class="col-2">
+                        <div id="vector_b" class="text-align metodo"> {{ __('iterative_j_g_b_method.label.vector_b') }} </div>
+                        <div id="vector" class="text-align"></div>
+                    </div>
+                    <div class="col-2">
+                        <div id="vector_x" class="text-align metodo"> {{ __('iterative_j_g_b_method.label.vector_x') }} </div>
+                        <div id="vectorx" class="text-align"></div>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
             </form>
         </div>
     </div><br/>
@@ -198,8 +210,6 @@
                                 @endfor
                             </tbody>
                         </table>
-
-
                     </div>
                 </div>
             </div>
