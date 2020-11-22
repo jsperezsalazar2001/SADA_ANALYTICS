@@ -44,11 +44,11 @@ Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagran
 Route::GET('/factorizationLUCreate','FactorizationLUController@factorizationLU')->name("factorization_l_u");
 Route::POST('/factorizationLUShow','FactorizationLUController@values')->name("factorization_l_u_values");
 
-Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
-Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
-
 Route::GET('/doolittle','DoolittleController@doolittle')->name("doolittle");
 Route::POST('/doolittleMethod','DoolittleController@doolittleMethod')->name("doolitle_method");
+
+Route::GET('/linealSpline','LinealSplineController@linealSpline')->name("linealSpline");
+Route::POST('/linealSplineMethod','LinealSplineController@linealSplineMethod')->name("linealSpline_method");
 
 Route::GET('/crout','CroutController@crout')->name("crout");
 Route::POST('/croutMethod','CroutController@croutMethod')->name("crout_method");

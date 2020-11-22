@@ -37,24 +37,23 @@ def doolittle(A,b,size):
     dictL = {}
     dictU = {}
     count = 0
-    print(type(L))
     dictL[count] = copy.deepcopy(L)
     dictU[count] = copy.deepcopy(U)
 
     for i in range(size):
         for k in range(i, size): 
-            suma = 0
+            suma = 0;
             for j in range(i):
-                suma += (L[i][j] * U[j][k])
-            U[i][k] = A[i][k] - suma
+                suma += (L[i][j] * U[j][k]);
+            U[i][k] = A[i][k] - suma;
         for k in range(i, size):
             if (i == k):
-                L[i][i] = 1
+                L[i][i] = 1;
             else:
-                suma = 0
+                suma = 0;
                 for j in range(i):
-                    suma += (L[k][j] * U[j][i])
-                L[k][i] = ((A[k][i] - suma)/U[i][i])
+                    suma += (L[k][j] * U[j][i]);
+                L[k][i] = ((A[k][i] - suma)/U[i][i]);
         count = count + 1
         dictL[count] = copy.deepcopy(L)
         dictU[count] = copy.deepcopy(U)
@@ -74,5 +73,5 @@ def doolittle(A,b,size):
     print(json.dumps(dictL))   
     print(json.dumps(dictU))   
 
-doolittle("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",4)
-#doolittle(sys.argv[1],sys.argv[2],sys.argv[3])
+#doolittle("[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]","[1,1,1,1]",4)
+doolittle(sys.argv[1],sys.argv[2],sys.argv[3])

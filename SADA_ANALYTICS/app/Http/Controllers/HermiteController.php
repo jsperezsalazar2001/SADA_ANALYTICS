@@ -30,7 +30,6 @@ class HermiteController extends Controller
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
         $Arrz = json_encode($Arrz);
-        #dd($data);
         $command = 'python "'.public_path().'\python\hermite.py" '." ".$data. " ".$Arrz. " ".$dimension;
         exec($command, $output);
         $data = [];

@@ -36,6 +36,7 @@ class SteppedController extends Controller
         $data["title"] = "Stepped Partial Pivot";
         $data["solution"] = "true";
         $matrix = json_decode($output[0],true);
+        $matrix = $this->rebuildArray($matrix);
         $data["matrix"] = $matrix;
         $xSolution = json_decode($output[1],true);
         $data["xSolution"] = $xSolution;

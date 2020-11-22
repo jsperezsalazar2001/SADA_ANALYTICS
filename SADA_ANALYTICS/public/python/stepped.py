@@ -33,8 +33,9 @@ def SteppedPartialPivot(matrix):
     matrix = np.array(matrix)
     dic = {}
     auxiliary_matrix = np.array(matrix)
-    matrixDic = matrix.tolist()
-    dic[0] = copy.deepcopy(matrixDic)
+    #matrixDic = matrix.tolist()
+    #dic[0] = copy.deepcopy(matrix)
+    dic[0] = np.array(matrix)
     temporal_array = []
     for i in range(matrix.shape[0]-1):
         pivot_number = auxiliary_matrix[0][0]
@@ -70,8 +71,9 @@ def SteppedPartialPivot(matrix):
             matrix[i+1:] = np.insert(axiliary_fi, 0, np.zeros(1), axis=1)
         auxiliary_matrix = fi.T[1:].T
         matrix = np.array(matrix)
-        matrixDic = matrix.tolist()
-        dic[i+1] = copy.deepcopy(matrixDic)
+        dic[i+1] = matrix
+        #matrixDic = matrix.tolist()
+        #dic[i+1] = copy.deepcopy(matrixDic)
     a = np.delete(matrix, matrix.shape[1]-1, axis=1)
     b = matrix.T[matrix.shape[1]-1]
     return a,b,dic 
@@ -80,6 +82,7 @@ def initialData(A,b):
     A,b,matrix2 = matrix_function.mix_matrix(A,b)
     matrix2 = np.array(matrix2)
     A,B,dic = SteppedPartialPivot(matrix2)
+    dic = matrix_function.rebuild_matrix(dic)
     print(json.dumps(dic)) 
     x = matrix_function.soltion(A,B)
     x = x.tolist()

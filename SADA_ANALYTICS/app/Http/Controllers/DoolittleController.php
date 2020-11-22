@@ -11,8 +11,7 @@ class DoolittleController extends Controller
         $data = [];
         $data["title"] = "Doolittle";
         $data["solution"] = "false";
-        $data["message"] = "Lagrange Method";
-        #$data["table"] = "";
+        $data["message"] = "Doolittle Method";
         return view('doolittle')->with("data",$data);
     }
 
@@ -34,7 +33,6 @@ class DoolittleController extends Controller
 
         $command = 'python "'.public_path().'\python\doolittle.py" '." ".$data_a." ". $data_b. " {$dimension}";
         exec($command, $output);
-        #dd($output[0]);
         $data["title"] = "Doolittle";
         $data["solution"] = "true";
         $data["dimension"] = $dimension;
@@ -46,8 +44,6 @@ class DoolittleController extends Controller
         $data["stepU"] = $stepU;
         $xSolution = json_decode($output[0],true);
         $data["xSolution"] = $xSolution;
-
-        
         return view('doolittle')->with("data",$data);
     }
 
