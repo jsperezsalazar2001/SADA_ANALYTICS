@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Gaussian Elimination',
+    'title' => 'Gaussian elimination methods',
     'dimension' => 'Dimension',
     'create_matrix' => 'Create a matrix',
     'separator' => '------------------------------------------------------',

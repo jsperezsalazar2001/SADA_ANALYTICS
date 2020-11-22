@@ -65,4 +65,13 @@ Route::POST('/hermiteMethod','HermiteController@hermiteMethod')->name("hermite_m
 Route::GET('/iterative','IterativeMethodJGBController@iterativeMethodJGB')->name("iterative_method");
 Route::POST('/iterativeMethod','IterativeMethodJGBController@values')->name("iterative_j_g_b_values");
 
+Route::GET('/cholesky','CholeskyController@cholesky')->name("cholesky");
+Route::POST('/choleskyMethod','CholeskyController@choleskyMethod')->name("cholesky_method");
+
+Route::GET('/croutTridiagonal','CroutTridiagonalController@croutTridiagonal')->name("crout_tridiagonal");
+Route::POST('/croutTridiagonalMethod','CroutTridiagonalController@croutTridiagonalMethod')->name("crout_tridiagonal_method");
+
+Route::GET('/cuadraticSpline','CuadraticSplineController@cuadraticSpline')->name("cuadraticSpline");
+Route::POST('/cuadraticSpline','CuadraticSplineController@cuadraticSplineMethod')->name("cuadratic_spline_method");
+
 Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");

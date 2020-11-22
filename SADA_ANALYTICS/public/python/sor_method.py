@@ -17,6 +17,7 @@ dic_resoult: step dictionary from table solution (float with decimals)
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
+import matrix_function
 np.set_printoptions(precision=7)
 
 def sorMethod(l,d,u,b,x0,tol,Nmax,w):
@@ -37,15 +38,19 @@ def sorMethod(l,d,u,b,x0,tol,Nmax,w):
 
     C_aux = C.T[0]
     dic["T"] = T
-    dic["C"] = C_aux
-    dic["spectral_radius"] = spectral_radius
-    dic_resoult[cont] = [0, '', x0]
-
+    dic_resoult[cont] = [0, '', str(matrix_function.rebuild_vector(x0))[1:-1].replace("'","").split()]
+    
     while E>tol and cont<Nmax:
         xact = np.dot(T,xant) + C
         E =  np.linalg.norm(xant - xact)
         xant = xact
         cont = cont + 1
-        dic_resoult[cont] = [cont, E, xant.T[0]]
 
-    return dic, dic_resoult
+        qwe = np.array(xant.T)
+        aux = str(matrix_function.rebuild_vector(np.array(xant.T)[0]))[1:-1].replace("'","").split()
+        dic_resoult[cont] = [cont,E,aux]
+
+    C_aux = str(matrix_function.rebuild_vector(np.array(C_aux)[0]))[1:-1].replace("'","").split()
+    spectral_radius = matrix_function.rebuild_constant(spectral_radius)
+    
+    return dic, dic_resoult,C_aux,spectral_radius
