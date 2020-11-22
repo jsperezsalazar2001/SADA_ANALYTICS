@@ -1,5 +1,9 @@
 FROM php:7.2-apache-stretch
-RUN apt-get update -y && apt-get install -y openssl zip unzip git && add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update -y && \
+    apt-get install -y openssl zip unzip git && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update
 RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-venv
 RUN python3.6 -m pip install pip --upgrade
 RUN python3.6 -m pip install wheel
