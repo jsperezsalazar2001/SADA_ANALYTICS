@@ -66,12 +66,15 @@ def crout_tridiagonal(A,b):
         dict_L[step] = parser_input_helper.rebuild_matrix(copy.deepcopy(L))
         dict_U[step] = parser_input_helper.rebuild_matrix(copy.deepcopy(U))
         Z[n-1] = (npAb[n-1][n+1-1] - L[n-1][n-1-1]*Z[n-1-1])/L[n-1][n-1]
-        z = np.array(matrix_function.soltion(L,b),float)
-        x = matrix_function.soltion(U,z)
-        # x2 = copy.deepcopy(Z)
-        # for i in reversed(range(len(Z)-1)):
-        #     x2[i] = Z[i] - U[i][i+1] * x2[i+1]
-        # print(x2)
+        # z = np.array(matrix_function.soltion(L,b),float)
+        # x = matrix_function.soltion(U,z)
+        x2 = [0.0 for x in range(n)]
+        x2[len(x2)-1] = Z[len(Z)-1]
+        final_x = np.array([],dtype=str)
+        final_x = np.append(final_x, '{:.7f}'.format(x2[len(x2)-1]))
+        for i in reversed(range(len(Z)-1)):
+            x2[i] = float(Z[i]) - float(U[i][i+1]) * float(x2[i+1])
+            final_x = np.append(final_x, '{:.7f}'.format(x2[i]))
     except ValueError as valueError:
         answer["error"] = "A complex operation was encounter while running the method"
     except BaseException as e:
@@ -81,7 +84,7 @@ def crout_tridiagonal(A,b):
     print(json.dumps(dict_L))
     print(json.dumps(dict_U))
     try:
-        dict_X["solution"] = list(x)
+        dict_X["solution"] = list(final_x)
         print(json.dumps(dict_X))
     except NameError:
         pass

@@ -17,7 +17,15 @@ import matrix_function
 import numpy as np
 import sys
 import total_gaussian_method
-def cuadratic_spline(x,y):
+def cuadratic_spline(data,dimension):
+    data = data.replace('[', '').replace(']', '').split(',')
+    x = []
+    y = []
+    for i in range(len(data)):
+        if i < int(dimension):
+            x.append(float(data[i]))
+        else:
+            y.append(float(data[i]))
     if list_has_duplicates(x):
         print("X has duplicates")
         sys.exit(1)
@@ -76,4 +84,4 @@ def list_has_duplicates(input_list):
     list_set = set(input_list)
     contains_duplicates = len(list_set) != len(input_list)
     return contains_duplicates
-cuadratic_spline([-1,0,3,4],[15.5,3,8,1])
+cuadratic_spline([-1,10,3,8],[15.5,3,8,1])
