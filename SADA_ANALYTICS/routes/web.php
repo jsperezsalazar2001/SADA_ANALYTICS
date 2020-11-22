@@ -44,6 +44,9 @@ Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagran
 Route::GET('/factorizationLUCreate','FactorizationLUController@factorizationLU')->name("factorization_l_u");
 Route::POST('/factorizationLUShow','FactorizationLUController@values')->name("factorization_l_u_values");
 
+Route::GET('/vandermonde','VandermondeController@vandermonde')->name("vandermonde");
+Route::POST('/vandermondeMethod','VandermondeController@vandermondeMethod')->name("vandermonde_method");
+
 Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
 Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
 

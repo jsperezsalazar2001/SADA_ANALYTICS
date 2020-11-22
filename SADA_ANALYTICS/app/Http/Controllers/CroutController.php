@@ -42,6 +42,7 @@ class CroutController extends Controller
         $stepL = json_decode($output[2],true);
         $stepU = json_decode($output[3],true);
 
+        dd($stepA);
         $stepA = $this->rebuildArray($stepA);
         $stepL = $this->rebuildArray($stepL);
         $stepU = $this->rebuildArray($stepU);

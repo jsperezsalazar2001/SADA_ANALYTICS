@@ -18,9 +18,15 @@ Coef : Coefficients of the polynomial
 
 import numpy as np
 import matrix_function as mf
+import sys
+import json
 
 def vandermonde(X, Y):
     dic = {}
+    X = X.replace('[', '').replace(']', '').split(',')
+    Y = Y.replace('[', '').replace(']', '').split(',')
+    X = np.array(X, dtype=float)
+    Y = np.array(Y, dtype=float)
     
     n = len(X)
     A = np.zeros((n,n))
@@ -30,10 +36,22 @@ def vandermonde(X, Y):
             A[j][i] = X[j]**(n-(i+1))
     
     coef = np.array(mf.soltion(A, Y.T))
-    print(A)
-    print(coef)
+    dic["v_matrix"] = np.array(A)
+    dic = mf.rebuild_matrix(dic)
+    dic["coef"] = str(coef)
+    
+    polynomial = ""
+    for i in range(len(coef)):
+        if coef[i][0] != '-' and i != 0:
+            polynomial += "+"
+        polynomial += coef[i]
+        if(i != len(coef)-1):
+            polynomial += "x^"+str((len(coef)-(i+1)))
+    dic["polynomial"] = polynomial
+    print(json.dumps(dic))
 
-X = np.array([-1, 0, 3, 4])
-Y = np.array([15.5, 3, 8, 1])
+X = "[-1,0,3,4]"
+Y = "[15.5,3,8,1]"
 
-vandermonde(X, Y)
+#vandermonde(X, Y)
+vandermonde(sys.argv[1],sys.argv[2])
