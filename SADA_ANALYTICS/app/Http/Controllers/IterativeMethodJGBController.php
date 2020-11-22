@@ -42,6 +42,8 @@ class IterativeMethodJGBController extends Controller
         
         exec($command, $output);
 
+        //dd($output);
+
         $data["title"] = __('factorization_l_u_method.title');
         $data["solution"] = "true";
         $data["dimension"] = $dimension;

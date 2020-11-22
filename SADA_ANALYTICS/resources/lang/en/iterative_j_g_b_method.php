@@ -21,8 +21,10 @@ return [
         'dimension' => 'Dimension',
         'jacobi_method' => 'Jacobi method',
         'gauss_seidel_method' => 'Gauss Seidel method',
+        'sor' => 'Sor method',
         'tolerance' => 'Tolerance',
         'iteration' => 'Iteration',
+        'w' => 'w',
     ],
     'label' => [
         'matrix_a' => 'Matrix A',

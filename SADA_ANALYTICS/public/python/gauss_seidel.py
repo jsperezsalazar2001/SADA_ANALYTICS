@@ -20,6 +20,7 @@ E : error
 """
 
 import numpy as np
+import matrix_function
 np.set_printoptions(precision=7)
 
 def gauss_seidel(l,d,u,b,x0,tol,Nmax):
@@ -27,7 +28,8 @@ def gauss_seidel(l,d,u,b,x0,tol,Nmax):
     dic_result= {}
     x0 = np.array(x0)
     T = np.dot(np.linalg.inv(d - l),u)
-    C = np.dot(np.linalg.inv(d - l),b.T)
+    C = np.array(np.dot(np.linalg.inv(d - l),b.T))
+    #C = np.reshape(np.diag(np.multiply(np.linalg.inv(d - l),b)),(b.shape[1],1))
     E = float("inf")
     xant = np.reshape(x0,(x0.shape[0],1))
     cont = 0
@@ -40,16 +42,20 @@ def gauss_seidel(l,d,u,b,x0,tol,Nmax):
 
     C_aux = C.T[0]
     dic["T"] = T
-    dic["C"] = C_aux
-    dic["spectral_radius"] = spectral_radius
-    dic_result[cont] = [0, '', x0]
+    #dic["C"] = C_aux
+    #dic["spectral_radius"] = spectral_radius
+    dic_result[cont] = [0, '', str(matrix_function.rebuild_vector(x0))[1:-1].replace("'","").split()]
 
     while E>tol and cont<Nmax:
         xact = np.dot(T,xant) + C
         E =  np.linalg.norm(xant - xact)
         xant = xact
         cont = cont + 1
-        dic_result[cont] = [cont,E,xant.T[0]]
+        aux = str(matrix_function.rebuild_vector(xant.T[0]))[1:-1].replace("'","").split()
+        dic_result[cont] = [cont,E,aux]
 
-    return dic,dic_result
+    C_aux = str(matrix_function.rebuild_vector(C_aux))[1:-1].replace("'","").split()
+    spectral_radius = matrix_function.rebuild_constant(spectral_radius)
+
+    return dic,dic_result,C_aux,spectral_radius
 
