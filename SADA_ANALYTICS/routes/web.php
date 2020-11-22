@@ -47,8 +47,8 @@ Route::POST('/factorizationLUShow','FactorizationLUController@values')->name("fa
 Route::GET('/vandermonde','VandermondeController@vandermonde')->name("vandermonde");
 Route::POST('/vandermondeMethod','VandermondeController@vandermondeMethod')->name("vandermonde_method");
 
-Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
-Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
+Route::GET('/linealSpline','LinealSplineController@linealSpline')->name("linealSpline");
+Route::POST('/linealSplineMethod','LinealSplineController@linealSplineMethod')->name("linealSpline_method");
 
 Route::GET('/doolittle','DoolittleController@doolittle')->name("doolittle");
 Route::POST('/doolittleMethod','DoolittleController@doolittleMethod')->name("doolitle_method");
