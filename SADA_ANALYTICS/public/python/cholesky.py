@@ -77,7 +77,7 @@ def cholesky(A,b):
     try:
         dict_X["solution"] = list(x)
         print(json.dumps(dict_X))
-    except NameError:
+    except BaseException:
         pass
 
 # matrix = "[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]"
