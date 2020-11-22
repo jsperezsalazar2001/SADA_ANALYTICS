@@ -118,7 +118,7 @@
                 <div class="form-row col-12 metodo" id="additional_values_w">
                     <div class="form-group col-md-6" >
                         <label> {{ __('iterative_j_g_b_method.input.w') }} </label>
-                        <input type="number" min="0" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.iteration') }}" name="w" />
+                        <input type="number" min="0" step="any" class="form-control" placeholder="{{ __('iterative_j_g_b_method.label.iteration') }}" name="w" />
                     </div><br/>
                 </div>
                 <div class="form-row col-12">

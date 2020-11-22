@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Factorization LU method',
+    'title' => 'Factorization LU methods',
     'dimension' => 'Dimension',
     'create_matrix' => 'Create a matrix',
     'separator' => '------------------------------------------------------',
