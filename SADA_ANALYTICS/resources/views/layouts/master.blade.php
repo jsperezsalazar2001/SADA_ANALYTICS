@@ -59,7 +59,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('gaussian_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('factorization_l_u_method.title') }}</a>
-                                <a class="dropdown-item" href="{{ route('iterative_method') }}"> {{ __('iterative_methods.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('iterative_method') }}"> {{ __('iterative_j_g_b_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('crout') }}"> {{ __('crout_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('cholesky_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('doolittle_method.title') }}</a>
@@ -75,7 +75,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('vandermonde_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('vandermonde') }}"> {{ __('vandermonde_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('divided_difference_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('lagrange_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('hermite_method.title') }}</a>

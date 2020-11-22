@@ -44,8 +44,11 @@ Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagran
 Route::GET('/factorizationLUCreate','FactorizationLUController@factorizationLU')->name("factorization_l_u");
 Route::POST('/factorizationLUShow','FactorizationLUController@values')->name("factorization_l_u_values");
 
-Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
-Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");
+Route::GET('/vandermonde','VandermondeController@vandermonde')->name("vandermonde");
+Route::POST('/vandermondeMethod','VandermondeController@vandermondeMethod')->name("vandermonde_method");
+
+Route::GET('/linealSpline','LinealSplineController@linealSpline')->name("linealSpline");
+Route::POST('/linealSplineMethod','LinealSplineController@linealSplineMethod')->name("linealSpline_method");
 
 Route::GET('/doolittle','DoolittleController@doolittle')->name("doolittle");
 Route::POST('/doolittleMethod','DoolittleController@doolittleMethod')->name("doolitle_method");
@@ -71,3 +74,4 @@ Route::POST('/croutTridiagonalMethod','CroutTridiagonalController@croutTridiagon
 Route::GET('/cuadraticSpline','CuadraticSplineController@cuadraticSpline')->name("cuadraticSpline");
 Route::POST('/cuadraticSpline','CuadraticSplineController@cuadraticSplineMethod')->name("cuadratic_spline_method");
 
+Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");

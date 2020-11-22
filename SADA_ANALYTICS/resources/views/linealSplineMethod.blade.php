@@ -51,37 +51,37 @@
 <div class="container">
     @include('layouts.message')
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <form method="POST" action="{{route('linealSpline_method')}}" class="form">
                 @csrf
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label>Dimension</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-12">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create arrays</a> 
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-12">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                     </div>
                 </div>
-                <div id="matrix_a" class="text-align metodo"> X </div>
+                <div id="matrix_a" class="text-align metodo"> \[ x = \] </div>
                 <div id="matrix" class="text-align"> </div>
                 
 
-                <div id="vector_b" class="text-align metodo"> Y </div>
+                <div id="vector_b" class="text-align metodo"> \[F(x) = \] </div>
                 <div id="vector" class="text-align"> </div>
             </form>
         </div>
-    </div>
+    </div><br>
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">
                 <h1>Initial Data</h1>
-                <b>X = [
+                <b>\[X = [
                 @foreach ($data["arrx"] as $x)
                     @if($loop->last)
                         {{$x}}
@@ -89,8 +89,8 @@
                         {{$x}},
                     @endif
                 @endforeach
-                ]<br>
-                Y = [
+                ]\]
+                \[Y = [
                 @foreach ($data["arry"] as $y)
                     @if($loop->last)
                         {{$y}}
@@ -98,42 +98,17 @@
                         {{$y}},
                     @endif
                 @endforeach
-                ]</b><br>
+                ]\]
             </div>
             <div class="card-body">
-                <div class="row justify-content-center">
-                    <div class="form-group col-md-6" style="margin-right: 1%">
-                        <h1>Coefficient</h1>
-                        <table class="table table-striped text-center table-BusquedasIncrementales">
-                            <thead>
-                                <tr>
-                                    <th>Coefficient</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($data["coefficient"] as $aux)
-                                    <tr>
-                                        <th><em>L{{$loop->index}} = </em>{{ $aux }}</th>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div></br>
-                    <div class="form-group col-md-6" style="margin-right: 1%">
-                        <h1>Plotters</h1>
-                        <table class="table table-striped text-center table-BusquedasIncrementales">
-                            <tbody>
-                                @foreach ($data["plotter"] as $aux)
-                                    <tr>
-                                        <th><em>p(x) = </em>{{ $aux }}</th>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <h1>Coefficient</h1>
+                    @foreach ($data["coefficient"] as $aux)
+                        \[L{{$loop->index}} = [{{ $aux }}]\]
+                    @endforeach
+                <h1>Plotters</h1>
+                    @foreach ($data["plotter"] as $aux)
+                        \[p(x) = {{ $aux }}\]
+                    @endforeach
             </div>
         </div>
     @endif

@@ -28,7 +28,6 @@ class LinealSplineController extends Controller
         $data = json_encode($data);
         $command = 'python "'.public_path().'\python\linealSpline.py" '." ".$data. " ".$dimension;
         exec($command, $output);
-        #dd($output[0]);
         $data = [];
         $data["title"] = "Lineal Spline";
         if (substr($output[0],7,5) == "Error"){
@@ -41,7 +40,7 @@ class LinealSplineController extends Controller
                 $aux = "";
                 for($j=0;$j<count($json[$i]);$j++){
                     if ($j != count($json[$i])-1){
-                        $aux = $aux.$json[$i][$j]." - ";
+                        $aux = $aux.$json[$i][$j]." , ";
                     }else{
                         $aux = $aux.$json[$i][$j];
                     }
