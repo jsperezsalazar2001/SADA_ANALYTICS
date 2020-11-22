@@ -1,3 +1,11 @@
+FROM python:3
+WORKDIR /usr/src/app
+COPY requirements.txt ./
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD [ "python", "./your-daemon-or-script.py" ]
+
 FROM php:7.2-apache-stretch
 RUN apt-get update -y && \
     apt-get install -y openssl zip unzip git
