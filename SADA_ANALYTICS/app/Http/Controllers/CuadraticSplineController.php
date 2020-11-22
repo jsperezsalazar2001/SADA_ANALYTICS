@@ -10,7 +10,7 @@ class CuadraticSplineController extends Controller
     public function cuadraticSpline(){
         $data = [];
         $data["check"] = "false";
-        $data["title"] = "Lineal Spline";
+        $data["title"] =  __('cuadratic_spline.title');
         $data["message"] = "Lineal Spline Method";
         return view('cuadraticSpline')->with("data",$data);
     }
@@ -26,38 +26,22 @@ class CuadraticSplineController extends Controller
         }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
-        $command = 'python "'.public_path().'\python\linealSpline.py" '." ".$data. " ".$dimension;
-        $output = explode("\n",substr_replace(shell_exec($command) ,"",-2));
-        dd($output);
+        $command = 'python "'.public_path().'\python\cuadratic_spline.py" '." ".$data. " ".$dimension;
+        // $output = explode("\n",substr_replace(shell_exec($command) ,"",-2));
+        //dd($output);
+        exec($command, $output);
         $data = [];
-        $data["title"] = "Lineal Spline";
-        if (substr($output[0],7,5) == "Error"){
-            $data["check"] = "false";
-            $data["message"] = substr($output[0],7,strlen($output[0])-9);
-        }else{
-            $json = json_decode($output[0], true);
-            $arrayAux = [];
-            for($i=0; $i<count($json)-1; $i++){
-                $aux = "";
-                for($j=0;$j<count($json[$i]);$j++){
-                    if ($j != count($json[$i])-1){
-                        $aux = $aux.$json[$i][$j]." - ";
-                    }else{
-                        $aux = $aux.$json[$i][$j];
-                    }
-                }
-                array_push($arrayAux,$aux);
-            }
-            #dd($arrayAux);
-            $data["coefficient"] = $arrayAux;
-            $plotter = $json["plotter"];
-            $plotter = str_replace("*", "", $plotter);
-            $data["plotter"] = $plotter;
-            $data["check"] = "true";
-            $data["arrx"] = $Arrx;
-            $data["arry"] = $Arry;
-            $data["message"] = "Success with method";
+        $error = json_decode($output[0], true);
+        $data["error"] = $error;
+        if($error[0] == FALSE){//no errors
+            $tracers = json_decode($output[1], true);
+            $data["tracers"] = $tracers;
         }
+        $data["title"] = __('cuadratic_spline.title');
+        $data["arrx"] = $Arrx;
+        $data["arry"] = $Arry;
+        $data["dimension"] = $dimension;
+        dd($data);
         return view('cuadraticSpline')->with("data",$data);
     }
 }

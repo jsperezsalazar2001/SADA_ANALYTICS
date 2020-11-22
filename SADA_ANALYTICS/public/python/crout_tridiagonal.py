@@ -93,10 +93,10 @@ def crout_tridiagonal(A,b):
 #           [0, -1, 2, -1],
 #           [0, 0, -1, 2]]
 # b = [1,0,0,1]
-matrix = "[[2,-1,0,0],[-1,2,-1,0],[0,-1,2,-1],[0,0,-1,2]]"
-b = "[1,1,1,1]"
-
-# matrix = "[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]"
+# matrix = "[[2,-1,4,8],[-1,2,-1,8],[4,-1,2,-1],[4,5,-1,2]]"
 # b = "[1,1,1,1]"
-crout_tridiagonal(matrix, b)
-# scrout_tridiagonal(sys.argv[1],sys.argv[2])
+
+# # matrix = "[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]"
+# # b = "[1,1,1,1]"
+# crout_tridiagonal(matrix, b)
+crout_tridiagonal(sys.argv[1],sys.argv[2])
