@@ -30,7 +30,7 @@ class VandermondeController extends Controller
         $command = 'python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];
-        //dd($output[0]);
+        dd($output);
         $data["title"] = "Vandermonde";
         $data["solution"] = "true";
         $data["dimension"] = $dimension;
