@@ -76,7 +76,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('vandermonde') }}"> {{ __('vandermonde_method.title') }}</a>
-                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('divided_difference_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('divided_difference') }}"> {{ __('divided_difference_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('lagrange_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('hermite_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('spline_method.title') }}</a>
