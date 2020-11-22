@@ -6,13 +6,11 @@
 <head>
     <script type='text/javascript'>
         function addFields(){
-            // Number of inputs to create
             var number = document.getElementById("dimension").value;
-            // Container <div> where dynamic content will be placed
             var container_matrix = document.getElementById("matrix");
             var container_vector = document.getElementById("vector");
             var container_vector_2 = document.getElementById("vector_2");
-            // Clear previous contents of the container
+
             while (container_matrix.hasChildNodes()) {
                 container_matrix.removeChild(container_matrix.lastChild);
             }
@@ -24,9 +22,7 @@
             }
             if (number>1) {
                 for (i=0;i<number;i++) {
-                    // Append a node with a random text
                     container_matrix.appendChild(document.createTextNode(""));
-                    // Create an <input> element for matrix A, set its type and name attributes
                     var input = document.createElement("input");
                     input.type = "number";
                     input.name = "x" + i;
@@ -34,9 +30,7 @@
                     input.step = "any";
                     input.required = true;
                     container_matrix.appendChild(input);
-                    // Append a node with a random text
                     container_vector.appendChild(document.createTextNode(""));
-                    // Create an <input> element for vector B, set its type and name attributes
                     var vector = document.createElement("input");
                     vector.type = "number";
                     vector.name = "y" + i ;
@@ -46,7 +40,6 @@
                     container_vector.appendChild(vector);
 
                     container_vector_2.appendChild(document.createTextNode(""));
-                    // Create an <input> element for vector B, set its type and name attributes
                     var vector_2 = document.createElement("input");
                     vector_2.type = "number";
                     vector_2.name = "z" + i ;
@@ -66,40 +59,40 @@
 <div class="container">
     @include('layouts.message')
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <form method="POST" action="{{route('hermite_method')}}" class="form">
                 @csrf
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label>Dimension</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-12">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create arrays</a> 
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-12">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                     </div>
                 </div>
-                <div id="matrix_a" class="text-align metodo"> X </div>
-                <div id="matrix" class="text-align"> </div>
+                <div id="matrix_a" class="text-align metodo"> \[x = \] </div><br>
+                <div id="matrix" class="text-align"> </div><br>
                 
 
-                <div id="vector_b" class="text-align metodo"> F(x) </div>
-                <div id="vector" class="text-align"> </div>
+                <div id="vector_b" class="text-align metodo"> \[F(x) = \] </div><br>
+                <div id="vector" class="text-align"> </div><br>
 
-                <div id="vector_c" class="text-align metodo"> F'(x) </div>
-                <div id="vector_2" class="text-align"> </div>
+                <div id="vector_c" class="text-align metodo"> \[F'(x) = \] </div><br>
+                <div id="vector_2" class="text-align"> </div><br>
             </form>
         </div>
-    </div>
+    </div><br>
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">
                 <h1>Initial Data</h1>
-                <b>X = [
+                <b>\[X = [
                 @foreach ($data["arrx"] as $x)
                     @if($loop->last)
                         {{$x}}
@@ -107,8 +100,8 @@
                         {{$x}},
                     @endif
                 @endforeach
-                ]<br>
-                Y = [
+                ]\]
+                \[Y = [
                 @foreach ($data["arry"] as $y)
                     @if($loop->last)
                         {{$y}}
@@ -116,8 +109,8 @@
                         {{$y}},
                     @endif
                 @endforeach
-                ]<br>
-                Z = [
+                ]\]
+                \[Z = [
                 @foreach ($data["arrz"] as $z)
                     @if($loop->last)
                         {{$z}}
@@ -125,45 +118,18 @@
                         {{$z}},
                     @endif
                 @endforeach
-                ]</b><br>
+                ]\]<br>
             </div>
             <div class="card-body">
-                <div class="row justify-content-center">
-                    <div class="form-group col-md-6" style="margin-right: 1%">
-                        <h1>Lagrange Coefficient</h1>
-                        \tag*{hi} x+y^{2x}
-                        <table class="table table-striped text-center table-BusquedasIncrementales">
-                            <thead>
-                                <tr>
-                                    <th>Coefficient</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for ($i = 0; $i < $data["dimension"]; $i++)
-                                    <tr>
-                                        <th><em>h{{$i}} = </em> {{ $data["coefficient"][$i] }}</th>
-                                    </tr>
-                                @endfor
-                                @for ($i = $data["dimension"]; $i < count($data["coefficient"]); $i++)
-                                    <tr>
-                                        <th><em>ĥ{{$i-$data["dimension"]}} = </em> {{ $data["coefficient"][$i] }}</th>
-                                    </tr>
-                                @endfor
-
-
-
-
-                            </tbody>
-                        </table>
-                    </div></br>
-                    <div class="form-group col-md-6">
-                        <h1>Lagrange Polynomial</h1>
-                        <div>
-                            <b><em>p(x) = </em>{{$data["polynomial"]}}</b>
-                        </div>
-                    </div>
-
-                </div>
+                <h1>Hermite Coefficient</h1>
+                @for ($i = 0; $i < $data["dimension"]; $i++)
+                    \[ h{{$i}} = {{ $data["coefficient"][$i] }}\]
+                @endfor
+                @for ($i = $data["dimension"]; $i < count($data["coefficient"]); $i++)
+                    \[ ĥ{{$i-$data["dimension"]}} = {{ $data["coefficient"][$i] }}\]
+                @endfor
+                <h1>Hermite Polynomial</h1>
+                <em>p(x) = {{$data["polynomial"]}}</em>
             </div>
         </div>
     @endif
