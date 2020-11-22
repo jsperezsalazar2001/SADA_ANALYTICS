@@ -59,3 +59,10 @@ Route::POST('/hermiteMethod','HermiteController@hermiteMethod')->name("hermite_m
 Route::GET('/iterative','IterativeMethodJGBController@iterativeMethodJGB')->name("iterativeMethodJGB");
 Route::POST('/iterativeMethod','IterativeMethodJGBController@values')->name("lagrange_method");
 
+Route::GET('/cholesky','CholeskyController@cholesky')->name("cholesky");
+Route::POST('/choleskyMethod','CholeskyController@choleskyMethod')->name("cholesky_method");
+
+Route::GET('/croutTridiagonal','CroutTridiagonalController@croutTridiagonal')->name("crout_tridiagonal");
+Route::POST('/croutTridiagonalMethod','CroutTridiagonalController@croutTridiagonalMethod')->name("crout_tridiagonal_method");
+
+
