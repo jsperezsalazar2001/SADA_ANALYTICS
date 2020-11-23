@@ -51,7 +51,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form method="POST" action="{{route('cuadratic_spline_method')}}" class="form">
+            <form method="POST" action="{{route('cubic_spline_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -112,23 +112,25 @@
                     <th scope="col">\[Coeff \space 1\]</th>
                     <th scope="col">\[Coeff \space 2\]</th>
                     <th scope="col">\[Coeff \space 3\]</th>
+                    <th scope="col">\[Coeff \space 4\]</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for($i = 0; $i < count($data["tracers"][0]); $i+=3)
+                    @for($i = 0; $i < count($data["tracers"][0]); $i+=4)
                     <tr>
-                        <th scope="row">\[{{$i/3}}\]</th>
+                        <th scope="row">\[{{$i/4}}\]</th>
                             <td>\[{{$data["tracers"][0][$i]}}\]</td>
                             <td>\[{{$data["tracers"][0][$i+1]}}\]</td>
                             <td>\[{{$data["tracers"][0][$i+2]}}\]</td>
+                            <td>\[{{$data["tracers"][0][$i+3]}}\]</td>
                         </tr>
                     @endfor
                 </tbody>
                 </table>
                     <h1>Tracers</h1>
-                    @for($i = 0; $i < count($data["tracers"][0]); $i+=3)
-                            \[ {{$i/3}}: ({{$data["tracers"][0][$i]}})x^2 + ({{$data["tracers"][0][$i+1]}})x \\ 
-                            + ({{$data["tracers"][0][$i+2]}}) \\ \]
+                    @for($i = 0; $i < count($data["tracers"][0]); $i+=4)
+                            \[ {{$i/4}}: ({{$data["tracers"][0][$i]}})x^3 + ({{$data["tracers"][0][$i+1]}})x^2 \\
+                            + ({{$data["tracers"][0][$i+2]}})x + ({{$data["tracers"][0][$i+3]}}) \\ \]
 
                     @endfor
                 @else

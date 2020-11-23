@@ -51,12 +51,18 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form method="POST" action="{{route('cuadratic_spline_method')}}" class="form">
+            <form method="POST" action="{{route('neville_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Dimension</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Dimension" name="n" step="any" required />
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Dimension" name="n" step="1" required />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>X to interpolate</label>
+                        <input type="number" id="x_inter" min="2" class="form-control" placeholder="X to interpolate" name="x_inter" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
@@ -104,33 +110,8 @@
                 <div class="card-body">
 
                 @if ($data["error"][0] == false)
-                    <h2>Coefficients</h2>
-                    <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">\[i\]</th>
-                    <th scope="col">\[Coeff \space 1\]</th>
-                    <th scope="col">\[Coeff \space 2\]</th>
-                    <th scope="col">\[Coeff \space 3\]</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for($i = 0; $i < count($data["tracers"][0]); $i+=3)
-                    <tr>
-                        <th scope="row">\[{{$i/3}}\]</th>
-                            <td>\[{{$data["tracers"][0][$i]}}\]</td>
-                            <td>\[{{$data["tracers"][0][$i+1]}}\]</td>
-                            <td>\[{{$data["tracers"][0][$i+2]}}\]</td>
-                        </tr>
-                    @endfor
-                </tbody>
-                </table>
-                    <h1>Tracers</h1>
-                    @for($i = 0; $i < count($data["tracers"][0]); $i+=3)
-                            \[ {{$i/3}}: ({{$data["tracers"][0][$i]}})x^2 + ({{$data["tracers"][0][$i+1]}})x \\ 
-                            + ({{$data["tracers"][0][$i+2]}}) \\ \]
-
-                    @endfor
+                    <h2>Result</h2>
+                    \[  Interpolated \space y = {{$data["interpolated_y"][0]}} \\ \]
                 @else
                     <p>Error: {{ $data["error"][0] }}</p> 
                 @endif

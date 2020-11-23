@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CuadraticSplineController extends Controller
+class CubicSplineController extends Controller
 {
-    public function cuadraticSpline(){
+    public function cubicSpline(){
         $data = [];
         $data["check"] = "false";
-        $data["title"] =  __('cuadratic_spline.title');
+        $data["title"] =  __('cubic_spline.title');
         $data["message"] = "Lineal Spline Method";
-        return view('cuadraticSpline')->with("data",$data);
+        return view('cubicSpline')->with("data",$data);
     }
 
-    public function cuadraticSplineMethod(Request $request){
+    public function cubicSplineMethod(Request $request){
         $dimension = $request->input("n");
         $Arrx = []; 
         $Arry = [];
@@ -26,7 +26,7 @@ class CuadraticSplineController extends Controller
         }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
-        $command = 'python "'.public_path().'\python\cuadratic_spline.py" '." ".$data. " ".$dimension;
+        $command = 'python "'.public_path().'\python\cubic_spline.py" '." ".$data. " ".$dimension;
         // $output = explode("\n",substr_replace(shell_exec($command) ,"",-2));
         //dd($output);
         exec($command, $output);
@@ -37,12 +37,12 @@ class CuadraticSplineController extends Controller
             $tracers = json_decode($output[1], true);
             $data["tracers"] = $tracers;
         }
-        $data["title"] = __('cuadratic_spline.title');
+        $data["title"] = __('cubic_spline.title');
         $data["arrx"] = $Arrx;
         $data["arry"] = $Arry;
         $data["dimension"] = $dimension;
         $data["check"] = "true";
         //dd($data);
-        return view('cuadraticSpline')->with("data",$data);
+        return view('cubicSpline')->with("data",$data);
     }
 }
