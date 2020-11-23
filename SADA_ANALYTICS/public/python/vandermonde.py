@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-
-print('Hello World!')
 """
 Created on Tue Nov  10 
 
@@ -19,7 +16,7 @@ Coef : Coefficients of the polynomial
 @author: Juan Sebastián Pérez Salazar
 """
 
-"""import numpy as np
+import numpy as np
 import matrix_function as mf
 import sys
 import json
@@ -57,4 +54,4 @@ X = "[-1,0,3,4]"
 Y = "[15.5,3,8,1]"
 
 #vandermonde(X, Y)
-vandermonde(sys.argv[1],sys.argv[2])"""
+vandermonde(sys.argv[1],sys.argv[2])
