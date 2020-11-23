@@ -48,10 +48,19 @@
         }
     </script>
 </head>
-<div class="container">
+<div class="container" align="center">
+    <h2>Lineal Spline Method</h2>
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> Help</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <li>The X coordinates array must not have repeating values.</li>
+                </div>
+            </div><br>
             <form method="POST" action="{{route('linealSpline_method')}}" class="form">
                 @csrf
                 <div class="form-row">
@@ -105,9 +114,9 @@
                     @foreach ($data["coefficient"] as $aux)
                         \[L{{$loop->index}} = [{{ $aux }}]\]
                     @endforeach
-                <h1>Plotters</h1>
+                <h1>Tracers</h1>
                     @foreach ($data["plotter"] as $aux)
-                        \[p(x) = {{ $aux }}\]
+                        \[Tracer{{$loop->index}} = {{ $aux }}\]
                     @endforeach
             </div>
         </div>

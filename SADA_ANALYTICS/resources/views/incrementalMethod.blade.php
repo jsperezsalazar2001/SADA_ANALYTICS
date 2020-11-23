@@ -3,10 +3,22 @@
 @section("title", $data["title"])
 
 @section('content')
-<div class="container">
+<div class="container" align="center">
+    <h2>Incremental Search Method</h2>
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> Help</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <li>The initial value must exist in the function.</li>
+                    <li>The function must be continuous and differentiable.</li>
+                    <li>Tolerance must have a positive value.</li>
+                    <li>The iteration number must be positive.</li>
+                </div>
+            </div><br>
             <form method="POST" action="{{ route('incremental_search_method') }}" class="form">
                     @csrf
                     <div class="form-row">

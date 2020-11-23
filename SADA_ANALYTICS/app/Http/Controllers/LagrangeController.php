@@ -11,7 +11,6 @@ class LagrangeController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = "Lagrange";
-        $data["message"] = "Lagrange Method";
         return view('lagrangeMethod')->with("data",$data);
     }
 

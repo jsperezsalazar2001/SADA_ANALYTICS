@@ -11,7 +11,6 @@ class LinealSplineController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = "Lineal Spline";
-        $data["message"] = "Lineal Spline Method";
         return view('linealSplineMethod')->with("data",$data);
     }
 

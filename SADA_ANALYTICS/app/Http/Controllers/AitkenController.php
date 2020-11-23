@@ -11,7 +11,6 @@ class AitkenController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = __('aitken.title');
-        $data["message"] = __('aitken.title');
         return view('aitkenMethod')->with("data",$data);
     }
 

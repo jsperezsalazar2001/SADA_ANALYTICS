@@ -15,23 +15,19 @@ class DoolittleController extends Controller
         $data["title"] = "Doolittle";
         $data["solution"] = "false";
         $data["storage"] = "false";
-        $data["message"] = "Doolittle Method";
         return view('doolittle')->with("data",$data);
     }
 
     public function doolittleMethod(Request $request){
         $data = [];
         $mem = session()->get("mem");
-        $indexMem = $mem[8][0];
-        $mem[8][0] = $mem[8][0]+1;
+        $indexMem = $mem[1][0];
+        $mem[1][0] = $mem[1][0]+1;
         $data["checkMem"] = "true";
         $data["storage"] = "false";
-        //session()->put("mem",$mem);
-        //$mem = session()->get("mem");
-        $auxMem = [];
-
         $data_a = []; 
         $dimension = $request->input("n");
+        $save = $request->input("save");
         $data_b = [];
         for ($i=0; $i < $dimension; $i++) { 
             $array_a =[];
@@ -41,16 +37,16 @@ class DoolittleController extends Controller
           }
           array_push($data_a, $array_a);
         }
-        array_push($auxMem,$data_a);
-        array_push($auxMem,$data_b);
-        array_push($auxMem,$dimension);
-        $mem[8][$indexMem] = $auxMem;
-        session()->put("mem",$mem);
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$data_a);
+            array_push($auxMem,$data_b);
+            array_push($auxMem,$dimension);
+            $mem[1][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
         $mem = session()->get("mem");
         $data["mem"] = $mem;
-        //dd($data["mem"]);
-
-
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
         $command = 'python "'.public_path().'\python\doolittle.py" '." ".$data_a." ". $data_b. " {$dimension}";
@@ -96,17 +92,14 @@ class DoolittleController extends Controller
 
     public function storage($storage,$method){
         $data = [];
-        $data["checkMem"] = "false";
+        $data["checkMem"] = "true";
         $data["title"] = "Doolittle";
         $data["solution"] = "false";
-        $data["message"] = "Doolittle Method";
         $mem = session()->get("mem");
         $data["mem"] = $mem;
         $information = $data["mem"][$method][$storage];
-        //dd($information);
         $data["information"] = $information;
         $data["storage"] = "true";
-        //dd($data);
         return view('doolittle')->with("data",$data);
     }
 }

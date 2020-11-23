@@ -54,9 +54,19 @@
     </script>
 </head>
 <div class="container" align="center">
+    <h2>Stepped Partial Pivot Method</h2>
     @include('layouts.message')
     <div class="row justify-content-center sizeMatrix">
         <div class="col-md-6">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> Help</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <li>Make sure all the fields in the array are filled.</li>
+                    <li>The determinant of the matrix must no be 0.</li>
+                </div>
+            </div><br>
             <form method="POST" action="{{route('stepped_method')}}" class="form">
                 @csrf
                 <div class="form-row">
