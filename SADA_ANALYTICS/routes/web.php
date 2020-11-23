@@ -76,6 +76,7 @@ Route::POST('/cuadraticSpline','CuadraticSplineController@cuadraticSplineMethod'
 
 Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");
 Route::get('/storageLagrange/{storage}/{method}', 'LagrangeController@storage')->name("storage_lagrange");
+Route::get('/storageLinealSpline/{storage}/{method}', 'LinealSplineController@storage')->name("storage_linealSpline");
 
 Route::GET('/dividedDifference','DividedDifferenceMethodController@dividedDifference')->name("divided_difference");
 Route::POST('/dividedDifferenceMethod','DividedDifferenceMethodController@dividedDifferenceMethod')->name("divided_difference_method");

@@ -97,7 +97,7 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Matrix</label>
+                            <label class="custom-control-label" for="customControlInline">Save Array</label>
                         </div><br><br>
                         <div class="form-group col-md-12">
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
@@ -113,35 +113,35 @@
             </form>
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 1)
-                <div class="col-md-6" style="float: right;">
-                   <h3>Array Saved</h3> 
-                    @for($j = 1; $j < count($data["mem"][2]); $j++)
-                        <a class="btn btn-outline-primary" href="{{ route('storage_lagrange',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> <br><br>
-                        Vector y = <br>
-                        [
-                        @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
+            <div class="col-md-6" style="float: right;">
+                <h3>Array Saved</h3> 
+                @for($j = 1; $j < count($data["mem"][2]); $j++)
+                    <a class="btn btn-outline-primary" href="{{ route('storage_lagrange',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> <br><br>
+                    Vector x = <br>
+                    [
+                    @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
                             
-                            @if($z != count($data["mem"][2][$j][0])-1)
-                                {{$data["mem"][2][$j][0][$z]}},
-                            @else 
-                                {{$data["mem"][2][$j][0][$z]}}
-                            @endif
-                        @endfor
-                        ]<br><br>
-                        Vector Y = <br>
-                        [
-                        @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
-                            
-                            @if($z != count($data["mem"][2][$j][1])-1)
-                                {{$data["mem"][2][$j][1][$z]}},
-                            @else 
-                                {{$data["mem"][2][$j][1][$z]}}
-                            @endif
-                        @endfor
-                        ]<br><br>
+                        @if($z != count($data["mem"][2][$j][0])-1)
+                            {{$data["mem"][2][$j][0][$z]}},
+                        @else 
+                            {{$data["mem"][2][$j][0][$z]}}
+                        @endif
                     @endfor
-                </div>
-            @endif
+                    ]<br><br>
+                    Vector y = <br>
+                    [
+                    @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
+                            
+                        @if($z != count($data["mem"][2][$j][1])-1)
+                            {{$data["mem"][2][$j][1][$z]}},
+                        @else 
+                            {{$data["mem"][2][$j][1][$z]}}
+                        @endif
+                    @endfor
+                    ]<br><br>
+                @endfor
+            </div>
+        @endif
     </div><br>
     @if ($data["check"] == "true")
         <div class="card">
