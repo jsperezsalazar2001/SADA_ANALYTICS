@@ -51,22 +51,38 @@
 <div class="container col-10" align="center">
     @include('layouts.message')
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-6">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('divided_difference_method.help') }}</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <strong>{{ __('divided_difference_method.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    x_{1} & x_{2} & x_{3} & x_{4} \\
+                    y_{1} & y_{2} & y_{3} & y_{4} \\
+                    \end{bmatrix}$$
+                    <li>{{ __('divided_difference_method.help_list.dimension') }}</li>
+                    <li>{{ __('divided_difference_method.help_list.fill') }}</li>
+                </div>
+            </div>
+            <br>
             <form method="POST" action="{{route('divided_difference_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-12">
                         <label>{{ __('divided_difference_method.dimension') }}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('divided_difference_method.vector_dimension') }}" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-3">
+                    <div class="form-group col-12">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('divided_difference_method.create_arrays') }}</a> 
                     </div>
-                    <div class="form-group col-3">
+                    <div class="form-group col-12">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('divided_difference_method.solve') }}</button> 
                     </div>
                 </div>

@@ -78,3 +78,6 @@ Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage'
 
 Route::GET('/dividedDifference','DividedDifferenceMethodController@dividedDifference')->name("divided_difference");
 Route::POST('/dividedDifferenceMethod','DividedDifferenceMethodController@dividedDifferenceMethod')->name("divided_difference_method");
+
+Route::GET('/gaussianTridiagonalMatrix','GaussianTridiagonalMatrixMethodController@gaussianTridiagonalMatrix')->name("gaussian_tridiagonal_matrix");
+Route::POST('/gaussianTridiagonalMatrixMethod','GaussianTridiagonalMatrixMethodController@gaussianTridiagonalMatrixMethod')->name("gaussian_tridiagonal_matrix_method");
