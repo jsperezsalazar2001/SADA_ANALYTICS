@@ -30,7 +30,7 @@ class VandermondeController extends Controller
         #$command = 'python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
         #$command = escapeshellcmd('python3.6 -V');
         #$output = explode("\n", substr_replace(shell_exec($command),"",-2));
-        $command = 'python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
+        $command = 'python3 "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];
         #dd($output);
