@@ -65,7 +65,6 @@
                                 <a class="dropdown-item" href="{{ route('crout') }}"> {{ __('crout_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('cholesky') }}"> {{ __('cholesky.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('doolittle_method.title') }}</a>
-                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('tridiagonal_crout_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('gaussian_tridiagonal_matrix') }}"> {{ __('gaussian_tridiagonal_matrix.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('crout_tridiagonal') }}"> {{ __('crout_tridiagonal.title') }}</a>
                             </div>
