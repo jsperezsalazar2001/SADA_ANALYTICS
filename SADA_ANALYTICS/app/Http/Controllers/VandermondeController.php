@@ -27,10 +27,10 @@ class VandermondeController extends Controller
         $Arrx = json_encode($Arrx);
         $Arry = json_encode($Arry);
 
-        $command = 'python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
-        exec($command, $output);
+        $command = escapeshellcmd('python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry);
+        $output = explode("\n", substr_replace(shell_exec($command),"",-2));
         $data = [];
-        //dd($output[0]);
+        dd($output);
         $data["title"] = "Vandermonde";
         $data["solution"] = "true";
         $data["dimension"] = $dimension;
