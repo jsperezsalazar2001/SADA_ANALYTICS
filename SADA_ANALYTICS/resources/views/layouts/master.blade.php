@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>@yield('title','Home Page')</title>
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customStyle.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
@@ -64,6 +66,7 @@
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('cholesky_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('doolittle_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('tridiagonal_crout_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('gaussian_tridiagonal_matrix') }}"> {{ __('gaussian_tridiagonal_matrix.title') }}</a>
                             </div>
 
                         </div>
@@ -76,7 +79,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('vandermonde') }}"> {{ __('vandermonde_method.title') }}</a>
-                                <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('divided_difference_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('divided_difference') }}"> {{ __('divided_difference_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('lagrange_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('hermite_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('spline_method.title') }}</a>

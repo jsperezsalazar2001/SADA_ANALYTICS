@@ -27,10 +27,10 @@ class VandermondeController extends Controller
         $Arrx = json_encode($Arrx);
         $Arry = json_encode($Arry);
 
-        $command = 'python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
-        exec($command, $output);
+        $command = escapeshellcmd('python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry);
+        $output = explode("\n", substr_replace(shell_exec($command),"",-2));
         $data = [];
-        //dd($output[0]);
+        dd($output);
         $data["title"] = "Vandermonde";
         $data["solution"] = "true";
         $data["dimension"] = $dimension;
@@ -39,11 +39,15 @@ class VandermondeController extends Controller
         $coef = $json["coef"];
         $polynomial = $json["polynomial"];
 
-        //dd($coef);
+        
         $v_matrix = $this->rebuildArray($v_matrix);
 
+        $temporal = substr($coef,1,strlen($coef)-2);
+        $temporal = str_replace("'","",$temporal);
+        $temporal = explode(" ",$temporal);
+    
         $data["v_matrix"] = $v_matrix;
-        $data["coef"] = $coef;
+        $data["coef"] = $temporal;
         $data["polynomial"] = $polynomial;
 
         return view('vandermondeMethod')->with("data",$data);

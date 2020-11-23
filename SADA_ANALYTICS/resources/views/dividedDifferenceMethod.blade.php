@@ -51,34 +51,50 @@
 <div class="container col-10" align="center">
     @include('layouts.message')
     <div class="row justify-content-center">
-        <div class="col-12">
-            <form method="POST" action="{{route('vandermonde_method')}}" class="form">
+        <div class="col-6">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('divided_difference_method.help') }}</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <strong>{{ __('divided_difference_method.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    x_{1} & x_{2} & x_{3} & x_{4} \\
+                    y_{1} & y_{2} & y_{3} & y_{4} \\
+                    \end{bmatrix}$$
+                    <li>{{ __('divided_difference_method.help_list.dimension') }}</li>
+                    <li>{{ __('divided_difference_method.help_list.fill') }}</li>
+                </div>
+            </div>
+            <br>
+            <form method="POST" action="{{route('divided_difference_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-6">
-                        <label>{{ __('vandermonde_method.dimension') }}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                    <div class="form-group col-12">
+                        <label>{{ __('divided_difference_method.dimension') }}</label>
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('divided_difference_method.vector_dimension') }}" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-3">
-                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('vandermonde_method.create_arrays') }}</a> 
+                    <div class="form-group col-12">
+                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('divided_difference_method.create_arrays') }}</a> 
                     </div>
-                    <div class="form-group col-3">
-                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('vandermonde_method.solve') }}</button> 
+                    <div class="form-group col-12">
+                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('divided_difference_method.solve') }}</button> 
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div id="matrix_a" class="text-align metodo"> {{ __('vandermonde_method.x') }} </div>
+                        <div id="matrix_a" class="text-align metodo"> {{ __('divided_difference_method.x') }} </div>
                         <div id="matrix" class="text-align"> </div>
                     </div>
                 </div><br/>
                 <div class="row">
                     <div class="col">
-                        <div id="vector_b" class="text-align metodo"> {{ __('vandermonde_method.y') }} </div>
+                        <div id="vector_b" class="text-align metodo"> {{ __('divided_difference_method.y') }} </div>
                         <div id="vector" class="text-align"> </div>
                     </div>
                 </div>
@@ -89,12 +105,12 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-header">
-                    <h1>{{ __('vandermonde_method.card_header') }}</h1>
+                    <h1>{{ __('divided_difference_method.card_header') }}</h1>
                 </div>
                 <div class="card-body" align="center">
                     <div class="row justify-content-center">
                         <div class="col-6">
-                            <b><em>{{ __('vandermonde_method.v_matrix') }}</em></b>
+                            <b><em>{{ __('divided_difference_method.v_matrix') }}</em></b>
                             $$\begin{pmatrix}
                             @for ($i = 0; $i < count($data["v_matrix"]); $i++)
                                     
@@ -109,25 +125,10 @@
                             @endfor
                             \end{pmatrix}$$
                             <br/>
-                            <b><em>{{ __('vandermonde_method.coef_polynomial') }}</em></b>
-                            <div class="col-6">
-                                <table class="table table-striped" align="center">
-                                    <tbody>
-                                        @for ($v = 0; $v < count($data["coef"]); $v++)
-                                        <tr>
-                                            <th>{{ ($v + 1) }}</th>
-                                            @if($v == count($data["coef"])-1)
-                                            <th>{{ $data["coef"][$v] }}</th>   
-                                            @else
-                                            <th>{{ $data["coef"][$v] }}</th>
-                                            @endif
-                                        </tr>
-                                        @endfor
-                                    </tbody>
-                                </table>
-                            </div>
+                            <b><em>{{ __('divided_difference_method.coef_polynomial') }}</em></b>
+                            <p>{{ $data["coef"] }}</p>
                             <br/>
-                            <b><em>{{ __('vandermonde_method.polynomial') }}</em></b>
+                            <b><em>{{ __('divided_difference_method.polynomial') }}</em></b>
                             \[ {{ $data["polynomial"] }} \]
                         </div></br>
                     </div>
