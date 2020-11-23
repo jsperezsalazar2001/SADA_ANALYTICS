@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'title' => 'Cuadratic spline',
-    'dimension' => "Dimension",
-    'create_arrays'  => "Create arrays",
-    'solve'  => "Solve",
-    'initial_data'  => "Initial Data",
-    'coefficients'  => "Coefficients",
-    'tracers'  => "Tracers",
+    'title' => "Método de Neville",
+    'dimension' => "Dimensión",
+    'x_to_interpolate'  => "X a interpolar",
+    'create_arrays'  => "Crear arreglos",
+    'solve'  => "Solucionar",
+    'initial_data'  => "Datos iniciales",
+    'interpolated'  => "Y interpolada",
 ];
