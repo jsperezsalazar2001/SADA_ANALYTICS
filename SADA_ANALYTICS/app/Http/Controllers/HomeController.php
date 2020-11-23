@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function home(){
+        //$mem = session()->forget("mem");
         $mem = session()->get("mem");
         if ($mem == null){
             $functions = [1];

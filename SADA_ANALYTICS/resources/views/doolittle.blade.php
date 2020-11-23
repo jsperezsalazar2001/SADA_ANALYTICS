@@ -115,11 +115,11 @@
                 @endif
             </form>
         </div>
-            @if ($data["checkMem"] == "true")
+            @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 1)
                 <div class="col-md-6" style="float: right;">
                    <h3>Matrices Saved</h3> 
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
-                        <a class="navbar-brand btn btn-outline-success btn" href="{{ route('storage_doolittle',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
+                        <a class="btn btn-outline-primary" href="{{ route('storage_doolittle',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
                         Matrix A = <br>
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
                             [

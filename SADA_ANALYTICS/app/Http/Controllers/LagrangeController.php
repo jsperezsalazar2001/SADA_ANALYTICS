@@ -9,25 +9,45 @@ class LagrangeController extends Controller
 {
     public function lagrange(){
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
         $data["check"] = "false";
         $data["title"] = "Lagrange";
+        $data["storage"] = "false";
         return view('lagrangeMethod')->with("data",$data);
     }
 
     public function lagrangeMethod(Request $request){
         $Arrx = []; 
         $dimension = $request->input("n");
+        $save = $request->input("save");
         $Arry = [];
 
         for ($i=0; $i < $dimension; $i++) { 
             array_push($Arrx, $request->input("x".$i));
             array_push($Arry, $request->input("y".$i));
         }
+        $mem = session()->get("mem");
+        $indexMem = $mem[2][0];
+        $mem[2][0] = $mem[2][0]+1;
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$Arrx);
+            array_push($auxMem,$Arry);
+            array_push($auxMem,$dimension);
+            $mem[2][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
         $command = 'python "'.public_path().'\python\lagrangeMethod.py" '." ".$data. " ".$dimension;
         exec($command, $output);
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         $data["title"] = "Lagrange";
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
@@ -52,6 +72,21 @@ class LagrangeController extends Controller
             $data["arry"] = $Arry;
             $data["message"] = "Success with method";
         }
+        //dd($data);
+        return view('lagrangeMethod')->with("data",$data);
+    }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = "Lagrange";
+        $data["check"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
+        //dd($data);
         return view('lagrangeMethod')->with("data",$data);
     }
 }
