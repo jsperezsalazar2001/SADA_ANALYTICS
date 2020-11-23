@@ -39,7 +39,7 @@ def cuadratic_spline(data,dimension):
             raise Exception("X and Y coordinates do not have the same length")
         n = len(x)
         m = (n - 1) * 3
-        A = q = [ [ 0 for i in range(m) ] for j in range(m) ]
+        A = q = [ [ 0.0 for i in range(m) ] for j in range(m) ]
         B = [0]*m
         A[0][0] = math.pow(x[0], 2)
         A[0][1] = x[0]
@@ -73,6 +73,10 @@ def cuadratic_spline(data,dimension):
         B[m-1] = 0
         A = np.array(A)
         solution = np.linalg.solve(A, B)
+        final_x = np.array([],dtype=str)
+        for value in solution:
+            final_x = np.append(final_x, '{:.7f}'.format(value))
+        solution = final_x
     except ValueError as valueError:
         error[0] = "A complex operation was encounter while running the method"
     except BaseException as e:
@@ -87,4 +91,5 @@ def list_has_duplicates(input_list):
     list_set = set(input_list)
     contains_duplicates = len(list_set) != len(input_list)
     return contains_duplicates
-cuadratic_spline("[-2,-1,2,12,6,-4]","3")
+# cuadratic_spline("[-2,-1,2,12,6,-4]","3")
+cuadratic_spline(sys.argv[1],sys.argv[2])

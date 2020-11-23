@@ -11,7 +11,6 @@ class MullerController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = __('muller.title');
-        $data["message"] = __('muller.message');
         return view('mullerMethod')->with("data",$data);
     }
 

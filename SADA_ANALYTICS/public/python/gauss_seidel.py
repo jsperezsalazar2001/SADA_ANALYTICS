@@ -21,6 +21,7 @@ E : error
 
 import numpy as np
 import matrix_function
+import json
 np.set_printoptions(precision=7)
 
 def gauss_seidel(l,d,u,b,x0,tol,Nmax):
@@ -37,7 +38,9 @@ def gauss_seidel(l,d,u,b,x0,tol,Nmax):
     values, normalized_eigenvectors = np.linalg.eig(T)
     spectral_radius = max(abs(values))
     if spectral_radius > 1:
-        print('Gauss-seidel method doesn´t work becuase its spectral radius is greater than 1')
+        dic = {}
+        dic[0]="Error: Gauss-seidel method does not work becuase its spectral radius is greater than 1"
+        print(json.dumps(dic))
         exit(1)
 
     C_aux = C.T[0]

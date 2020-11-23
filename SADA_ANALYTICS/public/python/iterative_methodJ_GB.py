@@ -28,7 +28,9 @@ def solve_matrix2(a,b,matrix_type,x0,tol,Nmax):
         tol = float(tol)
         Nmax = float(Nmax)
     except:
-        print("Be careful with values of tolerance or iterations number")
+        dic = {}
+        dic[0]="Error be careful with values of tolerance or iterations number"
+        print(json.dumps(dic))
         exit(1)
     if(matrix_function.determinant(a)):
         if (matrix_type == 'J'):
@@ -42,13 +44,18 @@ def solve_matrix2(a,b,matrix_type,x0,tol,Nmax):
             dic["C"] = C_aux
             dic["spectral_radius"] = spectral_radius
         else:
-            print("function type doesn't exist")
+            dic = {}
+            dic[0]="Error function type doesn't exist"
+            print(json.dumps(dic))
+            exit(1)
         
         print(json.dumps(dic))
         print(json.dumps(dic_result))
         
     else:
-        print("function determinant is equals to 0")
+        dic = {}
+        dic[0]="Error function determinant is equals to 0"
+        print(json.dumps(dic))
         exit(1)
 
 solve_matrix2(sys.argv[1],sys.argv[2],str(sys.argv[3]),sys.argv[4],sys.argv[5],sys.argv[6])

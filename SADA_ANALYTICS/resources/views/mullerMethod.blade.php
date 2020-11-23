@@ -3,10 +3,23 @@
 @section("title", $data["title"])
 
 @section('content')
-<div class="container">
+<div class="container" align="center">
+    <h2>Muller Method</h2>
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> Help</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <li>The initial values must exist in the function.</li>
+                    <li>The function must be continuous and differentiable.</li>
+                    <li>Tolerance must have a positive value.</li>
+                    <li>The iteration number must be positive.</li>
+                    <li>If you wish you can leave the field x_2 empty, the system will determine x_2 as the midpoint of x_0 and x_1</li>
+                </div>
+            </div><br>
             <form method="POST" action="{{ route('muller_method') }}" class="form">
                     @csrf
                     <div class="form-row">

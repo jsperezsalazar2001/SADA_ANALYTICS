@@ -28,5 +28,13 @@ return [
         'step' => 'Step',
         'method_type' => 'Method type',
     ],
+    'help' => 'Help',
+    'matrix_dimension'=> 'Matrix dimension',
+    'help_list' => [
+        'dimension' => 'In the input dimension you choose the dimension n to the matrix nxn.',
+        'example'=>'Matrix 3x3 example',
+        'fill' => 'Make sure all the fields in the array are filled.',
+        'determinant' => 'The most common case where the determinant is equals to 0 is because two rows are identical so take care with that.',
+    ],
     'solve' => 'Solve',
 ];

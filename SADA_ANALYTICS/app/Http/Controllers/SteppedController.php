@@ -11,8 +11,6 @@ class SteppedController extends Controller
         $data = [];
         $data["title"] = "Stepped Partial Pivot";
         $data["solution"] = "false";
-        $data["message"] = "Stepped Partial Pivot Method";
-        #$data["table"] = "";
         return view('stepped')->with("data",$data);
     }
 

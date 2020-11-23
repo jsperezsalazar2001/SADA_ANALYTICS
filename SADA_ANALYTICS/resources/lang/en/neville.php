@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'title' => 'Cuadratic spline',
+    'title' => "Neville's method",
     'dimension' => "Dimension",
+    'x_to_interpolate'  => "X to interpolate",
     'create_arrays'  => "Create arrays",
     'solve'  => "Solve",
     'initial_data'  => "Initial Data",
-    'coefficients'  => "Coefficients",
-    'tracers'  => "Tracers",
+    'interpolated'  => "Interpolated",
 ];

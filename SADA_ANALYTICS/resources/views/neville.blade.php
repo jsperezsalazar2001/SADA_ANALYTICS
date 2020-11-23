@@ -51,20 +51,26 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form method="POST" action="{{route('cuadratic_spline_method')}}" class="form">
+            <form method="POST" action="{{route('neville_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>{{__('cuadratic_spline.dimension')}}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Dimension" name="n" step="any" required />
+                        <label>{{__('neville.dimension')}}</label>
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{__('neville.dimension')}}" name="n" step="1" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{__('cuadratic_spline.create_arrays')}}</a> 
+                        <label>{{__('neville.x_to_interpolate')}}</label>
+                        <input type="number" id="x_inter" min="2" class="form-control" placeholder="{{__('neville.x_to_interpolate')}}" name="x_inter" step="any" required />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{__('neville.create_arrays')}}</a> 
                     </div>
                     <div class="form-group col-md-12">
-                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{__('cuadratic_spline.solve')}}</button> 
+                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{__('neville.solve')}}</button> 
                     </div>
                 </div>
                 <div id="matrix_a" class="text-align metodo"> \[ x = \] </div>
@@ -81,7 +87,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h2>{{__('cuadratic_spline.initial_data')}}</h2>
+                    <h2>{{__('neville.initial_data')}}</h2>
                     <b>\[X = [
                     @foreach ($data["arrx"] as $x)
                         @if($loop->last)
@@ -104,33 +110,8 @@
                 <div class="card-body">
 
                 @if ($data["error"][0] == false)
-                    <h2>{{__('cuadratic_spline.coefficients')}}</h2>
-                    <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">\[i\]</th>
-                    <th scope="col">\[Coeff \space 1\]</th>
-                    <th scope="col">\[Coeff \space 2\]</th>
-                    <th scope="col">\[Coeff \space 3\]</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for($i = 0; $i < count($data["tracers"][0]); $i+=3)
-                    <tr>
-                        <th scope="row">\[{{$i/3}}\]</th>
-                            <td>\[{{$data["tracers"][0][$i]}}\]</td>
-                            <td>\[{{$data["tracers"][0][$i+1]}}\]</td>
-                            <td>\[{{$data["tracers"][0][$i+2]}}\]</td>
-                        </tr>
-                    @endfor
-                </tbody>
-                </table>
-                    <h2>{{__('cuadratic_spline.tracers')}}</h2>
-                    @for($i = 0; $i < count($data["tracers"][0]); $i+=3)
-                            \[ {{$i/3}}: ({{$data["tracers"][0][$i]}})x^2 + ({{$data["tracers"][0][$i+1]}})x \\ 
-                            + ({{$data["tracers"][0][$i+2]}}) \\ \]
-
-                    @endfor
+                    <h2>Result</h2>
+                    \[  {{__('neville.interpolated')}} \space y = {{$data["interpolated_y"][0]}} \\ \]
                 @else
                     <p>Error: {{ $data["error"][0] }}</p> 
                 @endif

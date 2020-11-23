@@ -11,7 +11,6 @@ class HermiteController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = "Hermite";
-        $data["message"] = "Hermite Method";
         return view('hermiteMethod')->with("data",$data);
     }
 

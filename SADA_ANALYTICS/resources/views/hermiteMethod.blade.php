@@ -56,10 +56,19 @@
         }
     </script>
 </head>
-<div class="container">
+<div class="container" align="center">
+    <h2>Hermite Interpolation Method</h2>
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> Help</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <li>The X coordinates array must not have repeating values.</li>
+                </div>
+            </div><br>
             <form method="POST" action="{{route('hermite_method')}}" class="form">
                 @csrf
                 <div class="form-row">

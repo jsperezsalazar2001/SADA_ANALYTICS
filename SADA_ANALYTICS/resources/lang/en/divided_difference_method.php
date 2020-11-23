@@ -26,8 +26,8 @@ return [
     'polynomial' => 'Polynomial',
     'help' => 'Help',
     'help_list' => [
-        'dimension' => 'In the input dimension you choose the dimension n to the matrix nxn',
-        'example'=>'Vectors a, b and c in matrix 3x3',
+        'dimension' => 'In the input dimension you choose the dimension n to vectors X and Y',
+        'example'=>'Each x have only one y and those ones are a point (x,y) so do not repeat points x in the vector X',
         'fill' => 'Make sure all the fields in the array are filled.',
     ],
 ];

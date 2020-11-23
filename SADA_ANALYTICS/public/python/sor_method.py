@@ -18,6 +18,8 @@ dic_resoult: step dictionary from table solution (float with decimals)
 """
 import numpy as np
 import matrix_function
+import json
+
 np.set_printoptions(precision=7)
 
 def sorMethod(l,d,u,b,x0,tol,Nmax,w):
@@ -32,9 +34,9 @@ def sorMethod(l,d,u,b,x0,tol,Nmax,w):
 
     values, normalized_eigenvectors = np.linalg.eig(T)
     spectral_radius = max(abs(values))
-    if spectral_radius > 1:
-        print('Jacobi method doesn´t work becuase its spectral radius is greater than 1')
-        exit(1)
+    """if spectral_radius > 1:
+                    print('Jacobi method doesn´t work becuase its spectral radius is greater than 1')
+                    exit(1)"""
 
     C_aux = C.T[0]
     dic["T"] = T

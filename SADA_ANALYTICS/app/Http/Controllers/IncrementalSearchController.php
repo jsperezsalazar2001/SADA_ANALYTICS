@@ -11,7 +11,6 @@ class IncrementalSearchController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = __('incremental.title');
-        $data["message"] = __('incremental.title');
         return view('incrementalMethod')->with("data",$data);
     }
 

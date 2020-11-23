@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Cuadratic spline',
+    'title' => 'Cubic spline',
     'dimension' => "Dimension",
     'create_arrays'  => "Create arrays",
     'solve'  => "Solve",

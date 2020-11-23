@@ -53,31 +53,30 @@
         }
     </script>
 </head>
-<div class="container col-10" align="center">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-md-6">
             <form method="POST" action="{{route('cholesky_method')}}" class="form">
                 @csrf
-                <div class="form-row col-12" align="center">
-                    <div class="form-group col-md-6">
-                        <label>{{ __('factorization_l_u_method.dimension') }}</label>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>{{ __('crout_tridiagonal.dimension') }}</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                     </div>
-                        <!-- este div es el que pone feo la vista --> 
-                </div><br/>
-                <div class="form-row col-12">
-                    <div class="form-group col-6">
-                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('factorization_l_u_method.create_matrix') }}</a> 
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('cholesky.create_matrix') }}</a> 
                     </div>
-                    <div class="form-group col-6">
-                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('factorization_l_u_method.solve') }}</button> 
+                    <div class="form-group  col-md-12">
+                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('cholesky.solve') }}</button> 
                     </div>
                 </div>
-                <div id="matrix_a" class="text-align metodo"> {{ __('factorization_l_u_method.label.matrix_a') }} </div>
+                <div id="matrix_a" class="text-align metodo"> {{ __('cholesky.label.matrix_a') }} </div>
                 <div id="matrix" class="text-align"> </div>
                 
-                <div id="separador" class="text-align metodo"> {{ __('factorization_l_u_method.separator') }}</div>
-                <div id="vector_b" class="text-align metodo"> {{ __('factorization_l_u_method.label.vector_b') }} </div>
+                <div id="separador" class="text-align metodo"> {{ __('cholesky.separator') }}</div>
+                <div id="vector_b" class="text-align metodo"> {{ __('cholesky.label.vector_b') }} </div>
                 <div id="vector" class="text-align"> </div>
             </form>
         </div>
@@ -85,12 +84,12 @@
     @if ($data["solution"] != "form")
         <div class="card">
             <div class="card-header">
-                <h1>Solution</h1>
+                <h2>{{ __('cholesky.solution') }}</h2>
             <br>
             </div>
             <div class="card-body">
                 <div>
-                <b><em>Step 0</em></b>
+                <b><em>{{ __('cholesky.step') }} 0</em></b>
 
                         $$A = \begin{pmatrix}
                         @for ($j = 0; $j < count($data["matrixA"][0]); $j++)
@@ -107,7 +106,7 @@
                         \end{pmatrix}$$
 
                     @for ($i = 0; $i < count($data["stepL"]); $i++)
-                        <b><em>Step {{$i+1}}</em></b>
+                    <b><em>{{ __('cholesky.step') }} {{$i+1}}</em></b>
 
                         $$L = \begin{pmatrix}
                         @for ($j = 0; $j < count($data["stepL"][$i]); $j++)

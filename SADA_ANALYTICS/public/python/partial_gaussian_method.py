@@ -11,6 +11,7 @@ b: constant vector
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
+import json
 np.set_printoptions(precision=7)
 
 def partialGaussianMethod(matrix):
@@ -33,7 +34,10 @@ def partialGaussianMethod(matrix):
             matrix[i]=np.array(matrix[i+posmax_pivot])
             matrix[i+posmax_pivot] = temporal_matrix
         if (pivot_number==0 and i == matrix.shape[0]-2):
-            print ("the last pivot number is cero so the matrix doesn't have a solution")
+            dic = {}
+            dic[0]="Error: The last pivot number is cero so the matrix doesn't have a solution"
+            print(json.dumps(dic))
+            exit(1)
         fj = auxiliary_matrix[0] # Fj
         # columvector is the column from the pivot number
         column_vector = np.reshape(auxiliary_matrix.T[0][1:], (auxiliary_matrix.T[0][1:].shape[0], 1))
