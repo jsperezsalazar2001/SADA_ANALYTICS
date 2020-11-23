@@ -1,16 +1,18 @@
-FROM python:3.7.5-slim
+FROM ubuntu:16.04
 
-# Set up and activate virtual environment
-ENV VIRTUAL_ENV "/venv"
-RUN python -m venv $VIRTUAL_ENV
-ENV PATH "$VIRTUAL_ENV/bin:$PATH"
+RUN apt-get update && \
+  apt-get install -y software-properties-common && \
+  add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update
 
-# Python commands run inside the virtual environment
-RUN python -m pip install \
-        parse \
-        realpython-reader \
-        numpy \
-        simpy
+RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-venv
+RUN apt-get install -y git
+
+# update pip
+RUN python3.6 -m pip install pip --upgrade
+RUN python3.6 -m pip install wheel
+RUN python3.6 -m pip install numpy
+RUN python3.6 -m pip install simpy
 
 FROM php:7.2-apache-stretch
 RUN apt-get update -y && \
