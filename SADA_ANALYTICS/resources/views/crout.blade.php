@@ -57,26 +57,44 @@
 <div class="container col-10" align="center">
     <div class="row justify-content-center">
         <div class="col-12">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('crout_method.help') }}</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <strong>{{ __('crout_method.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    n_{11} & n_{12} & n_{13} \\
+                    n_{21} & n_{22} & n_{23} \\
+                    n_{31} & n_{32} & n_{33} \\
+                    \end{bmatrix}$$
+                    <li>{{ __('crout_method.help_list.dimension') }}</li>
+                    <li>{{ __('crout_method.help_list.fill') }}</li>
+                    <li>{{ __('crout_method.help_list.determinant') }}</li>
+                </div>
+            </div>
+            <br>
             <form method="POST" action="{{route('crout_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-12">
                         <label>{{ __('crout_method.dimension') }}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('crout_method.matrix_dimension') }}" name="n" step="any" required />
                     </div>
                         <!-- este div es el que pone feo la vista --> 
 
                 </div>
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-12">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('crout_method.create_matrix') }}</a> 
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-12">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('crout_method.solve') }}</button> 
                     </div>
                 </div>

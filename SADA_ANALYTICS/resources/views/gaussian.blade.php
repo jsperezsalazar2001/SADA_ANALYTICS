@@ -53,15 +53,34 @@
         }
     </script>
 </head>
-<div class="container matrix">
+<div class="container col-10" align="center">
+    @include('layouts.message')
     <div class="row justify-content-center sizeMatrix">
         <div class="col-md-12">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('factorization_l_u_method.help') }}</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <strong>{{ __('factorization_l_u_method.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    n_{11} & n_{12} & n_{13} \\
+                    n_{21} & n_{22} & n_{23} \\
+                    n_{31} & n_{32} & n_{33} \\
+                    \end{bmatrix}$$
+                    <li>{{ __('factorization_l_u_method.help_list.dimension') }}</li>
+                    <li>{{ __('factorization_l_u_method.help_list.fill') }}</li>
+                    <li>{{ __('factorization_l_u_method.help_list.determinant') }}</li>
+                </div>
+            </div>
+            <br>
             <form method="POST" action="{{route('check_matrix')}}" class="form">
                 @csrf
-                <div class="form-row">
+                <div class="form-row col-12" align="center">
                     <div class="form-group col-md-6">
                         <label>{{ __('gaussian_method.dimension') }}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('gaussian_method.matrix_dimension') }}" name="n" step="any" required />
                     </div>
                         <!-- este div es el que pone feo la vista --> 
                     <div class="form-group col-md-6">
@@ -70,16 +89,14 @@
                             <option value="S">{{ __('gaussian_method.input.simple_gaussian_method') }}</option> 
                             <option value="P">{{ __('gaussian_method.input.partial_gaussian_method') }}</option>
                             <option value="T">{{ __('gaussian_method.input.total_gaussian_method') }}</option>
-                            <option value="TM">{{ __('gaussian_method.input.tridiagonal_matrices_method') }}</option>
-                            <option value="SP">{{ __('gaussian_method.input.stepped_partial_method') }}</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
+                <div class="form-row col-12">
+                    <div class="form-group col-6">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('gaussian_method.create_matrix') }}</a> 
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-6">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('gaussian_method.solve') }}</button> 
                     </div>
                 </div>

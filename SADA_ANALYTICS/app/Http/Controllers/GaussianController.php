@@ -36,14 +36,20 @@ class GaussianController extends Controller
         exec($command, $output);
 
         $data["title"] = __('gaussian_method.title');
-        $data["solution"] = "true";
-        $data["dimension"] = $dimension;
-        $json = json_decode($output[0],true);
-        $solution_array = $json["x"];
-        array_pop($json); 
-        $json = $this->rebuildArray($json);
-        $json["x"] = $solution_array;
-        $data["table"] = $json;
+        #dd($output);
+        if (substr($output[0],7,5) == "Error"){
+            $data["solution"] = "false";
+            $data["message"] = substr($output[0],7,strlen($output[0])-9);
+        }else{
+            $data["solution"] = "true";
+            $data["dimension"] = $dimension;
+            $json = json_decode($output[0],true);
+            $solution_array = $json["x"];
+            array_pop($json); 
+            $json = $this->rebuildArray($json);
+            $json["x"] = $solution_array;
+            $data["table"] = $json;
+        }
         
         return view('gaussian')->with("data",$data);
     }

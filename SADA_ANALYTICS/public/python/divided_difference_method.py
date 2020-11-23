@@ -31,7 +31,7 @@ def dividedDifferenceMethod(a,b):
             validate=True
             break
     if (validate):
-        dic[0]="Error hay puntos iguales"
+        dic[0]="Error: there are equal points in the vector X"
     else:
         n = len(a)
         D = np.zeros((n,n))
@@ -46,17 +46,18 @@ def dividedDifferenceMethod(a,b):
 
         res = np.diag(D)
 
-        polynomial = '' + '{0:+}'.format(res[0])
-        m = '(x' + '{0:+}'.format(-a[0]) + ')'
+        polynomial = '' + '{:.7f}'.format(res[0])
+        m = '(x' + '{:.7f}'.format(-a[0]) + ')'
         for i in range(1,n):
-            polynomial += '{0:+}'.format(res[i]) + m
-            m += '(x' + '{0:+}'.format(-a[i]) + ')'
+            polynomial += '{:.7f}'.format(res[i]) + m
+            m += '(x' + '{:.7f}'.format(-a[i]) + ')'
         polynomial = polynomial.replace('x+0','x')
 
 
 
         dic["v_matrix"] = D
         dic = matrix_function.rebuild_matrix(dic)
+        res = matrix_function.rebuild_vector(res)
         dic["coef"] = str(res)
         dic["polynomial"] = polynomial
     

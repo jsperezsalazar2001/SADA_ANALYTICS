@@ -46,19 +46,30 @@ class IterativeMethodJGBController extends Controller
         }
         
         exec($command, $output);
+        #dd($output);
+        $data=[];
+        $data["title"] = __('iterative_j_g_b_method.title');
+        if (substr($output[0],7,5) == "Error"){
+            $data["solution"] = "false";
+            $data["message"] = substr($output[0],7,strlen($output[0])-9);
+        }else{
+            $data["solution"] = "true";
+            $data["dimension"] = $dimension;
+            
+            $json_matrix = json_decode($output[0],true);
+            $json_table = json_decode($output[1],true);
 
-        $data["title"] = __('factorization_l_u_method.title');
-        $data["solution"] = "true";
-        $data["dimension"] = $dimension;
-        
-        $json_matrix = json_decode($output[0],true);
-        $json_table = json_decode($output[1],true);
-
-        
-        $json_matrix["T"]= $this->rebuildArrayJacobi($json_matrix["T"]);
-        
-        $data["json_matrix"] = $json_matrix;
-        $data["json_table"] = $json_table;
+            
+            $json_matrix["T"]= $this->rebuildArrayJacobi($json_matrix["T"]);
+            
+            $data["json_matrix"] = $json_matrix;
+            $data["json_table"] = $json_table;
+            if (is_null($data["json_table"])) {
+                $data["show_table"] = "false";
+            }else{
+                $data["show_table"] = "true";
+            }
+        }
         
         return view('iterativeMethodJGB')->with("data",$data);
     }

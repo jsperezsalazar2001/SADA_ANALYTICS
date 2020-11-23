@@ -13,6 +13,8 @@ movement : vector with x's positions
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
+import json
+
 np.set_printoptions(precision=7)
 
 def totalGaussianMethod(matrix):
@@ -59,7 +61,10 @@ def totalGaussianMethod(matrix):
             matrix = np.array(transpose_matrix.T)
             movement = np.concatenate((movement, [i,pos_max_pivot+i]))
         if (pivot_number==0 and i == matrix.shape[0]-2):
-            print ("the last pivot number is cero so the matrix doesn't have a solution")
+            dic = {}
+            dic[0]="Error: The last pivot number is cero so the matrix doesn't have a solution"
+            print(json.dumps(dic))
+            exit(1)
         pivot_number = auxiliary_matrix[0][0]
         fj = auxiliary_matrix[0] # Fj
         # colum_vector is the column from the pivot number

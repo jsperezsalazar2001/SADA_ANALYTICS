@@ -52,13 +52,29 @@
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-12">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('vandermonde_method.help') }}</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <strong>{{ __('vandermonde_method.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    x_{1} & x_{2} & x_{3} & x_{4} \\
+                    y_{1} & y_{2} & y_{3} & y_{4} \\
+                    \end{bmatrix}$$
+                    <li>{{ __('vandermonde_method.help_list.dimension') }}</li>
+                    <li>{{ __('vandermonde_method.help_list.fill') }}</li>
+                </div>
+            </div>
+            <br>
             <form method="POST" action="{{route('vandermonde_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="col-3"></div>
                     <div class="form-group col-6">
                         <label>{{ __('vandermonde_method.dimension') }}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('vandermonde_method.vector_dimension') }}" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
