@@ -89,8 +89,6 @@
                             <option value="S">{{ __('gaussian_method.input.simple_gaussian_method') }}</option> 
                             <option value="P">{{ __('gaussian_method.input.partial_gaussian_method') }}</option>
                             <option value="T">{{ __('gaussian_method.input.total_gaussian_method') }}</option>
-                            <option value="TM">{{ __('gaussian_method.input.tridiagonal_matrices_method') }}</option>
-                            <option value="SP">{{ __('gaussian_method.input.stepped_partial_method') }}</option>
                         </select>
                     </div>
                 </div>
