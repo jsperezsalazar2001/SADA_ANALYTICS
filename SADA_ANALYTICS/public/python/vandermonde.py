@@ -22,6 +22,7 @@ import sys
 import json
 
 def vandermonde(X, Y):
+    print("Hola")
     dic = {}
     X = X.replace('[', '').replace(']', '').split(',')
     Y = Y.replace('[', '').replace(']', '').split(',')
