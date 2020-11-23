@@ -28,7 +28,7 @@ class VandermondeController extends Controller
         $Arry = json_encode($Arry);
 
         #$command = 'python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
-        $command = escapeshellcmd('python -V');
+        $command = escapeshellcmd('python3.6 -V');
         $output = explode("\n", substr_replace(shell_exec($command),"",-2));
         $data = [];
         dd($output);
