@@ -69,7 +69,9 @@ def solve_matrix(a,b,matrix_type):
             print(json.dumps(dic_u))
             print(json.dumps(dic_p))
     else:
-        print("function determinant is equals to 0")
+        dic = {}
+        dic[0]="Error function determinant is equals to 0"
+        print(json.dumps(dic))
         exit(1)
 
 

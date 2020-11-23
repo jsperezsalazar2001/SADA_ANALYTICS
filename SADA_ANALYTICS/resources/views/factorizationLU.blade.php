@@ -54,14 +54,33 @@
     </script>
 </head>
 <div class="container col-10" align="center">
+    @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-12">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('factorization_l_u_method.help') }}</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <strong>{{ __('factorization_l_u_method.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    n_{11} & n_{12} & n_{13} \\
+                    n_{21} & n_{22} & n_{23} \\
+                    n_{31} & n_{32} & n_{33} \\
+                    \end{bmatrix}$$
+                    <li>{{ __('factorization_l_u_method.help_list.dimension') }}</li>
+                    <li>{{ __('factorization_l_u_method.help_list.fill') }}</li>
+                    <li>{{ __('factorization_l_u_method.help_list.determinant') }}</li>
+                </div>
+            </div>
+            <br>
             <form method="POST" action="{{route('factorization_l_u_values')}}" class="form">
                 @csrf
                 <div class="form-row col-12" align="center">
                     <div class="form-group col-md-6">
                         <label>{{ __('factorization_l_u_method.dimension') }}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('factorization_l_u_method.matrix_dimension') }}" name="n" step="any" required />
                     </div>
                         <!-- este div es el que pone feo la vista --> 
                     <div class="form-group col-md-6">

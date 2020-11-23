@@ -32,7 +32,9 @@ def solve_matrix3(a,b,matrix_type,x0,tol,Nmax,w):
         Nmax = float(Nmax)
         w = float(w)
     except:
-        print("Be careful with values of tolerance, iterations number or W values")
+        dic = {}
+        dic[0]="Error Be careful with values of tolerance, iterations number or W values"
+        print(json.dumps(dic))
         exit(1)
     if(matrix_function.determinant(a)):
         if (matrix_type == 'SOR'):
@@ -42,12 +44,17 @@ def solve_matrix3(a,b,matrix_type,x0,tol,Nmax,w):
             dic["C"] = C_aux
             dic["spectral_radius"] = spectral_radius
         else:
-            print("function type doesn't exist")
+            dic = {}
+            dic[0]="Error function type doesn't exist"
+            print(json.dumps(dic))
+            exit(1)
         
         print(json.dumps(dic))
         print(json.dumps(dic_result))
     else:
-        print("function determinant is equals to 0")
+        dic = {}
+        dic[0]="Error function determinant is equals to 0"
+        print(json.dumps(dic))
         exit(1)
 
 solve_matrix3(sys.argv[1],sys.argv[2],str(sys.argv[3]),sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7])

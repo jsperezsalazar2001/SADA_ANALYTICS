@@ -4,6 +4,7 @@ Created on Wednesday Nov 11
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
+import json
 
 np.set_printoptions(precision=7)
 
@@ -55,9 +56,14 @@ def mix_matrix(a,b):
             matrix = np.insert(a, a.shape[1], b, axis=1)
             return a, b, matrix
         except:
-            print("Be careful about dimensions from matrix and the vector")
+            dic = {}
+            dic[0]="Error be careful about dimensions from matrix and the vector"
+            print(json.dumps(dic))
+            exit(1)
     except:
-        print("Doesn't possible transform matrix to numeric matrix take a look in the matrix's values")
+        dic = {}
+        dic[0]="Error doesn't possible transform matrix to numeric matrix take a look in the matrix's values"
+        print(json.dumps(dic))
         exit(1)
 
 """
@@ -180,7 +186,9 @@ def fromStringToFloatVector(stringVector):
         floatVector = np.array(stringVector, float)
         return floatVector
     except:
-        print("Be careful of values from x0 vector")
+        dic = {}
+        dic[0]="Error be careful of values from x0 vector"
+        print(json.dumps(dic))
         exit(1)
 
 def rebuild_vector(vector):

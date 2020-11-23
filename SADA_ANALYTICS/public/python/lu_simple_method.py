@@ -14,6 +14,8 @@ dic_u: matrix step dictionary U (float with decimals)
 @author: Daniel Felipe Gomez Martinez
 """
 import numpy as np
+import json
+
 np.set_printoptions(precision=7)
 
 def luSimpleMethod(matrix):
@@ -31,10 +33,15 @@ def luSimpleMethod(matrix):
         # pivot_number is the number in position [i][i] from the matrix
         pivot_number = auxiliary_matrix[0][0]
         if(pivot_number==0):
-            print("the pivot number "+ str(i) +" is cero so the matrix doesn't have a solution")
-            break
+            dic = {}
+            dic[0]="Error: The pivot number "+ str(i) +" is cero so the matrix doesn't have a solution"
+            print(json.dumps(dic))
+            exit(1)
         if (pivot_number==0 and i ==matrix.shape[0]-2):
-            print ("the last pivot number is cero so the matrix doesn't have a solution")
+            dic = {}
+            dic[0]="Error: The last pivot number is cero so the matrix doesn't have a solution"
+            print(json.dumps(dic))
+            exit(1)
 
         fj = auxiliary_matrix[0] # Fj
         # columvector is the column from the pivot number
