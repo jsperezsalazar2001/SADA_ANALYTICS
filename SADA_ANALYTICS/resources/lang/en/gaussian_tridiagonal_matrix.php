@@ -13,21 +13,23 @@ return [
     |
     */
 
-    'title' => 'Divided difference method',
+    'title' => 'Gaussian tridiagonal matrix method',
     'dimension' => 'Dimension',
     'create_arrays' => 'Create arrays',
     'solve' => 'Solve',
-    'x' => 'X',
-    'y' => 'Y',
+    'a' => 'A',
+    'b' => 'B',
+    'c' => 'C',
+    'd' => 'D',
+    'x_solution' => 'X solutions',
+    'step' => 'Step',
     'card_header' => 'Solution',
-    'v_matrix' => 'Divided difference matrix',
-    'vector_dimension' => 'Vector Dimension',
     'coef_polynomial' => 'Coefficients of the polynomial',
     'polynomial' => 'Polynomial',
     'help' => 'Help',
     'help_list' => [
         'dimension' => 'In the input dimension you choose the dimension n to the matrix nxn',
-        'example'=>'Vectors a, b and c in matrix 3x3',
+        'example'=>'Vectors a, b and c in matrix 4x4.',
         'fill' => 'Make sure all the fields in the array are filled.',
     ],
 ];

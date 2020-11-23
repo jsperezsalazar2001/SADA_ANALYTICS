@@ -10,8 +10,8 @@ class DividedDifferenceMethodController extends Controller
     public function dividedDifference(){
         $data = [];
         $data["solution"] = "false";
-        $data["title"] = "Divided Difference";
-        $data["message"] = "Divided Difference Method";
+        $data["title"] = __('divided_difference_method.title');
+        $data["message"] = __('divided_difference_method.title');
         return view('dividedDifferenceMethod')->with("data",$data);
     }
 
@@ -30,7 +30,7 @@ class DividedDifferenceMethodController extends Controller
         $command = 'python "'.public_path().'\python\divided_difference_method.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];
-        $data["title"] = "Divided Difference";
+        $data["title"] = __('divided_difference_method.title');
         #dd($output);
         if (substr($output[0],7,5) == "Error"){
             $data["solution"] = "false";
