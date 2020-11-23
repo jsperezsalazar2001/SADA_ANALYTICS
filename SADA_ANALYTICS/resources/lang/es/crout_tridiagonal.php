@@ -13,11 +13,18 @@ return [
     |
     */
 
-    'title' => 'Cuadratic spline',
-    'dimension' => "Dimension",
-    'create_arrays'  => "Create arrays",
-    'solve'  => "Solve",
-    'initial_data'  => "Initial Data",
-    'coefficients'  => "Coefficients",
-    'tracers'  => "Tracers",
+    'title' => 'Crout tridiagonal',
+    'dimension' => 'Dimensión',
+    'create_matrix' => 'Crear matriz',
+    'separator' => '------------------------------------------------------',
+    'label' => [
+        'matrix_a' => 'Matriz A',
+        'vector_b' => 'Vector B',
+        'x_solution' => 'Solución X',
+        'step' => 'Paso',
+        'method_type' => 'Tipo de método',
+    ],
+    'solve' => 'Solucionar',
+    'solution' => 'Solución',
+    'step' => 'Paso',
 ];

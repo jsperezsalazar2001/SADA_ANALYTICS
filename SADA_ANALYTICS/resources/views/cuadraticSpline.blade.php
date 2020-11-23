@@ -55,16 +55,16 @@
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>Dimension</label>
+                        <label>{{__('cuadratic_spline.dimension')}}</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Dimension" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create arrays</a> 
+                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{__('cuadratic_spline.create_arrays')}}</a> 
                     </div>
                     <div class="form-group col-md-12">
-                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
+                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{__('cuadratic_spline.solve')}}</button> 
                     </div>
                 </div>
                 <div id="matrix_a" class="text-align metodo"> \[ x = \] </div>
@@ -81,7 +81,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h2>Initial Data</h2>
+                    <h2>{{__('cuadratic_spline.initial_data')}}</h2>
                     <b>\[X = [
                     @foreach ($data["arrx"] as $x)
                         @if($loop->last)
@@ -104,7 +104,7 @@
                 <div class="card-body">
 
                 @if ($data["error"][0] == false)
-                    <h2>Coefficients</h2>
+                    <h2>{{__('cuadratic_spline.coefficients')}}</h2>
                     <table class="table table-hover">
                 <thead>
                     <tr>
@@ -125,7 +125,7 @@
                     @endfor
                 </tbody>
                 </table>
-                    <h1>Tracers</h1>
+                    <h2>{{__('cuadratic_spline.tracers')}}</h2>
                     @for($i = 0; $i < count($data["tracers"][0]); $i+=3)
                             \[ {{$i/3}}: ({{$data["tracers"][0][$i]}})x^2 + ({{$data["tracers"][0][$i+1]}})x \\ 
                             + ({{$data["tracers"][0][$i+2]}}) \\ \]

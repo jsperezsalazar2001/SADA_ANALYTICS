@@ -14,4 +14,17 @@ return [
     */
 
     'title' => 'Cholesky',
+    'dimension' => 'Dimension',
+    'create_matrix' => 'Create a matrix',
+    'separator' => '------------------------------------------------------',
+    'label' => [
+        'matrix_a' => 'Matrix A',
+        'vector_b' => 'Vector B',
+        'x_solution' => 'X solutions',
+        'step' => 'Step',
+        'method_type' => 'Method type',
+    ],
+    'solve' => 'Solve',
+    'solution' => 'Solution',
+    'step' => 'Step',
 ];

@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'title' => 'Cuadratic spline',
-    'dimension' => "Dimension",
-    'create_arrays'  => "Create arrays",
-    'solve'  => "Solve",
-    'initial_data'  => "Initial Data",
-    'coefficients'  => "Coefficients",
-    'tracers'  => "Tracers",
+    'title' => 'Spline cuadrático',
+    'dimension' => "Dimensión",
+    'create_arrays'  => "Crear arreglos",
+    'solve'  => "Solucionar",
+    'initial_data'  => "Datos iniciales",
+    'coefficients'  => "Coeficientes",
+    'tracers'  => "Trazadores",
 ];

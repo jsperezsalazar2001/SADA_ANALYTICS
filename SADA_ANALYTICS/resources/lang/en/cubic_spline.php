@@ -14,4 +14,10 @@ return [
     */
 
     'title' => 'Cubic spline',
+    'dimension' => "Dimension",
+    'create_arrays'  => "Create arrays",
+    'solve'  => "Solve",
+    'initial_data'  => "Initial Data",
+    'coefficients'  => "Coefficients",
+    'tracers'  => "Tracers",
 ];

@@ -55,22 +55,22 @@
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>Dimension</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Dimension" name="n" step="1" required />
+                        <label>{{__('neville.dimension')}}</label>
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{__('neville.dimension')}}" name="n" step="1" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>X to interpolate</label>
-                        <input type="number" id="x_inter" min="2" class="form-control" placeholder="X to interpolate" name="x_inter" step="any" required />
+                        <label>{{__('neville.x_to_interpolate')}}</label>
+                        <input type="number" id="x_inter" min="2" class="form-control" placeholder="{{__('neville.x_to_interpolate')}}" name="x_inter" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create arrays</a> 
+                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{__('neville.create_arrays')}}</a> 
                     </div>
                     <div class="form-group col-md-12">
-                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
+                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{__('neville.solve')}}</button> 
                     </div>
                 </div>
                 <div id="matrix_a" class="text-align metodo"> \[ x = \] </div>
@@ -87,7 +87,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h2>Initial Data</h2>
+                    <h2>{{__('neville.initial_data')}}</h2>
                     <b>\[X = [
                     @foreach ($data["arrx"] as $x)
                         @if($loop->last)
@@ -111,7 +111,7 @@
 
                 @if ($data["error"][0] == false)
                     <h2>Result</h2>
-                    \[  Interpolated \space y = {{$data["interpolated_y"][0]}} \\ \]
+                    \[  {{__('neville.interpolated')}} \space y = {{$data["interpolated_y"][0]}} \\ \]
                 @else
                     <p>Error: {{ $data["error"][0] }}</p> 
                 @endif
