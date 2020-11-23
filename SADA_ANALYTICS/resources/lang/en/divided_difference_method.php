@@ -21,6 +21,13 @@ return [
     'y' => 'Y',
     'card_header' => 'Solution',
     'v_matrix' => 'Divided difference matrix',
+    'vector_dimension' => 'Vector Dimension',
     'coef_polynomial' => 'Coefficients of the polynomial',
     'polynomial' => 'Polynomial',
+    'help' => 'Help',
+    'help_list' => [
+        'dimension' => 'In the input dimension you choose the dimension n to the matrix nxn',
+        'example'=>'Vectors a, b and c in matrix 3x3',
+        'fill' => 'Make sure all the fields in the array are filled.',
+    ],
 ];

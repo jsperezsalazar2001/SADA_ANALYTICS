@@ -30,22 +30,31 @@ def gaussianTridiagonalMatrixMethod(a, b, c, d):
     c = np.array(c, dtype=float)
     d = np.array(d, dtype=float)
 
-    n = len(d)  # número de filas
-    matrix = np.zeros((n,n))
-    matrix[0][0] = b[0]
-    for i in range(n-1):
-        m = a[i]/b[i]
-        matrix[i+1][i+1] = b[i+1] = b[i+1] - (m*c[i])
-        matrix[i][i+1] = c[i]
-        d[i+1] = d[i+1] - (m*d[i])
-        dic[i]=np.array(matrix)
+    validate = False
+    for i in b:
+        if (i==0):
+            validate = True
+            break
 
-    d = np.array(d)
-    dic[n-1] = np.array(matrix)
-    dic = matrix_function.rebuild_matrix(dic)
-    x = matrix_function.soltion(matrix, d)
-    
-    dic["x"]=x.tolist()
+    if (validate):
+        dic[0]="Error: There are points equals to zero in vector b"
+    else:
+        n = len(d)  # número de filas
+        matrix = np.zeros((n,n))
+        matrix[0][0] = b[0]
+        for i in range(n-1):
+            m = a[i]/b[i]
+            matrix[i+1][i+1] = b[i+1] = b[i+1] - (m*c[i])
+            matrix[i][i+1] = c[i]
+            d[i+1] = d[i+1] - (m*d[i])
+            dic[i]=np.array(matrix)
+
+        d = np.array(d)
+        dic[n-1] = np.array(matrix)
+        dic = matrix_function.rebuild_matrix(dic)
+        x = matrix_function.soltion(matrix, d)
+        
+        dic["x"]=x.tolist()
     print(json.dumps(dic))
     
 """a = [-1,-1]

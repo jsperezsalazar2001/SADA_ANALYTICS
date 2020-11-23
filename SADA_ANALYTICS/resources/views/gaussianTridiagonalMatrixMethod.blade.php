@@ -91,22 +91,40 @@
 <div class="container col-10" align="center">
     @include('layouts.message')
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-6">
+            <p>
+                <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('gaussian_tridiagonal_matrix.help') }}</a>
+            </p>
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    <strong>{{ __('gaussian_tridiagonal_matrix.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    b_{1} & c_{1} & 0 & 0 \\
+                    a_{1} & b_{2} & c_{2} & 0 \\
+                    0 & a_{2} & b_{3} & c_{3} \\
+                    0 & 0 & a_{3} & b_{4}
+                    \end{bmatrix}$$
+                    <li>{{ __('gaussian_tridiagonal_matrix.help_list.dimension') }}</li>
+                    <li>{{ __('gaussian_tridiagonal_matrix.help_list.fill') }}</li>
+                </div>
+            </div>
+            <br>
             <form method="POST" action="{{route('gaussian_tridiagonal_matrix_method')}}" class="form">
                 @csrf
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-12">
                         <label>{{ __('gaussian_tridiagonal_matrix.dimension') }}</label>
                         <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-3"></div>
-                    <div class="form-group col-3">
+                    <div class="form-group col-12">
                         <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">{{ __('gaussian_tridiagonal_matrix.create_arrays') }}</a> 
                     </div>
-                    <div class="form-group col-3">
+                    <div class="form-group col-12">
                         <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('gaussian_tridiagonal_matrix.solve') }}</button> 
                     </div>
                 </div>
@@ -146,10 +164,9 @@
                 <div class="card-body" align="center">
                     <div class="row justify-content-center">
                         <div class="col-6">
-                            <b><em>{{ __('gaussian_tridiagonal_matrix.v_matrix') }}</em></b>
                             <br>
                             @for ($i = 0; $i < count($data["table"])-1; $i++)
-                                <b><em>Step {{$i}}</em></b>
+                                <b><em>{{ __('gaussian_tridiagonal_matrix.step') }} {{$i}}</em></b>
                                 $$A = \begin{pmatrix}
                                 @for ($j = 0; $j < count($data["table"][$i]); $j++)
                                     
@@ -164,7 +181,7 @@
                                 @endfor
                                 \end{pmatrix}$$
                             @endfor
-                            
+                            <br>
                             $$X = \begin{bmatrix}
                             @foreach ($data["table"]["x"] as $solution)
                                 @if($loop->last)
