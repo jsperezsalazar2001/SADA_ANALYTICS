@@ -34,3 +34,4 @@ RUN python3.6 -m pip install pip --upgrade
 RUN python3.6 -m pip install wheel
 RUN python3.6 -m pip install numpy
 RUN python3.6 -m pip install simpy
+RUN service apache2 restart
