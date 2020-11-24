@@ -22,4 +22,7 @@ return [
     'library' => 'Plot library: ',
     'x_value_label' => 'Enter the x value: ',
     'x_value' => 'Enter a x_value: ',
+    'help' => 'Help',
+    'help1' => 'If the function provided can not be parsed, check if is defined in the available functions and operators of Mathjs',
+
 ];

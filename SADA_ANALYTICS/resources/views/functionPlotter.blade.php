@@ -64,6 +64,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        <div class="d-flex justify-content-center"><h2>{{$data["title"]}}</h2></div>
+        
             <div class="card">
                 <div class="card-header">
                 {{ __('function_plotter.plotter_title') }}
@@ -76,11 +78,20 @@
                                 <input type="submit" value="{{ __('function_plotter.graph') }}" class="btn btn-outline-success">
                             </div>
                         </form>
-                        <div id="plot"></div>
+                        <div id="plot" class="d-flex justify-content-center"></div>
                         <div id="plot-error">
 
                         </div>
                         <p>{{ __('function_plotter.library') }} <a href="https://github.com/maurizzzio/function-plot">https://github.com/maurizzzio/function-plot</a></p>
+                        <p>
+                            <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('function_plotter.help') }}</a>
+                        </p>
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                            <div class="card card-body">
+                                <li>{{ __('function_plotter.help1') }}</li>
+                                <li><a href="https://mathjs.org/docs/expressions/syntax.html#operators">MathJs operators</a></li>
+                            </div>
+                        </div>
                 </div>
             </div>
             <div class="card">
@@ -101,9 +112,16 @@
                             </div>
                         </form>
                         <hr>
-                        <div id="evaluate"></div>
-                        <div id="eval-error">
-                           
+                        <div id="evaluate" class="d-flex justify-content-center"></div>
+                        <div id="eval-error"></div>
+                        <p>
+                            <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('function_plotter.help') }}</a>
+                        </p>
+                        <div class="collapse multi-collapse" id="multiCollapseExample2">
+                            <div class="card card-body">
+                                <li>{{ __('function_plotter.help1') }}</li>
+                                <li><a href="https://mathjs.org/docs/expressions/syntax.html#operators">MathJs operators</a></li>
+                            </div>
                         </div>
                 </div>
             </div>
