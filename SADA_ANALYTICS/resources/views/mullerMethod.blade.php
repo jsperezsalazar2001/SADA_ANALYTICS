@@ -26,21 +26,21 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>\[x0\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_0') }}" name="x_0" step="any" required />
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_0') }}" name="x_0" step="any" value="{{ empty($data['x_0']) ? '' : $data['x_0'] }}" required />
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[x1\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_1') }}" name="x_1" step="any" min="0" required />
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_1') }}" name="x_1" step="any" min="0" required value="{{ empty($data['x_1']) ? '' : $data['x_1'] }}"/>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[x2\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_2') }}" name="x_2" step="any" min="0"/>
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_2') }}" name="x_2" step="any" min="0" value="{{ empty($data['x_2']) ? '' : $data['x_2'] }}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>\[n\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.iterations') }}" name="iterations" min="1" required />
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.iterations') }}" name="iterations" min="1" required value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}" />
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[f(x)\]</label>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[T\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.tolerance') }}" name="tolerance" required step="any"/>
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.tolerance') }}" name="tolerance" required step="any" value="{{ empty($data['tolerance']) ? '' : $data['tolerance'] }}"/>
                             </div>
                         </div>
                         <div class="form-row">
@@ -65,29 +65,29 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>\[x0\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_0') }}" name="x_0" step="any" required />
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_0') }}" name="x_0" step="any" value="{{ empty($data['x_0']) ? '' : $data['x_0'] }}" required />
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[x1\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_1') }}" name="x_1" step="any" min="0" required />
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_1') }}" name="x_1" step="any" min="0" value="{{ empty($data['x_1']) ? '' : $data['x_1'] }}" required />
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[x2\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_2') }}" name="x_2" step="any" min="0"/>
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.x_2') }}" name="x_2" step="any" min="0" value="{{ empty($data['x_2']) ? '' : $data['x_2'] }}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>\[n\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.iterations') }}" name="iterations" min="1" required />
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.iterations') }}" name="iterations" min="1" value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}" required />
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[f(x)\]</label>
-                                <input type="text" class="form-control" placeholder="{{ __('muller.input.function') }}" name="function" required />
+                                <input type="text" class="form-control" placeholder="{{ __('muller.input.function') }}" name="function" required value="{{ empty($data['function']) ? '' : $data['function'] }}" />
                             </div>
                             <div class="form-group col-md-4">
                                 <label>\[T\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('muller.input.tolerance') }}" name="tolerance" required step="any"/>
+                                <input type="number" class="form-control" placeholder="{{ __('muller.input.tolerance') }}" name="tolerance" required step="any" value="{{ empty($data['tolerance']) ? '' : $data['tolerance'] }}"/>
                             </div>
                         </div>
                         <div class="form-row">
@@ -100,7 +100,9 @@
         </div>
          @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
             <div class="col-md-6" style="float: right;">
-                <h3>Functions Saved</h3> 
+                @if (count($data["mem"][0]) > 1)
+                    <h3>Functions Saved</h3>
+                @endif 
                 @for($j = 1; $j < count($data["mem"][0]); $j++)
                     <a class="btn btn-outline-primary" href="{{ route('storage_muller',['storage'=> $j,'method' => 0]) }}">Use Storage {{$j}}</a><br> 
                     \[{{$data["mem"][0][$j][0]}}\]

@@ -107,7 +107,9 @@
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 0)
             <div class="col-md-6" style="float: right;">
-                <h3>Array Saved</h3> 
+                @if (count($data["mem"][2]) > 1)
+                    <h3>Array Saved</h3>
+                @endif  
                 @for($j = 1; $j < count($data["mem"][2]); $j++)
                     <a class="btn btn-outline-primary" href="{{ route('storage_linealSpline',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a>
                     $$x = \begin{pmatrix}

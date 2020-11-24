@@ -74,6 +74,12 @@ Route::POST('/croutTridiagonalMethod','CroutTridiagonalController@croutTridiagon
 Route::GET('/cuadraticSpline','CuadraticSplineController@cuadraticSpline')->name("cuadraticSpline");
 Route::POST('/cuadraticSpline','CuadraticSplineController@cuadraticSplineMethod')->name("cuadratic_spline_method");
 
+Route::GET('/cubicSpline','CubicSplineController@cubicSpline')->name("cubicSpline");
+Route::POST('/cubicSpline','CubicSplineController@cubicSplineMethod')->name("cubic_spline_method");
+
+Route::GET('/neville','NevilleController@neville')->name("neville");
+Route::POST('/nevilleMethod','NevilleController@nevilleMethod')->name("neville_method");
+
 Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");
 Route::get('/storageLagrange/{storage}/{method}', 'LagrangeController@storage')->name("storage_lagrange");
 Route::get('/storageLinealSpline/{storage}/{method}', 'LinealSplineController@storage')->name("storage_linealSpline");
