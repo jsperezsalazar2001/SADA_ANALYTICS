@@ -68,7 +68,7 @@ def secant(f_function, x0, x1, tolerance, iterations):
                 previous_x = current_x
             if error <= tolerance:
                 iter_count += 1
-                #results.append("Se encontró una aproximación de la raiz en {}".format(current_x))
+                error_dict["aprox"] = current_x
             else:
                 iter_count += 1
                 #results.append("No se encontró una aproximación de la raiz. Último valor de x: {}".format(current_x))

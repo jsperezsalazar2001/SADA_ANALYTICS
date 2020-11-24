@@ -28,6 +28,11 @@ class SteffensenController extends Controller
         $data["title"] = __('steffensen.title');
         $error = json_decode($output[0],true);
         //dd($error["error"]);
+        if (array_key_exists('aprox', $error)) {
+            $data["aprox"] = $error["aprox"];
+        }else{
+            $data["aprox"] = false;
+        }
         if ($error["error"] == "true"){
             $data["message"] = "Error while processing the results";
         }else{
