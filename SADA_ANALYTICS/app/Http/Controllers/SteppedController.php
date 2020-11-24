@@ -52,7 +52,7 @@ class SteppedController extends Controller
 
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
-        $command = 'python "'.public_path().'\python\stepped.py" '." ".$data_a." ". $data_b;
+        $command = 'python3 "'.public_path().'/python/stepped.py" '." ".$data_a." ". $data_b;
         exec($command, $output);
         $data["title"] = "Stepped Partial Pivot";
         if (substr($output[0],7,5) == "Error"){

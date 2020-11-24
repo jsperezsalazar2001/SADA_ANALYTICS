@@ -11,10 +11,12 @@ class HermiteController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = "Hermite";
+        // inicia copiar
         $mem = session()->get("mem");
         $data["mem"] = $mem;
         $data["checkMem"] = "true";
         $data["storage"] = "false";
+        // Termina Copiar
         return view('hermiteMethod')->with("data",$data);
     }
 
@@ -23,13 +25,15 @@ class HermiteController extends Controller
         $Arry = [];
         $Arrz = [];
         $dimension = $request->input("n");
-        $save = $request->input("save");
+        $save = $request->input("save"); // Copiar
 
         for ($i=0; $i < $dimension; $i++) { 
             array_push($Arrx, $request->input("x".$i));
             array_push($Arry, $request->input("y".$i));
             array_push($Arrz, $request->input("z".$i));
         }
+
+        // Inicia copiar
         $mem = session()->get("mem");
         $indexMem = $mem[2][0];
         $mem[2][0] = $mem[2][0]+1;
@@ -44,17 +48,23 @@ class HermiteController extends Controller
             $mem[2][$indexMem] = $auxMem;
             session()->put("mem",$mem);
         }
+
+        // Termina copiar
         $auxArrz = $Arrz;
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
         $Arrz = json_encode($Arrz);
-        $command = 'python "'.public_path().'\python\hermite.py" '." ".$data. " ".$Arrz. " ".$dimension;
+        $command = 'python3 "'.public_path().'/python/hermite.py" '." ".$data. " ".$Arrz. " ".$dimension;
         exec($command, $output);
         $data = [];
+
+        //Inicia copiar
         $mem = session()->get("mem");
         $data["mem"] = $mem;
         $data["checkMem"] = "true";
         $data["storage"] = "false";
+
+        // Termina copiar
         $data["title"] = "Hermite";
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
@@ -83,16 +93,17 @@ class HermiteController extends Controller
         return view('hermiteMethod')->with("data",$data);
     }
 
+    // Copiar metodo
     public function storage($storage,$method){
         $data = [];
         $data["checkMem"] = "true";
-        $data["title"] = "Hermite";
+        $data["title"] = "Hermite"; // Cambiar el titulo
         $data["check"] = "false";
         $mem = session()->get("mem");
         $data["mem"] = $mem;
         $information = $data["mem"][$method][$storage];
         $data["information"] = $information;
         $data["storage"] = "true";
-        return view('hermiteMethod')->with("data",$data);
+        return view('hermiteMethod')->with("data",$data); // Cambiar la ruta. Primera ventana del metodo
     }
 }
