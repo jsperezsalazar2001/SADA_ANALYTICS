@@ -39,9 +39,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('function_plotter') }}">{{ __('function_plotter.title') }}</a>
-                        </li>
+                        <a class="navbar-brand" href="{{ route('function_plotter') }}">{{ __('function_plotter.title') }}</a>
+                    </ul>
+                    <ul class="navbar-nav mr-auto">
                         <div class="dropdown show">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ __('master.root_methods') }}
