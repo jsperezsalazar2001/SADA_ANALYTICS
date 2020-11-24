@@ -26,6 +26,7 @@ return [
     'card_header' => 'Solution',
     'coef_polynomial' => 'Coefficients of the polynomial',
     'polynomial' => 'Polynomial',
+    'matrix_dimension'=> 'Matrix dimension',
     'help' => 'Help',
     'help_list' => [
         'dimension' => 'In the input dimension you choose the dimension n to the matrix nxn',

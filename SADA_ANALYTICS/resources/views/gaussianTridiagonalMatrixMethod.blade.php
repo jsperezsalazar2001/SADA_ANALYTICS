@@ -116,7 +116,7 @@
                     <div class="col-3"></div>
                     <div class="form-group col-12">
                         <label>{{ __('gaussian_tridiagonal_matrix.dimension') }}</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                        <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('gaussian_tridiagonal_matrix.matrix_dimension') }}" name="n" step="any" required />
                     </div>
                 </div>
                 <div class="form-row">
