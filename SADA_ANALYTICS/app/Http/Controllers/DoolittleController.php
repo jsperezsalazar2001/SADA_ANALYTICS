@@ -52,7 +52,7 @@ class DoolittleController extends Controller
         $data["mem"] = $mem;
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
-        $command = 'python "'.public_path().'\python\doolittle.py" '." ".$data_a." ". $data_b. " {$dimension}";
+        $command = 'python3 "'.public_path().'/python/doolittle.py" '." ".$data_a." ". $data_b. " {$dimension}";
         exec($command, $output);
         $data["title"] = "Doolittle";
         if (substr($output[0],7,5) == "Error"){

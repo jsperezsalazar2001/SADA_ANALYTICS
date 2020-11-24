@@ -44,7 +44,7 @@ class AitkenController extends Controller
         }
         // Fin copiar
         //dd($function);
-        $comando = 'python "'.public_path().'\python\aitken.py" '."{$x_0} {$x_1} {$tolerance} {$function} {$iterations}";
+        $comando = 'python3 "'.public_path().'/python/aitken.py" '."{$x_0} {$x_1} {$tolerance} {$function} {$iterations}";
         exec($comando, $output);
         //dd($output);
         $data = [];

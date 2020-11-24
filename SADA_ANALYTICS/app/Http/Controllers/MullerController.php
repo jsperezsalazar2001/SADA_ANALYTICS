@@ -46,7 +46,7 @@ class MullerController extends Controller
             session()->put("mem",$mem);
         }
 
-        $comando = 'python "'.public_path().'\python\muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
+        $comando = 'python3 "'.public_path().'/python/muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
         exec($comando, $output);
         $data = [];
         $mem = session()->get("mem");
