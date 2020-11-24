@@ -43,6 +43,8 @@ def bisection(f, a, b, tolerance, n_max):
         f_a = sm.sympify(f).subs(x_in, a)
         f_b = sm.sympify(f).subs(x_in, b)
         
+        if a == b:
+            raise Exception("Error a Has to be different to b")
         if tolerance <= 0:
             raise Exception("Tolerance must be positive.")
         elif f_a * f_b >= 0:
@@ -52,7 +54,7 @@ def bisection(f, a, b, tolerance, n_max):
             f_mp = sm.sympify(f).subs(x_in, mp)
             E = float("inf")
             iter_count = 1
-            results[iter_count] = [int(iter_count), float(a), float(mp), float(b), float(f_mp), "N/A"]
+            results[iter_count] = [int(iter_count), round(float(a),7), round(float(mp),7), round(float(b),7), round(float(f_mp),7), "N/A"]
             
             while E > tolerance and iter_count < n_max:
                 iter_count = iter_count + 1
@@ -65,7 +67,7 @@ def bisection(f, a, b, tolerance, n_max):
                 mp = (a + b)/2
                 f_mp = sm.sympify(f).subs(x_in, mp)
                 E = abs(mp - p_0)
-                results[iter_count] = [int(iter_count), float(a), float(mp), float(b), float(f_mp), float(E)]
+                results[iter_count] = [int(iter_count), round(float(a),7), round(float(mp),7), round(float(b),7), round(float(f_mp),7), round(float(E),7)]
         else:
             raise Exception("Iterations number must be greater than 0.")
     except BaseException as e:

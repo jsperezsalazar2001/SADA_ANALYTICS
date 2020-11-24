@@ -29,9 +29,11 @@ Route::POST('/aitkenMethod','AitkenController@aitkenMethod')->name("aitken_metho
 
 Route::GET('/bisection','BisectionController@bisection')->name("bisection");
 Route::POST('/bisectionMethod','BisectionController@bisectionMethod')->name("bisection_method");
+Route::get('/storageBisection/{storage}/{method}', 'BisectionController@storage')->name("storage_bisection");
 
 Route::GET('/falsePosition','FalsePositionController@falsePosition')->name("false_position");
 Route::POST('/falsePositionMethod','FalsePositionController@falsePositionMethod')->name("false_position_method");
+Route::get('/storageFalsePosition/{storage}/{method}', 'FalsePositionController@storage')->name("storage_false_position");
 
 Route::GET('/newton','NewtonController@newton')->name("newton");
 Route::POST('/newtonMethod','NewtonController@newtonMethod')->name("newton_method");
