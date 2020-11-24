@@ -39,10 +39,12 @@ class IterativeMethodJGBController extends Controller
         $data_x = json_encode($data_x);
 
         if ($method_type != "SOR") {
-            $command = 'python "'.public_path().'\python\iterative_methodJ_GB.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}";
+            //$command = 'python "'.public_path().'\python\iterative_methodJ_GB.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}";
+            $command = 'python3 "'.public_path().'/python/iterative_methodJ_GB.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}";
         }else{
             $w = $request->input("w");
-            $command = 'python "'.public_path().'\python\iterative_method_S.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}"." "."{$w}";
+            //$command = 'python "'.public_path().'\python\iterative_method_S.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}"." "."{$w}";
+            $command = 'python3 "'.public_path().'/python/iterative_method_S.py" '." ".$data_a." ". $data_b." "."{$method_type}"." ". $data_x." "."{$tolerance}"." "."{$iteration}"." "."{$w}";
         }
         
         exec($command, $output);

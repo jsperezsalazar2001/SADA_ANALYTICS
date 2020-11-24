@@ -30,7 +30,8 @@ class MultipleRootsController extends Controller
         $data['initial_x'] = $initial_x;
         $data['tolerance'] = $tolerance;
         $data['iterations'] = $iterations;
-        $command = 'python "'.public_path().'\python\multiple_roots.py" '."{$f_function} {$df_function} {$d2f_function} {$initial_x} {$tolerance} {$iterations}";
+        //$command = 'python "'.public_path().'\python\multiple_roots.py" '."{$f_function} {$df_function} {$d2f_function} {$initial_x} {$tolerance} {$iterations}";
+        $command = 'python3 "'.public_path().'/python/multiple_roots.py" '."{$f_function} {$df_function} {$d2f_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
         $data["title"] = __('multiple_roots.title');
         if (!(strpos($output[0], "Error") === false)){

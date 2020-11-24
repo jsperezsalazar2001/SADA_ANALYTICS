@@ -25,7 +25,8 @@ class SecantController extends Controller
         $data['x2'] = $x2;
         $data['tolerance'] = $tolerance;
         $data['iterations'] = $iterations;
-        $command = 'python "'.public_path().'\python\secant.py" '."{$f_function} {$x1} {$x2} {$tolerance} {$iterations}";
+        //$command = 'python "'.public_path().'\python\secant.py" '."{$f_function} {$x1} {$x2} {$tolerance} {$iterations}";
+        $command = 'python3 "'.public_path().'/python/secant.py" '."{$f_function} {$x1} {$x2} {$tolerance} {$iterations}";
         exec($command, $output);
         $data["title"] = __('secant.title');
         if (!(strpos($output[0], "Error") === false)){
