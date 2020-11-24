@@ -8,12 +8,15 @@ Route::GET('/','FunctionPlotterController@grapher')->name("home");
 
 Route::GET('/fixedPoint','FixedPointController@fixedPoint')->name("fixed_point");
 Route::POST('/fixedPointMethod','FixedPointController@fixedPointMethod')->name("fixed_point_method");
+Route::get('/storageFixedPoint/{storage}/{method}', 'FixedPointController@storage')->name("storage_fixed_point");
 
 Route::GET('/secant','SecantController@secant')->name("secant");
 Route::POST('/secantMethod','SecantController@secantMethod')->name("secant_method");
+Route::get('/storageSecant/{storage}/{method}', 'SecantController@storage')->name("storage_secant");
 
 Route::GET('/steffensen','SteffensenController@steffensen')->name("steffensen");
 Route::POST('/steffensenMethod','SteffensenController@steffensenMethod')->name("steffensen_method");
+Route::get('/storageSteffensen/{storage}/{method}', 'SteffensenController@storage')->name("storage_steffensen");
 
 Route::GET('/incremental','IncrementalSearchController@incrementalSearch')->name("incremental_search");
 Route::POST('/incrementalMethod','IncrementalSearchController@incrementalSearchMethod')->name("incremental_search_method");
