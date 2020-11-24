@@ -28,7 +28,7 @@ return [
     'help' => 'Help',
     'help_list' => [
         'dimension' => 'In the input dimension you choose the dimension n to vectors X and Y',
-        'example'=>'Each x have only one y and those ones are a point (x,y) so do not repeat points x in the vector X',
+        'example'=>'Each X coordinate must have only one f(x) assigned. Do not repeat values in the X array.',
         'fill' => 'Make sure all the fields in the array are filled.',
     ],
 ];

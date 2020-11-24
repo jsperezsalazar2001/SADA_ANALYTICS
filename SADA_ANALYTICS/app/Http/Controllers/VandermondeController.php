@@ -29,13 +29,15 @@ class VandermondeController extends Controller
 
         #$command = 'python3 "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
         #$command = escapeshellcmd('python3 -V');
-        $command = 'python3 "'.public_path().'/python/vandermonde.py" '." ".$Arrx." ".$Arry;
+        
         #$output = explode("\n", substr_replace(shell_exec($command),"",-2));
-        exec($command, $output);
         #$command = 'python3 "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
         #exec($command, $output);
-        $data = [];
         #dd($command, $output, $output2);
+        
+        $command = 'python3 "'.public_path().'/python/vandermonde.py" '." ".$Arrx." ".$Arry;
+        exec($command, $output);
+        $data = [];
         $data["title"] = __('vandermonde_method.title');
         if (substr($output[0],7,5) == "Error"){
             $data["solution"] = "false";
