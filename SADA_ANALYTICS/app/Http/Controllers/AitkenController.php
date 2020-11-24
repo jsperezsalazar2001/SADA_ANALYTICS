@@ -9,12 +9,10 @@ class AitkenController extends Controller
 {
     public function aitken(){
         $data = [];
-        // inicia copiar
         $mem = session()->get("mem");
         $data["mem"] = $mem;
         $data["checkMem"] = "true";
         $data["storage"] = "false";
-        // Fin copiar
         $data["check"] = "false";
         $data["title"] = __('aitken.title');
         return view('aitkenMethod')->with("data",$data);
@@ -23,13 +21,11 @@ class AitkenController extends Controller
     public function aitkenMethod(Request $request){
         $x_0 = $request->input('x_0');
         $x_1 = $request->input('x_1');
-        $save = $request->input("save"); // No olviden el save
+        $save = $request->input("save");
         $iterations = $request->input('iterations');
         $originalfunction = $request->input('function');
         $function = '"'.$originalfunction.'"';
         $tolerance = $request->input('tolerance');
-
-        // Inicia copiar
         $mem = session()->get("mem");
         $indexMem = $mem[0][0];
         $mem[0][0] = $mem[0][0]+1;
@@ -42,22 +38,14 @@ class AitkenController extends Controller
             $mem[0][$indexMem] = $auxMem;
             session()->put("mem",$mem);
         }
-        // Fin copiar
-        //dd($function);
         //$comando = 'python "'.public_path().'\python\aitken.py" '."{$x_0} {$x_1} {$tolerance} {$function} {$iterations}";
         $comando = 'python3 "'.public_path().'/python/aitken.py" '."{$x_0} {$x_1} {$tolerance} {$function} {$iterations}";
         exec($comando, $output);
-        //dd($output);
         $data = [];
-
-        // Inicia copiar
         $mem = session()->get("mem");
         $data["mem"] = $mem;
         $data["checkMem"] = "true";
         $data["storage"] = "false";
-
-        // Fin copiar
-
         $data["title"] = __('aitken.title');
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
@@ -71,12 +59,10 @@ class AitkenController extends Controller
             $data["iterations"] = $iterations;
             $data["function"] = $originalfunction;
             $data["tolerance"] = $tolerance;
-            $data["message"] = __('aitken.succesful');
         }
         return view('aitkenMethod')->with("data",$data);
     }
 
-    // copiar todo el metodo (lo acomodan a su disposicion)
     public function storage($storage,$method){
         $data = [];
         $data["checkMem"] = "true";

@@ -20,40 +20,45 @@
             while (container_vector_2.hasChildNodes()) {
                 container_vector_2.removeChild(container_vector_2.lastChild);
             }
-            if (number>1) {
-                for (i=0;i<number;i++) {
-                    container_matrix.appendChild(document.createTextNode(""));
-                    var input = document.createElement("input");
-                    input.type = "number";
-                    input.name = "x" + i;
-                    input.style = "width : 110px;";
-                    input.step = "any";
-                    input.required = true;
-                    container_matrix.appendChild(input);
-                    container_vector.appendChild(document.createTextNode(""));
-                    var vector = document.createElement("input");
-                    vector.type = "number";
-                    vector.name = "y" + i ;
-                    vector.style = "width : 110px;";
-                    vector.step = "any";
-                    vector.required = true;
-                    container_vector.appendChild(vector);
-
-                    container_vector_2.appendChild(document.createTextNode(""));
-                    var vector_2 = document.createElement("input");
-                    vector_2.type = "number";
-                    vector_2.name = "z" + i ;
-                    vector_2.style = "width : 110px;";
-                    vector_2.step = "any";
-                    vector_2.required = true;
-                    container_vector_2.appendChild(vector_2);
-                }
-                document.getElementById("matrix_a").style.display = 'block';
-                document.getElementById("vector_b").style.display = 'block'; 
-                document.getElementById("vector_c").style.display = 'block'; 
-                document.getElementById("solve").style.display = 'block';
-                document.getElementById("save").style.display = 'block'; // mostrar save
+            if (number > 10){
+                number = 10;
             }
+            if (number <= 1){
+                number = 2;
+            }
+            for (i=0;i<number;i++) {
+                container_matrix.appendChild(document.createTextNode(""));
+                var input = document.createElement("input");
+                input.type = "number";
+                input.name = "x" + i;
+                input.style = "width : 110px;";
+                input.step = "any";
+                input.required = true;
+                container_matrix.appendChild(input);
+                container_vector.appendChild(document.createTextNode(""));
+                var vector = document.createElement("input");
+                vector.type = "number";
+                vector.name = "y" + i ;
+                vector.style = "width : 110px;";
+                vector.step = "any";
+                vector.required = true;
+                container_vector.appendChild(vector);
+
+                container_vector_2.appendChild(document.createTextNode(""));
+                var vector_2 = document.createElement("input");
+                vector_2.type = "number";
+                vector_2.name = "z" + i ;
+                vector_2.style = "width : 110px;";
+                vector_2.step = "any";
+                vector_2.required = true;
+                container_vector_2.appendChild(vector_2);
+            }
+            document.getElementById("matrix_a").style.display = 'block';
+            document.getElementById("vector_b").style.display = 'block'; 
+            document.getElementById("vector_c").style.display = 'block'; 
+            document.getElementById("solve").style.display = 'block';
+            document.getElementById("save").style.display = 'block'; 
+            
         }
     </script>
 </head>
@@ -68,6 +73,7 @@
             <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="card card-body">
                     <li>The X coordinates array must not have repeating values.</li>
+                    <li>The array dimension must not be less than 2 and must not be greater than 10.</li>
                 </div>
             </div><br>
             <form method="POST" action="{{route('hermite_method')}}" class="form">
@@ -79,20 +85,20 @@
                         @for($i = 0; $i < count($data["information"][0]); $i++)
                             <input type="number" step="any" name="x{{$i}}" style="width: 110px" placeholder="{{$data['information'][0][$i]}}" value="{{$data['information'][0][$i]}}"> 
                         @endfor <br><br>
-                        \[F(x) = \]<br>
+                        \[f(x) = \]<br>
                         @for($i = 0; $i < count($data["information"][1]); $i++)
                             <input type="number" step="any" name="y{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
-                        \[F'(x) = \]<br>
+                        \[f'(x) = \]<br>
                         @for($i = 0; $i < $data['information'][2]; $i++)
-                            <input type="number" step="any" name="z{{$i}}" style="width: 110px"> 
+                            <input type="number" step="any" name="z{{$i}}" style="width: 110px" required> 
                         @endfor <br><br>
                         <div class="form-group col-md-12">
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="{{$data['information'][2]}}" value="{{$data['information'][2]}}" name="n" step="any" required hidden="true" />
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Array</label>
+                            <label class="custom-control-label" for="customControlInline">Save arrays after calculating</label>
                         </div><br><br>
                         <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('hermite') }}">Try with another arrays</a>
@@ -100,8 +106,8 @@
                 @else <!-- Termina copiar -->
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>Dimension</label>
-                            <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                            <label>\[ Dimension \]</label>
+                            <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" max="10" required />
                         </div>
                     </div>
                     <div class="form-row">
@@ -111,7 +117,7 @@
                         <!-- No olvidar el checkbox para guardar -->
                         <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Array</label>
+                            <label class="custom-control-label" for="customControlInline">Save arrays after calculating</label>
                         </div><br><br> <!-- fin checkbox -->
                         <div class="form-group col-md-12">
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
@@ -121,10 +127,10 @@
                     <div id="matrix" class="text-align"> </div><br>
                     
 
-                    <div id="vector_b" class="text-align metodo"> \[F(x) = \] </div><br>
+                    <div id="vector_b" class="text-align metodo"> \[y = \] </div><br>
                     <div id="vector" class="text-align"> </div><br>
 
-                    <div id="vector_c" class="text-align metodo"> \[F'(x) = \] </div><br>
+                    <div id="vector_c" class="text-align metodo"> \[y') = \] </div><br>
                     <div id="vector_2" class="text-align"> </div><br>
                 @endif <!-- No olvidar el endif -->
             </form>
@@ -134,11 +140,11 @@
         @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 0)
             <div class="col-md-6" style="float: right;">
                 @if (count($data["mem"][2]) > 1)
-                    <h3>Array Saved</h3>
+                    <h4>Array Saved</h4>
                 @endif 
                 @for($j = 1; $j < count($data["mem"][2]); $j++)
-                    <a class="btn btn-outline-primary" href="{{ route('storage_hermite',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> <br><br>
-                    $$x = \begin{pmatrix}
+                    <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_hermite',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> <br><br>
+                    $$x = \begin{bmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][0])-1)
@@ -147,8 +153,8 @@
                             {{$data["mem"][2][$j][0][$z]}}
                         @endif
                     @endfor
-                    \end{pmatrix}$$ 
-                    $$x = \begin{pmatrix}
+                    \end{bmatrix}$$ 
+                    $$y = \begin{bmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][1])-1)
@@ -157,7 +163,7 @@
                             {{$data["mem"][2][$j][1][$z]}}
                         @endif
                     @endfor
-                    \end{pmatrix}$$ <br>
+                    \end{bmatrix}$$ <br>
                 @endfor
             </div>
         @endif
@@ -166,8 +172,8 @@
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">
-                <h1>Initial Data</h1>
-                <b>$$x = \begin{pmatrix}
+                <h2>Initial Data</h2>
+                <b>$$x = \begin{bmatrix}
                 @foreach ($data["arrx"] as $x)
                     @if($loop->last)
                         {{$x}}
@@ -175,8 +181,8 @@
                         {{$x}} & 
                     @endif
                 @endforeach
-                \end{pmatrix}$$ 
-                $$f(x) = \begin{pmatrix}
+                \end{bmatrix}$$ 
+                $$y = \begin{bmatrix}
                 @foreach ($data["arry"] as $y)
                     @if($loop->last)
                         {{$y}}
@@ -184,8 +190,8 @@
                         {{$y}} & 
                     @endif
                 @endforeach
-                \end{pmatrix}$$ 
-                $$f'(x) = \begin{pmatrix}
+                \end{bmatrix}$$ 
+                $$y' = \begin{bmatrix}
                 @foreach ($data["arrz"] as $z)
                     @if($loop->last)
                         {{$z}}
@@ -193,17 +199,17 @@
                         {{$z}} & 
                     @endif
                 @endforeach
-                \end{pmatrix}$$</b> <br>
+                \end{bmatrix}$$</b> <br>
             </div>
             <div class="card-body">
-                <h1>Hermite Coefficient</h1>
+                <h2>Hermite Coefficient</h2>
                 @for ($i = 0; $i < $data["dimension"]; $i++)
                     \[ h{{$i}} = {{ $data["coefficient"][$i] }}\]
                 @endfor
                 @for ($i = $data["dimension"]; $i < count($data["coefficient"]); $i++)
                     \[ ĥ{{$i-$data["dimension"]}} = {{ $data["coefficient"][$i] }}\]
                 @endfor
-                <h1>Hermite Polynomial</h1>
+                <h2>Hermite Polynomial</h2>
                 <em>p(x) = {{$data["polynomial"]}}</em>
             </div>
         </div>

@@ -15,30 +15,34 @@
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
             }
-            if (number>1) {
-                for (i=0;i<number;i++) {
-                        container_matrix.appendChild(document.createTextNode(""));
-                        var input = document.createElement("input");
-                        input.type = "number";
-                        input.name = "x" + i;
-                        input.style = "width : 110px;";
-                        input.step = "any";
-                        input.required = true;
-                        container_matrix.appendChild(input);
-                    container_vector.appendChild(document.createTextNode(""));
-                    var vector = document.createElement("input");
-                    vector.type = "number";
-                    vector.name = "y" + i ;
-                    vector.style = "width : 110px;";
-                    vector.step = "any";
-                    vector.required = true;
-                    container_vector.appendChild(vector);
-                }
-                document.getElementById("matrix_a").style.display = 'block';
-                document.getElementById("vector_b").style.display = 'block'; 
-                document.getElementById("solve").style.display = 'block';
-                document.getElementById("save").style.display = 'block';
+            if (number > 10){
+                number = 10;
             }
+            if (number < 2){
+                number = 2;
+            }
+            for (i=0;i<number;i++) {
+                container_matrix.appendChild(document.createTextNode(""));
+                var input = document.createElement("input");
+                input.type = "number";
+                input.name = "x" + i;
+                input.style = "width : 110px;";
+                input.step = "any";
+                input.required = true;
+                container_matrix.appendChild(input);
+                container_vector.appendChild(document.createTextNode(""));
+                var vector = document.createElement("input");
+                vector.type = "number";
+                vector.name = "y" + i ;
+                vector.style = "width : 110px;";
+                vector.step = "any";
+                vector.required = true;
+                container_vector.appendChild(vector);
+            }
+            document.getElementById("matrix_a").style.display = 'block';
+            document.getElementById("vector_b").style.display = 'block'; 
+            document.getElementById("solve").style.display = 'block';
+            document.getElementById("save").style.display = 'block';
         }
     </script>
 </head>
@@ -63,7 +67,7 @@
                         @for($i = 0; $i < count($data["information"][0]); $i++)
                             <input type="number" step="any" name="x{{$i}}" style="width: 110px" placeholder="{{$data['information'][0][$i]}}" value="{{$data['information'][0][$i]}}"> 
                         @endfor <br><br>
-                        \[F(x) = \]<br>
+                        \[y = \]<br>
                         @for($i = 0; $i < count($data["information"][1]); $i++)
                             <input type="number" step="any" name="y{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
@@ -80,7 +84,7 @@
                 @else 
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>Dimension</label>
+                            <label>\[ Dimension \]</label>
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                         </div>
                     </div>
@@ -100,7 +104,7 @@
                     <div id="matrix" class="text-align"> </div>
                     
 
-                    <div id="vector_b" class="text-align metodo"> \[F(x) = \] </div>
+                    <div id="vector_b" class="text-align metodo"> \[y = \] </div>
                     <div id="vector" class="text-align"> </div>
                 @endif
             </form>
@@ -111,8 +115,8 @@
                     <h3>Array Saved</h3>
                 @endif  
                 @for($j = 1; $j < count($data["mem"][2]); $j++)
-                    <a class="btn btn-outline-primary" href="{{ route('storage_linealSpline',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a>
-                    $$x = \begin{pmatrix}
+                    <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_linealSpline',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a>
+                    $$x = \begin{bmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][0])-1)
@@ -121,8 +125,8 @@
                             {{$data["mem"][2][$j][0][$z]}}
                         @endif
                     @endfor
-                    \end{pmatrix}$$
-                    $$f(x) = \begin{pmatrix}
+                    \end{bmatrix}$$
+                    $$y = \begin{bmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][1])-1)
@@ -131,7 +135,7 @@
                             {{$data["mem"][2][$j][1][$z]}}
                         @endif
                     @endfor
-                    \end{pmatrix}$$
+                    \end{bmatrix}$$
                     <br>
                 @endfor
             </div>
@@ -141,7 +145,7 @@
         <div class="card">
             <div class="card-header">
                 <h1>Initial Data</h1>
-                <b>$$x = \begin{pmatrix}
+                <b>$$x = \begin{bmatrix}
                 @foreach ($data["arrx"] as $x)
                     @if($loop->last)
                         {{$x}}
@@ -149,8 +153,8 @@
                         {{$x}} &
                     @endif
                 @endforeach
-                \end{pmatrix}$$ 
-                $$f(x) = \begin{pmatrix}
+                \end{bmatrix}$$ 
+                $$y = \begin{bmatrix}
                 @foreach ($data["arry"] as $y)
                     @if($loop->last)
                         {{$y}}
@@ -158,16 +162,16 @@
                         {{$y}} &
                     @endif
                 @endforeach
-                \end{pmatrix}$$ </b>
+                \end{bmatrix}$$ </b>
             </div>
             <div class="card-body">
-                <h1>Coefficient</h1>
+                <h2>Coefficient</h2>
                     @foreach ($data["coefficient"] as $aux)
-                        $$L{{$loop->index}} = \begin{pmatrix}
+                        $$L{{$loop->index}} = \begin{bmatrix}
                             {{ $aux }}
-                        \end{pmatrix}$$
+                        \end{bmatrix}$$
                     @endforeach
-                <h1>Tracers</h1>
+                <h2>Tracers</h2>
                     @foreach ($data["plotter"] as $aux)
                         \[Tracer{{$loop->index}} = {{ $aux }}\]
                     @endforeach

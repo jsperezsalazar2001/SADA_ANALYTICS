@@ -44,6 +44,7 @@ class LinealSplineController extends Controller
         }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
+        //$command = 'python "'.public_path().'\python\linealSpline.py" '." ".$data. " ".$dimension;
         $command = 'python3 "'.public_path().'/python/linealSpline.py" '." ".$data. " ".$dimension;
         exec($command, $output);
         $data = [];
@@ -69,7 +70,6 @@ class LinealSplineController extends Controller
                 }
                 array_push($arrayAux,$aux);
             }
-            #dd($arrayAux);
             $data["coefficient"] = $arrayAux;
             $plotter = $json["plotter"];
             $plotter = str_replace("*", "", $plotter);
@@ -77,7 +77,6 @@ class LinealSplineController extends Controller
             $data["check"] = "true";
             $data["arrx"] = $Arrx;
             $data["arry"] = $Arry;
-            $data["message"] = "Success with method";
         }
         return view('linealSplineMethod')->with("data",$data);
     }
@@ -92,7 +91,6 @@ class LinealSplineController extends Controller
         $information = $data["mem"][$method][$storage];
         $data["information"] = $information;
         $data["storage"] = "true";
-        //dd($data);
         return view('linealSplineMethod')->with("data",$data);
     }
 }
