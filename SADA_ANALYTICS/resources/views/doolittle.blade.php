@@ -37,6 +37,8 @@
                     vector.step = "any";
                     vector.required = true;
                     container_vector.appendChild(vector);
+                    container_vector.appendChild(document.createElement("br"));
+                    container_vector.appendChild(document.createElement("br"));
                 }
                 document.getElementById("separador").style.display = 'block';
                 document.getElementById("matrix_a").style.display = 'block';
@@ -105,12 +107,21 @@
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                         </div>
                     </div>
-                    <div id="matrix_a" class="text-align metodo"> A Matrix </div>
-                    <div id="matrix" class="text-align"> </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="matrix_a" class="text-align metodo"> A Matrix </div>
+                            <div id="matrix" class="text-align"> </div>
+                        </div>
+                    </div>
                     
                     <div id="separador" class="text-align metodo"> {{ __('gaussian_method.separator') }}</div>
-                    <div id="vector_b" class="text-align metodo"> Vector b </div>
-                    <div id="vector" class="text-align"> </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="vector_b" class="text-align metodo"> Vector b </div>
+                            <div id="vector" class="text-align"> </div>
+                        </div>
+                    </div>
+                    
                 @endif
             </form>
         </div>

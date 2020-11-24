@@ -22,6 +22,8 @@
             </div><br>
             <form method="POST" action="{{ route('aitken_method') }}" class="form">
                     @csrf
+
+                    <!-- Inicia copiar -->
                     @if($data["storage"] == "true")
                         <div class="form-row">
                             <div class="form-group col-md-4">
@@ -57,7 +59,7 @@
                             <label class="custom-control-label" for="customControlInline">Save Function</label>
                         </div><br><br>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('aitken') }}">Try with another function</a>
-                    @else
+                    @else <!-- Termina copiar -->
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>\[x0\]</label>
@@ -91,9 +93,10 @@
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
                             <label class="custom-control-label" for="customControlInline">Save Function</label>
                         </div>
-                    @endif
+                    @endif <!-- No olviden el endif -->
             </form>
         </div>
+        <!-- Iniciar copiar --> 
         @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
             <div class="col-md-6" style="float: right;">
                 @if (count($data["mem"][0]) > 1)
@@ -106,6 +109,7 @@
                 @endfor
             </div>
         @endif
+        <!-- Termina copiar -->
     </div>
     @if ($data["check"] == "true")
         <div class="card">

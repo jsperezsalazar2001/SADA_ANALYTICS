@@ -52,7 +52,7 @@
                 document.getElementById("vector_b").style.display = 'block'; 
                 document.getElementById("vector_c").style.display = 'block'; 
                 document.getElementById("solve").style.display = 'block';
-                document.getElementById("save").style.display = 'block';
+                document.getElementById("save").style.display = 'block'; // mostrar save
             }
         }
     </script>
@@ -61,7 +61,7 @@
     <h2>Hermite Interpolation Method</h2>
     @include('layouts.message')
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6" style="float: left;"> <!-- No olvidar el float: left -->
             <p>
                 <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> Help</a>
             </p>
@@ -72,6 +72,7 @@
             </div><br>
             <form method="POST" action="{{route('hermite_method')}}" class="form">
                 @csrf
+                <!-- Inicia copiar -->
                 @if($data["storage"] == "true")
                     <div class="text-align">
                         \[x = \] <br>
@@ -96,7 +97,7 @@
                         <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('hermite') }}">Try with another arrays</a>
                     </div>
-                @else
+                @else <!-- Termina copiar -->
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Dimension</label>
@@ -107,10 +108,11 @@
                         <div class="form-group col-md-12">
                             <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create arrays</a> 
                         </div>
+                        <!-- No olvidar el checkbox para guardar -->
                         <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
                             <label class="custom-control-label" for="customControlInline">Save Array</label>
-                        </div><br><br>
+                        </div><br><br> <!-- fin checkbox -->
                         <div class="form-group col-md-12">
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                         </div>
@@ -124,9 +126,11 @@
 
                     <div id="vector_c" class="text-align metodo"> \[F'(x) = \] </div><br>
                     <div id="vector_2" class="text-align"> </div><br>
-                @endif
+                @endif <!-- No olvidar el endif -->
             </form>
         </div>
+
+        <!-- Inicia copiar -->
         @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 0)
             <div class="col-md-6" style="float: right;">
                 @if (count($data["mem"][2]) > 1)
@@ -157,6 +161,7 @@
                 @endfor
             </div>
         @endif
+        <!--- Termina copiar -->
     </div><br>
     @if ($data["check"] == "true")
         <div class="card">
