@@ -91,5 +91,5 @@ Route::GET('/gaussianTridiagonalMatrix','GaussianTridiagonalMatrixMethodControll
 Route::POST('/gaussianTridiagonalMatrixMethod','GaussianTridiagonalMatrixMethodController@gaussianTridiagonalMatrixMethod')->name("gaussian_tridiagonal_matrix_method");
 
 Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
-Route::GET('/functionEvaluator','FunctionEvaluatorController@evaluator')->name("function_evaluator");
+
 Route::GET('/about','AboutController@about')->name("about_us");
