@@ -100,6 +100,7 @@ Route::get('/storageIterativeMethod/{storage}/{method}', 'IterativeMethodJGBCont
 Route::get('/storageDividedDifferenceMethod/{storage}/{method}', 'DividedDifferenceMethodController@storage')->name("storage_divided_difference_method");
 Route::get('/storageVanderMondeMethod/{storage}/{method}', 'VandermondeController@storage')->name("storage_vandermonde_method");
 Route::get('/storageFactorizationLUMethod/{storage}/{method}', 'FactorizationLUController@storage')->name("storage_factorization_l_u_method");
+Route::get('/storageCroutMethod/{storage}/{method}', 'CroutController@storage')->name("storage_crout_method");
 
 Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
 
