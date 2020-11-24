@@ -34,7 +34,7 @@
             document.getElementById('plot-error').innerHTML ='<div class="alert alert-danger alert-dismissible fade show" role="alert">' + err+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
             document.getElementById('plot-error').style.display = 'block';  
             }
-            draw();
+            
         }
 
         function evaluate() {
@@ -56,7 +56,7 @@
                 document.getElementById('eval-error').style.display = 'block';
                 }
         }
-
+        draw();
 }
 
     </script>
