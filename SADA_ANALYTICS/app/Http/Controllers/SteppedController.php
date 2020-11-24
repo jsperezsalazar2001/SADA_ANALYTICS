@@ -11,12 +11,25 @@ class SteppedController extends Controller
         $data = [];
         $data["title"] = "Stepped Partial Pivot";
         $data["solution"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         return view('stepped')->with("data",$data);
     }
 
     public function steppedMethod(Request $request){
         $data_a = []; 
+        $mem = session()->get("mem");
+        $indexMem = $mem[1][0];
+        $mem[1][0] = $mem[1][0]+1;
+        if ($mem[1][0] > 5){
+            $mem[1][0] = 1;
+        }
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         $dimension = $request->input("n");
+        $save = $request->input("save");
         $data_b = [];
         for ($i=0; $i < $dimension; $i++) { 
             $array_a =[];
@@ -26,6 +39,16 @@ class SteppedController extends Controller
           }
           array_push($data_a, $array_a);
         }
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$data_a);
+            array_push($auxMem,$data_b);
+            array_push($auxMem,$dimension);
+            $mem[1][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
 
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
@@ -64,5 +87,18 @@ class SteppedController extends Controller
         }
 
         return $aux2_array;
+    }
+    
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = "Stepped Partial Pivot";
+        $data["solution"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
+        return view('stepped')->with("data",$data);
     }
 }

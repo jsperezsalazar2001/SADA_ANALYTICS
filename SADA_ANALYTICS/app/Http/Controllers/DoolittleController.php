@@ -23,6 +23,9 @@ class DoolittleController extends Controller
         $mem = session()->get("mem");
         $indexMem = $mem[1][0];
         $mem[1][0] = $mem[1][0]+1;
+        if ($mem[1][0] > 5){
+            $mem[1][0] = 1;
+        }
         $data["checkMem"] = "true";
         $data["storage"] = "false";
         $data_a = []; 

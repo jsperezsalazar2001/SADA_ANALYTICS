@@ -6,12 +6,9 @@
 <head>
     <script type='text/javascript'>
         function addFields(){
-            // Number of inputs to create
             var number = document.getElementById("dimension").value;
-            // Container <div> where dynamic content will be placed
             var container_matrix = document.getElementById("matrix");
             var container_vector = document.getElementById("vector");
-            // Clear previous contents of the container
             while (container_matrix.hasChildNodes()) {
                 container_matrix.removeChild(container_matrix.lastChild);
             }
@@ -20,9 +17,7 @@
             }
             if (number>1) {
                 for (i=0;i<number;i++) {
-                    // Append a node with a random text
                         container_matrix.appendChild(document.createTextNode(""));
-                        // Create an <input> element for matrix A, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "number";
                         input.name = "x" + i;
@@ -30,9 +25,7 @@
                         input.step = "any";
                         input.required = true;
                         container_matrix.appendChild(input);
-                    // Append a node with a random text
                     container_vector.appendChild(document.createTextNode(""));
-                    // Create an <input> element for vector B, set its type and name attributes
                     var vector = document.createElement("input");
                     vector.type = "number";
                     vector.name = "y" + i ;
@@ -112,33 +105,32 @@
                 @endif
             </form>
         </div>
-        @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 1)
+        @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 0)
             <div class="col-md-6" style="float: right;">
                 <h3>Array Saved</h3> 
                 @for($j = 1; $j < count($data["mem"][2]); $j++)
-                    <a class="btn btn-outline-primary" href="{{ route('storage_lagrange',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> <br><br>
-                    Vector x = <br>
-                    [
+                    <a class="btn btn-outline-primary" href="{{ route('storage_lagrange',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> 
+                    $$x = \begin{pmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][0])-1)
-                            {{$data["mem"][2][$j][0][$z]}},
+                            {{$data["mem"][2][$j][0][$z]}} &
                         @else 
-                            {{$data["mem"][2][$j][0][$z]}}
+                            {{$data["mem"][2][$j][0][$z]}} 
                         @endif
                     @endfor
-                    ]<br><br>
-                    Vector y = <br>
-                    [
+                    \end{pmatrix}$$ 
+                    $$f(x) = \begin{pmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][1])-1)
-                            {{$data["mem"][2][$j][1][$z]}},
+                            {{$data["mem"][2][$j][1][$z]}} & 
                         @else 
                             {{$data["mem"][2][$j][1][$z]}}
                         @endif
                     @endfor
-                    ]<br><br>
+                    \end{pmatrix}$$ 
+                    <br>
                 @endfor
             </div>
         @endif
@@ -147,24 +139,24 @@
         <div class="card">
             <div class="card-header">
                 <h1>Initial Data</h1>
-                <b>\[X = [
+                <b>$$x = \begin{pmatrix}
                 @foreach ($data["arrx"] as $x)
                     @if($loop->last)
                         {{$x}}
                     @else
-                        {{$x}},
+                        {{$x}} &
                     @endif
                 @endforeach
-                ]\]
-                \[Y = [
+                \end{pmatrix}$$ 
+                $$f(x) = \begin{pmatrix}
                 @foreach ($data["arry"] as $y)
                     @if($loop->last)
                         {{$y}}
                     @else
-                        {{$y}},
+                        {{$y}} &
                     @endif
                 @endforeach
-                ]\]</b>
+                \end{pmatrix}$$ </b>
             </div>
             <div class="card-body">
                     <h1>Lagrange Coefficient</h1><br>

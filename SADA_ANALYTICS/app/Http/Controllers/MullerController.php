@@ -9,6 +9,11 @@ class MullerController extends Controller
 {
     public function muller(){
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        //dd($mem);
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         $data["check"] = "false";
         $data["title"] = __('muller.title');
         return view('mullerMethod')->with("data",$data);
@@ -17,6 +22,7 @@ class MullerController extends Controller
     public function mullerMethod(Request $request){
         $x_0 = $request->input('x_0');
         $x_1 = $request->input('x_1');
+        $save = $request->input("save");
         if ($request->input('x_2')){
             $x_2 = $request->input('x_2');
         }else{
@@ -26,9 +32,27 @@ class MullerController extends Controller
         $originalfunction = $request->input('function');
         $function = '"'.$originalfunction.'"';
         $tolerance = $request->input('tolerance');
+
+        $mem = session()->get("mem");
+        $indexMem = $mem[0][0];
+        $mem[0][0] = $mem[0][0]+1;
+        if ($mem[0][0] > 5){
+            $mem[0][0] = 1;
+        }
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$originalfunction);
+            $mem[0][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
+
         $comando = 'python "'.public_path().'\python\muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
         exec($comando, $output);
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         $data["title"] = __('muller.title');
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
@@ -45,6 +69,19 @@ class MullerController extends Controller
             $data["tolerance"] = $tolerance;
             $data["message"] = __('muller.succesful');
         }
+        return view('mullerMethod')->with("data",$data);
+    }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = "Muller";
+        $data["check"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
         return view('mullerMethod')->with("data",$data);
     }
 }

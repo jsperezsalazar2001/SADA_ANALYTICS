@@ -39,6 +39,8 @@ def incremental_search(x_0, delta, iterations, function):
         count = 0 
         while (count < iterations):
             if current_f*previous_f<0:
+                previous_x = round(previous_x,7)
+                current_x = round(current_x,7)
                 results[count] = [previous_x,current_x]
             previous_x = current_x
             current_x = current_x + delta

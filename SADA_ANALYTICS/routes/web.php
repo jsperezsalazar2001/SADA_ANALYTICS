@@ -74,15 +74,14 @@ Route::POST('/croutTridiagonalMethod','CroutTridiagonalController@croutTridiagon
 Route::GET('/cuadraticSpline','CuadraticSplineController@cuadraticSpline')->name("cuadraticSpline");
 Route::POST('/cuadraticSpline','CuadraticSplineController@cuadraticSplineMethod')->name("cuadratic_spline_method");
 
-Route::GET('/cubicSpline','CubicSplineController@cubicSpline')->name("cubicSpline");
-Route::POST('/cubicSpline','CubicSplineController@cubicSplineMethod')->name("cubic_spline_method");
-
-Route::GET('/neville','NevilleController@neville')->name("neville");
-Route::POST('/nevilleMethod','NevilleController@nevilleMethod')->name("neville_method");
-
 Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");
 Route::get('/storageLagrange/{storage}/{method}', 'LagrangeController@storage')->name("storage_lagrange");
 Route::get('/storageLinealSpline/{storage}/{method}', 'LinealSplineController@storage')->name("storage_linealSpline");
+Route::get('/storageStepped/{storage}/{method}', 'SteppedController@storage')->name("storage_stepped");
+Route::get('/storageHermite/{storage}/{method}', 'HermiteController@storage')->name("storage_hermite");
+Route::get('/storageAitken/{storage}/{method}', 'AitkenController@storage')->name("storage_aitken");
+Route::get('/storageMuller/{storage}/{method}', 'MullerController@storage')->name("storage_muller");
+Route::get('/storageIncremental/{storage}/{method}', 'IncrementalSearchController@storage')->name("storage_incremental");
 
 Route::GET('/dividedDifference','DividedDifferenceMethodController@dividedDifference')->name("divided_difference");
 Route::POST('/dividedDifferenceMethod','DividedDifferenceMethodController@dividedDifferenceMethod')->name("divided_difference_method");
