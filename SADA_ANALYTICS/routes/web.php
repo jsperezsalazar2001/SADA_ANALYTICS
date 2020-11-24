@@ -89,3 +89,6 @@ Route::POST('/dividedDifferenceMethod','DividedDifferenceMethodController@divide
 
 Route::GET('/gaussianTridiagonalMatrix','GaussianTridiagonalMatrixMethodController@gaussianTridiagonalMatrix')->name("gaussian_tridiagonal_matrix");
 Route::POST('/gaussianTridiagonalMatrixMethod','GaussianTridiagonalMatrixMethodController@gaussianTridiagonalMatrixMethod')->name("gaussian_tridiagonal_matrix_method");
+
+Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
+Route::GET('/functionEvaluator','FunctionEvaluatorController@evaluator')->name("function_evaluator");

@@ -35,8 +35,8 @@ def cubic_spline(data,dimension):
 
         if list_has_duplicates(x):
             raise Exception("X coordinates contain a duplicate")
-        if list_has_duplicates(y):
-            raise Exception("Y coordinates contain a duplicate")
+        # if list_has_duplicates(y):
+        #     raise Exception("Y coordinates contain a duplicate")
         if len(x) != len(y):
             raise Exception("X and Y coordinates do not have the same length")
         n = len(x)
