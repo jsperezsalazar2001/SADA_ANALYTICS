@@ -16,6 +16,9 @@
                 <li class="list-group-item"> {{ __('about.methods.method_3') }}</li>
             </ul><br/>
             <h5 class="card-text">{{ __('about.also') }}</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="{{ route('function_plotter') }}">{{ __('about.also_2') }}</a></li>
+            </ul>
             <br/>
             <h5 class="card-text">{{ __('about.libs_used') }}</h5>
             <ul class="list-group list-group-flush">

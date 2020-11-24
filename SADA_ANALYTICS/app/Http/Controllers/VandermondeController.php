@@ -16,7 +16,6 @@ class VandermondeController extends Controller
 
         $data["solution"] = "false";
         $data["title"] = __('vandermonde_method.title');
-        $data["message"] = __('vandermonde_method.title_method');
         return view('vandermondeMethod')->with("data",$data);
     }
 
@@ -56,7 +55,7 @@ class VandermondeController extends Controller
         #$command = 'python3 "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
         #exec($command, $output);
         #dd($command, $output, $output2);
-        
+        //$command = 'python "'.public_path().'\python\vandermonde.py" '." ".$Arrx." ".$Arry;
         $command = 'python3 "'.public_path().'/python/vandermonde.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];

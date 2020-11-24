@@ -37,5 +37,6 @@ return [
         'method_2' => 'System of equations methods',
         'method_3' => 'Interpolation methods',
     ],
-    'also' => 'Also you can find a function evaluator and a function graphicator here: '
+    'also' => 'Also you can find a function evaluator and a function plotter here: ',
+    'also_2' => 'Function evaluator and plotter'
 ];

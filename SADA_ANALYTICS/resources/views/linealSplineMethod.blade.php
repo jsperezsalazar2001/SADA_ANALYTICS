@@ -111,33 +111,37 @@
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 0)
             <div class="col-md-6" style="float: right;">
-                @if (count($data["mem"][2]) > 1)
-                    <h3>Array Saved</h3>
-                @endif  
-                @for($j = 1; $j < count($data["mem"][2]); $j++)
-                    <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_linealSpline',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a>
-                    $$x = \begin{bmatrix}
-                    @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
-                            
-                        @if($z != count($data["mem"][2][$j][0])-1)
-                            {{$data["mem"][2][$j][0][$z]}} &
-                        @else 
-                            {{$data["mem"][2][$j][0][$z]}}
-                        @endif
+                <p>
+                    @if (count($data["mem"][2]) > 1)
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-info-circle"></i> Arrays Saved</a>
+                    @endif 
+                </p> 
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    @for($j = 1; $j < count($data["mem"][2]); $j++)
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_linealSpline',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a>
+                        $$x = \begin{bmatrix}
+                        @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
+                                
+                            @if($z != count($data["mem"][2][$j][0])-1)
+                                {{$data["mem"][2][$j][0][$z]}} &
+                            @else 
+                                {{$data["mem"][2][$j][0][$z]}}
+                            @endif
+                        @endfor
+                        \end{bmatrix}$$
+                        $$y = \begin{bmatrix}
+                        @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
+                                
+                            @if($z != count($data["mem"][2][$j][1])-1)
+                                {{$data["mem"][2][$j][1][$z]}} &
+                            @else 
+                                {{$data["mem"][2][$j][1][$z]}}
+                            @endif
+                        @endfor
+                        \end{bmatrix}$$
+                        <br>
                     @endfor
-                    \end{bmatrix}$$
-                    $$y = \begin{bmatrix}
-                    @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
-                            
-                        @if($z != count($data["mem"][2][$j][1])-1)
-                            {{$data["mem"][2][$j][1][$z]}} &
-                        @else 
-                            {{$data["mem"][2][$j][1][$z]}}
-                        @endif
-                    @endfor
-                    \end{bmatrix}$$
-                    <br>
-                @endfor
+                </div>
             </div>
         @endif
     </div><br>

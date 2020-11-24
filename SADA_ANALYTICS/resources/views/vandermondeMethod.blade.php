@@ -50,6 +50,7 @@
     </script>
 </head>
 <div class="container col-10" align="center">
+    <h2> {{ $data["title"] }} </h2> 
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-6" style="float: left;">
@@ -86,7 +87,7 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Array</label>
+                            <label class="custom-control-label" for="customControlInline">Save Array after calculating</label>
                         </div><br><br>
                         <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('vandermonde') }}">Try with another arrays</a>
@@ -106,7 +107,7 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Array</label>
+                            <label class="custom-control-label" for="customControlInline">Save Array after calculating</label>
                         </div><br><br>
                         <div class="form-group col-12">
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('vandermonde_method.solve') }}</button> 
@@ -130,32 +131,37 @@
 
         @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 0)
             <div class="col-md-6" style="float: right;">
-                <h3>Array Saved</h3> 
-                @for($j = 1; $j < count($data["mem"][2]); $j++)
-                    <a class="btn btn-outline-primary" href="{{ route('storage_vandermonde_method',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> <br><br>
-                    Vector x = <br>
-                    [
-                    @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
-                            
-                        @if($z != count($data["mem"][2][$j][0])-1)
-                            {{$data["mem"][2][$j][0][$z]}},
-                        @else 
-                            {{$data["mem"][2][$j][0][$z]}}
-                        @endif
+                <p>
+                    @if (count($data["mem"][2]) > 1)
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-info-circle"></i> Arrays Saved</a>
+                    @endif 
+                </p> 
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    @for($j = 1; $j < count($data["mem"][2]); $j++)
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_vandermonde_method',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a>
+                        $$x = \begin{bmatrix}
+                        @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
+                                
+                            @if($z != count($data["mem"][2][$j][0])-1)
+                                {{$data["mem"][2][$j][0][$z]}} &
+                            @else 
+                                {{$data["mem"][2][$j][0][$z]}}
+                            @endif
+                        @endfor
+                        \end{bmatrix}$$
+                        $$y = \begin{bmatrix}
+                        @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
+                                
+                            @if($z != count($data["mem"][2][$j][1])-1)
+                                {{$data["mem"][2][$j][1][$z]}} &
+                            @else 
+                                {{$data["mem"][2][$j][1][$z]}}
+                            @endif
+                        @endfor
+                        \end{bmatrix}$$
+                        <br>
                     @endfor
-                    ]<br><br>
-                    Vector y = <br>
-                    [
-                    @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
-                            
-                        @if($z != count($data["mem"][2][$j][1])-1)
-                            {{$data["mem"][2][$j][1][$z]}},
-                        @else 
-                            {{$data["mem"][2][$j][1][$z]}}
-                        @endif
-                    @endfor
-                    ]<br><br>
-                @endfor
+                </div>
             </div>
         @endif
 

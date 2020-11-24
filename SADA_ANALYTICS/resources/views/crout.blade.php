@@ -56,6 +56,7 @@
     </script>
 </head>
 <div class="container col-10" align="center">
+    <h2> {{ $data["title"] }} </h2>   
     @include('layouts.message')
     <div class="row justify-content-center sizeMatrix">
         <div class="col-md-6" style="float: left;">

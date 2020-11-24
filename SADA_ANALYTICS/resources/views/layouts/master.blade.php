@@ -92,7 +92,6 @@
                                 <a class="dropdown-item" href="{{ route('divided_difference') }}"> {{ __('divided_difference_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('lagrange') }}">Lagrange Method</a>
                                 <a class="dropdown-item" href="{{ route('hermite') }}">Hermite Method</a>
-                                <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('spline_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('linealSpline') }}">Lineal Spline Method</a>
                                 <a class="dropdown-item" href="{{ route('cuadraticSpline') }}"> {{ __('cuadratic_spline.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('cubicSpline') }}"> {{ __('cubic_spline.title') }}</a>

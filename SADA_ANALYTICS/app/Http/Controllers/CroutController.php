@@ -14,7 +14,7 @@ class CroutController extends Controller
         $data["checkMem"] = "true";
         $data["storage"] = "false";
 
-        $data["title"] = "Crout";
+        $data["title"] = "Crout Method";
         $data["solution"] = "false";
         #$data["table"] = "";
         return view('crout')->with("data",$data);
@@ -62,7 +62,7 @@ class CroutController extends Controller
         $command = 'python3 "'.public_path().'/python/crout.py" '." ".$data_a." ".$data_b;
         exec($command, $output);
         //dd($output);
-        $data["title"] = "Crout";
+        $data["title"] = "Crout Method";
 
         if (substr($output[0],7,5) == "Error"){
             $data["solution"] = "false";
@@ -109,7 +109,7 @@ class CroutController extends Controller
     public function storage($storage,$method){
         $data = [];
         $data["checkMem"] = "true";
-        $data["title"] =  __('gaussian_method.title');
+        $data["title"] =  "Crout Method";
         $data["solution"] = "false";
         $mem = session()->get("mem");
         $data["mem"] = $mem;
