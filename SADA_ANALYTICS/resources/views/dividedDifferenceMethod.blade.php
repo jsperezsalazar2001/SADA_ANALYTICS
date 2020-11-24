@@ -18,6 +18,9 @@
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
             }
+            if (number>10) {
+                number=10;
+            }
             if (number>1) {
                 for (i=0;i<number;i++) {
                     // Append a node with a random text
@@ -50,6 +53,7 @@
     </script>
 </head>
 <div class="container col-10" align="center">
+    <h2> {{ __('divided_difference_method.title') }} </h2>
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-6" style="float: left;">
@@ -77,7 +81,7 @@
                         @for($i = 0; $i < count($data["information"][0]); $i++)
                             <input type="number" step="any" name="x{{$i}}" style="width: 110px" placeholder="{{$data['information'][0][$i]}}" value="{{$data['information'][0][$i]}}"> 
                         @endfor <br><br>
-                        \[F(x) = \]<br>
+                        \[ y = \]<br>
                         @for($i = 0; $i < count($data["information"][1]); $i++)
                             <input type="number" step="any" name="y{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
@@ -88,7 +92,7 @@
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
                             <label class="custom-control-label" for="customControlInline">Save Array</label>
                         </div><br><br>
-                        <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
+                        <button type="submit" class="btn btn-outline-success btn-block">{{ __('divided_difference_method.solve') }}</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('divided_difference') }}">Try with another arrays</a>
                     </div>
                 @else
@@ -133,28 +137,27 @@
                 <h3>Array Saved</h3> 
                 @for($j = 1; $j < count($data["mem"][2]); $j++)
                     <a class="btn btn-outline-primary" href="{{ route('storage_divided_difference_method',['storage'=> $j,'method' => 2]) }}">Use Storage {{$j}}</a> <br><br>
-                    Vector x = <br>
-                    [
+                    $$x = \begin{bmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][0]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][0])-1)
-                            {{$data["mem"][2][$j][0][$z]}},
+                            {{$data["mem"][2][$j][0][$z]}} &
                         @else 
-                            {{$data["mem"][2][$j][0][$z]}}
+                            {{$data["mem"][2][$j][0][$z]}} 
                         @endif
                     @endfor
-                    ]<br><br>
-                    Vector y = <br>
-                    [
+                    \end{bmatrix}$$ 
+                    $$y = \begin{bmatrix}
                     @for($z = 0; $z < count($data["mem"][2][$j][1]); $z++)
                             
                         @if($z != count($data["mem"][2][$j][1])-1)
-                            {{$data["mem"][2][$j][1][$z]}},
+                            {{$data["mem"][2][$j][1][$z]}} & 
                         @else 
                             {{$data["mem"][2][$j][1][$z]}}
                         @endif
                     @endfor
-                    ]<br><br>
+                    \end{bmatrix}$$ 
+                    <br>
                 @endfor
             </div>
         @endif

@@ -55,7 +55,7 @@ def gauss_seidel(l,d,u,b,x0,tol,Nmax):
         xant = xact
         cont = cont + 1
         aux = str(matrix_function.rebuild_vector(xant.T[0]))[1:-1].replace("'","").split()
-        dic_result[cont] = [cont,E,aux]
+        dic_result[cont] = [cont,round(float(E),7),aux]
 
     C_aux = str(matrix_function.rebuild_vector(C_aux))[1:-1].replace("'","").split()
     spectral_radius = matrix_function.rebuild_constant(spectral_radius)

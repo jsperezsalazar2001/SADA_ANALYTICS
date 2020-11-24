@@ -14,11 +14,11 @@ return [
     */
 
     'title' => 'Divided difference method',
-    'dimension' => 'Dimension',
+    'dimension' => '\[Dimension \]',
     'create_arrays' => 'Create arrays',
     'solve' => 'Solve',
-    'x' => 'X',
-    'y' => 'Y',
+    'x' => '\[x = \]',
+    'y' => '\[y = \]',
     'card_header' => 'Solution',
     'v_matrix' => 'Divided difference matrix',
     'vector_dimension' => 'Vector Dimension',

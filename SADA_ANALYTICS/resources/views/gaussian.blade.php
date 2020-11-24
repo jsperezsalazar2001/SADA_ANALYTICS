@@ -18,6 +18,9 @@
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
             }
+            if (number>10) {
+                number=10;
+            }
             if (number>1) {
                 for (i=0;i<number;i++) {
                     for (j=0;j<number;j++){
@@ -57,6 +60,7 @@
     </script>
 </head>
 <div class="container" align="center">
+    <h2> {{ __('gaussian_method.title') }} </h2>
     @include('layouts.message')
     <div class="row justify-content-center sizeMatrix">
         <div class="col-md-6" style="float: left;">
@@ -72,6 +76,12 @@
                     n_{21} & n_{22} & n_{23} \\
                     n_{31} & n_{32} & n_{33} \\
                     \end{bmatrix}$$
+
+                    $$\begin{bmatrix}
+                    b_{1} \\
+                    b_{2} \\
+                    b_{3} 
+                    \end{bmatrix}$$
                     <li>{{ __('gaussian_method.help_list.dimension') }}</li>
                     <li>{{ __('gaussian_method.help_list.fill') }}</li>
                     <li>{{ __('gaussian_method.help_list.determinant') }}</li>
@@ -82,13 +92,13 @@
                 @csrf
                 @if($data["storage"] == "true")
                     <div class="text-align">
-                        Matrix A = <br>
+                        {{ __('gaussian_method.label.matrix_a') }} = <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             @for($j = 0; $j < count($data["information"][0][0]); $j++)
                             <input type="number" step="any" name="matrix{{$i}}{{$j}}" style="width: 110px" placeholder="{{$data['information'][0][$i][$j]}}" value="{{$data['information'][0][$i][$j]}}">    
                             @endfor <br><br>
                         @endfor
-                        Vector b = <br>
+                        {{ __('gaussian_method.label.vector_b') }} = <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
@@ -105,9 +115,9 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Matrix after calculating</label>
+                            <label class="custom-control-label" for="customControlInline">{{ __('gaussian_method.save') }}</label>
                         </div><br><br>
-                        <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
+                        <button type="submit" class="btn btn-outline-success btn-block"> {{ __('gaussian_method.solve') }} Solve</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('gaussian') }}">Try with another matrix</a>
                     </div>
                 @else
@@ -132,7 +142,7 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Matrix after calculating</label>
+                            <label class="custom-control-label" for="customControlInline"> {{ __('gaussian_method.save') }}</label>
                         </div><br><br>
                         <div class="form-group col-md-12">
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('gaussian_method.solve') }}</button> 
@@ -165,8 +175,8 @@
                 </p>
                 <div class="collapse multi-collapse" id="multiCollapseExample2">
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
-                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_gaussian',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
-                        $$A = \begin{pmatrix}
+                        <a class="btn btn-outline-primary" href="{{ route('storage_gaussian',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
+                        $$A = \begin{bmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
                             @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)
                                 @if($f != count($data["mem"][1][$j][0][$z])-1)
@@ -176,12 +186,12 @@
                                 @endif  
                             @endfor
                         @endfor
-                        \end{pmatrix}$$
-                        $$b = \begin{pmatrix}
+                        \end{bmatrix}$$
+                        $$b = \begin{bmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][1]); $z++)
                             {{$data["mem"][1][$j][1][$z]}} \\
                         @endfor
-                        \end{pmatrix}$$<br>
+                        \end{bmatrix}$$<br>
                     @endfor
                 </div>
             </div>
