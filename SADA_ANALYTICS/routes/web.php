@@ -92,3 +92,4 @@ Route::POST('/gaussianTridiagonalMatrixMethod','GaussianTridiagonalMatrixMethodC
 
 Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
 Route::GET('/functionEvaluator','FunctionEvaluatorController@evaluator')->name("function_evaluator");
+Route::GET('/about','AboutController@about')->name("about_us");

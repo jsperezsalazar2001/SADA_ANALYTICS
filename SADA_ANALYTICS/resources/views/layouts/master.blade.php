@@ -99,6 +99,9 @@
 
                         </div>
                     </ul>
+                    <ul class="navbar-nav mr-auto">
+                        <a class="navbar-brand" href="{{ route('about_us') }}"> {{ __('about.title') }} </a>
+                    </ul>
                 </div>
             </div>
         </nav>

@@ -26,7 +26,8 @@ class FalsePositionController extends Controller
         $data['b_value'] = $b_value;
         $data['tolerance'] = $tolerance;
         $data['iterations'] = $iterations;
-        $command = 'python "'.public_path().'\python\false_position.py" '."{$f_function} {$a_value} {$b_value} {$tolerance} {$iterations}";
+        //$command = 'python "'.public_path().'\python\false_position.py" '."{$f_function} {$a_value} {$b_value} {$tolerance} {$iterations}";
+        $command = 'python3 "'.public_path().'/python/false_position.py" '."{$f_function} {$a_value} {$b_value} {$tolerance} {$iterations}";
         exec($command, $output);
         $data["title"] = __('false_position.title');
         if (!(strpos($output[0], "Error") === false)){
