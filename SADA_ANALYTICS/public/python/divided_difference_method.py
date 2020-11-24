@@ -46,7 +46,7 @@ def dividedDifferenceMethod(a,b):
 
         res = np.diag(D)
 
-        polynomial = '' + '{:.7f}'.format(res[0])
+        polynomial = '' + '{:.7f}'.format(res[0]) +'*'
         m = '(x' + '{:.7f}'.format(-a[0]) + ')'
         for i in range(1,n):
             polynomial += '{:.7f}'.format(res[i]) + m

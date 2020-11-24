@@ -95,6 +95,13 @@ Route::POST('/dividedDifferenceMethod','DividedDifferenceMethodController@divide
 Route::GET('/gaussianTridiagonalMatrix','GaussianTridiagonalMatrixMethodController@gaussianTridiagonalMatrix')->name("gaussian_tridiagonal_matrix");
 Route::POST('/gaussianTridiagonalMatrixMethod','GaussianTridiagonalMatrixMethodController@gaussianTridiagonalMatrixMethod')->name("gaussian_tridiagonal_matrix_method");
 
+Route::get('/storageGaussian/{storage}/{method}', 'GaussianController@storage')->name("storage_gaussian");
+Route::get('/storageIterativeMethod/{storage}/{method}', 'IterativeMethodJGBController@storage')->name("storage_iterative_method");
+Route::get('/storageDividedDifferenceMethod/{storage}/{method}', 'DividedDifferenceMethodController@storage')->name("storage_divided_difference_method");
+Route::get('/storageVanderMondeMethod/{storage}/{method}', 'VandermondeController@storage')->name("storage_vandermonde_method");
+Route::get('/storageFactorizationLUMethod/{storage}/{method}', 'FactorizationLUController@storage')->name("storage_factorization_l_u_method");
+
 Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
 
 Route::GET('/about','AboutController@about')->name("about_us");
+

@@ -9,6 +9,10 @@ class IterativeMethodJGBController extends Controller
 {
     public function iterativeMethodJGB(){
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         $data["title"] = __('iterative_j_g_b_method.title');
         $data["solution"] = "false";
         $data["table"] = "";
@@ -16,7 +20,18 @@ class IterativeMethodJGBController extends Controller
     }
 
     public function values(Request $request){
-        $data_a = []; 
+        $data_a = [];
+        $data= [];
+        $mem = session()->get("mem");
+        $indexMem = $mem[1][0];
+        $mem[1][0] = $mem[1][0]+1;
+        if ($mem[1][0]>5) {
+            $mem[1][0] = 1;
+        }
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+        $save = $request->input("save");
+
         $dimension = $request->input("n");
         $data_b = [];
         $data_x = [];
@@ -34,6 +49,17 @@ class IterativeMethodJGBController extends Controller
           array_push($data_a, $array_a);
         }
 
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$data_a);
+            array_push($auxMem,$data_b);
+            array_push($auxMem,$dimension);
+            $mem[1][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
         $data_x = json_encode($data_x);
@@ -49,7 +75,7 @@ class IterativeMethodJGBController extends Controller
         
         exec($command, $output);
         #dd($output);
-        $data=[];
+        #$data=[];
         $data["title"] = __('iterative_j_g_b_method.title');
         if (substr($output[0],7,5) == "Error"){
             $data["solution"] = "false";
@@ -106,5 +132,18 @@ class IterativeMethodJGBController extends Controller
         }
 
         return $aux_array;
+    }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = __('iterative_j_g_b_method.title');
+        $data["solution"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
+        return view('iterativeMethodJGB')->with("data",$data);
     }
 }

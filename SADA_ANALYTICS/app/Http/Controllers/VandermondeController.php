@@ -9,6 +9,11 @@ class VandermondeController extends Controller
 {
     public function vandermonde(){
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+
         $data["solution"] = "false";
         $data["title"] = __('vandermonde_method.title');
         $data["message"] = __('vandermonde_method.title_method');
@@ -18,12 +23,29 @@ class VandermondeController extends Controller
     public function vandermondeMethod(Request $request){
         $Arrx = []; 
         $dimension = $request->input("n");
+        $save = $request->input("save");
         $Arry = [];
 
         for ($i=0; $i < $dimension; $i++) { 
             array_push($Arrx, $request->input("x".$i));
             array_push($Arry, $request->input("y".$i));
         }
+
+        $mem = session()->get("mem");
+        $indexMem = $mem[2][0];
+        $mem[2][0] = $mem[2][0]+1;
+        if ($mem[2][0]>2) {
+            $mem[2][0] = 1;
+        }
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$Arrx);
+            array_push($auxMem,$Arry);
+            array_push($auxMem,$dimension);
+            $mem[2][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
+
         $Arrx = json_encode($Arrx);
         $Arry = json_encode($Arry);
 
@@ -38,6 +60,13 @@ class VandermondeController extends Controller
         $command = 'python3 "'.public_path().'/python/vandermonde.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];
+
+
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+      
         $data["title"] = __('vandermonde_method.title');
         if (substr($output[0],7,5) == "Error"){
             $data["solution"] = "false";
@@ -79,5 +108,20 @@ class VandermondeController extends Controller
         }
 
         return $aux_array;
+    }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = __('vandermonde_method.title');
+        $data["check"] = "false";
+        $data["solution"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
+        //dd($data);
+        return view('vandermondeMethod')->with("data",$data);
     }
 }

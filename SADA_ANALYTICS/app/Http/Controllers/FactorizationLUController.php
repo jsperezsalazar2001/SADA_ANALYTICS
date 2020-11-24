@@ -9,6 +9,11 @@ class FactorizationLUController extends Controller
 {
     public function factorizationLU(){
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+
         $data["title"] = __('factorization_l_u_method.title');
         $data["solution"] = "false";
         $data["table"] = "";
@@ -16,6 +21,17 @@ class FactorizationLUController extends Controller
     }
 
     public function values(Request $request){
+        $data= [];
+        $mem = session()->get("mem");
+        $indexMem = $mem[1][0];
+        $mem[1][0] = $mem[1][0]+1;
+        if ($mem[1][0]>5) {
+            $mem[1][0] = 1;
+        }
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+
+        $save = $request->input("save");
         $data_a = []; 
         $dimension = $request->input("n");
         $data_b = [];
@@ -29,6 +45,17 @@ class FactorizationLUController extends Controller
           }
           array_push($data_a, $array_a);
         }
+
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$data_a);
+            array_push($auxMem,$data_b);
+            array_push($auxMem,$dimension);
+            $mem[1][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
 
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
@@ -94,5 +121,18 @@ class FactorizationLUController extends Controller
         }
 
         return $aux2_array;
+    }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] =  __('gaussian_method.title');
+        $data["solution"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
+        return view('factorizationLU')->with("data",$data);
     }
 }
