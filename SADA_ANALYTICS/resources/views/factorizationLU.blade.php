@@ -145,40 +145,35 @@
         </div>
 
         @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 0)
-                <div class="col-md-6" style="float: right;">
-                   <h3>Matrices Saved</h3> 
+            <div class="col-md-6" style="float: right;">
+                <p>
+                    @if (count($data["mem"][1]) > 1)
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-info-circle"></i> Matrices Saved</a>
+                    @endif 
+                </p>
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
-                        <a class="btn btn-outline-primary" href="{{ route('storage_factorization_l_u_method',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
-                        Matrix A = <br>
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_factorization_l_u_method',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
+                        $$A = \begin{pmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
-                            [
                             @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)
                                 @if($f != count($data["mem"][1][$j][0][$z])-1)
-                                    {{$data["mem"][1][$j][0][$z][$f]}},
+                                    {{$data["mem"][1][$j][0][$z][$f]}} & 
                                 @else 
-                                    {{$data["mem"][1][$j][0][$z][$f]}}
+                                    {{$data["mem"][1][$j][0][$z][$f]}} \\
                                 @endif  
                             @endfor
-                            ]
-                            <br>
                         @endfor
-                        <br>
-                        Vector b = <br>
-                        [
+                        \end{pmatrix}$$
+                        $$b = \begin{pmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][1]); $z++)
-                            
-                            @if($z != count($data["mem"][1][$j][1])-1)
-                                {{$data["mem"][1][$j][1][$z]}},
-                            @else 
-                                {{$data["mem"][1][$j][1][$z]}}
-                            @endif
+                            {{$data["mem"][1][$j][1][$z]}} \\
                         @endfor
-                        ]<br><br>
+                        \end{pmatrix}$$<br>
                     @endfor
                 </div>
+            </div>
         @endif
-
-        
     </div><br/>
     @if ($data["solution"] == "true" and !empty($data["table"]))
         <div class="col-8">

@@ -44,6 +44,8 @@
                     vector.step = "any";
                     vector.required = true;
                     container_vector.appendChild(vector);
+                    container_vector.appendChild(document.createElement("br"));
+                    container_vector.appendChild(document.createElement("br"));
                 }
                 document.getElementById("separador").style.display = 'block';
                 document.getElementById("matrix_a").style.display = 'block';
@@ -103,7 +105,7 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Matrix</label>
+                            <label class="custom-control-label" for="customControlInline">Save Matrix after calculating</label>
                         </div><br><br>
                         <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('gaussian') }}">Try with another matrix</a>
@@ -130,55 +132,59 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Matrix</label>
+                            <label class="custom-control-label" for="customControlInline">Save Matrix after calculating</label>
                         </div><br><br>
                         <div class="form-group col-md-12">
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('gaussian_method.solve') }}</button> 
                         </div>
                     </div>
-                    <div id="matrix_a" class="text-align metodo"> {{ __('gaussian_method.label.matrix_a') }} </div>
-                    <div id="matrix" class="text-align"> </div>
-                    
+                    <div class="row">
+                        <div class="col">
+                            <div id="matrix_a" class="text-align metodo"> {{ __('gaussian_method.label.matrix_a') }} </div>
+                            <div id="matrix" class="text-align"> </div>
+                        </div>
+                    </div>
                     <div id="separador" class="text-align metodo"> {{ __('gaussian_method.separator') }}</div>
-                    <div id="vector_b" class="text-align metodo"> {{ __('gaussian_method.label.vector_b') }} </div>
-                    <div id="vector" class="text-align"> </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="vector_b" class="text-align metodo"> {{ __('gaussian_method.label.vector_b') }} </div>
+                            <div id="vector" class="text-align"> </div>
+                        </div>
+                    </div>
                     <br>
                 @endif
             </form>
         </div>
 
         @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 0)
-                <div class="col-md-6" style="float: right;">
-                   <h3>Matrices Saved</h3> 
+            <div class="col-md-6" style="float: right;">
+                <p>
+                    @if (count($data["mem"][1]) > 1)
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-info-circle"></i> Matrices Saved</a>
+                    @endif 
+                </p>
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
-                        <a class="btn btn-outline-primary" href="{{ route('storage_gaussian',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
-                        Matrix A = <br>
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_gaussian',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
+                        $$A = \begin{pmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
-                            [
                             @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)
                                 @if($f != count($data["mem"][1][$j][0][$z])-1)
-                                    {{$data["mem"][1][$j][0][$z][$f]}},
+                                    {{$data["mem"][1][$j][0][$z][$f]}} & 
                                 @else 
-                                    {{$data["mem"][1][$j][0][$z][$f]}}
+                                    {{$data["mem"][1][$j][0][$z][$f]}} \\
                                 @endif  
                             @endfor
-                            ]
-                            <br>
                         @endfor
-                        <br>
-                        Vector b = <br>
-                        [
+                        \end{pmatrix}$$
+                        $$b = \begin{pmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][1]); $z++)
-                            
-                            @if($z != count($data["mem"][1][$j][1])-1)
-                                {{$data["mem"][1][$j][1][$z]}},
-                            @else 
-                                {{$data["mem"][1][$j][1][$z]}}
-                            @endif
+                            {{$data["mem"][1][$j][1][$z]}} \\
                         @endfor
-                        ]<br><br>
+                        \end{pmatrix}$$<br>
                     @endfor
                 </div>
+            </div>
         @endif
 
     </div><br>

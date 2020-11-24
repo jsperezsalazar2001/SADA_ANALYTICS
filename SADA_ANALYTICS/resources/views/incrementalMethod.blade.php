@@ -90,14 +90,18 @@
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
             <div class="col-md-6" style="float: right;">
-                @if (count($data["mem"][0]) > 1)
-                    <h4>Functions Saved</h4>
-                @endif
-                @for($j = 1; $j < count($data["mem"][0]); $j++)
-                    <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_incremental',['storage'=> $j,'method' => 0]) }}">Use Storage {{$j}}</a><br> 
-                    \[{{$data["mem"][0][$j][0]}}\]
-                    <br><br>
-                @endfor
+                <p>
+                    @if (count($data["mem"][0]) > 1)
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-info-circle"></i> Functions Saved</a>
+                    @endif 
+                </p>
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    @for($j = 1; $j < count($data["mem"][0]); $j++)
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_incremental',['storage'=> $j,'method' => 0]) }}">Use Storage {{$j}}</a><br> 
+                        \[{{$data["mem"][0][$j][0]}}\]
+                        <br>
+                    @endfor
+                </div>
             </div>
         @endif
     </div>

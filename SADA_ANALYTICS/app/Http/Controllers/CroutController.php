@@ -16,7 +16,6 @@ class CroutController extends Controller
 
         $data["title"] = "Crout";
         $data["solution"] = "false";
-        $data["message"] = "Crout Method";
         #$data["table"] = "";
         return view('crout')->with("data",$data);
     }
