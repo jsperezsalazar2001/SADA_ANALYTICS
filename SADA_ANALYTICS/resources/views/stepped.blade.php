@@ -15,35 +15,42 @@
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
             }
-            if (number>1) {
-                for (i=0;i<number;i++) {
-                    for (j=0;j<number;j++){
-                        container_matrix.appendChild(document.createTextNode(""));
-                        var input = document.createElement("input");
-                        input.type = "number";
-                        input.name = "matrix" + i + j;
-                        input.style = "width : 110px;";
-                        input.step = "any";
-                        input.required = true;
-                        container_matrix.appendChild(input);
-                    }
-                    container_matrix.appendChild(document.createElement("br"));
-                    container_matrix.appendChild(document.createElement("br"));
-                    container_vector.appendChild(document.createTextNode(""));
-                    var vector = document.createElement("input");
-                    vector.type = "number";
-                    vector.name = "vector" + i ;
-                    vector.style = "width : 110px;";
-                    vector.step = "any";
-                    vector.required = true;
-                    container_vector.appendChild(vector);
-                }
-                document.getElementById("separador").style.display = 'block';
-                document.getElementById("matrix_a").style.display = 'block';
-                document.getElementById("vector_b").style.display = 'block'; 
-                document.getElementById("solve").style.display = 'block';
-                document.getElementById("save").style.display = 'block';
+            if (number > 10){
+                number = 10;
             }
+            if (number <= 2){
+                number = 2;
+            }
+            for (i=0;i<number;i++) {
+                for (j=0;j<number;j++){
+                    container_matrix.appendChild(document.createTextNode(""));
+                    var input = document.createElement("input");
+                    input.type = "number";
+                    input.name = "matrix" + i + j;
+                    input.style = "width : 110px;";
+                    input.step = "any";
+                    input.required = true;
+                    container_matrix.appendChild(input);
+                }
+                container_matrix.appendChild(document.createElement("br"));
+                container_matrix.appendChild(document.createElement("br"));
+                container_vector.appendChild(document.createTextNode(""));
+                var vector = document.createElement("input");
+                vector.type = "number";
+                vector.name = "vector" + i ;
+                vector.style = "width : 110px;";
+                vector.step = "any";
+                vector.required = true;
+                container_vector.appendChild(vector);
+                container_vector.appendChild(document.createElement("br"));
+                container_vector.appendChild(document.createElement("br"));
+            }
+            document.getElementById("separador").style.display = 'block';
+            document.getElementById("matrix_a").style.display = 'block';
+            document.getElementById("vector_b").style.display = 'block'; 
+            document.getElementById("solve").style.display = 'block';
+            document.getElementById("save").style.display = 'block';
+            
         }
     </script>
 </head>
@@ -59,19 +66,20 @@
                 <div class="card card-body">
                     <li>Make sure all the fields in the array are filled.</li>
                     <li>The determinant of the matrix must no be 0.</li>
+                    <li>The matrix dimension must not be less than 2 and must not be greater than 10.</li>
                 </div>
             </div><br>
             <form method="POST" action="{{route('stepped_method')}}" class="form">
                 @csrf
                 @if($data["storage"] == "true")
                     <div class="text-align">
-                        Matrix A = <br>
+                        \[ A = \]<br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             @for($j = 0; $j < count($data["information"][0][0]); $j++)
                             <input type="number" step="any" name="matrix{{$i}}{{$j}}" style="width: 110px" placeholder="{{$data['information'][0][$i][$j]}}" value="{{$data['information'][0][$i][$j]}}">    
                             @endfor <br><br>
                         @endfor
-                        Vector b = <br>
+                        \[ b = \]<br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
@@ -88,7 +96,7 @@
                 @else
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>Dimension</label>
+                            <label>\[ Dimension \]</label>
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
                         </div>
                     </div>
@@ -104,22 +112,31 @@
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
                         </div>
                     </div>
-                    <div id="matrix_a" class="text-align metodo">Matrix A</div>
-                    <div id="matrix" class="text-align"> </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="matrix_a" class="text-align metodo">\[ A = \]</div>
+                            <div id="matrix" class="text-align"> </div>
+                        </div>
+                    </div>
                     
                     <div id="separador" class="text-align metodo"> {{ __('gaussian_method.separator') }}</div>
-                    <div id="vector_b" class="text-align metodo">Vector B</div>
-                    <div id="vector" class="text-align"> </div></br>
+                    <div class="row">
+                        <div class="col">
+                            <div id="vector_b" class="text-align metodo">\[ b = \]</div>
+                            <div id="vector" class="text-align"> </div></br>
+                        </div>
+                    </div>
+
                 @endif
             </form>
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 0)
                 <div class="col-md-6" style="float: right;">
                     @if (count($data["mem"][1]) > 1)
-                        <h3>Matrices Saved</h3>
+                        <h4>Matrices Saved</h4>
                     @endif 
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
-                        <a class="btn btn-outline-primary" href="{{ route('storage_stepped',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_stepped',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
                         $$A = \begin{pmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
                             @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)

@@ -26,6 +26,9 @@
             while (container_vectord.hasChildNodes()) {
                 container_vectord.removeChild(container_vectord.lastChild);
             }
+            if (number>10) {
+                number=10;
+            }
             if (number>1) {
                 for (i=0;i<number;i++) {
                     
@@ -88,10 +91,11 @@
         }
     </script>
 </head>
-<div class="container col-10" align="center">
+<div class="container" align="center">
+    <h2> {{ __('gaussian_tridiagonal_matrix.title') }} </h2>
     @include('layouts.message')
-    <div class="row justify-content-center">
-        <div class="col-6">
+    <div class="row justify-content-center sizeMatrix">
+        <div class="col-md-6" style="float: left;">
             <p>
                 <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('gaussian_tridiagonal_matrix.help') }}</a>
             </p>
@@ -104,6 +108,13 @@
                     a_{1} & b_{2} & c_{2} & 0 \\
                     0 & a_{2} & b_{3} & c_{3} \\
                     0 & 0 & a_{3} & b_{4}
+                    \end{bmatrix}$$
+
+                    $$\begin{bmatrix}
+                    d_{1} \\
+                    d_{2} \\
+                    d_{3} \\
+                    d_{4} 
                     \end{bmatrix}$$
                     <li>{{ __('gaussian_tridiagonal_matrix.help_list.dimension') }}</li>
                     <li>{{ __('gaussian_tridiagonal_matrix.help_list.fill') }}</li>

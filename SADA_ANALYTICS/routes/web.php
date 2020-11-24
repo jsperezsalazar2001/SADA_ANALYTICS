@@ -40,9 +40,11 @@ Route::get('/storageFalsePosition/{storage}/{method}', 'FalsePositionController@
 
 Route::GET('/newton','NewtonController@newton')->name("newton");
 Route::POST('/newtonMethod','NewtonController@newtonMethod')->name("newton_method");
+Route::get('/storageNewton/{storage}/{method}', 'NewtonController@storage')->name("storage_newton");
 
 Route::GET('/multipleRoots','MultipleRootsController@multipleRoots')->name("multiple_roots");
 Route::POST('/multipleRootsMethod','MultipleRootsController@multipleRootsMethod')->name("multiple_roots_method");
+Route::get('/storageMultipleRoots/{storage}/{method}', 'MultipleRootsController@storage')->name("storage_multiple_roots");
 
 Route::GET('/lagrange','LagrangeController@lagrange')->name("lagrange");
 Route::POST('/lagrangeMethod','LagrangeController@lagrangeMethod')->name("lagrange_method");

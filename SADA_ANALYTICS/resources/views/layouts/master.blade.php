@@ -76,6 +76,8 @@
                                 <a class="dropdown-item" href="{{ route('factorization_l_u') }}"> {{ __('doolittle_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('gaussian_tridiagonal_matrix') }}"> {{ __('gaussian_tridiagonal_matrix.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('crout_tridiagonal') }}"> {{ __('crout_tridiagonal.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('doolittle') }}">Doolittle Method</a>
+                                <a class="dropdown-item" href="{{ route('stepped') }}">Stepped Partial Pivot Method</a>
                             </div>
 
                         </div>
@@ -89,9 +91,10 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('vandermonde') }}"> {{ __('vandermonde_method.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('divided_difference') }}"> {{ __('divided_difference_method.title') }}</a>
-                                <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('lagrange_method.title') }}</a>
-                                <a class="dropdown-item" href="{{ route('lagrange') }}"> {{ __('hermite_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('lagrange') }}">Lagrange Method</a>
+                                <a class="dropdown-item" href="{{ route('hermite') }}">Hermite Method</a>
                                 <a class="dropdown-item" href="{{ route('gaussian') }}"> {{ __('spline_method.title') }}</a>
+                                <a class="dropdown-item" href="{{ route('linealSpline') }}">Lineal Spline Method</a>
                                 <a class="dropdown-item" href="{{ route('cuadraticSpline') }}"> {{ __('cuadratic_spline.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('cubicSpline') }}"> {{ __('cubic_spline.title') }}</a>
                                 <a class="dropdown-item" href="{{ route('neville') }}"> {{ __('neville.title') }}</a>

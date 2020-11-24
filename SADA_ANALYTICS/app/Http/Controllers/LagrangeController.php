@@ -44,6 +44,7 @@ class LagrangeController extends Controller
         }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
+        //$command = 'python "'.public_path().'\python\lagrangeMethod.py" '." ".$data. " ".$dimension;
         $command = 'python3 "'.public_path().'/python/lagrangeMethod.py" '." ".$data. " ".$dimension;
         exec($command, $output);
         $data = [];
@@ -73,9 +74,7 @@ class LagrangeController extends Controller
             $data["check"] = "true";
             $data["arrx"] = $Arrx;
             $data["arry"] = $Arry;
-            $data["message"] = "Success with method";
         }
-        //dd($data);
         return view('lagrangeMethod')->with("data",$data);
     }
 
@@ -89,7 +88,6 @@ class LagrangeController extends Controller
         $information = $data["mem"][$method][$storage];
         $data["information"] = $information;
         $data["storage"] = "true";
-        //dd($data);
         return view('lagrangeMethod')->with("data",$data);
     }
 }

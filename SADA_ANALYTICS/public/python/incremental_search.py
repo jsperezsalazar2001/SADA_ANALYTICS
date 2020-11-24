@@ -49,6 +49,8 @@ def incremental_search(x_0, delta, iterations, function):
             count = count + 1
     else:
         results[0] = "Error the iterations has to be positive and greater than 0"
+    if (len(results) == 0):
+        results[0] = "Error The function has no root"
     aux = json.dumps(results)
     print(aux)
 

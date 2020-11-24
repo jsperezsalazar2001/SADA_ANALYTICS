@@ -11,7 +11,6 @@ class MullerController extends Controller
         $data = [];
         $mem = session()->get("mem");
         $data["mem"] = $mem;
-        //dd($mem);
         $data["checkMem"] = "true";
         $data["storage"] = "false";
         $data["check"] = "false";
@@ -46,6 +45,7 @@ class MullerController extends Controller
             session()->put("mem",$mem);
         }
 
+        //$comando = 'python "'.public_path().'\python\muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
         $comando = 'python3 "'.public_path().'/python/muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
         exec($comando, $output);
         $data = [];
@@ -67,7 +67,6 @@ class MullerController extends Controller
             $data["iterations"] = $iterations;
             $data["function"] = $originalfunction;
             $data["tolerance"] = $tolerance;
-            $data["message"] = __('muller.succesful');
         }
         return view('mullerMethod')->with("data",$data);
     }

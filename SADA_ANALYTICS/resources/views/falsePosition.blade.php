@@ -56,7 +56,7 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Function</label>
+                            <label class="custom-control-label" for="customControlInline">Save Function after calculating</label>
                         </div><br><br>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('false_position') }}">Try with another function</a>
                     @else
@@ -93,7 +93,7 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Function</label>
+                            <label class="custom-control-label" for="customControlInline">Save Function after calculating</label>
                         </div><br><br>
                     @endif
             </form>
@@ -109,7 +109,7 @@
                     @for($j = 1; $j < count($data["mem"][0]); $j++)
                         <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_false_position',['storage'=> $j,'method' => 0]) }}">Use Storage {{$j}}</a><br> 
                         \[{{$data["mem"][0][$j][0]}}\]
-                        <br><br>
+                        <br>
                     @endfor
                 </div>
             </div>

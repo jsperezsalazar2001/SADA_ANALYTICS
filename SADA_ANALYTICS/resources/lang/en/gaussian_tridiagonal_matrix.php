@@ -14,13 +14,13 @@ return [
     */
 
     'title' => 'Gaussian tridiagonal matrix method',
-    'dimension' => 'Dimension',
+    'dimension' => '\[Dimension \]',
     'create_arrays' => 'Create arrays',
     'solve' => 'Solve',
-    'a' => 'A',
-    'b' => 'B',
-    'c' => 'C',
-    'd' => 'D',
+    'a' => '\[A \]',
+    'b' => '\[B \]',
+    'c' => '\[C \]',
+    'd' => '\[D \]',
     'x_solution' => 'X solutions',
     'step' => 'Step',
     'card_header' => 'Solution',

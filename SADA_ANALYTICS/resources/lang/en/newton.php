@@ -24,7 +24,7 @@ return [
     'label' => [
         'f_function' => 'f(x)',
         'df_function' => 'df(x)',
-        'initial_x' => 'Initial x',
+        'initial_x' => 'Initial \\space x',
         'tolerance' => 'Tolerance',
         'iterations' => 'Iterations',
     ],
