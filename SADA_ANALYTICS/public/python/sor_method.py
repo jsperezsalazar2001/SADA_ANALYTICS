@@ -50,7 +50,7 @@ def sorMethod(l,d,u,b,x0,tol,Nmax,w):
 
         qwe = np.array(xant.T)
         aux = str(matrix_function.rebuild_vector(np.array(xant.T)[0]))[1:-1].replace("'","").split()
-        dic_resoult[cont] = [cont,E,aux]
+        dic_resoult[cont] = [cont,round(float(E),7),aux]
 
     C_aux = str(matrix_function.rebuild_vector(np.array(C_aux)[0]))[1:-1].replace("'","").split()
     spectral_radius = matrix_function.rebuild_constant(spectral_radius)

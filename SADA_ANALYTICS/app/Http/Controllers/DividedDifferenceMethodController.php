@@ -16,7 +16,7 @@ class DividedDifferenceMethodController extends Controller
 
         $data["solution"] = "false";
         $data["title"] = __('divided_difference_method.title');
-        $data["message"] = __('divided_difference_method.title');
+        #$data["message"] = __('divided_difference_method.title');
         return view('dividedDifferenceMethod')->with("data",$data);
     }
 
@@ -34,7 +34,7 @@ class DividedDifferenceMethodController extends Controller
        $mem = session()->get("mem");
         $indexMem = $mem[2][0];
         $mem[2][0] = $mem[2][0]+1;
-        if ($mem[2][0]>2) {
+        if ($mem[2][0]>5) {
             $mem[2][0] = 1;
         }
         $auxMem = [];
@@ -49,7 +49,9 @@ class DividedDifferenceMethodController extends Controller
         $Arrx = json_encode($Arrx);
         $Arry = json_encode($Arry);
 
-        $command = 'python "'.public_path().'\python\divided_difference_method.py" '." ".$Arrx." ".$Arry;
+        
+        $command = 'python3 "'.public_path().'/python/divided_difference_method.py" '." ".$Arrx." ". $Arry;
+        #$command = 'python "'.public_path().'\python\divided_difference_method.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];
 
