@@ -26,7 +26,7 @@ return [
         'f_function' => 'f(x)',
         'df_function' => 'df(x)',
         'd2f_function' => 'd2f(x)',
-        'initial_x' => 'Initial x',
+        'initial_x' => 'Initial \\space x',
         'tolerance' => 'Tolerance',
         'iterations' => 'Iterations',
     ],

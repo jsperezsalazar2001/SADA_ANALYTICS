@@ -50,7 +50,7 @@ def multiple_roots(f, df, d2f, x_0, tolerance, n_max):
             prev_f = sm.sympify(f).subs(x_in, prev_x)
             E = float("inf")
             iter_count = 0
-            results[iter_count] = [int(iter_count), float(prev_x), float(prev_f), "N/A"]
+            results[iter_count] = [int(iter_count), round(float(prev_x),7), round(float(prev_f),7), "N/A"]
             
             while E > tolerance and iter_count < n_max:
                 prev_df = sm.sympify(df).subs(x_in, prev_x)
@@ -65,7 +65,7 @@ def multiple_roots(f, df, d2f, x_0, tolerance, n_max):
                 iter_count = iter_count + 1
                 prev_x = current_x
                 prev_f = current_f
-                results[iter_count] = [int(iter_count), float(prev_x), float(prev_f), float(E)]
+                results[iter_count] = [int(iter_count), round(float(prev_x),7), round(float(prev_f),7), round(float(E),7)]
         else:
             raise Exception("Iterations number must be greater than 0")
     except BaseException as e:
