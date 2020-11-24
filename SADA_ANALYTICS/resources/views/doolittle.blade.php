@@ -30,7 +30,6 @@
                     container_matrix.appendChild(document.createElement("br"));
                     container_matrix.appendChild(document.createElement("br"));
                     container_vector.appendChild(document.createTextNode(""));
-
                     var vector = document.createElement("input");
                     vector.type = "number";
                     vector.name = "vector" + i ;
@@ -115,36 +114,29 @@
                 @endif
             </form>
         </div>
-            @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 1)
+            @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 0)
                 <div class="col-md-6" style="float: right;">
-                   <h3>Matrices Saved</h3> 
+                    @if (count($data["mem"][1]) > 1)
+                        <h3>Matrices Saved</h3>
+                    @endif
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
                         <a class="btn btn-outline-primary" href="{{ route('storage_doolittle',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
-                        Matrix A = <br>
+                        $$A = \begin{pmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
-                            [
                             @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)
                                 @if($f != count($data["mem"][1][$j][0][$z])-1)
-                                    {{$data["mem"][1][$j][0][$z][$f]}},
+                                    {{$data["mem"][1][$j][0][$z][$f]}} & 
                                 @else 
-                                    {{$data["mem"][1][$j][0][$z][$f]}}
+                                    {{$data["mem"][1][$j][0][$z][$f]}} \\
                                 @endif  
                             @endfor
-                            ]
-                            <br>
                         @endfor
-                        <br>
-                        Vector b = <br>
-                        [
+                        \end{pmatrix}$$
+                        $$b = \begin{pmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][1]); $z++)
-                            
-                            @if($z != count($data["mem"][1][$j][1])-1)
-                                {{$data["mem"][1][$j][1][$z]}},
-                            @else 
-                                {{$data["mem"][1][$j][1][$z]}}
-                            @endif
+                            {{$data["mem"][1][$j][1][$z]}} \\
                         @endfor
-                        ]<br><br>
+                        \end{pmatrix}$$<br>
                     @endfor
                 </div>
             @endif
