@@ -47,22 +47,22 @@
             <div class="card">
                 <div class="card-header">
                     <h1>{{ __('fixed_point.initial_data') }}</h1>
-                    <b>{{ __('fixed_point.label.f_function') }}:</b> {{ $data['f_function'] }}<br>
-                    <b>{{ __('fixed_point.label.g_function') }}:</b> {{ $data['g_function'] }}<br>
-                    <b>{{ __('fixed_point.label.initial_x') }}:</b> {{ $data['initial_x'] }}<br>
-                    <b>{{ __('fixed_point.label.tolerance') }}:</b> {{ $data['tolerance'] }}<br>
-                    <b>{{ __('fixed_point.label.iterations') }}:</b> {{ $data['iterations'] }}<br>
+                    \[{{ __('fixed_point.label.f_function') }} = {{ $data['f_function'] }}\]
+                    \[{{ __('fixed_point.label.g_function') }} = {{ $data['g_function'] }}\]
+                    \[{{ __('fixed_point.label.initial_x') }} = {{ $data['initial_x'] }}\]
+                    \[{{ __('fixed_point.label.tolerance') }} = {{ $data['tolerance'] }}\]
+                    \[{{ __('fixed_point.label.iterations') }} = {{ $data['iterations'] }}\]
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <table class="table table-striped text-center table-BusquedasIncrementales">
                             <thead>
                                 <tr>
-                                    <th>{{ __('fixed_point.table.iteration') }}</th>
-                                    <th>{{ __('fixed_point.table.xi') }}</th>
-                                    <th>{{ __('fixed_point.table.g_xi') }}</th>
-                                    <th>{{ __('fixed_point.table.f_xi') }}</th>
-                                    <th>{{ __('fixed_point.table.error') }}</th>
+                                    <th>\[{{ __('fixed_point.table.iteration') }}\]</th>
+                                    <th>\[{{ __('fixed_point.table.xi') }}\]</th>
+                                    <th>\[{{ __('fixed_point.table.g_xi') }}\]</th>
+                                    <th>\[{{ __('fixed_point.table.f_xi') }}\]</th>
+                                    <th>\[{{ __('fixed_point.table.error') }}\]</th>
                                 </tr>
                             </thead>
                             <tbody>
