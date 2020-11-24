@@ -18,6 +18,9 @@
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
             }
+            if (number>10) {
+                number=10;
+            }
             if (number>1) {
                 for (i=0;i<number;i++) {
                     for (j=0;j<number;j++){
@@ -44,8 +47,10 @@
                     vector.step = "any";
                     vector.required = true;
                     container_vector.appendChild(vector);
+                    container_vector.appendChild(document.createElement("br"));
+                    container_vector.appendChild(document.createElement("br"));
                 }
-                document.getElementById("separador").style.display = 'block';
+                //document.getElementById("separador").style.display = 'block';
                 document.getElementById("matrix_a").style.display = 'block';
                 document.getElementById("vector_b").style.display = 'block'; 
                 document.getElementById("solve").style.display = 'block';
@@ -55,6 +60,7 @@
     </script>
 </head>
 <div class="container" align="center">
+    <h2> {{ __('factorization_l_u_method.title') }} </h2>
     @include('layouts.message')
     <div class="row justify-content-center">
         <div class="col-md-6" style="float: left;">
@@ -70,6 +76,13 @@
                     n_{21} & n_{22} & n_{23} \\
                     n_{31} & n_{32} & n_{33} \\
                     \end{bmatrix}$$
+
+                    $$\begin{bmatrix}
+                    b_{1} \\
+                    b_{2} \\
+                    b_{3} 
+                    \end{bmatrix}$$
+
                     <li>{{ __('factorization_l_u_method.help_list.dimension') }}</li>
                     <li>{{ __('factorization_l_u_method.help_list.fill') }}</li>
                     <li>{{ __('factorization_l_u_method.help_list.determinant') }}</li>
@@ -80,13 +93,13 @@
                 @csrf
                 @if($data["storage"] == "true")
                     <div class="text-align">
-                        Matrix A = <br>
+                        {{ __('factorization_l_u_method.label.matrix_a') }} = <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             @for($j = 0; $j < count($data["information"][0][0]); $j++)
                             <input type="number" step="any" name="matrix{{$i}}{{$j}}" style="width: 110px" placeholder="{{$data['information'][0][$i][$j]}}" value="{{$data['information'][0][$i][$j]}}">    
                             @endfor <br><br>
                         @endfor
-                        Vector b = <br>
+                        {{ __('factorization_l_u_method.label.vector_b') }} = <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
@@ -102,9 +115,9 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Matrix</label>
+                            <label class="custom-control-label" for="customControlInline"> {{ __('factorization_l_u_method.save') }}</label>
                         </div><br><br>
-                        <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
+                        <button type="submit" class="btn btn-outline-success btn-block">{{ __('factorization_l_u_method.solve') }}</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('factorization_l_u') }}">Try with another matrix</a>
                     </div>
                 @else
@@ -128,18 +141,26 @@
                         </div>
                         <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Matrix</label>
+                            <label class="custom-control-label" for="customControlInline">{{ __('factorization_l_u_method.save') }}</label>
                         </div><br><br>
                         <div class="form-group col-6">
                             <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">{{ __('factorization_l_u_method.solve') }}</button> 
                         </div>
                     </div>
-                    <div id="matrix_a" class="text-align metodo"> {{ __('factorization_l_u_method.label.matrix_a') }} </div>
-                    <div id="matrix" class="text-align"> </div>
-                    
+
+                    <div class="row">
+                        <div class="col">
+                            <div id="matrix_a" class="text-align metodo"> {{ __('factorization_l_u_method.label.matrix_a') }} </div>
+                            <div id="matrix" class="text-align"> </div>
+                        </div>
+                    </div>
                     <div id="separador" class="text-align metodo"> {{ __('factorization_l_u_method.separator') }}</div>
-                    <div id="vector_b" class="text-align metodo"> {{ __('factorization_l_u_method.label.vector_b') }} </div>
-                    <div id="vector" class="text-align"> </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="vector_b" class="text-align metodo"> {{ __('factorization_l_u_method.label.vector_b') }} </div>
+                            <div id="vector" class="text-align"> </div>
+                        </div>
+                    </div>
                 @endif
             </form>
         </div>
@@ -149,31 +170,22 @@
                    <h3>Matrices Saved</h3> 
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
                         <a class="btn btn-outline-primary" href="{{ route('storage_factorization_l_u_method',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
-                        Matrix A = <br>
+                        $$A = \begin{bmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
-                            [
                             @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)
                                 @if($f != count($data["mem"][1][$j][0][$z])-1)
-                                    {{$data["mem"][1][$j][0][$z][$f]}},
+                                    {{$data["mem"][1][$j][0][$z][$f]}} & 
                                 @else 
-                                    {{$data["mem"][1][$j][0][$z][$f]}}
+                                    {{$data["mem"][1][$j][0][$z][$f]}} \\
                                 @endif  
                             @endfor
-                            ]
-                            <br>
                         @endfor
-                        <br>
-                        Vector b = <br>
-                        [
+                        \end{bmatrix}$$
+                        $$b = \begin{bmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][1]); $z++)
-                            
-                            @if($z != count($data["mem"][1][$j][1])-1)
-                                {{$data["mem"][1][$j][1][$z]}},
-                            @else 
-                                {{$data["mem"][1][$j][1][$z]}}
-                            @endif
+                            {{$data["mem"][1][$j][1][$z]}} \\
                         @endfor
-                        ]<br><br>
+                        \end{bmatrix}$$<br>
                     @endfor
                 </div>
         @endif
