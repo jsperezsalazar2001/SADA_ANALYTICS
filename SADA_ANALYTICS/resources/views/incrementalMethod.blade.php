@@ -17,6 +17,7 @@
                     <li>The function must be continuous and differentiable.</li>
                     <li>Tolerance must have a positive value.</li>
                     <li>The iteration number must be positive.</li>
+                    <li>On the number line x0 must be before x1.</li>
                 </div>
             </div><br>
             <form method="POST" action="{{ route('incremental_search_method') }}" class="form">
@@ -24,59 +25,60 @@
                     @if($data["storage"] == "true")
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>\[x0\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('incremental.input.x_0') }}" name="x_0" step="any" required value="{{ empty($data['x_0']) ? '' : $data['x_0'] }}"/>
+                                <label>\[f(x)\]</label>
+                                <input type="text" class="form-control" placeholder="{{$data['information'][0]}}" name="function" value="{{$data['information'][0]}}" />
                             </div>
                             <div class="form-group col-md-6">
-                                <label>$$\varDelta$$</label>
-                                <input type="number" class="form-control" placeholder="{{ __('incremental.input.delta') }}" name="delta" step="any" min="0" required value="{{ empty($data['delta']) ? '' : $data['delta'] }}"/>
+                                <label>\[x0\]</label>
+                                <input type="number" class="form-control" placeholder="Enter x0" name="x_0" step="any" required value="{{ empty($data['x_0']) ? '' : $data['x_0'] }}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>\[n\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('incremental.input.iterations') }}" name="iterations" min="1" required value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}"/>
+                                <label>$$\varDelta$$</label>
+                                <input type="number" class="form-control" placeholder="Enter Delta" name="delta" step="any" min="0" required value="{{ empty($data['delta']) ? '' : $data['delta'] }}"/>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>\[f(x)\]</label>
-                                <input type="text" class="form-control" placeholder="{{$data['information'][0]}}" name="function" value="{{$data['information'][0]}}" />
+                                <label>\[n\]</label>
+                                <input type="number" class="form-control" placeholder="Enter Iterations" name="iterations" min="1" required value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}"/>
                             </div>
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Function</label>
+                            <label class="custom-control-label" for="customControlInline">Save function after calculating</label>
                         </div><br>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <button type="submit" class="btn btn-outline-success btn-block">{{ __('aitken.label.calculate') }}</button>
                             </div>
                         </div>
-                        <br><br>
+                        <br>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('incremental_search') }}">Try with another function</a>
                     @else
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>\[x0\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('incremental.input.x_0') }}" name="x_0" step="any" required value="{{ empty($data['x_0']) ? '' : $data['x_0'] }}"/>
+                                <label>\[f(x)\]</label>
+                                <input type="text" class="form-control" placeholder="Enter Function" name="function" required value="{{ empty($data['function']) ? '' : $data['function'] }}"/>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>$$\varDelta$$</label>
-                                <input type="number" class="form-control" placeholder="{{ __('incremental.input.delta') }}" name="delta" step="any" min="0" required value="{{ empty($data['delta']) ? '' : $data['delta'] }}"/>
+                                <label>\[x0\]</label>
+                                <input type="number" class="form-control" placeholder="Enter x0" name="x_0" step="any" required value="{{ empty($data['x_0']) ? '' : $data['x_0'] }}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>\[n\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('incremental.input.iterations') }}" name="iterations" min="1" required value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}"/>
+                                <label>$$\varDelta$$</label>
+                                <input type="number" class="form-control" placeholder="Enter Delta" name="delta" step="any" min="0" required value="{{ empty($data['delta']) ? '' : $data['delta'] }}"/>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>\[f(x)\]</label>
-                                <input type="text" class="form-control" placeholder="{{ __('incremental.input.function') }}" name="function" required value="{{ empty($data['function']) ? '' : $data['function'] }}"/>
+                                <label>\[n\]</label>
+                                <input type="number" class="form-control" placeholder="Enter Iterations" name="iterations" min="1" required value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}"/>
                             </div>
+                            
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
-                            <label class="custom-control-label" for="customControlInline">Save Function</label>
+                            <label class="custom-control-label" for="customControlInline">Save function after calculating</label>
                         </div><br>
                         <div class="form-row">
                             <div class="form-group col-md-12">
@@ -89,10 +91,10 @@
         @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
             <div class="col-md-6" style="float: right;">
                 @if (count($data["mem"][0]) > 1)
-                    <h3>Functions Saved</h3>
+                    <h4>Functions Saved</h4>
                 @endif
                 @for($j = 1; $j < count($data["mem"][0]); $j++)
-                    <a class="btn btn-outline-primary" href="{{ route('storage_aitken',['storage'=> $j,'method' => 0]) }}">Use Storage {{$j}}</a><br> 
+                    <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_incremental',['storage'=> $j,'method' => 0]) }}">Use Storage {{$j}}</a><br> 
                     \[{{$data["mem"][0][$j][0]}}\]
                     <br><br>
                 @endfor
@@ -102,20 +104,20 @@
     @if ($data["check"] == "true")
         <div class="card">
             <div class="card-header">
-                <h1>{{ __('incremental.label.initialData') }}</h1>
+                <h2>{{ __('incremental.label.initialData') }}</h2>
                 \[x0 = {{ $data["x_0"] }}\]
                 $$\varDelta = {{ $data["delta"] }}$$
                 \[n = {{ $data["iterations"] }}\]
                 \[f(x) = {{ $data["function"] }}\]
             </div>
             <div class="card-body">
-                <h1 class="text-align">{{ __('incremental.label.root') }}</h1>
+                <h4 class="text-align">{{ __('incremental.label.root') }}</h4>
                 <div class="row justify-content-center">
                     <table class="table table-striped text-center table-BusquedasIncrementales">
                         <thead>
                             <tr>
-                                <th>a</th>
-                                <th>b</th>
+                                <th>\[a \]</th>
+                                <th>\[b \]</th>
                             </tr>
                         </thead>
                         <tbody>

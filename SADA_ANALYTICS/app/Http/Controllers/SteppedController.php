@@ -52,6 +52,7 @@ class SteppedController extends Controller
 
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
+        //$command = 'python "'.public_path().'\python\stepped.py" '." ".$data_a." ". $data_b;
         $command = 'python3 "'.public_path().'/python/stepped.py" '." ".$data_a." ". $data_b;
         exec($command, $output);
         $data["title"] = "Stepped Partial Pivot";
@@ -66,7 +67,6 @@ class SteppedController extends Controller
             $data["matrix"] = $matrix;
             $xSolution = json_decode($output[1],true);
             $data["xSolution"] = $xSolution;
-            $data["message"] = "Success with method";
         }
         return view('stepped')->with("data",$data);
     }

@@ -39,6 +39,7 @@ class IncrementalSearchController extends Controller
             session()->put("mem",$mem);
         }
 
+        //$command = 'python "'.public_path().'\python\incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
         $command = 'python3 "'.public_path().'/python/incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
         exec($command, $output);
         $data = [];
@@ -58,7 +59,6 @@ class IncrementalSearchController extends Controller
             $data["delta"] = $delta;
             $data["iterations"] = $iterations;
             $data["function"] = $originalFunction;
-            $data["message"] = __('incremental.succesful');;
         }
         return view('incrementalMethod')->with("data",$data);
     }
