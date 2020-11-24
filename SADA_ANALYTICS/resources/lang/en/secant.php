@@ -39,4 +39,9 @@ return [
     'success' => 'Success: the method converged',
     'root' => 'An aproximation to the root was found at: ',
     'no_root' => 'Could not find an aproximation to the root with the given data',
+    'help' => 'Help',
+    'help1' => 'F(x) must be continuos and differentiable',
+    'help2' => 'To get a faster result  X1 and X2 must be close to the root',
+    'help3' => 'Both tolerance and iterations must be positive',
+    'help4' => 'If the table displays "zoo", "oo" or Nan, it means that there was an error calculating that value, either complex operations or division by 0',
 ];

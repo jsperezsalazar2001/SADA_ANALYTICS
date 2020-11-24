@@ -39,6 +39,8 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
         initial_x = float(initial_x)
         tolerance = float(tolerance)
         iterations =int(iterations)
+        if f_function == g_function:
+            raise Exception("f(x) and g(x) must be different")
         if tolerance <= 0:
             raise Exception("Tolerance must be positive")
         elif iterations <= 0:
@@ -63,7 +65,7 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
                     error = float("inf")
             if error <= tolerance:
                 iter_count += 1
-                #results[iter_count] = ["Se encontró una aproximación de la raiz en {}".format(current_x)]
+                error_dict["aprox"] = current_x
             else:
                 iter_count += 1
                 #results[iter_count] = ["No se encontró una aproximación de la raiz. Último valor de x: {}".format(current_x)]
