@@ -30,6 +30,8 @@ import json
 import base64
 def steffensen(f_function, initial_x, tolerance, iterations):
     results = {}
+    error_dict = {}
+    error_dict["error"] = False
     try:
         f_function = str(f_function)
         initial_x = float(initial_x)
@@ -42,24 +44,24 @@ def steffensen(f_function, initial_x, tolerance, iterations):
         else:
             iter_count = 0
             x_in = sm.symbols('x')
-            f_initial_x = sm.sympify(f_function).subs(x_in, initial_x)
+            f_initial_x = (sm.sympify(f_function).subs(x_in, initial_x))
             xi_plus_f_xi = initial_x + f_initial_x 
-            f_xi_plus_f_xi = sm.sympify(f_function).subs(x_in, xi_plus_f_xi)
+            f_xi_plus_f_xi = (sm.sympify(f_function).subs(x_in, xi_plus_f_xi))
             error = float("inf")
-            results[iter_count] = [int(iter_count), float(initial_x), float(f_initial_x), float(xi_plus_f_xi), float(f_xi_plus_f_xi), "N/A"]
+            results[iter_count] = [str(iter_count), str(round(initial_x,7)), str(round(f_initial_x,7)), str(round(xi_plus_f_xi,7)), str(round(f_xi_plus_f_xi,7)), "N/A"]
             previous_x = initial_x
             while iter_count < iterations and error > tolerance:
                 iter_count += 1
                 first_term = previous_x
-                f_previous_x = sm.sympify(f_function).subs(x_in, previous_x)
+                f_previous_x = float(sm.sympify(f_function).subs(x_in, previous_x))
                 second_term = f_previous_x**2
-                second_term /= (sm.sympify(f_function).subs(x_in, previous_x + f_previous_x) - f_previous_x)
+                second_term /= float((sm.sympify(f_function).subs(x_in, previous_x + f_previous_x) - f_previous_x))
                 current_x = first_term - second_term
-                f_current_x = sm.sympify(f_function).subs(x_in, current_x)
+                f_current_x = float(sm.sympify(f_function).subs(x_in, current_x))
                 xi_plus_f_xi = current_x + f_current_x
-                f_xi_plus_f_xi = sm.sympify(f_function).subs(x_in, xi_plus_f_xi)
+                f_xi_plus_f_xi = float(sm.sympify(f_function).subs(x_in, xi_plus_f_xi))
                 error = abs(previous_x - current_x)
-                results[iter_count] = [int(iter_count), float(current_x), float(f_current_x), float(xi_plus_f_xi), float(f_xi_plus_f_xi), float(error)]
+                results[iter_count] = [str(iter_count), str(round(current_x,7)), str(round(f_current_x,7)), str(round(xi_plus_f_xi,7)), str(round(f_xi_plus_f_xi,7)), str(round(error,7))]
                 previous_x = current_x
             if error <= tolerance:
                 iter_count += 1
@@ -68,10 +70,10 @@ def steffensen(f_function, initial_x, tolerance, iterations):
                 iter_count += 1
                 #results[iter_count] = ["No se encontró una aproximación de la raiz. Último valor de x: {}".format(current_x)]
     except BaseException as e:
-        results[0] = "Error in the given data: " + str(e)
+        error_dict["error"] = "Error in the given data: " + str(e)
     try:
-        aux = json.dumps(results)
-        print(aux)
+        print(json.dumps(error_dict))
+        print(json.dumps(results))
     except BaseException as e:
-        print("Error processing results: " + str(e))
+            print('{"error": "true"}')
 steffensen(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])

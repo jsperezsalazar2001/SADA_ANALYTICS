@@ -11,6 +11,10 @@ class HermiteController extends Controller
         $data = [];
         $data["check"] = "false";
         $data["title"] = "Hermite";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         return view('hermiteMethod')->with("data",$data);
     }
 
@@ -19,11 +23,26 @@ class HermiteController extends Controller
         $Arry = [];
         $Arrz = [];
         $dimension = $request->input("n");
+        $save = $request->input("save");
 
         for ($i=0; $i < $dimension; $i++) { 
             array_push($Arrx, $request->input("x".$i));
             array_push($Arry, $request->input("y".$i));
             array_push($Arrz, $request->input("z".$i));
+        }
+        $mem = session()->get("mem");
+        $indexMem = $mem[2][0];
+        $mem[2][0] = $mem[2][0]+1;
+        if ($mem[2][0] > 5){
+            $mem[2][0] = 1;
+        }
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$Arrx);
+            array_push($auxMem,$Arry);
+            array_push($auxMem,$dimension);
+            $mem[2][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
         }
         $auxArrz = $Arrz;
         $data = [$Arrx,$Arry];
@@ -32,6 +51,10 @@ class HermiteController extends Controller
         $command = 'python "'.public_path().'\python\hermite.py" '." ".$data. " ".$Arrz. " ".$dimension;
         exec($command, $output);
         $data = [];
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
         $data["title"] = "Hermite";
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
@@ -57,6 +80,19 @@ class HermiteController extends Controller
             $data["message"] = "Success with method";
             $data["dimension"] = $dimension;
         }
+        return view('hermiteMethod')->with("data",$data);
+    }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = "Hermite";
+        $data["check"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
         return view('hermiteMethod')->with("data",$data);
     }
 }

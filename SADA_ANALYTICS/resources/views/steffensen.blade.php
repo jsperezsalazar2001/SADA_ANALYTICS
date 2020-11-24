@@ -42,22 +42,22 @@
             <div class="card">
                 <div class="card-header">
                     <h1>{{ __('steffensen.initial_data') }}</h1>
-                    <b>{{ __('steffensen.label.f_function') }}:</b> {{ $data['f_function'] }}<br>
-                    <b>{{ __('steffensen.label.initial_x') }}:</b> {{ $data['initial_x'] }}<br>
-                    <b>{{ __('steffensen.label.tolerance') }}:</b> {{ $data['tolerance'] }}<br>
-                    <b>{{ __('steffensen.label.iterations') }}:</b> {{ $data['iterations'] }}<br>
+                    \[{{ __('steffensen.label.f_function') }} = {{ $data['f_function'] }}\]
+                    \[{{ __('steffensen.label.initial_x') }} = {{ $data['initial_x'] }}\]
+                    \[{{ __('steffensen.label.tolerance') }} = {{ $data['tolerance'] }}\]
+                    \[{{ __('steffensen.label.iterations') }} = {{ $data['iterations'] }}\]
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <table class="table table-striped text-center table-BusquedasIncrementales">
                             <thead>
                                 <tr>
-                                    <th>{{ __('steffensen.table.iteration') }}</th>
-                                    <th>{{ __('steffensen.table.xi') }}</th>
-                                    <th>{{ __('steffensen.table.f_xi') }}</th>
-                                    <th>{{ __('steffensen.table.xi_plus_f_xi') }}</th>
-                                    <th>{{ __('steffensen.table.f_xi_plus_f_xi') }}</th>
-                                    <th>{{ __('steffensen.table.error') }}</th>
+                                    <th>\[{{ __('steffensen.table.iteration') }}\]</th>
+                                    <th>\[{{ __('steffensen.table.xi') }}\]</th>
+                                    <th>\[{{ __('steffensen.table.f_xi') }}\]</th>
+                                    <th>\[{{ __('steffensen.table.xi_plus_f_xi') }}\]</th>
+                                    <th>\[{{ __('steffensen.table.f_xi_plus_f_xi') }}\]</th>
+                                    <th>\[{{ __('steffensen.table.error') }}\]</th>
                                 </tr>
                             </thead>
                             <tbody>

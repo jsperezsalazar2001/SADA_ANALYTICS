@@ -74,28 +74,38 @@ def aitken(x_0, x_1, tolerance, function, iterations):
     iterations = int(iterations)
     bisectionResult = bisection(function,x_0,x_1)
     infinite = float("inf")
-    if bisectionResult != 0:
-        x = sm.symbols('x')
-        count = 1 
-        error = infinite
-        xAitken0 = 0
-        while count <= iterations and error > tolerance and error != 0 and bisectionResult != 0:
-            x1 = bisectionResult[0][1]
-            x2 = bisectionResult[1][1]
-            x3 = bisectionResult[2][1]
-            xAitken = (x1*x3-(x2**2))/(x3-2*x2+x1)
-            f_xAitken = sm.sympify(function).subs(x, xAitken)
-            error = abs(xAitken0-xAitken)
-            if error == 0:
-                error = infinite
-            xAitken0 = xAitken
-            results[count] = [int(count),float(xAitken),float(f_xAitken),float(error)]
-            x_0 = bisectionResult[1][0]
-            x_1 = bisectionResult[1][2]
-            bisectionResult = bisection(function,x_0,x_1)
-            count = count + 1
+    if x_0 == x_1:
+        results[0] = "Error x0 Has to be different from x1"
+    elif tolerance <= 0:
+        results[0] = "Error the tolerance has to be positive and greater than 0" 
+    elif iterations <= 0:
+        results[0] = "Error the iterations has to be positive and greater than 0"
     else:
-        results[0] = "Error en el calculo del metodo"
+        if bisectionResult != 0:
+            try:
+                x = sm.symbols('x')
+                count = 1 
+                error = infinite
+                xAitken0 = 0
+                while count <= iterations and error > tolerance and error != 0 and bisectionResult != 0:
+                    x1 = bisectionResult[0][1]
+                    x2 = bisectionResult[1][1]
+                    x3 = bisectionResult[2][1]
+                    xAitken = (x1*x3-(x2**2))/(x3-2*x2+x1)
+                    f_xAitken = sm.sympify(function).subs(x, xAitken)
+                    error = abs(xAitken0-xAitken)
+                    if error == 0:
+                        error = infinite
+                    xAitken0 = xAitken
+                    results[count] = [int(count),round(float(xAitken),7),round(float(f_xAitken),7),round(float(error),7)]
+                    x_0 = bisectionResult[1][0]
+                    x_1 = bisectionResult[1][2]
+                    bisectionResult = bisection(function,x_0,x_1)
+                    count = count + 1
+            except:
+                results[0] = "Error Divide by 0" 
+        else:
+            results[0] = "Error with method. There isn't a sign change, It's imposible to bisection"
 
     for key in results:
         if results[key][3] == infinite:

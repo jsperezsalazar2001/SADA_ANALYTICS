@@ -31,6 +31,9 @@ class LinealSplineController extends Controller
         $mem = session()->get("mem");
         $indexMem = $mem[2][0];
         $mem[2][0] = $mem[2][0]+1;
+        if ($mem[2][0] > 5){
+            $mem[2][0] = 1;
+        }
         $auxMem = [];
         if ($save == "save"){
             array_push($auxMem,$Arrx);

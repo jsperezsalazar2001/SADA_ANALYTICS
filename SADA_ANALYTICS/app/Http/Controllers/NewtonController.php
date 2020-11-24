@@ -27,7 +27,8 @@ class NewtonController extends Controller
         $data['initial_x'] = $initial_x;
         $data['tolerance'] = $tolerance;
         $data['iterations'] = $iterations;
-        $command = 'python "'.public_path().'\python\newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
+        //$command = 'python "'.public_path().'\python\newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
+        $command = 'python3 "'.public_path().'/python/newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
         $data["title"] = __('newton.title');
         if (!(strpos($output[0], "Error") === false)){

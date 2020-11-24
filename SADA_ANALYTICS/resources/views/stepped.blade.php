@@ -6,12 +6,9 @@
 <head>
     <script type='text/javascript'>
         function addFields(){
-            // Number of inputs to create
             var number = document.getElementById("dimension").value;
-            // Container <div> where dynamic content will be placed
             var container_matrix = document.getElementById("matrix");
             var container_vector = document.getElementById("vector");
-            // Clear previous contents of the container
             while (container_matrix.hasChildNodes()) {
                 container_matrix.removeChild(container_matrix.lastChild);
             }
@@ -21,9 +18,7 @@
             if (number>1) {
                 for (i=0;i<number;i++) {
                     for (j=0;j<number;j++){
-                        // Append a node with a random text
                         container_matrix.appendChild(document.createTextNode(""));
-                        // Create an <input> element for matrix A, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "number";
                         input.name = "matrix" + i + j;
@@ -34,9 +29,7 @@
                     }
                     container_matrix.appendChild(document.createElement("br"));
                     container_matrix.appendChild(document.createElement("br"));
-                    // Append a node with a random text
                     container_vector.appendChild(document.createTextNode(""));
-                    // Create an <input> element for vector B, set its type and name attributes
                     var vector = document.createElement("input");
                     vector.type = "number";
                     vector.name = "vector" + i ;
@@ -49,6 +42,7 @@
                 document.getElementById("matrix_a").style.display = 'block';
                 document.getElementById("vector_b").style.display = 'block'; 
                 document.getElementById("solve").style.display = 'block';
+                document.getElementById("save").style.display = 'block';
             }
         }
     </script>
@@ -57,7 +51,7 @@
     <h2>Stepped Partial Pivot Method</h2>
     @include('layouts.message')
     <div class="row justify-content-center sizeMatrix">
-        <div class="col-md-6">
+        <div class="col-md-6" style="float: left;">
             <p>
                 <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> Help</a>
             </p>
@@ -69,28 +63,82 @@
             </div><br>
             <form method="POST" action="{{route('stepped_method')}}" class="form">
                 @csrf
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label>Dimension</label>
-                        <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                @if($data["storage"] == "true")
+                    <div class="text-align">
+                        Matrix A = <br>
+                        @for($i = 0; $i < count($data["information"][0][0]); $i++)
+                            @for($j = 0; $j < count($data["information"][0][0]); $j++)
+                            <input type="number" step="any" name="matrix{{$i}}{{$j}}" style="width: 110px" placeholder="{{$data['information'][0][$i][$j]}}" value="{{$data['information'][0][$i][$j]}}">    
+                            @endfor <br><br>
+                        @endfor
+                        Vector b = <br>
+                        @for($i = 0; $i < count($data["information"][0][0]); $i++)
+                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
+                        @endfor <br><br>
+                        <div class="form-group col-md-12">
+                            <input type="number" id="dimension" min="2" class="form-control" placeholder="{{$data['information'][2]}}" value="{{$data['information'][2]}}" name="n" step="any" required hidden="true" />
+                        </div>
+                        <div class="custom-control custom-checkbox col-md-12">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
+                            <label class="custom-control-label" for="customControlInline">Save Matrix</label>
+                        </div><br><br>
+                        <button type="submit" class="btn btn-outline-success btn-block">Solve</button>
+                        <a class="btn btn-outline-primary btn-block" href="{{ route('stepped') }}">Try with another matrix</a>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create Matrix</a> 
+                @else
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Dimension</label>
+                            <input type="number" id="dimension" min="2" class="form-control" placeholder="Matrix dimension" name="n" step="any" required />
+                        </div>
                     </div>
-                    <div class="form-group col-md-12">
-                        <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <a id="filldetails" onclick="addFields()" class="btn btn-outline-primary btn-block">Create Matrix</a> 
+                        </div>
+                        <div class="custom-control custom-checkbox col-md-12" style="display: none" id="save">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
+                            <label class="custom-control-label" for="customControlInline">Save Matrix</label>
+                        </div><br><br>
+                        <div class="form-group col-md-12">
+                            <button id="solve" type="submit" class="btn btn-outline-success btn-block metodo">Solve</button> 
+                        </div>
                     </div>
-                </div>
-                <div id="matrix_a" class="text-align metodo">Matrix A</div>
-                <div id="matrix" class="text-align"> </div>
-                
-                <div id="separador" class="text-align metodo"> {{ __('gaussian_method.separator') }}</div>
-                <div id="vector_b" class="text-align metodo">Vector B</div>
-                <div id="vector" class="text-align"> </div></br>
+                    <div id="matrix_a" class="text-align metodo">Matrix A</div>
+                    <div id="matrix" class="text-align"> </div>
+                    
+                    <div id="separador" class="text-align metodo"> {{ __('gaussian_method.separator') }}</div>
+                    <div id="vector_b" class="text-align metodo">Vector B</div>
+                    <div id="vector" class="text-align"> </div></br>
+                @endif
             </form>
         </div>
+        @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 0)
+                <div class="col-md-6" style="float: right;">
+                    @if (count($data["mem"][1]) > 1)
+                        <h3>Matrices Saved</h3>
+                    @endif 
+                    @for($j = 1; $j < count($data["mem"][1]); $j++)
+                        <a class="btn btn-outline-primary" href="{{ route('storage_stepped',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
+                        $$A = \begin{pmatrix}
+                        @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
+                            @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)
+                                @if($f != count($data["mem"][1][$j][0][$z])-1)
+                                    {{$data["mem"][1][$j][0][$z][$f]}} & 
+                                @else 
+                                    {{$data["mem"][1][$j][0][$z][$f]}} \\
+                                @endif  
+                            @endfor
+                        @endfor
+                        \end{pmatrix}$$
+                        $$b = \begin{pmatrix}
+                        @for($z = 0; $z < count($data["mem"][1][$j][1]); $z++)
+                            {{$data["mem"][1][$j][1][$z]}} \\
+                        @endfor
+                        \end{pmatrix}$$<br>
+                    @endfor
+                </div>
+            @endif
     </div><br>
     @if ($data["solution"] == "true")
         <div class="card">

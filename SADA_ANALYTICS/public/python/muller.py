@@ -44,32 +44,35 @@ def muller(x_0, x_1, x_2, tolerance, function, iterations):
         if (sm.sympify(function).subs(x,x_0) > 0 and sm.sympify(function).subs(x,x_1) < 0) or (sm.sympify(function).subs(x,x_0) < 0 and sm.sympify(function).subs(x,x_1) > 0):
             count = 0
             error = abs(x_1-x_2)
-            while (error > tolerance) and (count < iterations):
-                h_0 = x_1 - x_0
-                h_1 = x_2 - x_1
-                f_x0 = sm.sympify(function).subs(x,x_0)
-                f_x1 = sm.sympify(function).subs(x,x_1)
-                f_x2 = sm.sympify(function).subs(x,x_2)
-                delta_0 = (f_x1-f_x0)/h_0
-                delta_1 = (f_x2-f_x1)/h_1
-                a = (delta_1-delta_0)/(h_1-h_0)
-                b = (a*h_1)+delta_1
-                c = f_x2
-                try:
-                    raiz = math.sqrt((b**2)-(4*a*c))
-                    if b<0:
-                        denominador = b-raiz
-                    else:
-                        denominador = b+raiz
-                    x_3 = x_2 + ((-2*c)/denominador)
-                    x_0 = x_1
-                    x_1 = x_2
-                    x_2 = x_3
-                    error = abs(x_1-x_2)
-                    results[count] = [count,float(x_2),float(f_x2),float(error)]
-                    count = count + 1
-                except:
-                    results[0] = "Error with initial data, try with different approximations"
+            try: 
+                while (error > tolerance) and (count < iterations):
+                    h_0 = x_1 - x_0
+                    h_1 = x_2 - x_1
+                    f_x0 = sm.sympify(function).subs(x,x_0)
+                    f_x1 = sm.sympify(function).subs(x,x_1)
+                    f_x2 = sm.sympify(function).subs(x,x_2)
+                    delta_0 = (f_x1-f_x0)/h_0
+                    delta_1 = (f_x2-f_x1)/h_1
+                    a = (delta_1-delta_0)/(h_1-h_0)
+                    b = (a*h_1)+delta_1
+                    c = f_x2
+                    try:
+                        raiz = math.sqrt((b**2)-(4*a*c))
+                        if b<0:
+                            denominador = b-raiz
+                        else:
+                            denominador = b+raiz
+                        x_3 = x_2 + ((-2*c)/denominador)
+                        x_0 = x_1
+                        x_1 = x_2
+                        x_2 = x_3
+                        error = abs(x_1-x_2)
+                        results[count] = [count,round(float(x_2),7),round(float(f_x2),7),round(float(error),7)]
+                        count = count + 1
+                    except:
+                        results[0] = "Error with initial data, try with different approximations"
+            except:
+                results[0] = "Error Divide by 0"
         else:
             results[0] = "Error with initial data, There isn't a root in the initial x" 
     aux = json.dumps(results)

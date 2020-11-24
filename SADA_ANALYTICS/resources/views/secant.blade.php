@@ -18,7 +18,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>{{ __('secant.label.x1') }}</label>
-                            <input type="number" class="form-control" placeholder="{{ __('secant.input.x1') }}" value="{{ empty($data['x1']) ? '' : $data['x1'] }}" name="x1" step="any" required />
+                            <input type="number" class="form-control" placeholder="{{ __('secant.input.x1') }}" value="{{ empty($data['x1']) ? '' : $data['x1'] }}" name="x1"  required />
                         </div>
                         <div class="form-group col-md-6">
                             <label>{{ __('secant.label.x2') }}</label>
@@ -46,21 +46,21 @@
             <div class="card">
                 <div class="card-header">
                     <h1>{{ __('secant.initial_data') }}</h1>
-                    <b>{{ __('secant.label.f_function') }}:</b> {{ $data['f_function'] }}<br>
-                    <b>{{ __('secant.label.x1') }}:</b> {{ $data['x1'] }}<br>
-                    <b>{{ __('secant.label.x2') }}:</b> {{ $data['x2'] }}<br>
-                    <b>{{ __('secant.label.tolerance') }}:</b> {{ $data['tolerance'] }}<br>
-                    <b>{{ __('secant.label.iterations') }}:</b> {{ $data['iterations'] }}<br>
+                    \[{{ __('secant.label.f_function') }} = {{ $data['f_function'] }}\]
+                    \[{{ __('secant.label.x1') }} = {{ $data['x1'] }}\]
+                    \[{{ __('secant.label.x2') }} = {{ $data['x2'] }}\]
+                    \[{{ __('secant.label.tolerance') }} = {{ $data['tolerance'] }}\]
+                    \[{{ __('secant.label.iterations') }} = {{ $data['iterations'] }}\]
                 </div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <table class="table table-striped text-center table-BusquedasIncrementales">
                             <thead>
                                 <tr>
-                                    <th>{{ __('secant.table.iteration') }}</th>
-                                    <th>{{ __('secant.table.xi') }}</th>
-                                    <th>{{ __('secant.table.f_xi') }}</th>
-                                    <th>{{ __('secant.table.error') }}</th>
+                                    <th>\[{{ __('secant.table.iteration') }}\]</th>
+                                    <th>\[{{ __('secant.table.xi') }}\]</th>
+                                    <th>\[{{ __('secant.table.f_xi') }}\]</th>
+                                    <th>\[{{ __('secant.table.error') }}\]</th>
                                 </tr>
                             </thead>
                             <tbody>

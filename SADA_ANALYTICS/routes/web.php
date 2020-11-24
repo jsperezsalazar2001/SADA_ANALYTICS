@@ -83,6 +83,11 @@ Route::POST('/nevilleMethod','NevilleController@nevilleMethod')->name("neville_m
 Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");
 Route::get('/storageLagrange/{storage}/{method}', 'LagrangeController@storage')->name("storage_lagrange");
 Route::get('/storageLinealSpline/{storage}/{method}', 'LinealSplineController@storage')->name("storage_linealSpline");
+Route::get('/storageStepped/{storage}/{method}', 'SteppedController@storage')->name("storage_stepped");
+Route::get('/storageHermite/{storage}/{method}', 'HermiteController@storage')->name("storage_hermite");
+Route::get('/storageAitken/{storage}/{method}', 'AitkenController@storage')->name("storage_aitken");
+Route::get('/storageMuller/{storage}/{method}', 'MullerController@storage')->name("storage_muller");
+Route::get('/storageIncremental/{storage}/{method}', 'IncrementalSearchController@storage')->name("storage_incremental");
 
 Route::GET('/dividedDifference','DividedDifferenceMethodController@dividedDifference')->name("divided_difference");
 Route::POST('/dividedDifferenceMethod','DividedDifferenceMethodController@dividedDifferenceMethod')->name("divided_difference_method");
@@ -95,3 +100,8 @@ Route::get('/storageIterativeMethod/{storage}/{method}', 'IterativeMethodJGBCont
 Route::get('/storageDividedDifferenceMethod/{storage}/{method}', 'DividedDifferenceMethodController@storage')->name("storage_divided_difference_method");
 Route::get('/storageVanderMondeMethod/{storage}/{method}', 'VandermondeController@storage')->name("storage_vandermonde_method");
 Route::get('/storageFactorizationLUMethod/{storage}/{method}', 'FactorizationLUController@storage')->name("storage_factorization_l_u_method");
+
+Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
+
+Route::GET('/about','AboutController@about')->name("about_us");
+
