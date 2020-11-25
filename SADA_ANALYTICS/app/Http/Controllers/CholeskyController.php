@@ -75,6 +75,7 @@ class CholeskyController extends Controller
             $xSolution = json_decode($output[4],true);
             $data["xSolution"] = $xSolution;
         }else{
+            $data["message"] = 'Error: '.$error["error"];
             $data["solution"] = "false";
         }
 

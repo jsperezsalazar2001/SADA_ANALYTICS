@@ -67,6 +67,8 @@ class CubicSplineController extends Controller
         if($error[0] == FALSE){//no errors
             $tracers = json_decode($output[1], true);
             $data["tracers"] = $tracers;
+        }else{
+            $data["message"] = 'Error: Method failed: '.$error[0];
         }
         $data["title"] = __('cubic_spline.title');
         $data["arrx"] = $Arrx;

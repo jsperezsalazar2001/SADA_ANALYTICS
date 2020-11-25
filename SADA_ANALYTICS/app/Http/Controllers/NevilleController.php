@@ -68,6 +68,8 @@ class NevilleController extends Controller
         if($error[0] == FALSE){//no errors
             $interpolated_y = json_decode($output[1], true);
             $data["interpolated_y"] = $interpolated_y;
+        }else{
+            $data["message"] = 'Error: '.$error[0];
         }
         $data["title"] = __('neville.title');
         $data["arrx"] = $Arrx;

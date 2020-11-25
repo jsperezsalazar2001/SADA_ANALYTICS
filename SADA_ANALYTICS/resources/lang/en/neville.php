@@ -21,4 +21,5 @@ return [
     'solve'  => "Solve",
     'initial_data'  => "Initial Data",
     'interpolated'  => "Interpolated",
+    'help1'  => "The X coordinates array must not have repeating values",
 ];

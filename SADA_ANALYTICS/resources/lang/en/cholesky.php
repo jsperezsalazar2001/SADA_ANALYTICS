@@ -28,7 +28,7 @@ return [
     'solution' => 'Solution',
     'step' => 'Step',
     'help_list' => [
-        'fail' => 'This program does not suppor complex operations which makes the Cholesky method very likely to fail because it uses the square root of a substraction',
+        'fail' => 'This program does not support complex operations, which makes the Cholesky method very likely to fail because it uses the square root of a substraction.',
         'dimension' => 'In the input dimension you choose the dimension n to the matrix nxn.',
         'example'=>'Matrix 3x3 example',
         'fill' => 'Make sure all the fields in the array are filled.',

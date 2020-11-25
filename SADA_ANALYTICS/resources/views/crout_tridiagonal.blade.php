@@ -72,10 +72,25 @@
             </p>
             <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="card card-body">
-                    <li>{{ __('secant.help1') }}</li>
-                    <li>{{ __('secant.help2') }}</li>
-                    <li>{{ __('secant.help3') }}</li>
-                    <li>{{ __('secant.help4') }}</li>
+                    <strong>{{ __('crout_tridiagonal.help_list.example') }}</strong>
+                    <br>
+                    $$\begin{bmatrix}
+                    n_{11} & n_{12} & 0 & 0\\
+                    n_{21} & n_{22} & n_{23} & 0\\
+                    0 & n_{32} & n_{33} & n_{34}\\
+                    0 & 0 & n_{43} & n_{44}\\
+                    \end{bmatrix}$$
+
+                    $$\begin{bmatrix}
+                    b_{1} \\
+                    b_{2} \\
+                    b_{3} \\
+                    b_{4} 
+                    \end{bmatrix}$$
+                    <li>{{ __('crout_tridiagonal.help_list.tridiagonal') }}</li>
+                    <li>{{ __('crout_tridiagonal.help_list.dimension') }}</li>
+                    <li>{{ __('crout_tridiagonal.help_list.fill') }}</li>
+                    <li>{{ __('crout_tridiagonal.help_list.determinant') }}</li>
                 </div>
             </div>
             <form method="POST" action="{{route('crout_tridiagonal_method')}}" class="form">
