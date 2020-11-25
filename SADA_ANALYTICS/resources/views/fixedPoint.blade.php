@@ -97,7 +97,7 @@
                         </div>
                         @if (!empty($data["f_function"]))
                         <div class="form-group col-md-6">
-                            <a class="btn btn-outline-primary " href="{{ route('function_plotter_url',['function'=> urlencode(strtolower($data['f_function']))]) }}">Graph f(x)</a><br> 
+                            <a class="btn btn-outline-primary " href="{{ route('function_plotter_url',['function'=> urlencode(strtolower($data['f_function']))]) }} " target="_blank">Graph f(x)</a><br> 
                         </div>
                         @endif
                     </div>

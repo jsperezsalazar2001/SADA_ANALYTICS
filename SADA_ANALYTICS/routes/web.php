@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FunctionPlotterController;
 
 //Route::get('/', 'HomeController@home')->name("home");
 Route::GET('/','FunctionPlotterController@grapher')->name("home");
@@ -116,7 +116,11 @@ Route::get('/storageFactorizationLUMethod/{storage}/{method}', 'FactorizationLUC
 Route::get('/storageCroutMethod/{storage}/{method}', 'CroutController@storage')->name("storage_crout_method");
 
 Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
-Route::get('/functionPlotterFunction/{function}(:all?)', 'FunctionPlotterController@grapherUri')->name("function_plotter_url");
-
+//Route::get('/functionPlotterFunction/{function}', 'FunctionPlotterController@grapherUri')->name("function_plotter_url");
+Route::get('/functionPlotterFunction/{function}', function($function)
+{
+    //dd(($function));
+    return FunctionPlotterController::grapherUri((($function)));
+})->where('function', '.*')->name("function_plotter_url");
 Route::GET('/about','AboutController@about')->name("about_us");
 
