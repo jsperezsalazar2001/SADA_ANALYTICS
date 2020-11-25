@@ -65,10 +65,7 @@
             </p>
             <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="card card-body">
-                    <li>{{ __('secant.help1') }}</li>
-                    <li>{{ __('secant.help2') }}</li>
-                    <li>{{ __('secant.help3') }}</li>
-                    <li>{{ __('secant.help4') }}</li>
+                    <li>{{ __('cuadratic_spline.help1') }}</li>
                 </div>
             </div>
             <form method="POST" action="{{route('cuadratic_spline_method')}}" class="form">

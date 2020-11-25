@@ -67,6 +67,8 @@ class CuadraticSplineController extends Controller
         if($error[0] == FALSE){//no errors
             $tracers = json_decode($output[1], true);
             $data["tracers"] = $tracers;
+        }else{
+            $data["message"] = 'Error: '.$error[0];
         }
         $data["title"] = __('cuadratic_spline.title');
         $data["arrx"] = $Arrx;

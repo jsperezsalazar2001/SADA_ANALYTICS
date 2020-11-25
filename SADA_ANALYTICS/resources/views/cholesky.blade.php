@@ -71,24 +71,25 @@
                 <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('secant.help') }}</a>
             </p>
             <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div class="card card-body">
-                    <strong>{{ __('gaussian_method.help_list.example') }}</strong>
-                    <br>
-                    $$\begin{bmatrix}
-                    n_{11} & n_{12} & n_{13} \\
-                    n_{21} & n_{22} & n_{23} \\
-                    n_{31} & n_{32} & n_{33} \\
-                    \end{bmatrix}$$
+                <div class="card card-body">
+                        <strong>{{ __('cholesky.help_list.example') }}</strong>
+                        <br>
+                        $$\begin{bmatrix}
+                        n_{11} & n_{12} & n_{13} \\
+                        n_{21} & n_{22} & n_{23} \\
+                        n_{31} & n_{32} & n_{33} \\
+                        \end{bmatrix}$$
 
-                    $$\begin{bmatrix}
-                    b_{1} \\
-                    b_{2} \\
-                    b_{3} 
-                    \end{bmatrix}$$
-                    <li>{{ __('cholesky.help_list.dimension') }}</li>
-                    <li>{{ __('cholesky.help_list.fill') }}</li>
-                    <li>{{ __('cholesky.help_list.determinant') }}</li>
-                </div>
+                        $$\begin{bmatrix}
+                        b_{1} \\
+                        b_{2} \\
+                        b_{3} 
+                        \end{bmatrix}$$
+                        <li>{{ __('cholesky.help_list.fail') }}</li>
+                        <li>{{ __('cholesky.help_list.dimension') }}</li>
+                        <li>{{ __('cholesky.help_list.fill') }}</li>
+                        <li>{{ __('cholesky.help_list.determinant') }}</li>
+                    </div>
             </div>
             <form method="POST" action="{{route('cholesky_method')}}" class="form">
             @csrf

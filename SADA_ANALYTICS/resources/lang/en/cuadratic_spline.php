@@ -20,4 +20,5 @@ return [
     'initial_data'  => "Initial Data",
     'coefficients'  => "Coefficients",
     'tracers'  => "Tracers",
+    'help1'  => "The X coordinates array must not have repeating values",
 ];
