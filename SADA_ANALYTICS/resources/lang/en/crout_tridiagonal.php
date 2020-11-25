@@ -27,4 +27,11 @@ return [
     'solve' => 'Solve',
     'solution' => 'Solution',
     'step' => 'Step',
+    'help_list' => [
+        'tridiagonal' => 'This method solves the system using the concept of a tridiagonal Matrix, that means that in only uses tridiagonal elements and ignores any other value that is not in the tridiagonal. This method solves the matrix as if the values that are not tridiagonal were 0.',
+        'dimension' => 'In the input dimension you choose the dimension n to the matrix nxn.',
+        'example'=>'Matrix 3x3 example',
+        'fill' => 'Make sure all the fields in the array are filled.',
+        'determinant' => 'The determinant of the matrix must not be 0. The most common case where the determinant is equals to 0 is because two rows are identical so take care with that.',
+    ],
 ];
