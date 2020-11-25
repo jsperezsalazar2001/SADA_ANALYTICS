@@ -60,6 +60,7 @@ class FixedPointController extends Controller
         $data["storage"] = "false";
 
         $data["title"] = __('fixed_point.title');
+        //dd($output);
         $error = json_decode($output[0],true);
         //dd($error["error"]);
         if (array_key_exists('aprox', $error)) {

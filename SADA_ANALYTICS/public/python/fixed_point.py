@@ -48,21 +48,28 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
         else:
             iter_count = 0
             x_in = sm.symbols('x')
-            g_x = (sm.sympify(g_function).subs(x_in, initial_x))
-            f_x = (sm.sympify(f_function).subs(x_in, initial_x))
-            previous_x = float(initial_x)
+            g_x = sm.sympify(g_function).subs(x_in, initial_x)
+            f_x = sm.sympify(f_function).subs(x_in, initial_x)
+            previous_x = initial_x
             error = float("inf")
             results[iter_count] = [int(iter_count), str(round(initial_x,7)), str(round(g_x,7)), str(round(f_x,7)), "N/A"]
+            check_indeterminations(results[iter_count])
             while iter_count < iterations and error > tolerance:
                 iter_count += 1
-                current_x = g_x
+                current_x = float(g_x)
                 g_x = float(sm.sympify(g_function).subs(x_in, current_x))
                 f_x = float(sm.sympify(f_function).subs(x_in, current_x))
-                error = abs(previous_x-current_x)
+                error = float(abs(previous_x-current_x))
                 previous_x = current_x
                 results[iter_count] = [str(iter_count), str(round(current_x,7)), str(round(g_x,7)), str(round(f_x,7)), str(round(error,7))]
+                check_indeterminations(results[iter_count])
                 if not isinstance(error, float):
                     error = float("inf")
+                for result in results[iter_count]:
+                    if str(result) == "zoo":
+                        raise Exception("A division by cero was encounter while trying to evaluate the function")
+                    if str(result) == "nan":
+                        raise Exception("An indeterminate operation was encounter while trying to evaluate the function")
             if error <= tolerance:
                 iter_count += 1
                 error_dict["aprox"] = current_x
@@ -76,5 +83,12 @@ def fixedPoint(f_function, g_function, initial_x, tolerance, iterations):
         print(json.dumps(results))
     except BaseException as e:
             print('{"error": "true"}')
+            
+def check_indeterminations(results):
+    for result in results:
+        if str(result) == "zoo":
+            raise Exception("A division by cero was encounter while trying to evaluate the function")
+        if str(result) == "nan":
+            raise Exception("An indeterminate operation was encounter while trying to evaluate the function")
 
 fixedPoint(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])

@@ -49,6 +49,7 @@ def steffensen(f_function, initial_x, tolerance, iterations):
             f_xi_plus_f_xi = (sm.sympify(f_function).subs(x_in, xi_plus_f_xi))
             error = float("inf")
             results[iter_count] = [str(iter_count), str(round(initial_x,7)), str(round(f_initial_x,7)), str(round(xi_plus_f_xi,7)), str(round(f_xi_plus_f_xi,7)), "N/A"]
+            check_indeterminations(results[iter_count])
             previous_x = initial_x
             while iter_count < iterations and error > tolerance:
                 iter_count += 1
@@ -62,6 +63,7 @@ def steffensen(f_function, initial_x, tolerance, iterations):
                 f_xi_plus_f_xi = float(sm.sympify(f_function).subs(x_in, xi_plus_f_xi))
                 error = abs(previous_x - current_x)
                 results[iter_count] = [str(iter_count), str(round(current_x,7)), str(round(f_current_x,7)), str(round(xi_plus_f_xi,7)), str(round(f_xi_plus_f_xi,7)), str(round(error,7))]
+                check_indeterminations(results[iter_count])
                 previous_x = current_x
             if error <= tolerance:
                 iter_count += 1
@@ -76,4 +78,12 @@ def steffensen(f_function, initial_x, tolerance, iterations):
         print(json.dumps(results))
     except BaseException as e:
             print('{"error": "true"}')
+
+def check_indeterminations(results):
+    for result in results:
+        if str(result) == "zoo":
+            raise Exception("A division by cero was encounter while trying to evaluate the function")
+        if str(result) == "nan":
+            raise Exception("An indeterminate operation was encounter while trying to evaluate the function")
+
 steffensen(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
