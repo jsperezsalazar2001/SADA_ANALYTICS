@@ -16,7 +16,6 @@ class CroutController extends Controller
 
         $data["title"] = "Crout Method";
         $data["solution"] = "false";
-        #$data["table"] = "";
         return view('crout')->with("data",$data);
     }
 
@@ -58,8 +57,8 @@ class CroutController extends Controller
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
 
-        $command = 'python "'.public_path().'\python\crout.py" '." ".$data_a." ".$data_b;
-        //$command = 'python3 "'.public_path().'/python/crout.py" '." ".$data_a." ".$data_b;
+        //$command = 'python "'.public_path().'\python\crout.py" '." ".$data_a." ".$data_b;
+        $command = 'python3 "'.public_path().'/python/crout.py" '." ".$data_a." ".$data_b;
         exec($command, $output);
         //dd($output);
         $data["title"] = "Crout Method";

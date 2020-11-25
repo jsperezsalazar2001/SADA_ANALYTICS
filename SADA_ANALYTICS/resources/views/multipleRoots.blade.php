@@ -95,9 +95,14 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <button type="submit" class="btn btn-outline-success btn-block">{{ __('multiple_roots.calculate') }}</button>
                             </div>
+                            @if (!empty($data["f_function"]))
+                            <div class="form-group col-md-6">
+                                <a class="btn btn-outline-primary btn-block" href="{{ route('function_plotter_url',['function'=> urlencode(strtolower($data['f_function']))]) }} " target="_blank">Graph f(x)</a><br> 
+                            </div>
+                            @endif
                         </div>
                         <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">

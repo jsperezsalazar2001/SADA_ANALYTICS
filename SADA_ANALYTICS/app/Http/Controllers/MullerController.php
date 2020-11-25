@@ -44,8 +44,8 @@ class MullerController extends Controller
             $mem[0][$indexMem] = $auxMem;
             session()->put("mem",$mem);
         }
-        $comando = 'python "'.public_path().'\python\muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
-        //$comando = 'python3 "'.public_path().'/python/muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
+        //$comando = 'python "'.public_path().'\python\muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
+        $comando = 'python3 "'.public_path().'/python/muller.py" '."{$x_0} {$x_1} {$x_2} {$tolerance} {$function} {$iterations}";
         exec($comando, $output);
         $data = [];
         $mem = session()->get("mem");
@@ -56,6 +56,12 @@ class MullerController extends Controller
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
             $data["message"] = substr($output[0],7,strlen($output[0])-9);
+            $data["x_0"] = $x_0;
+            $data["x_1"] = $x_1;
+            $data["x_2"] = $x_2;
+            $data["iterations"] = $iterations;
+            $data["function"] = $originalfunction;
+            $data["tolerance"] = $tolerance;
         }else{
             $json = json_decode($output[0],true);
             $data["json"] = $json;

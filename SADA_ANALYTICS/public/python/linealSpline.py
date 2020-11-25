@@ -38,7 +38,7 @@ def linealSpline(data, n):
             break
 
     if validate == True:
-        results[0] = "Error There are two equals x points in x array... All of this points have to be differents"
+        results[0] = "Error X coordinates contain a duplicate"
     else:
         xValor = sm.symbols('x')
         sizeX = len(x)

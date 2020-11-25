@@ -197,10 +197,25 @@
                             \end{pmatrix}$$
                             <br/>
                             <b><em>{{ __('divided_difference_method.coef_polynomial') }}</em></b>
-                            <p>{{ $data["coef"] }}</p>
+                            <div class="col-6">
+                                <table class="table table-striped" align="center">
+                                    <tbody>
+                                        @for ($v = 0; $v < count($data["coef"]); $v++)
+                                        <tr>
+                                            <th>\[{{ ($v + 1) }}\]</th>
+                                            @if($v == count($data["coef"])-1)
+                                            <th>\[{{ $data["coef"][$v] }}\]</th>   
+                                            @else
+                                            <th>\[{{ $data["coef"][$v] }}\]</th>
+                                            @endif
+                                        </tr>
+                                        @endfor
+                                    </tbody>
+                                </table>
+                            </div>
                             <br/>
-                            <b><em>{{ __('divided_difference_method.polynomial') }}</em></b>
-                            \[ {{ $data["polynomial"] }} \]
+                            <b><em>{{ __('divided_difference_method.polynomial') }}</em></b><br>
+                            {{ $data["polynomial"] }}
                         </div></br>
                     </div>
                 </div>

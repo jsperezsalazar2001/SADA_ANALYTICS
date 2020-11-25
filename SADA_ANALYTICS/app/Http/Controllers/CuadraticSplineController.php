@@ -50,7 +50,7 @@ class CuadraticSplineController extends Controller
         }
 
 
-        $command = 'python "'.public_path().'\python\cuadratic_spline.py" '." ".$data. " ".$dimension;
+        $command = 'python3 "'.public_path().'/python/cuadratic_spline.py" '." ".$data. " ".$dimension;
         // $output = explode("\n",substr_replace(shell_exec($command) ,"",-2));
         //dd($output);
         exec($command, $output);

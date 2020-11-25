@@ -59,9 +59,8 @@ class CroutTridiagonalController extends Controller
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
 
-        $command = 'python "'.public_path().'\python\crout_tridiagonal.py" '." ".$data_a." ". $data_b;
+        $command = 'python3 "'.public_path().'/python/crout_tridiagonal.py" '." ".$data_a." ". $data_b;
         exec($command, $output);
-        #dd($output[0]);
         $data["title"] = __('crout_tridiagonal.title');
         $error = json_decode($output[0],true);
 
@@ -86,7 +85,6 @@ class CroutTridiagonalController extends Controller
         $data["matrixA"] = $matrixA;
         $data["stepL"] = $stepL;
         $data["stepU"] = $stepU;
-        //dd($data);
         return view('crout_tridiagonal')->with("data",$data);
     }
 

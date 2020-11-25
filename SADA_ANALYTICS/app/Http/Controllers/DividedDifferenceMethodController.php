@@ -50,8 +50,8 @@ class DividedDifferenceMethodController extends Controller
         $Arry = json_encode($Arry);
 
         
-        //$command = 'python3 "'.public_path().'/python/divided_difference_method.py" '." ".$Arrx." ". $Arry;
-        $command = 'python "'.public_path().'\python\divided_difference_method.py" '." ".$Arrx." ".$Arry;
+        $command = 'python3 "'.public_path().'/python/divided_difference_method.py" '." ".$Arrx." ". $Arry;
+        //$command = 'python "'.public_path().'\python\divided_difference_method.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];
 
@@ -77,8 +77,12 @@ class DividedDifferenceMethodController extends Controller
             //dd($coef);
             $v_matrix = $this->rebuildArray($v_matrix);
 
+            $temporal = substr($coef,1,strlen($coef)-2);
+            $temporal = str_replace("'","",$temporal);
+            $temporal = explode(" ",$temporal);
+
             $data["v_matrix"] = $v_matrix;
-            $data["coef"] = $coef;
+            $data["coef"] = $temporal;
             $data["polynomial"] = $polynomial;
         }
         return view('dividedDifferenceMethod')->with("data",$data);

@@ -39,8 +39,8 @@ class IncrementalSearchController extends Controller
             session()->put("mem",$mem);
         }
 
-        $command = 'python "'.public_path().'\python\incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
-        //$command = 'python3 "'.public_path().'/python/incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
+        //$command = 'python "'.public_path().'\python\incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
+        $command = 'python3 "'.public_path().'/python/incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
         exec($command, $output);
         $data = [];
         $mem = session()->get("mem");
@@ -51,6 +51,10 @@ class IncrementalSearchController extends Controller
         if (substr($output[0],7,5) == "Error"){
             $data["check"] = "false";
             $data["message"] = substr($output[0],7,strlen($output[0])-9);
+            $data["x_0"] = $x_0;
+            $data["delta"] = $delta;
+            $data["iterations"] = $iterations;
+            $data["function"] = $originalFunction;
         }else{
             $json = json_decode($output[0],true);
             $data["json"] = $json;

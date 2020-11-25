@@ -90,9 +90,14 @@
                             <label class="custom-control-label" for="customControlInline">Save function after calculating</label>
                         </div><br>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <button type="submit" class="btn btn-outline-success btn-block">{{ __('aitken.label.calculate') }}</button>
                             </div>
+                            @if (!empty($data["function"]))
+                            <div class="form-group col-md-6">
+                                <a class="btn btn-outline-primary btn-block" href="{{ route('function_plotter_url',['function'=> urlencode(strtolower($data['function']))]) }} " target="_blank">Graph f(x)</a><br> 
+                            </div>
+                            @endif
                         </div>
                         
                     @endif

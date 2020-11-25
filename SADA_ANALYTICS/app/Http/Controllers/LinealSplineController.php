@@ -44,8 +44,8 @@ class LinealSplineController extends Controller
         }
         $data = [$Arrx,$Arry];
         $data = json_encode($data);
-        $command = 'python "'.public_path().'\python\linealSpline.py" '." ".$data. " ".$dimension;
-        //$command = 'python3 "'.public_path().'/python/linealSpline.py" '." ".$data. " ".$dimension;
+        //$command = 'python "'.public_path().'\python\linealSpline.py" '." ".$data. " ".$dimension;
+        $command = 'python3 "'.public_path().'/python/linealSpline.py" '." ".$data. " ".$dimension;
         exec($command, $output);
         $data = [];
         $mem = session()->get("mem");
