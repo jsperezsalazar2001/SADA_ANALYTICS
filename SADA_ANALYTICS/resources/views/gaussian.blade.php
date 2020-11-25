@@ -103,7 +103,7 @@
                         @endfor
                         {{ __('gaussian_method.label.vector_b') }} = <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
-                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
+                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> <br><br>
                         @endfor <br><br>
                         <div class="form-group col-md-12">
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="{{$data['information'][2]}}" value="{{$data['information'][2]}}" name="n" step="any" required hidden="true" />
@@ -120,7 +120,7 @@
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
                             <label class="custom-control-label" for="customControlInline">{{ __('gaussian_method.save') }}</label>
                         </div><br><br>
-                        <button type="submit" class="btn btn-outline-success btn-block"> {{ __('gaussian_method.solve') }} Solve</button>
+                        <button type="submit" class="btn btn-outline-success btn-block"> {{ __('gaussian_method.solve') }}</button>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('gaussian') }}">Try with another matrix</a>
                     </div>
                 @else

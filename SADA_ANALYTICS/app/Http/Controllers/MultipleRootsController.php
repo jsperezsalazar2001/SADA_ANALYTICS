@@ -87,6 +87,6 @@ class MultipleRootsController extends Controller
         $information = $data["mem"][$method][$storage];
         $data["information"] = $information;
         $data["storage"] = "true";
-        return view('multiple_roots')->with("data",$data);
+        return view('multipleRoots')->with("data",$data);
     }
 }

@@ -56,7 +56,7 @@ def SteppedPartialPivot(matrix):
             matrix[i]=np.array(matrix[i+posmax_pivot])
             matrix[i+posmax_pivot] = temporal_matrix
         if (pivot_number==0 and i == matrix.shape[0]-2):
-            print ("the last pivot number is cero so the matrix doesn't have a solution")
+            print ("Error the last pivot number is cero so the matrix doesn't have a solution")
         fj = auxiliary_matrix[0] # Fj
         column_vector = np.reshape(auxiliary_matrix.T[0][1:], (auxiliary_matrix.T[0][1:].shape[0], 1))
         multiplier = column_vector/pivot_number 
@@ -76,23 +76,28 @@ def SteppedPartialPivot(matrix):
         #dic[i+1] = copy.deepcopy(matrixDic)
     a = np.delete(matrix, matrix.shape[1]-1, axis=1)
     b = matrix.T[matrix.shape[1]-1]
+    
     return a,b,dic 
 
 def initialData(A,b):
-    A,b,matrix2 = matrix_function.mix_matrix(A,b)
-    if (matrix_function.determinant(A) == True):
-        matrix2 = np.array(matrix2)
-        A,B,dic = SteppedPartialPivot(matrix2)
-        dic = matrix_function.rebuild_matrix(dic)
-        print(json.dumps(dic)) 
-        x = matrix_function.soltion(A,B)
-        x = x.tolist()
-        xSolution = {}
-        xSolution[0] = x
-        print(json.dumps(xSolution)) 
-    else:
-        results = {}
-        results[0] = "Error the matrix determinant is 0"
+    results = {}
+    try:
+        A,b,matrix2 = matrix_function.mix_matrix(A,b)
+        if (matrix_function.determinant(A) == True):
+            matrix2 = np.array(matrix2)
+            A,B,dic = SteppedPartialPivot(matrix2)
+            dic = matrix_function.rebuild_matrix(dic)
+            print(json.dumps(dic)) 
+            x = matrix_function.soltion(A,B)
+            x = x.tolist()
+            xSolution = {}
+            xSolution[0] = x
+            print(json.dumps(xSolution)) 
+        else:
+            results[0] = "Error the matrix determinant is 0"
+            print(json.dumps(results)) 
+    except BaseException as e:
+        results[0] = "Error" + str(e)
         print(json.dumps(results)) 
 
 #A = "[[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]"

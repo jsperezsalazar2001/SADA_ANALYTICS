@@ -45,35 +45,38 @@ def lagrange(data, n):
         if len(Arrx) != len(Arry):
             results[0] = "Error the size of the x vector is different to y vector"
         else:
-            x = sm.symbols('x')
-            size = len(Arrx)
-            polynomial = []
-            arrayL = []
-            for i in range(0,size):
-                pos = i
-                value = Arrx[i]
-                numerator = 1 
-                denominator = 1
-                for j in range(0,size):
-                    if j != i:
-                        numerator = numerator*(x-Arrx[j])
-                        denominator = denominator*(value-Arrx[j])
-                aux = numerator/denominator
-                aux = aux.expand()
-                aux = str(aux)
+            try: 
+                x = sm.symbols('x')
+                size = len(Arrx)
+                polynomial = []
+                arrayL = []
+                for i in range(0,size):
+                    pos = i
+                    value = Arrx[i]
+                    numerator = 1 
+                    denominator = 1
+                    for j in range(0,size):
+                        if j != i:
+                            numerator = numerator*(x-Arrx[j])
+                            denominator = denominator*(value-Arrx[j])
+                    aux = numerator/denominator
+                    aux = aux.expand()
+                    aux = str(aux)
+                    arrayAux = []
+                    arrayAux.append(aux)
+                    results[i] = aux
+                    coefficient = numerator*Arry[i]/denominator
+                    coefficient = coefficient.expand()
+                    polynomial.append(coefficient)
+                sumPol = 0
+                for i in range(0,len(polynomial)):
+                    sumPol = sumPol + polynomial[i]
                 arrayAux = []
-                arrayAux.append(aux)
-                results[i] = aux
-                coefficient = numerator*Arry[i]/denominator
-                coefficient = coefficient.expand()
-                polynomial.append(coefficient)
-            sumPol = 0
-            for i in range(0,len(polynomial)):
-                sumPol = sumPol + polynomial[i]
-            arrayAux = []
-            sumPol = str(sumPol)
-            arrayAux.append(sumPol)
-            results["polynomial"] = sumPol
+                sumPol = str(sumPol)
+                arrayAux.append(sumPol)
+                results["polynomial"] = sumPol
+            except:
+                results[0] = "Error divided by 0"
     return results
 
 
