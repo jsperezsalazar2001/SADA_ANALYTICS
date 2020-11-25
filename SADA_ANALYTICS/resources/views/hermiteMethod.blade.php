@@ -130,7 +130,7 @@
                     <div id="vector_b" class="text-align metodo"> \[y = \] </div><br>
                     <div id="vector" class="text-align"> </div><br>
 
-                    <div id="vector_c" class="text-align metodo"> \[y') = \] </div><br>
+                    <div id="vector_c" class="text-align metodo"> \[y' = \] </div><br>
                     <div id="vector_2" class="text-align"> </div><br>
                 @endif <!-- No olvidar el endif -->
             </form>

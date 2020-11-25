@@ -84,14 +84,21 @@
                             <div class="form-group col-md-6">
                                 <button type="submit" class="btn btn-outline-success btn-block">{{ __('incremental.label.calculate') }}</button>
                             </div>
-                            @if (!empty($data["function"]))
-                            <div class="form-group col-md-6">
-                                <a class="btn btn-outline-primary btn-block" href="{{ route('function_plotter_url',['function'=> urlencode(strtolower($data['function']))]) }} " target="_blank">Graph f(x)</a><br> 
-                            </div>
-                            @endif
                         </div>
                     @endif
             </form>
+                @if (!empty($data["function"]))
+                <div class="row">
+                    <div class="col-md-6">
+                        <form method="POST" action="{{ route('function_plotter_url') }}" class="form" target="_blank">
+                            @csrf    
+                            <input type="hidden" name="f_function" value="{{ $data['function'] }}">
+                            <button type="submit" class="btn btn-info btn-block">Graph f(x)</button>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                @endif  
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
             <div class="col-md-6" style="float: right;">

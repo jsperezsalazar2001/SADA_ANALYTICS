@@ -117,10 +117,11 @@ Route::get('/storageCroutMethod/{storage}/{method}', 'CroutController@storage')-
 
 Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
 //Route::get('/functionPlotterFunction/{function}', 'FunctionPlotterController@grapherUri')->name("function_plotter_url");
-Route::get('/functionPlotterFunction/{function}', function($function)
-{
-    //dd(($function));
-    return FunctionPlotterController::grapherUri((($function)));
-})->where('function', '.*')->name("function_plotter_url");
+Route::POST('/functionPlotterFunction','FunctionPlotterController@grapherUri')->name("function_plotter_url");
+// Route::POST('/functionPlotterFunction', function($function)
+// {
+//     //dd(($function));
+//     return FunctionPlotterController::grapherUri((($function)));
+// })->where('function', '.*')->name("function_plotter_url");
 Route::GET('/about','AboutController@about')->name("about_us");
 
