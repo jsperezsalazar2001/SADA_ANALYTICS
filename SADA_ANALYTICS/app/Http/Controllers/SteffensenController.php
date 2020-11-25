@@ -9,6 +9,13 @@ class SteffensenController extends Controller
 {
     public function steffensen(){
         $data = [];
+
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+        $data["solution"] = "false";
+
         $data["title"] = __('steffensen.title');
         return view('steffensen')->with("data",$data);
     }
@@ -23,8 +30,30 @@ class SteffensenController extends Controller
         $data['initial_x'] = $initial_x;
         $data['tolerance'] = $tolerance;
         $data['iterations'] = $iterations;
-        $command = 'python "'.public_path().'\python\steffensen.py" '."{$f_function} {$initial_x} {$tolerance} {$iterations}";
+
+        $mem = session()->get("mem");
+        $indexMem = $mem[0][0];
+        $mem[0][0] = $mem[0][0]+1;
+        if ($mem[0][0] > 5){
+            $mem[0][0] = 1;
+        }
+        $auxMem = [];
+        $save = $request->input("save");
+        if ($save == "save"){
+            array_push($auxMem,$data['f_function']);
+            $mem[0][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
+
+
+        $command = 'python3 "'.public_path().'/python/steffensen.py" '."{$f_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
+        
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+        
         $data["title"] = __('steffensen.title');
         $error = json_decode($output[0],true);
         //dd($error["error"]);
@@ -49,4 +78,18 @@ class SteffensenController extends Controller
         }
         return view('steffensen')->with("data",$data);
     }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = __('steffensen.title');
+        $data["solution"] = "false";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
+        return view('steffensen')->with("data",$data);
+    }
+
 }

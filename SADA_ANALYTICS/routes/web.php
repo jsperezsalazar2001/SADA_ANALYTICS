@@ -8,12 +8,15 @@ Route::GET('/','FunctionPlotterController@grapher')->name("home");
 
 Route::GET('/fixedPoint','FixedPointController@fixedPoint')->name("fixed_point");
 Route::POST('/fixedPointMethod','FixedPointController@fixedPointMethod')->name("fixed_point_method");
+Route::get('/storageFixedPoint/{storage}/{method}', 'FixedPointController@storage')->name("storage_fixed_point");
 
 Route::GET('/secant','SecantController@secant')->name("secant");
 Route::POST('/secantMethod','SecantController@secantMethod')->name("secant_method");
+Route::get('/storageSecant/{storage}/{method}', 'SecantController@storage')->name("storage_secant");
 
 Route::GET('/steffensen','SteffensenController@steffensen')->name("steffensen");
 Route::POST('/steffensenMethod','SteffensenController@steffensenMethod')->name("steffensen_method");
+Route::get('/storageSteffensen/{storage}/{method}', 'SteffensenController@storage')->name("storage_steffensen");
 
 Route::GET('/incremental','IncrementalSearchController@incrementalSearch')->name("incremental_search");
 Route::POST('/incrementalMethod','IncrementalSearchController@incrementalSearchMethod')->name("incremental_search_method");
@@ -72,18 +75,23 @@ Route::POST('/iterativeMethod','IterativeMethodJGBController@values')->name("ite
 
 Route::GET('/cholesky','CholeskyController@cholesky')->name("cholesky");
 Route::POST('/choleskyMethod','CholeskyController@choleskyMethod')->name("cholesky_method");
+Route::get('/storageCholesky/{storage}/{method}', 'CholeskyController@storage')->name("storage_cholesky");
 
 Route::GET('/croutTridiagonal','CroutTridiagonalController@croutTridiagonal')->name("crout_tridiagonal");
 Route::POST('/croutTridiagonalMethod','CroutTridiagonalController@croutTridiagonalMethod')->name("crout_tridiagonal_method");
+Route::get('/storageCroutTridiagonal/{storage}/{method}', 'CroutTridiagonalController@storage')->name("storage_crout_tridiagonal");
 
 Route::GET('/cuadraticSpline','CuadraticSplineController@cuadraticSpline')->name("cuadraticSpline");
 Route::POST('/cuadraticSpline','CuadraticSplineController@cuadraticSplineMethod')->name("cuadratic_spline_method");
+Route::get('/storagecuadraticSpline/{storage}/{method}', 'CuadraticSplineController@storage')->name("storage_cuadratic_spline");
 
 Route::GET('/cubicSpline','CubicSplineController@cubicSpline')->name("cubicSpline");
 Route::POST('/cubicSpline','CubicSplineController@cubicSplineMethod')->name("cubic_spline_method");
+Route::get('/storageCubicSpline/{storage}/{method}', 'CubicSplineController@storage')->name("storage_cubic_spline");
 
 Route::GET('/neville','NevilleController@neville')->name("neville");
 Route::POST('/nevilleMethod','NevilleController@nevilleMethod')->name("neville_method");
+Route::get('/storageNeville/{storage}/{method}', 'NevilleController@storage')->name("storage_neville");
 
 Route::get('/storageDoolittle/{storage}/{method}', 'DoolittleController@storage')->name("storage_doolittle");
 Route::get('/storageLagrange/{storage}/{method}', 'LagrangeController@storage')->name("storage_lagrange");

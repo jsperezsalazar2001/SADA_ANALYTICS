@@ -11,6 +11,12 @@ class CholeskyController extends Controller
         $data = [];
         $data["title"] = __('cholesky.title');
         $data["solution"] = "form";
+
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+
         return view('cholesky')->with("data",$data);
     }
 
@@ -18,6 +24,18 @@ class CholeskyController extends Controller
         $data_a = []; 
         $dimension = $request->input("n");
         $data_b = [];
+
+        $data = [];
+        $mem = session()->get("mem");
+        $indexMem = $mem[1][0];
+        $mem[1][0] = $mem[1][0]+1;
+        if ($mem[1][0] > 5){
+            $mem[1][0] = 1;
+        }
+        $data["checkMem"] = "true";
+        $data["storage"] = "false";
+        $save = $request->input("save");
+
         for ($i=0; $i < $dimension; $i++) { 
             $array_a =[];
             array_push($data_b, $request->input("vector".$i));
@@ -27,9 +45,20 @@ class CholeskyController extends Controller
           array_push($data_a, $array_a);
         }
 
+        $auxMem = [];
+        if ($save == "save"){
+            array_push($auxMem,$data_a);
+            array_push($auxMem,$data_b);
+            array_push($auxMem,$dimension);
+            $mem[1][$indexMem] = $auxMem;
+            session()->put("mem",$mem);
+        }
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+
+
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
-
         $command = escapeshellcmd('python "'.public_path().'\python\cholesky.py" '." ".$data_a." ". $data_b);
         //$output = explode("\n",substr_replace(shell_exec($command) ,"",-2));
         //dd($output);
@@ -77,5 +106,18 @@ class CholeskyController extends Controller
         }
 
         return $aux2_array;
+    }
+
+    public function storage($storage,$method){
+        $data = [];
+        $data["checkMem"] = "true";
+        $data["title"] = __('cholesky.title');
+        $data["solution"] = "form";
+        $mem = session()->get("mem");
+        $data["mem"] = $mem;
+        $information = $data["mem"][$method][$storage];
+        $data["information"] = $information;
+        $data["storage"] = "true";
+        return view('cholesky')->with("data",$data);
     }
 }

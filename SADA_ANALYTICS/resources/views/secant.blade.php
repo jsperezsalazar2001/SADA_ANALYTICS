@@ -3,11 +3,11 @@
 @section("title", $data["title"])
 
 @section('content')
-<div class="container">
+<div class="container" align="center">
+    <h2>{{$data["title"]}}</h2>
     @include('layouts.message')
     <div class="row justify-content-center">
-        <div class="col-md-8">
-        <h2>{{$data["title"]}}</h2>
+        <div class="col-md-6" style="float: left;">
             <p>
                 <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-info-circle"></i> {{ __('secant.help') }}</a>
             </p>
@@ -24,7 +24,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>\[{{ __('secant.label.f_function') }}\]</label>
-                            <input type="text" class="form-control" placeholder="{{ __('secant.input.f_function') }}" value="{{ empty($data['f_function']) ? '' : $data['f_function'] }}" name="f_function" required />
+                            @if($data["storage"] == "true")
+                                <input type="text" class="form-control" placeholder="{{$data['information'][0]}}" value="{{$data['information'][0]}}" name="f_function" required />
+                            @else
+                                <input type="text" class="form-control" placeholder="{{ __('secant.input.f_function') }}" value="{{ empty($data['f_function']) ? '' : $data['f_function'] }}" name="f_function" required />
+                            @endif
                         </div>
                     </div>
                     <div class="form-row">
@@ -52,8 +56,32 @@
                             <button type="submit" class="btn btn-outline-success btn-block">{{ __('secant.calculate') }}</button>
                         </div>
                     </div>
+                    <div class="custom-control custom-checkbox col-md-12">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
+                            <label class="custom-control-label" for="customControlInline">Save Function after calculating</label>
+                    </div><br>
+                    @if($data["storage"] == "true")
+                    <a class="btn btn-outline-primary btn-block" href="{{ route('secant') }}">Try with another function</a><br>
+                    @endif
             </form>
         </div>
+        @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
+            <div class="col-md-6" style="float: right;">
+                <p>
+                    @if (count($data["mem"][0]) > 1)
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-info-circle"></i> Functions Saved</a>
+                    @endif 
+                </p>
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    @for($j = 1; $j < count($data["mem"][0]); $j++)
+                        <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_secant',['storage'=> $j,'method' => 0]) }}">Use Storage {{$j}}</a><br> 
+                        \[{{$data["mem"][0][$j][0]}}\]
+                        <br>
+                    @endfor
+                </div>
+            </div>
+        @endif
+    </div>
         @if (!empty($data["table"]))
             <div class="card">
                 <div class="card-header">
@@ -102,5 +130,4 @@
             </div>
         @endif   
     </div>
-</div>
 @endsection

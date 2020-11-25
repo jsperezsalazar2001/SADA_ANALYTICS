@@ -16,15 +16,15 @@ return [
     'title' => 'Secant method',
     'input' => [
         'f_function' => 'Enter f(x)',
-        'x1' => 'Enter x1',
-        'x2' => 'Enter x2',
+        'x1' => 'Enter x0',
+        'x2' => 'Enter x1',
         'tolerance' => 'Enter the tolerance',
         'iterations' => 'Enter the maximun iterations',
     ],
     'label' => [
         'f_function' => 'f(x)',
-        'x1' => 'X1',
-        'x2' => 'X2',
+        'x1' => 'X0',
+        'x2' => 'X1',
         'tolerance' => 'Tolerance',
         'iterations' => 'Iterations',
     ],
@@ -44,4 +44,5 @@ return [
     'help2' => 'To get a faster result  X1 and X2 must be close to the root',
     'help3' => 'Both tolerance and iterations must be positive',
     'help4' => 'If the table displays "zoo", "oo" or Nan, it means that there was an error calculating that value, either complex operations or division by 0',
+    'help5' => 'If you get an error regarding the expression, make sure that you used, for instance, x*(ln(x)) instead of x(ln(x)) ',
 ];

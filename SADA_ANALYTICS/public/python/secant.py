@@ -49,8 +49,10 @@ def secant(f_function, x0, x1, tolerance, iterations):
             f_x_1 = sm.sympify(f_function).subs(x_in, x1)
             error = float("inf")
             results[iter_count] = [str(iter_count), str(round(x0,7)), str(round(f_x_0,7)), "N/A"]
+            check_indeterminations(results[iter_count])
             iter_count += 1
             results[iter_count] = [str(iter_count), str(round(x1,7)), str(round(f_x_1,7)), "N/A"]
+            check_indeterminations(results[iter_count])
             previous_x = x1
             second_previous_x = x0
             while iter_count < iterations and error > tolerance:
@@ -64,6 +66,7 @@ def secant(f_function, x0, x1, tolerance, iterations):
                 f_current_x = float(sm.sympify(f_function).subs(x_in, current_x))
                 error = abs(current_x - previous_x)
                 results[iter_count] = [str(iter_count), str(round(current_x,7)), str(round(f_current_x,7)), str(round(error,7))]
+                check_indeterminations(results[iter_count])
                 second_previous_x = previous_x
                 previous_x = current_x
             if error <= tolerance:
@@ -79,4 +82,12 @@ def secant(f_function, x0, x1, tolerance, iterations):
         print(json.dumps(results))
     except BaseException as e:
             print('{"error": "true"}')
+
+def check_indeterminations(results):
+    for result in results:
+        if str(result) == "zoo":
+            raise Exception("A division by cero was encounter while trying to evaluate the function")
+        if str(result) == "nan":
+            raise Exception("An indeterminate operation was encounter while trying to evaluate the function")
+
 secant(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])
