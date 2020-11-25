@@ -102,6 +102,19 @@
                         
                     @endif
             </form>
+
+                @if (!empty($data["function"]))
+                <div class="row">
+                    <div class="col-md-6">
+                        <form method="POST" action="{{ route('function_plotter_url') }}" class="form" target="_blank">
+                            @csrf    
+                            <input type="hidden" name="f_function" value="{{ $data['function'] }}">
+                            <button type="submit" class="btn btn-info btn-block">Graph f(x)</button>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                @endif  
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
             <div class="col-md-6" style="float: right;">

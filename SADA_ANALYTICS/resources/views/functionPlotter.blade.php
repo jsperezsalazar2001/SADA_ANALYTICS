@@ -22,7 +22,7 @@
             functionPlot({
                 target: '#plot',
                 data: [{
-                fn: document.getElementById('eq').value,
+                fn: document.getElementById('eq').value.replace('ln', 'log'),
                 sampler: 'builtIn',  // this will make function-plot use the evaluator of math.js
                 graphType: 'polyline'
                 }]
@@ -41,7 +41,7 @@
             try {
                 x_val = document.getElementById('x_value').value;
                 let scope = {x: x_val};
-                function_to_eval = document.getElementById('function_eval').value;
+                function_to_eval = document.getElementById('function_eval').value.replace('ln', 'log');
                 const node1 = math.parse(function_to_eval);
                 let result = node1.compile().evaluate(scope);
                 eval_div = document.getElementById('evaluate');
