@@ -13,4 +13,12 @@ class FunctionPlotterController extends Controller
         return view('functionPlotter')->with("data",$data);
     }
 
+    public function grapherUri($function){
+        $data = [];
+        $data["title"] = __('function_plotter.title');
+        $data["function"] = urldecode($function);
+        dd($function);
+        return view('functionPlotter')->with("data",$data);
+    }
+
 }

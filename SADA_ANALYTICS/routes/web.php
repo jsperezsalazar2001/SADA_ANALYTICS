@@ -116,6 +116,7 @@ Route::get('/storageFactorizationLUMethod/{storage}/{method}', 'FactorizationLUC
 Route::get('/storageCroutMethod/{storage}/{method}', 'CroutController@storage')->name("storage_crout_method");
 
 Route::GET('/functionPlotter','FunctionPlotterController@grapher')->name("function_plotter");
+Route::get('/functionPlotterFunction/{function}{hash?}', 'FunctionPlotterController@grapherUri')->name("function_plotter_url");
 
 Route::GET('/about','AboutController@about')->name("about_us");
 

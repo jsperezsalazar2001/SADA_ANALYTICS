@@ -3,6 +3,7 @@
 @section("title", $data["title"])  
 
 @section('content')
+
 <div class="container" align="center">
     <h2>{{$data["title"]}}</h2>
     @include('layouts.message')
@@ -52,6 +53,11 @@
                         <div class="form-group col-md-6">
                             <button type="submit" class="btn btn-outline-success btn-block">{{ __('fixed_point.calculate') }}</button>
                         </div>
+                        @if (!empty($data["f_function"]))
+                        <div class="form-group col-md-6">
+                            <a class="btn btn-outline-primary btn-sm" href="{{ route('function_plotter_url',['function'=> urlencode(strtolower($data['f_function']))]) }}">Graph f(x)</a><br> 
+                        </div>
+                        @endif
                     </div>
                     <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
@@ -89,6 +95,11 @@
                         <div class="form-group col-md-6">
                             <button type="submit" class="btn btn-outline-success btn-block">{{ __('fixed_point.calculate') }}</button>
                         </div>
+                        @if (!empty($data["f_function"]))
+                        <div class="form-group col-md-6">
+                            <a class="btn btn-outline-primary " href="{{ route('function_plotter_url',['function'=> urlencode(strtolower($data['f_function']))]) }}">Graph f(x)</a><br> 
+                        </div>
+                        @endif
                     </div>
                     <div class="custom-control custom-checkbox col-md-12">
                             <input type="checkbox" class="custom-control-input" id="customControlInline" name="save" value="save">
