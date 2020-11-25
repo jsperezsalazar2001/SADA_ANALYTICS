@@ -49,7 +49,7 @@ class CubicSplineController extends Controller
             session()->put("mem",$mem);
         }
 
-
+        //$command = 'python "'.public_path().'\python\cubic_spline.py" '." ".$data. " ".$dimension;
         $command = 'python3 "'.public_path().'/python/cubic_spline.py" '." ".$data. " ".$dimension;
         // $output = explode("\n",substr_replace(shell_exec($command) ,"",-2));
         //dd($output);
@@ -75,7 +75,6 @@ class CubicSplineController extends Controller
         $data["arry"] = $Arry;
         $data["dimension"] = $dimension;
         $data["check"] = "true";
-        //dd($data);
         return view('cubicSpline')->with("data",$data);
     }
 

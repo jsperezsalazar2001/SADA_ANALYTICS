@@ -19,6 +19,6 @@ class HomeController extends Controller
             $mem[2] = $interpolation;
         }
         session()->put("mem",$mem);
-        return view('homePage');
+        return redirect('functionPlotter');
     }
 }

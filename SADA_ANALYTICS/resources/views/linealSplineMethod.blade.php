@@ -171,13 +171,13 @@
             <div class="card-body">
                 <h2>Coefficient</h2>
                     @foreach ($data["coefficient"] as $aux)
-                        $$L{{$loop->index}} = \begin{bmatrix}
+                        $${{$loop->index}}: \begin{bmatrix}
                             {{ $aux }}
                         \end{bmatrix}$$
                     @endforeach
                 <h2>Tracers</h2>
                     @foreach ($data["plotter"] as $aux)
-                        \[Tracer{{$loop->index}} = {{ $aux }}\]
+                        \[{{$loop->index}}:  {{ $aux }}\]
                     @endforeach
             </div>
         </div>

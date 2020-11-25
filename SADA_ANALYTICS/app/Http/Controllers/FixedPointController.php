@@ -49,7 +49,7 @@ class FixedPointController extends Controller
             session()->put("mem",$mem);
         }
 
-
+        //$command = 'python "'.public_path().'\python\fixed_point.py" '."{$f_function} {$g_function} {$initial_x} {$tolerance} {$iterations}";
         $command = 'python3 "'.public_path().'/python/fixed_point.py" '."{$f_function} {$g_function} {$initial_x} {$tolerance} {$iterations}";
         //dd($command);
         exec($command, $output);

@@ -49,8 +49,8 @@ class NewtonController extends Controller
             session()->put("mem",$mem);
         }
 
-        $command = 'python "'.public_path().'\python\newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
-        //$command = 'python3 "'.public_path().'/python/newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
+        //$command = 'python "'.public_path().'\python\newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
+        $command = 'python3 "'.public_path().'/python/newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
 
         $mem = session()->get("mem");
@@ -70,7 +70,6 @@ class NewtonController extends Controller
             $json = json_decode($output[0],true);
             $data["table"] = $json;
             $data["solution"] = "true";
-            $data['message'] = __('newton.success');
         }
         return view('newton')->with("data",$data);
     }

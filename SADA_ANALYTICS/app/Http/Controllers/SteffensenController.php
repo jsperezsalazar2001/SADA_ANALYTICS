@@ -45,7 +45,7 @@ class SteffensenController extends Controller
             session()->put("mem",$mem);
         }
 
-
+        //$command = 'python "'.public_path().'\python\steffensen.py" '."{$f_function} {$initial_x} {$tolerance} {$iterations}";
         $command = 'python3 "'.public_path().'/python/steffensen.py" '."{$f_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
         

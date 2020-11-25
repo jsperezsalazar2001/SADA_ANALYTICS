@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FunctionPlotterController;
 
-//Route::get('/', 'HomeController@home')->name("home");
-Route::GET('/','FunctionPlotterController@grapher')->name("home");
+Route::get('/', 'HomeController@home')->name("home");
+//Route::GET('/','FunctionPlotterController@grapher')->name("home");
 
 Route::GET('/fixedPoint','FixedPointController@fixedPoint')->name("fixed_point");
 Route::POST('/fixedPointMethod','FixedPointController@fixedPointMethod')->name("fixed_point_method");

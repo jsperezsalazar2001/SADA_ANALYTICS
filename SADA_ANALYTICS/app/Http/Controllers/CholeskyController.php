@@ -59,7 +59,7 @@ class CholeskyController extends Controller
 
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
-        $command = escapeshellcmd('python "'.public_path().'\python\cholesky.py" '." ".$data_a." ". $data_b);
+        $command = escapeshellcmd('python3 "'.public_path().'/python/cholesky.py" '." ".$data_a." ". $data_b);
         //$output = explode("\n",substr_replace(shell_exec($command) ,"",-2));
         //dd($output);
         exec($command, $output);
