@@ -115,6 +115,6 @@ class CroutController extends Controller
         $information = $data["mem"][$method][$storage];
         $data["information"] = $information;
         $data["storage"] = "true";
-        return view('gaussian')->with("data",$data);
+        return view('crout')->with("data",$data);
     }
 }

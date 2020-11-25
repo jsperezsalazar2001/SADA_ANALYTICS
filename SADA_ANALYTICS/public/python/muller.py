@@ -63,7 +63,6 @@ def muller(x_0, x_1, x_2, tolerance, function, iterations):
                                 denominador = b-raiz
                             else:
                                 denominador = b+raiz
-                                print(denominador)
                             x_3 = x_2 + ((-2*c)/denominador)
                             x_0 = x_1
                             x_1 = x_2

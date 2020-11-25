@@ -46,16 +46,16 @@ def doolittle(A,b,size):
                 for k in range(i, size): 
                     suma = 0
                     for j in range(i):
-                        suma += (L[i][j] * U[j][k]);
-                    U[i][k] = A[i][k] - suma;
+                        suma += (L[i][j] * U[j][k])
+                    U[i][k] = A[i][k] - suma
                 for k in range(i, size):
                     if (i == k):
                         L[i][i] = 1
                     else:
                         suma = 0
                         for j in range(i):
-                            suma += (L[k][j] * U[j][i]);
-                        L[k][i] = ((A[k][i] - suma)/U[i][i]);
+                            suma += (L[k][j] * U[j][i])
+                        L[k][i] = ((A[k][i] - suma)/U[i][i])
                 count = count + 1
                 dictL[count] = copy.deepcopy(L)
                 dictU[count] = copy.deepcopy(U)

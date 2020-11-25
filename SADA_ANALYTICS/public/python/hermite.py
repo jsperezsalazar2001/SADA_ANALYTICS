@@ -46,40 +46,43 @@ def hermite(xy,z, size):
     if validate == True:
         results[0] = "Error There are two equals x points in x array... All of this points have to be differents"
     else:
-        z = z[1:len(z)-1]
-        z = z.split(",")
-        for i in range(len(z)):
-            arrayZ.append(float(z[i]))
+        try: 
+            z = z[1:len(z)-1]
+            z = z.split(",")
+            for i in range(len(z)):
+                arrayZ.append(float(z[i]))
 
-        dic = lagrange.lagrange(xy,size)
-        arrayAux = []
-        arrayDerivate = []
-        arraySquare = []
-        H = []
-        H2 = []
-        for i in range(len(dic)-1):
-            arrayAux.append(parse_expr(dic[i]))
-            arraySquare.append(parse_expr(dic[i])*parse_expr(dic[i]))
-        for i in range(len(arrayAux)):
-            arrayDerivate.append(arrayAux[i].diff(x))
-        for i in range(size):
-            value = arrayDerivate[i].subs({x:arrayX[i]})
-            aux = (((x-arrayX[i])*value*(-2))+1)
-            aux = aux * arraySquare[i]
-            H.append(aux)
-            value = (x-arrayX[i])*arraySquare[i]
-            H2.append(value)
-        polynomial = 0
-        count = 0
-        for i in range(len(H)):
-            results[count] = str(arrayY[i]*H[i])
-            polynomial = polynomial + (arrayY[i]*H[i])
-            count = count + 1
-        for i in range(len(H2)):
-            results[count] = str(arrayZ[i]*H2[i])
-            polynomial = polynomial + (arrayZ[i]*H2[i])
-            count = count + 1
-        results["polynomial"] = str(polynomial)
+            dic = lagrange.lagrange(xy,size)
+            arrayAux = []
+            arrayDerivate = []
+            arraySquare = []
+            H = []
+            H2 = []
+            for i in range(len(dic)-1):
+                arrayAux.append(parse_expr(dic[i]))
+                arraySquare.append(parse_expr(dic[i])*parse_expr(dic[i]))
+            for i in range(len(arrayAux)):
+                arrayDerivate.append(arrayAux[i].diff(x))
+            for i in range(size):
+                value = arrayDerivate[i].subs({x:arrayX[i]})
+                aux = (((x-arrayX[i])*value*(-2))+1)
+                aux = aux * arraySquare[i]
+                H.append(aux)
+                value = (x-arrayX[i])*arraySquare[i]
+                H2.append(value)
+            polynomial = 0
+            count = 0
+            for i in range(len(H)):
+                results[count] = str(arrayY[i]*H[i])
+                polynomial = polynomial + (arrayY[i]*H[i])
+                count = count + 1
+            for i in range(len(H2)):
+                results[count] = str(arrayZ[i]*H2[i])
+                polynomial = polynomial + (arrayZ[i]*H2[i])
+                count = count + 1
+            results["polynomial"] = str(polynomial)
+        except:
+            results[0] = "Error Impossible to found a derivative of the lagrange polynomials"
     data = json.dumps(results)
     print(data)
 

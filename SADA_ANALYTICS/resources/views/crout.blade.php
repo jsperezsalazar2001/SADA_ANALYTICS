@@ -96,7 +96,7 @@
                         @endfor
                         \[ b = \] <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
-                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
+                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> <br><br>
                         @endfor <br><br>
                         <div class="form-group col-md-12">
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="{{$data['information'][2]}}" value="{{$data['information'][2]}}" name="n" step="any" required hidden="true" />

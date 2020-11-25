@@ -146,14 +146,20 @@
                             <input type="number" step="any" name="matrix{{$i}}{{$j}}" style="width: 110px" placeholder="{{$data['information'][0][$i][$j]}}" value="{{$data['information'][0][$i][$j]}}">    
                             @endfor <br><br>
                         @endfor
+                        <div class="row col-12">
+                            <div class="col-6" >
                         {{ __('iterative_j_g_b_method.label.vector_b') }} = <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
-                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
+                                <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> <br><br>
                         @endfor <br><br>
+                            </div>
+                            <div class="col-6" >
                         {{ __('iterative_j_g_b_method.label.vector_x') }} = <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
-                            <input type="number" step="any" name="vector_x{{$i}}" style="width: 110px"> 
+                            <input type="number" step="any" name="vector_x{{$i}}" style="width: 110px"> <br><br>
                         @endfor <br><br>
+                            </div>
+                        </div>
                         <div class="form-row col-12">
                             <div class="form-group col-6">
                                 <label> {{ __('iterative_j_g_b_method.input.tolerance') }} </label>
