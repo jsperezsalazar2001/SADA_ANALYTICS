@@ -59,8 +59,8 @@ class FactorizationLUController extends Controller
 
         $data_a = json_encode($data_a);
         $data_b = json_encode($data_b);
-        //$command = 'python "'.public_path().'\python\check_matrix.py" '." ".$data_a." ". $data_b. " {$method_type}"; local
-        $command = 'python3 "'.public_path().'/python/check_matrix.py" '." ".$data_a." ". $data_b. " {$method_type}";
+        $command = 'python "'.public_path().'\python\check_matrix.py" '." ".$data_a." ". $data_b. " {$method_type}"; local
+        //$command = 'python3 "'.public_path().'/python/check_matrix.py" '." ".$data_a." ". $data_b. " {$method_type}";
         exec($command, $output);
         #dd($output);
         $data["title"] = __('factorization_l_u_method.title');

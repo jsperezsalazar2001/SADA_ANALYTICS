@@ -18,6 +18,12 @@
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
             }
+            if (number > 10){
+                number = 10;
+            }
+            if (number < 2){
+                number = 2;
+            }
             if (number>1) {
                 for (i=0;i<number;i++) {
                     // Append a node with a random text
@@ -78,7 +84,7 @@
                         @for($i = 0; $i < count($data["information"][0]); $i++)
                             <input type="number" step="any" name="x{{$i}}" style="width: 110px" placeholder="{{$data['information'][0][$i]}}" value="{{$data['information'][0][$i]}}"> 
                         @endfor <br><br>
-                        \[F(x) = \]<br>
+                        \[y = \]<br>
                         @for($i = 0; $i < count($data["information"][1]); $i++)
                             <input type="number" step="any" name="y{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
@@ -96,7 +102,7 @@
                     <div class="form-row">
                         <div class="col-3"></div>
                         <div class="form-group col-12">
-                            <label>{{ __('vandermonde_method.dimension') }}</label>
+                            <label>\[{{ __('vandermonde_method.dimension') }}\]</label>
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('vandermonde_method.vector_dimension') }}" name="n" step="any" required />
                         </div>
                     </div>
@@ -115,13 +121,13 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div id="matrix_a" class="text-align metodo"> {{ __('vandermonde_method.x') }} </div>
+                            <div id="matrix_a" class="text-align metodo"> \[{{ __('vandermonde_method.x') }}\] </div>
                             <div id="matrix" class="text-align"> </div>
                         </div>
                     </div><br/>
                     <div class="row">
                         <div class="col">
-                            <div id="vector_b" class="text-align metodo"> {{ __('vandermonde_method.y') }} </div>
+                            <div id="vector_b" class="text-align metodo"> \[{{ __('vandermonde_method.y') }}\] </div>
                             <div id="vector" class="text-align"> </div>
                         </div>
                     </div>

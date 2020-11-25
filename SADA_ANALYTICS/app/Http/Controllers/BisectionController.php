@@ -48,8 +48,8 @@ class BisectionController extends Controller
             session()->put("mem",$mem);
         }
 
-        //$command = 'python "'.public_path().'\python\bisection.py" '."{$f_function} {$a_value} {$b_value} {$tolerance} {$iterations}";
-        $command = 'python3 "'.public_path().'/python/bisection.py" '."{$f_function} {$a_value} {$b_value} {$tolerance} {$iterations}";
+        $command = 'python "'.public_path().'\python\bisection.py" '."{$f_function} {$a_value} {$b_value} {$tolerance} {$iterations}";
+        //$command = 'python3 "'.public_path().'/python/bisection.py" '."{$f_function} {$a_value} {$b_value} {$tolerance} {$iterations}";
         exec($command, $output);
 
         $mem = session()->get("mem");

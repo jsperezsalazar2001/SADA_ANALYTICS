@@ -16,7 +16,7 @@
                     <li>The initial values must exist in the function.</li>
                     <li>The function must be continuous and differentiable.</li>
                     <li>Tolerance must have a positive value.</li>
-                    <li>The iteration number must be positive.</li>
+                    <li>The iteration number must be positive and lower than 200</li>
                     <li>Is necessary have a sign change in the function, because the method use the bisection method</li>
                 </div>
             </div><br>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>\[{{ __('bisection.label.iterations') }}\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('bisection.input.iterations') }}" value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}" name="iterations" step="1" min="1" required />
+                                <input type="number" class="form-control" placeholder="{{ __('bisection.input.iterations') }}" value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}" name="iterations" step="1" min="1" max="200" required />
                             </div>
                         </div>
                         <div class="form-row">
@@ -83,7 +83,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>\[{{ __('bisection.label.iterations') }}\]</label>
-                                <input type="number" class="form-control" placeholder="{{ __('bisection.input.iterations') }}" value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}" name="iterations" step="1" min="1" required />
+                                <input type="number" class="form-control" placeholder="{{ __('bisection.input.iterations') }}" value="{{ empty($data['iterations']) ? '' : $data['iterations'] }}" name="iterations" step="1" min="1" max="200" required />
                             </div>
                         </div>
                         <div class="form-row">

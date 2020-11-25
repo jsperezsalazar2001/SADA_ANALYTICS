@@ -65,7 +65,7 @@
             <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="card card-body">
                     <li>Make sure all the fields in the array are filled.</li>
-                    <li>The determinant of the matrix must no be 0.</li>
+                    <li>The determinant of the matrix must not be 0.</li>
                     <li>The matrix dimension must not be less than 2 and must not be greater than 10.</li>
                 </div>
             </div><br>
@@ -79,10 +79,11 @@
                             <input type="number" step="any" name="matrix{{$i}}{{$j}}" style="width: 110px" placeholder="{{$data['information'][0][$i][$j]}}" value="{{$data['information'][0][$i][$j]}}">    
                             @endfor <br><br>
                         @endfor
+                        <div> {{ __('gaussian_method.separator') }}</div>
                         \[ b = \]<br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
-                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
-                        @endfor <br><br>
+                            <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> <br><br>
+                        @endfor
                         <div class="form-group col-md-12">
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="{{$data['information'][2]}}" value="{{$data['information'][2]}}" name="n" step="any" required hidden="true" />
                         </div>
@@ -187,7 +188,7 @@
                     @endfor
 
                     <b><em>Solution</em></b>
-                    $$X = \begin{bmatrix}
+                    $$X = \begin{pmatrix}
                     @foreach ($data["xSolution"][0] as $solution)
                         @if($loop->last)
                             {{$solution}}
@@ -195,7 +196,7 @@
                             {{$solution}} \\
                         @endif
                     @endforeach
-                    \end{bmatrix}$$
+                    \end{pmatrix}$$
         
                 </div>
             </div>

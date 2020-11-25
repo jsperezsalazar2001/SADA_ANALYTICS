@@ -21,6 +21,9 @@
             if (number>10) {
                 number=10;
             }
+            if (number < 2){
+                number = 2;
+            }
             if (number>1) {
                 for (i=0;i<number;i++) {
                     // Append a node with a random text
