@@ -16,15 +16,13 @@
                     <li>The initial values must exist in the function.</li>
                     <li>The function must be continuous and differentiable.</li>
                     <li>Tolerance must have a positive value.</li>
-                    <li>The iteration number must be positive and les than 200</li>
+                    <li>The iteration number must be positive and lower than 200</li>
                     <li>Is necessary have a sign change in the function, because the method use the bisection method</li>
                     <li>On the number line x0 must be before x1.</li>
                 </div>
             </div><br>
             <form method="POST" action="{{ route('aitken_method') }}" class="form">
                     @csrf
-
-                    <!-- Inicia copiar -->
                     @if($data["storage"] == "true")
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -61,7 +59,7 @@
                         </div>
                         <br>
                         <a class="btn btn-outline-primary btn-block" href="{{ route('aitken') }}">Try with another function</a>
-                    @else <!-- Termina copiar -->
+                    @else
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>\[f(x)\]</label>
@@ -97,10 +95,9 @@
                             </div>
                         </div>
                         
-                    @endif <!-- No olviden el endif -->
+                    @endif
             </form>
         </div>
-        <!-- Iniciar copiar --> 
         @if ($data["checkMem"] == "true" and $data["mem"][0][0] != 0)
             <div class="col-md-6" style="float: right;">
                 <p>
@@ -117,7 +114,6 @@
                 </div>
             </div>
         @endif
-        <!-- Termina copiar -->
     </div>
     @if ($data["check"] == "true")
         <div class="card">

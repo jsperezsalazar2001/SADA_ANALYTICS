@@ -135,8 +135,6 @@
                 @endif <!-- No olvidar el endif -->
             </form>
         </div>
-
-        <!-- Inicia copiar -->
         @if ($data["checkMem"] == "true" and $data["mem"][2][0] != 0)
             <div class="col-md-6" style="float: right;">
                 <p>
@@ -172,7 +170,6 @@
                 </div>
             </div>
         @endif
-        <!--- Termina copiar -->
     </div><br>
     @if ($data["check"] == "true")
         <div class="card">

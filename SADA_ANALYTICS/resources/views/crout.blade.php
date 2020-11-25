@@ -18,6 +18,12 @@
             while (container_vector.hasChildNodes()) {
                 container_vector.removeChild(container_vector.lastChild);
             }
+            if (number > 10){
+                number = 10;
+            }
+            if (number < 2){
+                number = 2;
+            }
             if (number>1) {
                 for (i=0;i<number;i++) {
                     for (j=0;j<number;j++){
@@ -82,13 +88,13 @@
                 @csrf
                 @if($data["storage"] == "true")
                     <div class="text-align">
-                        Matrix A = <br>
+                        \[ A = \]<br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             @for($j = 0; $j < count($data["information"][0][0]); $j++)
                             <input type="number" step="any" name="matrix{{$i}}{{$j}}" style="width: 110px" placeholder="{{$data['information'][0][$i][$j]}}" value="{{$data['information'][0][$i][$j]}}">    
                             @endfor <br><br>
                         @endfor
-                        Vector b = <br>
+                        \[ b = \] <br>
                         @for($i = 0; $i < count($data["information"][0][0]); $i++)
                             <input type="number" step="any" name="vector{{$i}}" style="width: 110px" placeholder="{{$data['information'][1][$i]}}" value="{{$data['information'][1][$i]}}"> 
                         @endfor <br><br>
@@ -106,7 +112,7 @@
                     <div class="form-row">
                         <div class="col-3"></div>
                         <div class="form-group col-12">
-                            <label>{{ __('crout_method.dimension') }}</label>
+                            <label>\[{{ __('crout_method.dimension') }}\]</label>
                             <input type="number" id="dimension" min="2" class="form-control" placeholder="{{ __('crout_method.matrix_dimension') }}" name="n" step="any" required />
                         </div>
                             <!-- este div es el que pone feo la vista --> 
@@ -130,13 +136,13 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div id="matrix_a" class="text-align metodo"> {{ __('crout_method.label.matrix_a') }} </div>
+                            <div id="matrix_a" class="text-align metodo">\[{{ __('crout_method.label.matrix_a') }}\] </div>
                             <div id="matrix" class="text-align"> </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div id="vector_b" class="text-align metodo"> {{ __('crout_method.label.vector_b') }} </div>
+                            <div id="vector_b" class="text-align metodo">\[{{ __('crout_method.label.vector_b') }}\] </div>
                             <div id="vector" class="text-align"> </div>
                         </div>
                     </div>

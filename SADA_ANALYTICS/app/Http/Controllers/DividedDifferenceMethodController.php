@@ -50,8 +50,8 @@ class DividedDifferenceMethodController extends Controller
         $Arry = json_encode($Arry);
 
         
-        $command = 'python3 "'.public_path().'/python/divided_difference_method.py" '." ".$Arrx." ". $Arry;
-        #$command = 'python "'.public_path().'\python\divided_difference_method.py" '." ".$Arrx." ".$Arry;
+        //$command = 'python3 "'.public_path().'/python/divided_difference_method.py" '." ".$Arrx." ". $Arry;
+        $command = 'python "'.public_path().'\python\divided_difference_method.py" '." ".$Arrx." ".$Arry;
         exec($command, $output);
         $data = [];
 

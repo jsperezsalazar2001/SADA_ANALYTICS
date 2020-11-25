@@ -39,8 +39,8 @@ class IncrementalSearchController extends Controller
             session()->put("mem",$mem);
         }
 
-        //$command = 'python "'.public_path().'\python\incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
-        $command = 'python3 "'.public_path().'/python/incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
+        $command = 'python "'.public_path().'\python\incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
+        //$command = 'python3 "'.public_path().'/python/incremental_search.py" '."{$x_0} {$delta} {$iterations} {$function}";
         exec($command, $output);
         $data = [];
         $mem = session()->get("mem");

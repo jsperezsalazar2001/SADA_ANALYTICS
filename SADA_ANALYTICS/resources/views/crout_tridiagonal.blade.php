@@ -155,13 +155,16 @@
             </form>
         </div>
         @if ($data["checkMem"] == "true" and $data["mem"][1][0] != 0)
-                <div class="col-md-6" style="float: right;">
+            <div class="col-md-6" style="float: right;">
+                <p>
                     @if (count($data["mem"][1]) > 1)
-                        <h4>Matrices Saved</h4>
-                    @endif
+                        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-info-circle"></i> Matrices Saved</a>
+                    @endif 
+                </p>
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
                     @for($j = 1; $j < count($data["mem"][1]); $j++)
                         <a class="btn btn-outline-primary btn-sm" href="{{ route('storage_crout_tridiagonal',['storage'=> $j,'method' => 1]) }}">Use Storage {{$j}}</a> <br><br>
-                        $$A = \begin{pmatrix}
+                        $$A = \begin{bmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][0]); $z++)
                             @for($f = 0; $f < count($data["mem"][1][$j][0][$z]); $f++)
                                 @if($f != count($data["mem"][1][$j][0][$z])-1)
@@ -171,15 +174,16 @@
                                 @endif  
                             @endfor
                         @endfor
-                        \end{pmatrix}$$
-                        $$b = \begin{pmatrix}
+                        \end{bmatrix}$$
+                        $$b = \begin{bmatrix}
                         @for($z = 0; $z < count($data["mem"][1][$j][1]); $z++)
                             {{$data["mem"][1][$j][1][$z]}} \\
                         @endfor
-                        \end{pmatrix}$$<br>
+                        \end{bmatrix}$$<br>
                     @endfor
                 </div>
-            @endif
+            </div>
+        @endif
     </div><br/>
     @if ($data["solution"] != "form")
         <div class="card">

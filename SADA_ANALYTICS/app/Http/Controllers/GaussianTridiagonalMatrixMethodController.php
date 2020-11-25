@@ -36,8 +36,8 @@ class GaussianTridiagonalMatrixMethodController extends Controller
         $Arrc = json_encode($Arrc);
         $Arrd = json_encode($Arrd);
 
-        $command = 'python3 "'.public_path().'/python/gaussian_tridiagonal_matrix_method.py" '." ".$Arra." ". $Arrb." ".$Arrc." ".$Arrd;
-        #$command = 'python "'.public_path().'\python\gaussian_tridiagonal_matrix_method.py" '." ".$Arra." ".$Arrb." ".$Arrc." ".$Arrd;
+        //$command = 'python3 "'.public_path().'/python/gaussian_tridiagonal_matrix_method.py" '." ".$Arra." ". $Arrb." ".$Arrc." ".$Arrd;
+        $command = 'python "'.public_path().'\python\gaussian_tridiagonal_matrix_method.py" '." ".$Arra." ".$Arrb." ".$Arrc." ".$Arrd;
         exec($command, $output);
         
         $data = [];

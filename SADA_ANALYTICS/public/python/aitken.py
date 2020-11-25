@@ -44,27 +44,30 @@ def bisection(function, a, b):
     
     results = []
     x_in = sm.symbols('x')
-    f_a = sm.sympify(function).subs(x_in, a)
-    f_b = sm.sympify(function).subs(x_in, b)
-    
-    if f_a * f_b >= 0:
-        return 0
-    else:
-        mp = (a + b)/2
-        f_mp = sm.sympify(function).subs(x_in, mp)
-        results.append([a,mp,b])
-        cont = 1
-        while cont <= 2:
-            if f_a * f_mp < 0:
-                b = mp
-            else:
-                a = mp
-            p_0 = mp
+    try:
+        f_a = sm.sympify(function).subs(x_in, a)
+        f_b = sm.sympify(function).subs(x_in, b)
+        
+        if f_a * f_b >= 0:
+            return 0
+        else:
             mp = (a + b)/2
             f_mp = sm.sympify(function).subs(x_in, mp)
-            cont = cont + 1
             results.append([a,mp,b])
-        return results
+            cont = 1
+            while cont <= 2:
+                if f_a * f_mp < 0:
+                    b = mp
+                else:
+                    a = mp
+                p_0 = mp
+                mp = (a + b)/2
+                f_mp = sm.sympify(function).subs(x_in, mp)
+                cont = cont + 1
+                results.append([a,mp,b])
+            return results
+    except:
+        return 1
 
 def aitken(x_0, x_1, tolerance, function, iterations):
     results = {}
@@ -81,7 +84,7 @@ def aitken(x_0, x_1, tolerance, function, iterations):
     elif iterations <= 0:
         results[0] = "Error the iterations has to be positive and greater than 0"
     else:
-        if bisectionResult != 0:
+        if bisectionResult != 0 and bisectionResult != 1:
             try:
                 x = sm.symbols('x')
                 count = 1 
@@ -104,8 +107,10 @@ def aitken(x_0, x_1, tolerance, function, iterations):
                     count = count + 1
             except:
                 results[0] = "Error Divide by 0" 
-        else:
+        elif bisectionResult == 0:
             results[0] = "Error with method. There isn't a sign change, It's imposible to bisection"
+        elif bisectionResult == 1:
+            results[0] = "Error with the evaluation function in x0 or x1"
 
     for key in results:
         if results[key][3] == infinite:

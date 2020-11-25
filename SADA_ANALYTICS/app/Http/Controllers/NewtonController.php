@@ -49,8 +49,8 @@ class NewtonController extends Controller
             session()->put("mem",$mem);
         }
 
-        //$command = 'python "'.public_path().'\python\newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
-        $command = 'python3 "'.public_path().'/python/newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
+        $command = 'python "'.public_path().'\python\newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
+        //$command = 'python3 "'.public_path().'/python/newton.py" '."{$f_function} {$df_function} {$initial_x} {$tolerance} {$iterations}";
         exec($command, $output);
 
         $mem = session()->get("mem");

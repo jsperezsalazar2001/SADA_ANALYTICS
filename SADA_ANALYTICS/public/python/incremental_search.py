@@ -34,19 +34,22 @@ def incremental_search(x_0, delta, iterations, function):
         x = sm.symbols('x')
         previous_x = x_0
         current_x = previous_x+delta
-        previous_f = sm.sympify(function).subs(x,previous_x)
-        current_f = sm.sympify(function).subs(x,current_x)
-        count = 0 
-        while (count < iterations):
-            if current_f*previous_f<0:
-                previous_x = round(previous_x,7)
-                current_x = round(current_x,7)
-                results[count] = [previous_x,current_x]
-            previous_x = current_x
-            current_x = current_x + delta
-            previous_f = current_f
+        try:
+            previous_f = sm.sympify(function).subs(x,previous_x)
             current_f = sm.sympify(function).subs(x,current_x)
-            count = count + 1
+            count = 0 
+            while (count < iterations):
+                if current_f*previous_f<0:
+                    previous_x = round(previous_x,7)
+                    current_x = round(current_x,7)
+                    results[count] = [previous_x,current_x]
+                previous_x = current_x
+                current_x = current_x + delta
+                previous_f = current_f
+                current_f = sm.sympify(function).subs(x,current_x)
+                count = count + 1
+        except:
+            results[0] = "Error with the evaluation function in x point"
     else:
         results[0] = "Error the iterations has to be positive and greater than 0"
     if (len(results) == 0):
